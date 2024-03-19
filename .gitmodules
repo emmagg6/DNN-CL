@@ -1,0 +1,6 @@
+[submodule "/fw-targetprop"]
+	path = propagation/fw-targetprop
+	url = https://github.com/TatsukichiShibuya/Fixed-Weight-Difference-Target-Propagation
+[submodule "ScalableDTP"]
+	path = ScalableDTP
+	url = https://github.com/BPTargetDTP/ScalableDTP.git
