@@ -4,3 +4,6 @@
 [submodule "ScalableDTP"]
 	path = ScalableDTP
 	url = https://github.com/BPTargetDTP/ScalableDTP.git
+[submodule "targetprop-rnn"]
+	path = targetprop-rnn
+	url = https://github.com/peilundai/targetprop-rnn.git
