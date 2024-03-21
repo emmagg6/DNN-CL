@@ -41,6 +41,10 @@ class identity_function(abstract_function):
 
     def forward(self, input, original=None):
         return self.activation_function(input @ self.weight.T)
+    
+    def get_params(self):
+        # Identity function does not have trainable parameters, so return an empty dict
+        return {}
 
 
 class parameterized_function(abstract_function):
@@ -77,6 +81,15 @@ class parameterized_function(abstract_function):
 
     def get_grad(self):
         return self.weight.grad
+    
+    def get_params(self):
+        # Return the weights of the parameterized function
+        return {'weight': self.weight.detach().cpu().numpy()}
+    
+    def load_params(self, params):
+        # Assuming 'weight' is the only parameter
+        if 'weight' in params:
+            self.weight.data.copy_(torch.from_numpy(params['weight']).to(self.device))
 
 
 class random_function(abstract_function):
@@ -137,6 +150,12 @@ class random_function(abstract_function):
 
     def forward(self, input, original=None):
         return self.activation_function(input @ self.weight.T)
+    
+    def get_params(self):
+        # Return the weights of the random function
+        return {'weight': self.weight.detach().cpu().numpy()}
+    
+
 
 
 class difference_function(abstract_function):
@@ -155,3 +174,7 @@ class difference_function(abstract_function):
             rec = self.layer.backward_function_1.forward(upper)
             difference = original - rec
         return self.activation_function(input + difference)
+    
+    def get_params(self):
+        # Difference function does not have trainable parameters, so return an empty dict
+        return {}

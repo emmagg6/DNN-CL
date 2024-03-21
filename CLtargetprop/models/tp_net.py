@@ -1,7 +1,7 @@
-from models.tp_layer import tp_layer
-from models.net import net
-from models.my_functions import parameterized_function
-from FWtargetprop.utils import calc_angle
+from Models.tp_layer import tp_layer
+from Models.net import net
+from Models.my_functions import parameterized_function
+from utils import calc_angle
 from copy import deepcopy
 
 import sys
@@ -11,6 +11,7 @@ import numpy as np
 import torch
 from torch import nn
 from torch.autograd.functional import jacobian
+import os
 
 
 class tp_net(net):
@@ -102,10 +103,6 @@ class tp_net(net):
 
                 wandb.log(log_dict)
 
-                if save == True :
-                    ... # save the results to the folder 'checkpoints/trial' folder
-
-
             else:
                 print(f"\tTrain Loss       : {train_loss}")
                 print(f"\tValid Loss       : {valid_loss}")
@@ -119,6 +116,9 @@ class tp_net(net):
                 for d in range(1, self.depth - self.direct_depth + 1):
                     print(f"\teigenvalue trace-{d}: {eigenvalues_trace[d].item()}")
 
+        if save:
+            self.save_model()
+        
 
     def train_back_weights(self, x, y, lrb, std, loss_type="L-DRL"):
         if not self.back_trainable:
@@ -184,3 +184,52 @@ class tp_net(net):
             self.layers[d].zero_grad()
             loss.backward(retain_graph=True)
             self.layers[d].update_forward(lr / len(x))
+
+    def get_layer_params(self):
+        layer_params = {}
+        for idx, layer in enumerate(self.layers):
+            layer_params[f'layer_{idx}'] = {
+                'forward_function_1': layer.forward_function_1.get_params(),
+                'forward_function_2': layer.forward_function_2.get_params(),
+                'backward_function_1': layer.backward_function_1.get_params(),
+                'backward_function_2': layer.backward_function_2.get_params()
+            }
+        return layer_params
+
+    def save_model(self, path="checkpoints/tp/params.pth"):
+        # Ensure the checkpoint directory exists
+        os.makedirs(os.path.dirname(path), exist_ok=True)
+        # Collect the parameters from each layer's functions
+        layer_params = {}
+        for idx, layer in enumerate(self.layers):
+            layer_params[f'layer_{idx}'] = {
+                'forward_function_1': layer.forward_function_1.get_params(),
+                'forward_function_2': layer.forward_function_2.get_params(),
+                'backward_function_1': layer.backward_function_1.get_params(),
+                'backward_function_2': layer.backward_function_2.get_params()
+            }
+        # Save the collected parameters to the specified path
+        torch.save(layer_params, path)
+
+
+    def load_state(self, state_dict):
+        for layer_key, layer_state in state_dict.items():
+            layer_idx = int(layer_key.split('_')[-1])
+            layer = self.layers[layer_idx]
+
+            if 'forward_function_1' in layer_state and hasattr(layer.forward_function_1, 'load_params'):
+                layer.forward_function_1.load_params(layer_state['forward_function_1'])
+
+            if 'forward_function_2' in layer_state and hasattr(layer.forward_function_2, 'load_params'):
+                layer.forward_function_2.load_params(layer_state['forward_function_2'])
+
+            if 'backward_function_1' in layer_state and hasattr(layer.backward_function_1, 'load_params'):
+                layer.backward_function_1.load_params(layer_state['backward_function_1'])
+
+            if 'backward_function_2' in layer_state and hasattr(layer.backward_function_2, 'load_params'):
+                layer.backward_function_2.load_params(layer_state['backward_function_2'])
+
+
+
+
+

@@ -2,7 +2,7 @@ import torch
 from torch import nn
 from abc import ABCMeta, abstractmethod
 
-from models.my_functions import *
+from Models.my_functions import *
 
 
 class tp_layer:

@@ -1,5 +1,5 @@
-from models.bp_layer import bp_layer
-from models.net import net
+from Models.bp_layer import bp_layer
+from Models.net import net
 
 import time
 import wandb

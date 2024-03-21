@@ -1,6 +1,6 @@
 import torch
 from torch import nn
-from FWtargetprop.utils import batch_normalization
+from utils import batch_normalization
 
 import sys
 

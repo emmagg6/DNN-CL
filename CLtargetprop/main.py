@@ -7,11 +7,11 @@ Adaptation for Continual Learning Benchmarking is done by: emmagg6.
 
 '''
 
-from FWtargetprop.code.utils import worker_init_fn, set_seed, combined_loss, set_wandb, set_device
-from FWtargetprop.code.dataset import make_MNIST, make_FashionMNIST, make_CIFAR10, make_CIFAR100
+from utils import worker_init_fn, set_seed, combined_loss, set_wandb, set_device
+from dataset import make_MNIST, make_FashionMNIST, make_CIFAR10, make_CIFAR100
 
-from CLtargetprop.models.bp_net import bp_net
-from CLtargetprop.models.tp_net import tp_net
+from Models.bp_net import bp_net
+from Models.tp_net import tp_net
 
 from initParameters import set_params
 
@@ -54,13 +54,13 @@ def get_args():
     parser.add_argument("--label_augmentation", action="store_true")
 
     # setting of tp_layer
-    parser.add_argument("--forward_function_1", "-ff1", type=str, default="identity",
+    parser.add_argument("--forward_function_1", "-ff1", type=str, default="parameterized",
                         choices=["identity", "random", "parameterized"])
-    parser.add_argument("--forward_function_2", "-ff2", type=str, default="identity",
+    parser.add_argument("--forward_function_2", "-ff2", type=str, default="parameterized",
                         choices=["identity", "random", "parameterized"])
-    parser.add_argument("--backward_function_1", "-bf1", type=str, default="identity",
+    parser.add_argument("--backward_function_1", "-bf1", type=str, default="parameterized",
                         choices=["identity", "random", "parameterized"])
-    parser.add_argument("--backward_function_2", "-bf2", type=str, default="identity",
+    parser.add_argument("--backward_function_2", "-bf2", type=str, default="parameterized",
                         choices=["identity", "random", "difference"])
 
     # neccesary if {parameterized, random} was choosed
@@ -100,7 +100,10 @@ def get_args():
     parser.add_argument("--agent", action="store_true")
 
     # CL
-    parser.edd_argument("--continual", type=str, default="no",
+    parser.add_argument("--continual", type=str, default="no",
+                        choices=["no", "yes"])
+    # save 
+    parser.add_argument("--save", type=str, default="no",
                         choices=["no", "yes"])
 
     args = parser.parse_args()
@@ -112,17 +115,13 @@ def main(**kwargs):
     device = set_device()
     print(f"DEVICE: {device}")
 
-     # if conintual learning == yes, then loading the previously learned weights (params)
-    if kwargs["continual"] == "yes":
-        if kwargs["algorithm"] in TP_LIST :
-            # dependent on the on the type? or do all TP have the same param number?
-            params = torch.load("checkpoints/tp/params.pt")
-            if kwargs["log"] :
-                set_wandb(kwargs, params)
-        elif kwargs["algorithm"] in BP_LIST :
-            ... # right now the BP does not take params argument
-    else : 
-        if kwargs["algorithm"] in TP_LIST:
+    if kwargs["save"] == 'yes':
+        track = True
+    else:
+        track = False
+
+
+    if kwargs["algorithm"] in TP_LIST:
             params = set_params(kwargs)
             print("Forward  : ", end="")
             print(f"{params['ff1']['type']}({params['ff1']['act']},{params['ff1']['init']})", end="")
@@ -132,7 +131,7 @@ def main(**kwargs):
             print(f" -> {params['bf2']['type']}({params['bf2']['act']},{params['bf2']['init']})")
             if kwargs["log"]:
                 set_wandb(kwargs, params)
-        elif kwargs["algorithm"] in BP_LIST:
+    elif kwargs["algorithm"] in BP_LIST:
             print("Forward  : ", end="")
             print(f"{kwargs['forward_function_2_activation']}, orthogonal")
             if kwargs["log"]:
@@ -141,7 +140,7 @@ def main(**kwargs):
                 wandb.init(config=config)
 
 
-
+    ########### DATA ###########
     if kwargs["dataset"] == "MNIST":
         num_classes = 10
         trainset, validset, testset = make_MNIST(kwargs["label_augmentation"],
@@ -186,19 +185,29 @@ def main(**kwargs):
                                               pin_memory=True,
                                               worker_init_fn=worker_init_fn)
 
-    # initialize model
+   
+   ######### MODEL ###########
     if kwargs["algorithm"] in BP_LIST:
         model = bp_net(kwargs["depth"], kwargs["in_dim"], kwargs["hid_dim"],
                        kwargs["out_dim"], kwargs["forward_function_2_activation"],
                        loss_function, kwargs["algorithm"], device)
+        
         model.train(train_loader, valid_loader, kwargs["epochs"], kwargs["learning_rate"],
                     kwargs["log"])
-    elif kwargs["algorithm"] in TP_LIST:
+    elif kwargs["algorithm"] in TP_LIST:        
+         # initialize model
         model = tp_net(kwargs["depth"], kwargs["direct_depth"], kwargs["in_dim"],
                        kwargs["hid_dim"], kwargs["out_dim"], loss_function, device, params=params)
+        
+        # If continual learning is enabled, load the saved model parameters
+        if kwargs["continual"] == "yes":
+            saved_state = torch.load("checkpoints/tp/params.pth")
+            model.load_state(saved_state)
+        
+        # train
         model.train(train_loader, valid_loader, kwargs["epochs"], kwargs["learning_rate"],
                     kwargs["learning_rate_backward"], kwargs["std_backward"], kwargs["stepsize"],
-                    kwargs["log"], {"loss_feedback": kwargs["loss_feedback"], "epochs_backward": kwargs["epochs_backward"]})
+                    kwargs["log"], {"loss_feedback": kwargs["loss_feedback"], "epochs_backward": kwargs["epochs_backward"]}, save = track)
 
     # test
     loss, acc = model.test(test_loader)
