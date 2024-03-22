@@ -65,41 +65,42 @@ STEP SIZE HYPERPARAMETER FOR FW-DTP
 BASE FOUR : 
 
 1. python main.py --algorithm=DTP-BN --dataset=MNIST --forward_last_activation=linear-BN --learning_rate=0.1 --stepsize=0.04 --test --log --save=yes --epochs=10
-> checkpoint save name : DTP-MNIST
-> wandb : 
+> checkpoint save name : DTP-mnist
+> wandb : DTP-m
 
 2. python main.py --algorithm=FWDTP-BN --dataset=MNIST --forward_last_activation=linear-BN --learning_rate=0.1 --stepsize=0.04 --test --log --save=yes --epochs=10
-> checkpoint save name : 
-> wandb : 
+> checkpoint save name : FWDTP-mnist
+> wandb : FWDTP-m
 
 3. python main.py --algorithm=DTP-BN --dataset=FashionMNIST --forward_last_activation=linear-BN --learning_rate=1 --stepsize=0.004 --test --log --save=yes --epochs=10
-> checkpoint save name : 
-> wandb : 
+> checkpoint save name : DTP-fmnist
+> wandb : DTP-f
 
-4. python main.py --algorithmFWDTP-BN --dataset=FashionMNIST --forward_last_activation=linear-BN --learning_rate=1 --stepsize=0.004 --test --log --save=yes --epochs=10
-> checkpoint save name : 
-> wandb : 
+4. python main.py --algorithm=FWDTP-BN --dataset=FashionMNIST --forward_last_activation=linear-BN --learning_rate=1 --stepsize=0.004 --test --log --save=yes --epochs=10
+> checkpoint save name : FWDTP-fmnist
+> wandb : FWDTP-f
 
 
 CONTINUAL LEARNING 1 :
 
 1. python main.py --algorithm=DTP-BN --dataset=FashionMNIST --forward_last_activation=linear-BN --learning_rate=1 --stepsize=0.004 --test --log --save=yes --epochs=10 --continual=yes
 > previous task : MNIST
-> initialized save name : 
-> checkpoint save name : 
-> wandb : 
+> initialized save name : DTP-mnist
+> checkpoint save name : DTP-m-f
 
 2. python main.py --algorithm=FWDTP-BN --dataset=FashionMNIST --forward_last_activation=linear-BN --learning_rate=1 --stepsize=0.004 --test --log --save=yes --epochs=10 --continual=yes
 > previous task : MNIST
-> initialized save name : 
-> checkpoint save name : 
-> wandb : 
+> initialized save name : FWDTP-mnist
+> checkpoint save name : FWDTP-m-f
 
 
 CONTINUAL LEARNING 2 :
-1. python main.py --algorithm=DTP-BN --dataset=nMNIST --forward_last_activation=linear-BN --learning_rate=0.1 --stepsize=0.04 --test --log --save=yes --epochs=10 --continual=yes
+1. python main.py --algorithm=DTP-BN --dataset=MNIST --forward_last_activation=linear-BN --learning_rate=0.1 --stepsize=0.04 --test --log --save=yes --epochs=10 --continual=yes
 > previous task : MNIST
-> initialized save name : 
-> checkpoint save name : 
-> wandb : 
+> initialized save name : DTP-m-f
+> checkpoint save name : DTP-m-f-m
 
+2. python main.py --algorithm=FWDTP-BN --dataset=MNIST --forward_last_activation=linear-BN --learning_rate=0.1 --stepsize=0.04 --test --log --save=yes --epochs=10 --continual=yes
+> previous task : MNIST
+> initialized save name : FWDTP-m-f
+> checkpoint save name : FWDTP-m-f-m

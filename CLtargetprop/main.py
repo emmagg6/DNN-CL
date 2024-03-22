@@ -201,7 +201,7 @@ def main(**kwargs):
         
         # If continual learning is enabled, load the saved model parameters
         if kwargs["continual"] == "yes":
-            saved_state = torch.load("checkpoints/tp/params.pth")
+            saved_state = torch.load("checkpoints/tp/FWDTP-m-f.pth")
             model.load_state(saved_state)
         
         # train
