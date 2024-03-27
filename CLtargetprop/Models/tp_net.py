@@ -40,7 +40,7 @@ class tp_net(net):
             y = self.layers[d].forward(y, update=update)
         return y
 
-    def train(self, train_loader, valid_loader, epochs, lr, lrb, std, stepsize, log, params=None, save = False):
+    def train(self, train_loader, valid_loader, epochs, lr, lrb, std, stepsize, log, save, params=None):
         # Pre-train the feedback weights
         for e in range(params["epochs_backward"]):
             torch.cuda.empty_cache()
@@ -116,7 +116,7 @@ class tp_net(net):
                 for d in range(1, self.depth - self.direct_depth + 1):
                     print(f"\teigenvalue trace-{d}: {eigenvalues_trace[d].item()}")
 
-        if save:
+        if save == 'yes':
             self.save_model()
         
 

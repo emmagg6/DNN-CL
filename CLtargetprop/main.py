@@ -80,13 +80,13 @@ def get_args():
                         choices=["orthogonal", "gaussian", "uniform"])
     parser.add_argument("--sparse_ratio", "-sr", type=float, default=-1)
 
-    parser.add_argument("--forward_function_1_activation", "-ff1_act", type=str, default="linear",
+    parser.add_argument("--forward_function_1_activation", "-ff1_act", type=str, default="linear-BN",
                         choices=["tanh", "linear", "tanh-BN", "linear-BN"])
-    parser.add_argument("--forward_function_2_activation", "-ff2_act", type=str, default="tanh",
+    parser.add_argument("--forward_function_2_activation", "-ff2_act", type=str, default="tanh-BN",
                         choices=["tanh", "linear", "tanh-BN", "linear-BN"])
-    parser.add_argument("--backward_function_1_activation", "-bf1_act", type=str, default="tanh",
+    parser.add_argument("--backward_function_1_activation", "-bf1_act", type=str, default="tanh-BN",
                         choices=["tanh", "linear", "tanh-BN", "linear-BN"])
-    parser.add_argument("--backward_function_2_activation", "-bf2_act", type=str, default="linear",
+    parser.add_argument("--backward_function_2_activation", "-bf2_act", type=str, default="linear-BN",
                         choices=["tanh", "linear", "tanh-BN", "linear-BN"])
     parser.add_argument("--forward_last_activation", type=str, default="linear",
                         choices=["tanh", "linear", "tanh-BN", "linear-BN"])
@@ -191,9 +191,12 @@ def main(**kwargs):
         model = bp_net(kwargs["depth"], kwargs["in_dim"], kwargs["hid_dim"],
                        kwargs["out_dim"], kwargs["forward_function_2_activation"],
                        loss_function, kwargs["algorithm"], device)
-        
+        # If continual learning is enabled, load the saved model parameters
+        if kwargs["continual"] == "yes":
+            model.load_model("checkpoints/bp/BP-m-f-maybe.pth")
+
         model.train(train_loader, valid_loader, kwargs["epochs"], kwargs["learning_rate"],
-                    kwargs["log"])
+                    kwargs["log"], kwargs["save"])
     elif kwargs["algorithm"] in TP_LIST:        
          # initialize model
         model = tp_net(kwargs["depth"], kwargs["direct_depth"], kwargs["in_dim"],
@@ -207,7 +210,7 @@ def main(**kwargs):
         # train
         model.train(train_loader, valid_loader, kwargs["epochs"], kwargs["learning_rate"],
                     kwargs["learning_rate_backward"], kwargs["std_backward"], kwargs["stepsize"],
-                    kwargs["log"], {"loss_feedback": kwargs["loss_feedback"], "epochs_backward": kwargs["epochs_backward"]}, save = track)
+                    kwargs["log"], {"loss_feedback": kwargs["loss_feedback"], "epochs_backward": kwargs["epochs_backward"]}, kwargs["save"])
 
     # test
     loss, acc = model.test(test_loader)
