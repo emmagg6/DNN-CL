@@ -2,7 +2,7 @@ import torch
 from torch import nn
 from abc import ABCMeta, abstractmethod
 
-from Models.my_functions import *
+from Models.tp_fcns import *
 
 
 class tp_layer:
@@ -12,12 +12,12 @@ class tp_layer:
         self.device = device
 
         # set forward functions
-        self.forward_function_1 = set_function(in_dim, in_dim, self, self.device, params["ff1"])
-        self.forward_function_2 = set_function(in_dim, out_dim, self, self.device, params["ff2"])
+        self.forward_function_1 = self.set_function(in_dim, in_dim, self, self.device, params["ff1"])
+        self.forward_function_2 = self.set_function(in_dim, out_dim, self, self.device, params["ff2"])
 
         # set backward functions
-        self.backward_function_1 = set_function(out_dim, in_dim, self, self.device, params["bf1"])
-        self.backward_function_2 = set_function(in_dim, in_dim, self, self.device, params["bf2"])
+        self.backward_function_1 = self.set_function(out_dim, in_dim, self, self.device, params["bf1"])
+        self.backward_function_2 = self.set_function(in_dim, in_dim, self, self.device, params["bf2"])
 
         # values
         self.input = None
@@ -62,14 +62,8 @@ class tp_layer:
         return grad
 
 
-def set_function(in_dim, out_dim, layer, device, params):
-    if params["type"] == "identity":
-        return identity_function(in_dim, out_dim, layer, device, params)
-    elif params["type"] == "random":
-        return random_function(in_dim, out_dim, layer, device, params)
-    elif params["type"] == "parameterized":
-        return parameterized_function(in_dim, out_dim, layer, device, params)
-    elif params["type"] == "difference":
-        return difference_function(in_dim, out_dim, layer, device, params)
-    else:
-        raise NotImplementedError()
+    def set_function(in_dim, out_dim, layer, device, params):
+        if params["type"] == "parameterized":
+            return parameterized_function(in_dim, out_dim, layer, device, params)
+        else:
+            raise NotImplementedError()

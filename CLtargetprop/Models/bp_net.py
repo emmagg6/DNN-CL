@@ -1,175 +1,38 @@
 from Models.bp_layer import bp_layer
 from Models.net import net
 
+from utils import calc_angle
+from copy import deepcopy
+
+import sys
 import time
 import wandb
 import numpy as np
 import torch
 from torch import nn
+from torch.autograd.functional import jacobian
 import os
 
 
-class bp_net(net):
-    def __init__(self, depth, in_dim, hid_dim, out_dim, activation_function, loss_function, algorithm, device, continual=False):
-        self.device = device
+class bp_net(nn.Module):
+    def __init__(self, depth, direct_depth, in_dim, hid_dim, out_dim, loss_function, device, params=None):
         self.depth = depth
-        self.layers = self.init_layers(in_dim, hid_dim, out_dim, activation_function)
+        self.direct_depth = direct_depth
         self.loss_function = loss_function
+        self.device = device
         self.MSELoss = nn.MSELoss(reduction="sum")
-        self.algorithm = algorithm
-        self.cont = continual
+        self.layers = self.init_layers(in_dim, hid_dim, out_dim, params)
+        self.back_trainable = (params["bf1"]["type"] == "parameterized")
 
-    def init_layers(self, in_dim, hid_dim, out_dim, activation_function):
+    def init_layers(self, in_dim, hid_dim, out_dim, params):
         layers = [None] * self.depth
         dims = [in_dim] + [hid_dim] * (self.depth - 1) + [out_dim]
-        
-        # correct activation function for layers with batch normalization
         for d in range(self.depth - 1):
-            if "-BN" in activation_function:
-                # if includes batch normalization, use the modified string
-                act_func = activation_function.replace("-BN", "") + "-BN"
-            else:
-                act_func = activation_function
-            layers[d] = bp_layer(dims[d], dims[d + 1], act_func, self.device, continual = self.cont)
-        
-        # The final layer should not use batch normalization, assuming it's a linear layer without BN
-        layers[-1] = bp_layer(dims[-2], dims[-1], "linear", self.device, continual = self.cont)
+            layers[d] = bp_layer(dims[d], dims[d + 1], self.device, params)
+        params_last = deepcopy(params)
+        params_last["ff2"]["act"] = params["last"]
+        layers[-1] = bp_layer(dims[-2], dims[-1], self.device, params_last)
         return layers
-
-    def set_bn_eval(self):
-        for layer in self.layers:
-            if layer.use_batch_norm:
-                layer.batch_norm.eval()
-
-    def set_bn_train(self):
-        for layer in self.layers:
-            if layer.use_batch_norm:
-                layer.batch_norm.train()
-
-    def train(self, train_loader, valid_loader, epochs, lr, log, save):
-        if self.continual:
-            # Set batch norm layers to evaluation mode
-            self.set_bn_eval()
-
-            # Load a single batch to check the model output
-            x_sample, y_sample = next(iter(train_loader))
-            x_sample, y_sample = x_sample.to(self.device), y_sample.to(self.device)
-            y_pred_sample = self.forward(x_sample)
-
-            if torch.isnan(y_pred_sample).any() or torch.isinf(y_pred_sample).any():
-                raise ValueError("NaN or Inf in model output during evaluation before training starts.")
-
-            # Set batch norm layers back to training mode
-            self.set_bn_train()
-
-        # Initial evaluation before any training
-        train_loss, train_acc = self.test(train_loader)
-        valid_loss, valid_acc = self.test(valid_loader)
-        if log:
-            log_dict = {
-                "epoch": 0,  # Log as epoch 0
-                "train loss": train_loss,
-                "valid loss": valid_loss,
-                "train accuracy": train_acc,
-                "valid accuracy": valid_acc
-            }
-            wandb.log(log_dict)
-        else:
-            print(f"Epoch 0 - Train Loss: {train_loss}, Valid Loss: {valid_loss}")
-            if train_acc is not None:
-                print(f"Train Acc: {train_acc}")
-            if valid_acc is not None:
-                print(f"Valid Acc: {valid_acc}")
-
-        # print("Epoch 0")
-        # for e in range(1, epochs + 1):
-        #     print(f"Epoch {e}")
-        #     start_time = time.time()
-
-        #     # Training forward pass and weight update
-        #     for x, y in train_loader:
-        #         x, y = x.to(self.device), y.to(self.device)
-        #         self.update_weights(x, y, lr)
-
-            # end_time = time.time()
-                
-        print("Epoch 0")
-        for e in range(1, epochs + 1):
-            print(f"Epoch {e}")
-            start_time = time.time()
-
-            # Training forward pass and weight update
-            for x, y in train_loader:
-                x, y = x.to(self.device), y.to(self.device)
-                self.update_weights(x, y, lr)
-
-                # Gradient clipping
-                torch.nn.utils.clip_grad_norm_(self.parameters(), max_norm=1.0)
-
-            end_time = time.time()
-
-
-            # Prediction and logging after each epoch
-            with torch.no_grad():
-                train_loss, train_acc = self.test(train_loader)
-                valid_loss, valid_acc = self.test(valid_loader)
-                if log:
-                    log_dict = {
-                        "epoch": e,
-                        "train loss": train_loss,
-                        "valid loss": valid_loss,
-                        "train accuracy": train_acc,
-                        "valid accuracy": valid_acc,
-                        "time": end_time - start_time
-                    }
-                    wandb.log(log_dict)
-                else:
-                    print(f"Epoch {e} - Train Loss: {train_loss}, Valid Loss: {valid_loss}")
-                    if train_acc is not None:
-                        print(f"Train Acc: {train_acc}")
-                    if valid_acc is not None:
-                        print(f"Valid Acc: {valid_acc}")
-
-        # Save the model after training, if specified
-        if save == 'yes':
-            self.save_model()
-
-    def update_weights(self, x, y, lr):
-        y_pred = self.forward(x).requires_grad_()
-        y_pred.retain_grad()
-        loss = self.loss_function(y_pred, y)
-        print(f"Update weights - Loss: {loss.item()}")
-        batch_size = len(y)
-        self.zero_grad()
-        loss.backward()
-
-        for idx, layer in enumerate(self.layers):
-            if layer.weight.grad is not None:
-                print(f"Layer {idx} - Weight gradient norm: {layer.weight.grad.norm().item()}")  # Print the norm of the gradients
-            else:
-                print(f"Layer {idx} - No gradients computed (grad is None)")  # This indicates a problem
-
-        g = y_pred.grad
-        grad = [None] * self.depth
-        with torch.no_grad():
-            for d in reversed(range(self.depth)):
-                g = g * self.layers[d].activation_derivative(self.layers[d].linear_activation)
-                grad[d] = g.T @ self.layers[d - 1].linear_activation if d >= 1 else g.T @ x
-                if self.algorithm == "BP":
-                    g = g @ self.layers[d].weight
-                elif self.algorithm == "FA":
-                    g = g @ self.layers[d].fixed_weight
-        for d in range(self.depth):
-            update_value = (lr / batch_size) * grad[d]
-            print(f"Layer {d} - Update norm: {update_value.norm().item()}")
-            self.layers[d].weight = (self.layers[d].weight - (lr / batch_size)
-                                     * grad[d]).detach().requires_grad_()
-
-
-    def zero_grad(self):
-        for d in range(self.depth):
-            if self.layers[d].weight.grad is not None:
-                self.layers[d].weight.grad.zero_()
 
     def forward(self, x, update=True):
         y = x
@@ -177,22 +40,163 @@ class bp_net(net):
             y = self.layers[d].forward(y, update=update)
         return y
 
+    def train(self, train_loader, valid_loader, epochs, lr, lrb, std, stepsize, log, save, params=None):
+        # Pre-train the feedback weights
+        for e in range(params["epochs_backward"]):
+            torch.cuda.empty_cache()
+            for x, y in train_loader:
+                x, y = x.to(self.device), y.to(self.device)
+                self.train_back_weights(x, y, lrb, std, loss_type=params["loss_feedback"])
+
+        # Train the feedforward and feedback weights
+        for e in range(epochs + 1):
+            print(f"Epoch: {e}")
+            torch.cuda.empty_cache()
+            start_time = time.time()
+            if e > 0:
+                for x, y in train_loader:
+                    x, y = x.to(self.device), y.to(self.device)
+                    # Train feedback weights
+                    for i in range(params["epochs_backward"]):
+                        self.train_back_weights(x, y, lrb, std, loss_type=params["loss_feedback"])
+                    # Train forward weights
+                    self.update_weights(x, lr)
+            end_time = time.time()
+
+            # Compute Positive semi-definiteness (the strict condition) and Trace (the weak condition)
+            eigenvalues_ratio = [torch.zeros(1, device=self.device) for d in range(self.depth)]
+            eigenvalues_trace = [torch.zeros(1, device=self.device) for d in range(self.depth)]
+            for x, y in valid_loader:
+                x, y = x.to(self.device), y.to(self.device)
+                with torch.no_grad():
+                    self.forward(x)
+                    for d in range(1, self.depth - self.direct_depth + 1):
+                        h1 = self.layers[d].input[0]
+                        gradf = jacobian(self.layers[d].forward, h1)
+                        h2 = self.layers[d].forward(h1)
+                        gradg = jacobian(self.layers[d].backward_function_1.forward, h2)
+                        eig, _ = torch.linalg.eig(gradf @ gradg)
+                        eigenvalues_ratio[d] += (eig.real > 0).sum() / len(eig.real)
+                        eigenvalues_trace[d] += torch.trace(gradf @ gradg)
+            for d in range(self.depth):
+                eigenvalues_ratio[d] /= len(valid_loader)
+                eigenvalues_trace[d] /= len(valid_loader)
+
+            # Predict
+            with torch.no_grad():
+                train_loss, train_acc = self.test(train_loader)
+                valid_loss, valid_acc = self.test(valid_loader)
+            # Logging
+            if log:
+                log_dict = {}
+                log_dict["train loss"] = train_loss
+                log_dict["valid loss"] = valid_loss
+                if train_acc is not None:
+                    log_dict["train accuracy"] = train_acc
+                if valid_acc is not None:
+                    log_dict["valid accuracy"] = valid_acc
+                log_dict["time"] = end_time - start_time
+                for d in range(1, self.depth - self.direct_depth + 1):
+                    log_dict[f"eigenvalue ratio {d}"] = eigenvalues_ratio[d].item()
+                    log_dict[f"eigenvalue trace {d}"] = eigenvalues_trace[d].item()
+
+                wandb.log(log_dict)
+
+            else:
+                print(f"\tTrain Loss       : {train_loss}")
+                print(f"\tValid Loss       : {valid_loss}")
+                if train_acc is not None:
+                    print(f"\tTrain Acc        : {train_acc}")
+                if valid_acc is not None:
+                    print(f"\tValid Acc        : {valid_acc}")
+
+                for d in range(1, self.depth - self.direct_depth + 1):
+                    print(f"\teigenvalue ratio-{d}: {eigenvalues_ratio[d].item()}")
+                for d in range(1, self.depth - self.direct_depth + 1):
+                    print(f"\teigenvalue trace-{d}: {eigenvalues_trace[d].item()}")
+
+        if save == 'yes':
+            self.save_model()
+        
+
+    def train_back_weights(self, x, y, lrb, std, loss_type="L-DRL"):
+        if not self.back_trainable:
+            return
+
+        self.forward(x)
+        for d in reversed(range(1, self.depth - self.direct_depth + 1)):
+            ...  # fix and finish this
+            self.layers[d].zero_grad()
+            loss.backward(retain_graph=True)
+            self.layers[d].update_backward(lrb / len(x))
+
+
+    def update_weights(self, x, lr):
+        self.forward(x)
+        for d in range(self.depth):
+            # Fix and Finish this
+            loss = self.MSELoss(...)
+            self.layers[d].zero_grad()
+            loss.backward(retain_graph=True)
+            self.layers[d].update_forward(lr / len(x))
+
+    def get_layer_params(self):
+        layer_params = {}
+        for idx, layer in enumerate(self.layers):
+            layer_params[f'layer_{idx}'] = {
+                'forward_function_1': layer.forward_function_1.get_params(),
+                'forward_function_2': layer.forward_function_2.get_params(),
+                'backward_function_1': layer.backward_function_1.get_params(),
+                'backward_function_2': layer.backward_function_2.get_params()
+            }
+        return layer_params
+
     def save_model(self, path="checkpoints/bp/params.pth"):
-        self.train()  # Ensure the model is in train mode if required
+        # Ensure the checkpoint directory exists
         os.makedirs(os.path.dirname(path), exist_ok=True)
-        layer_params = {f'layer_{idx}': layer.get_params() for idx, layer in enumerate(self.layers)}
+        # Collect the parameters from each layer's functions
+        layer_params = {}
+        for idx, layer in enumerate(self.layers):
+            layer_params[f'layer_{idx}'] = {
+                'forward_function_1': layer.forward_function_1.get_params(),
+                'forward_function_2': layer.forward_function_2.get_params(),
+                'backward_function_1': layer.backward_function_1.get_params(),
+                'backward_function_2': layer.backward_function_2.get_params()
+            }
+        # Save the collected parameters to the specified path
         torch.save(layer_params, path)
 
 
-    def load_model(self, path):
-        state_dict = torch.load(path)
-        for layer_key, layer_params in state_dict.items():
+    def load_state(self, state_dict):
+        for layer_key, layer_state in state_dict.items():
             layer_idx = int(layer_key.split('_')[-1])
-            self.layers[layer_idx].load_params(layer_params)
+            layer = self.layers[layer_idx]
 
-            # printing #
-            # print(f"Layer {layer_idx} - Loaded Weight Sample: {self.layers[layer_idx].weight.data[:5]}")
-            # if self.layers[layer_idx].use_batch_norm:
-            #     print(f"Layer {layer_idx} - Loaded Batch Norm Mean: {self.layers[layer_idx].batch_norm.running_mean}")
-            #     print(f"Layer {layer_idx} - Loaded Batch Norm Var: {self.layers[layer_idx].batch_norm.running_var}")
+            if 'forward_function_1' in layer_state and hasattr(layer.forward_function_1, 'load_params'):
+                layer.forward_function_1.load_params(layer_state['forward_function_1'])
+
+            if 'forward_function_2' in layer_state and hasattr(layer.forward_function_2, 'load_params'):
+                layer.forward_function_2.load_params(layer_state['forward_function_2'])
+
+            if 'backward_function_1' in layer_state and hasattr(layer.backward_function_1, 'load_params'):
+                layer.backward_function_1.load_params(layer_state['backward_function_1'])
+
+            if 'backward_function_2' in layer_state and hasattr(layer.backward_function_2, 'load_params'):
+                layer.backward_function_2.load_params(layer_state['backward_function_2'])
+
+
+    def external_test(self, test_loader, state_dict=None):
+        if state_dict is not None:
+            self.load_state(state_dict)
+        loss = 0
+        correct = 0
+        total = 0
+        for x, y in test_loader:
+            x, y = x.to(self.device), y.to(self.device)
+            y_pred = self.forward(x)
+            loss += self.loss_function(y_pred, y).item()
+            _, predicted = y_pred.max(1)
+            total += y.size(0)
+            correct += predicted.eq(y).sum().item()
+        return loss / total, 100 * correct / total
 

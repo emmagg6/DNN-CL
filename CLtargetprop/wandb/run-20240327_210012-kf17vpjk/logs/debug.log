@@ -1,0 +1,28 @@
+2024-03-27 21:00:12,314 INFO    MainThread:59357 [wandb_setup.py:_flush():76] Current SDK version is 0.16.3
+2024-03-27 21:00:12,314 INFO    MainThread:59357 [wandb_setup.py:_flush():76] Configure stats pid to 59357
+2024-03-27 21:00:12,314 INFO    MainThread:59357 [wandb_setup.py:_flush():76] Loading settings from /Users/emmagraham/.config/wandb/settings
+2024-03-27 21:00:12,314 INFO    MainThread:59357 [wandb_setup.py:_flush():76] Loading settings from /Users/emmagraham/Documents/GitHub/propagation/CLtargetprop/wandb/settings
+2024-03-27 21:00:12,314 INFO    MainThread:59357 [wandb_setup.py:_flush():76] Loading settings from environment variables: {}
+2024-03-27 21:00:12,314 INFO    MainThread:59357 [wandb_setup.py:_flush():76] Applying setup settings: {'_disable_service': False}
+2024-03-27 21:00:12,314 INFO    MainThread:59357 [wandb_setup.py:_flush():76] Inferring run settings from compute environment: {'program_relpath': 'CLtargetprop/main.py', 'program_abspath': '/Users/emmagraham/Documents/GitHub/propagation/CLtargetprop/main.py', 'program': 'main.py'}
+2024-03-27 21:00:12,315 INFO    MainThread:59357 [wandb_init.py:_log_setup():526] Logging user logs to /Users/emmagraham/Documents/GitHub/propagation/CLtargetprop/wandb/run-20240327_210012-kf17vpjk/logs/debug.log
+2024-03-27 21:00:12,315 INFO    MainThread:59357 [wandb_init.py:_log_setup():527] Logging internal logs to /Users/emmagraham/Documents/GitHub/propagation/CLtargetprop/wandb/run-20240327_210012-kf17vpjk/logs/debug-internal.log
+2024-03-27 21:00:12,315 INFO    MainThread:59357 [wandb_init.py:init():566] calling init triggers
+2024-03-27 21:00:12,315 INFO    MainThread:59357 [wandb_init.py:init():573] wandb.init called with sweep_config: {}
+config: {'dataset': 'FashionMNIST', 'algorithm': 'BP', 'epochs': 10, 'batch_size': 256, 'seed': 1, 'test': True, 'depth': 6, 'direct_depth': 1, 'in_dim': 784, 'hid_dim': 256, 'out_dim': 10, 'learning_rate': 1.0, 'learning_rate_backward': 0.001, 'std_backward': 0.01, 'stepsize': 0.004, 'label_augmentation': False, 'forward_function_1': 'parameterized', 'forward_function_2': 'parameterized', 'backward_function_1': 'parameterized', 'backward_function_2': 'parameterized', 'forward_function_1_init': 'orthogonal', 'forward_function_2_init': 'orthogonal', 'backward_function_1_init': 'uniform', 'backward_function_2_init': 'orthogonal', 'sparse_ratio': -1, 'forward_function_1_activation': 'linear-BN', 'forward_function_2_activation': 'tanh-BN', 'backward_function_1_activation': 'tanh-BN', 'backward_function_2_activation': 'linear-BN', 'forward_last_activation': 'linear', 'loss_feedback': 'DTP', 'epochs_backward': 5, 'log': True, 'agent': False, 'continual': 'yes', 'save': 'yes', 'activation_function': 'tanh-BN'}
+2024-03-27 21:00:12,315 INFO    MainThread:59357 [wandb_init.py:init():616] starting backend
+2024-03-27 21:00:12,315 INFO    MainThread:59357 [wandb_init.py:init():620] setting up manager
+2024-03-27 21:00:12,317 INFO    MainThread:59357 [backend.py:_multiprocessing_setup():105] multiprocessing start_methods=spawn,fork,forkserver, using: spawn
+2024-03-27 21:00:12,320 INFO    MainThread:59357 [wandb_init.py:init():628] backend started and connected
+2024-03-27 21:00:12,325 INFO    MainThread:59357 [wandb_init.py:init():720] updated telemetry
+2024-03-27 21:00:12,349 INFO    MainThread:59357 [wandb_init.py:init():753] communicating run to backend with 90.0 second timeout
+2024-03-27 21:00:12,788 INFO    MainThread:59357 [wandb_run.py:_on_init():2262] communicating current version
+2024-03-27 21:00:13,051 INFO    MainThread:59357 [wandb_run.py:_on_init():2271] got version response upgrade_message: "wandb version 0.16.5 is available!  To upgrade, please run:\n $ pip install wandb --upgrade"
+
+2024-03-27 21:00:13,051 INFO    MainThread:59357 [wandb_init.py:init():804] starting run threads in backend
+2024-03-27 21:00:13,763 INFO    MainThread:59357 [wandb_run.py:_console_start():2241] atexit reg
+2024-03-27 21:00:13,764 INFO    MainThread:59357 [wandb_run.py:_redirect():2096] redirect: wrap_raw
+2024-03-27 21:00:13,764 INFO    MainThread:59357 [wandb_run.py:_redirect():2161] Wrapping output streams.
+2024-03-27 21:00:13,764 INFO    MainThread:59357 [wandb_run.py:_redirect():2186] Redirects installed.
+2024-03-27 21:00:13,764 INFO    MainThread:59357 [wandb_init.py:init():847] run started, returning control to user process
+2024-03-27 21:01:32,685 WARNING MsgRouterThr:59357 [router.py:message_loop():77] message_loop has been closed

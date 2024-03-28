@@ -1,6 +1,6 @@
 from Models.tp_layer import tp_layer
 from Models.net import net
-from Models.my_functions import parameterized_function
+from Models.tp_fcns import parameterized_function
 from utils import calc_angle
 from copy import deepcopy
 

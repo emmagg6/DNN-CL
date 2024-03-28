@@ -89,17 +89,30 @@ CONTINUAL LEARNING 1 :
 > checkpoint save name : FWDTP-m-f
 
 3. python main.py --algorithm=BP --dataset=FashionMNIST --learning_rate=1 --stepsize=0.004 --test --log --save=yes --epochs=10 --continual=yes
+> previous task : MNIST
+> initialized save name : BP-m
+> checkpoint save name : BP-m-f
+
+4. python main.py --algorithm=BP --dataset=FashionMNIST --learning_rate=1 --stepsize=0.04 --test --log --save=yes --epochs=10 --continual=yes
+> previous task : MNIST
+> initialized save name : BP-m
+> checkpoint save name : BP-m-f-04
 
 
 CONTINUAL LEARNING 2 :
 1. python main.py --algorithm=DTP-BN --dataset=MNIST --forward_last_activation=linear-BN --learning_rate=0.1 --stepsize=0.04 --test --log --save=yes --epochs=10 --continual=yes
-> previous task : MNIST
+> previous task : FashionMNIST
 > initialized save name : DTP-m-f
 > checkpoint save name : DTP-m-f-m
 
 2. python main.py --algorithm=FWDTP-BN --dataset=MNIST --forward_last_activation=linear-BN --learning_rate=0.1 --stepsize=0.04 --test --log --save=yes --epochs=10 --continual=yes
-> previous task : MNIST
+> previous task : FashionMNIST
 > initialized save name : FWDTP-m-f
 > checkpoint save name : FWDTP-m-f-m
 
 3. python main.py --algorithm=BP --dataset=MNIST --learning_rate=0.1 --stepsize=0.04 --test --log --save=yes --epochs=10 --continual=yes
+> previous task : FashionMNIST
+> initialized save name : BP-m-f
+> checkpoint save name : BP-m-f-m
+
+

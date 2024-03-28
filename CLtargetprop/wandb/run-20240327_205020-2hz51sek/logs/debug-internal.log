@@ -1,0 +1,307 @@
+2024-03-27 20:50:20,305 INFO    StreamThr :57938 [internal.py:wandb_internal():86] W&B internal server running at pid: 57938, started at: 2024-03-27 20:50:20.304502
+2024-03-27 20:50:20,306 DEBUG   HandlerThread:57938 [handler.py:handle_request():146] handle_request: status
+2024-03-27 20:50:20,309 INFO    WriterThread:57938 [datastore.py:open_for_write():87] open: /Users/emmagraham/Documents/GitHub/propagation/CLtargetprop/wandb/run-20240327_205020-2hz51sek/run-2hz51sek.wandb
+2024-03-27 20:50:20,310 DEBUG   SenderThread:57938 [sender.py:send():382] send: header
+2024-03-27 20:50:20,333 DEBUG   SenderThread:57938 [sender.py:send():382] send: run
+2024-03-27 20:50:20,775 INFO    SenderThread:57938 [dir_watcher.py:__init__():211] watching files in: /Users/emmagraham/Documents/GitHub/propagation/CLtargetprop/wandb/run-20240327_205020-2hz51sek/files
+2024-03-27 20:50:20,775 INFO    SenderThread:57938 [sender.py:_start_run_threads():1136] run started: 2hz51sek with start time 1711587020.305585
+2024-03-27 20:50:20,788 DEBUG   HandlerThread:57938 [handler.py:handle_request():146] handle_request: check_version
+2024-03-27 20:50:20,789 DEBUG   SenderThread:57938 [sender.py:send_request():409] send_request: check_version
+2024-03-27 20:50:21,055 DEBUG   HandlerThread:57938 [handler.py:handle_request():146] handle_request: run_start
+2024-03-27 20:50:21,056 DEBUG   HandlerThread:57938 [system_info.py:__init__():27] System info init
+2024-03-27 20:50:21,056 DEBUG   HandlerThread:57938 [system_info.py:__init__():42] System info init done
+2024-03-27 20:50:21,056 INFO    HandlerThread:57938 [system_monitor.py:start():194] Starting system monitor
+2024-03-27 20:50:21,056 INFO    SystemMonitor:57938 [system_monitor.py:_start():158] Starting system asset monitoring threads
+2024-03-27 20:50:21,056 INFO    HandlerThread:57938 [system_monitor.py:probe():214] Collecting system info
+2024-03-27 20:50:21,058 INFO    SystemMonitor:57938 [interfaces.py:start():190] Started cpu monitoring
+2024-03-27 20:50:21,058 DEBUG   HandlerThread:57938 [system_info.py:probe():151] Probing system
+2024-03-27 20:50:21,058 INFO    SystemMonitor:57938 [interfaces.py:start():190] Started disk monitoring
+2024-03-27 20:50:21,059 INFO    SystemMonitor:57938 [interfaces.py:start():190] Started gpuapple monitoring
+2024-03-27 20:50:21,062 INFO    SystemMonitor:57938 [interfaces.py:start():190] Started memory monitoring
+2024-03-27 20:50:21,062 INFO    SystemMonitor:57938 [interfaces.py:start():190] Started network monitoring
+2024-03-27 20:50:21,063 DEBUG   HandlerThread:57938 [system_info.py:_probe_git():136] Probing git
+2024-03-27 20:50:21,090 DEBUG   HandlerThread:57938 [system_info.py:_probe_git():144] Probing git done
+2024-03-27 20:50:21,090 DEBUG   HandlerThread:57938 [system_info.py:probe():199] Probing system done
+2024-03-27 20:50:21,091 DEBUG   HandlerThread:57938 [system_monitor.py:probe():223] {'os': 'macOS-14.3.1-arm64-arm-64bit', 'python': '3.8.18', 'heartbeatAt': '2024-03-28T00:50:21.058379', 'startedAt': '2024-03-28T00:50:20.296821', 'docker': None, 'cuda': None, 'args': ('--algorithm=BP', '--dataset=MNIST', '--learning_rate=0.1', '--stepsize=0.01', '--test', '--log', '--save=yes', '--epochs=10'), 'state': 'running', 'program': 'main.py', 'codePathLocal': 'main.py', 'codePath': 'CLtargetprop/main.py', 'git': {'remote': 'https://github.com/emmagg6/propagation.git', 'commit': '0526362cb18c91d4d47af1e47edd9078c265066b'}, 'email': '125744177+emmagg6@users.noreply.github.com', 'root': '/Users/emmagraham/Documents/GitHub/propagation', 'host': 'vpn-investment-office-231-132-23.dartmouth.edu', 'username': 'emmagraham', 'executable': '/Users/emmagraham/anaconda3/envs/target-prop/bin/python', 'cpu_count': 8, 'cpu_count_logical': 8, 'cpu_freq': {'current': 3504, 'min': 600, 'max': 3504}, 'cpu_freq_per_core': [{'current': 3504, 'min': 600, 'max': 3504}], 'disk': {'/': {'total': 926.3517189025879, 'used': 9.436077117919922}}, 'gpuapple': {'type': 'arm', 'vendor': 'Apple'}, 'memory': {'total': 16.0}}
+2024-03-27 20:50:21,091 INFO    HandlerThread:57938 [system_monitor.py:probe():224] Finished collecting system info
+2024-03-27 20:50:21,091 INFO    HandlerThread:57938 [system_monitor.py:probe():227] Publishing system info
+2024-03-27 20:50:21,091 DEBUG   HandlerThread:57938 [system_info.py:_save_conda():208] Saving list of conda packages installed into the current environment
+2024-03-27 20:50:21,778 INFO    Thread-12 :57938 [dir_watcher.py:_on_file_created():271] file/dir created: /Users/emmagraham/Documents/GitHub/propagation/CLtargetprop/wandb/run-20240327_205020-2hz51sek/files/conda-environment.yaml
+2024-03-27 20:50:21,855 DEBUG   HandlerThread:57938 [system_info.py:_save_conda():220] Saving conda packages done
+2024-03-27 20:50:21,855 INFO    HandlerThread:57938 [system_monitor.py:probe():229] Finished publishing system info
+2024-03-27 20:50:21,857 DEBUG   SenderThread:57938 [sender.py:send():382] send: files
+2024-03-27 20:50:21,857 INFO    SenderThread:57938 [sender.py:_save_file():1403] saving file wandb-metadata.json with policy now
+2024-03-27 20:50:21,860 DEBUG   HandlerThread:57938 [handler.py:handle_request():146] handle_request: python_packages
+2024-03-27 20:50:21,860 DEBUG   SenderThread:57938 [sender.py:send_request():409] send_request: python_packages
+2024-03-27 20:50:21,860 DEBUG   HandlerThread:57938 [handler.py:handle_request():146] handle_request: stop_status
+2024-03-27 20:50:21,861 DEBUG   SenderThread:57938 [sender.py:send_request():409] send_request: stop_status
+2024-03-27 20:50:21,861 DEBUG   HandlerThread:57938 [handler.py:handle_request():146] handle_request: internal_messages
+2024-03-27 20:50:22,091 DEBUG   SenderThread:57938 [sender.py:send():382] send: telemetry
+2024-03-27 20:50:22,412 INFO    wandb-upload_0:57938 [upload_job.py:push():131] Uploaded file /var/folders/n8/ldy_g4ps26b_8kzptnbt6bww0000gn/T/tmprsceeszgwandb/1g4wcrru-wandb-metadata.json
+2024-03-27 20:50:22,783 INFO    Thread-12 :57938 [dir_watcher.py:_on_file_modified():288] file/dir modified: /Users/emmagraham/Documents/GitHub/propagation/CLtargetprop/wandb/run-20240327_205020-2hz51sek/files/conda-environment.yaml
+2024-03-27 20:50:22,783 INFO    Thread-12 :57938 [dir_watcher.py:_on_file_created():271] file/dir created: /Users/emmagraham/Documents/GitHub/propagation/CLtargetprop/wandb/run-20240327_205020-2hz51sek/files/wandb-metadata.json
+2024-03-27 20:50:22,783 INFO    Thread-12 :57938 [dir_watcher.py:_on_file_created():271] file/dir created: /Users/emmagraham/Documents/GitHub/propagation/CLtargetprop/wandb/run-20240327_205020-2hz51sek/files/requirements.txt
+2024-03-27 20:50:25,798 INFO    Thread-12 :57938 [dir_watcher.py:_on_file_created():271] file/dir created: /Users/emmagraham/Documents/GitHub/propagation/CLtargetprop/wandb/run-20240327_205020-2hz51sek/files/output.log
+2024-03-27 20:50:25,915 DEBUG   HandlerThread:57938 [handler.py:handle_request():146] handle_request: status_report
+2024-03-27 20:50:27,806 INFO    Thread-12 :57938 [dir_watcher.py:_on_file_modified():288] file/dir modified: /Users/emmagraham/Documents/GitHub/propagation/CLtargetprop/wandb/run-20240327_205020-2hz51sek/files/output.log
+2024-03-27 20:50:29,176 DEBUG   HandlerThread:57938 [handler.py:handle_request():146] handle_request: partial_history
+2024-03-27 20:50:29,178 DEBUG   SenderThread:57938 [sender.py:send():382] send: history
+2024-03-27 20:50:29,178 DEBUG   SenderThread:57938 [sender.py:send_request():409] send_request: summary_record
+2024-03-27 20:50:29,179 INFO    SenderThread:57938 [sender.py:_save_file():1403] saving file wandb-summary.json with policy end
+2024-03-27 20:50:29,817 INFO    Thread-12 :57938 [dir_watcher.py:_on_file_created():271] file/dir created: /Users/emmagraham/Documents/GitHub/propagation/CLtargetprop/wandb/run-20240327_205020-2hz51sek/files/wandb-summary.json
+2024-03-27 20:50:30,916 DEBUG   HandlerThread:57938 [handler.py:handle_request():146] handle_request: status_report
+2024-03-27 20:50:31,827 INFO    Thread-12 :57938 [dir_watcher.py:_on_file_modified():288] file/dir modified: /Users/emmagraham/Documents/GitHub/propagation/CLtargetprop/wandb/run-20240327_205020-2hz51sek/files/output.log
+2024-03-27 20:50:33,838 INFO    Thread-12 :57938 [dir_watcher.py:_on_file_modified():288] file/dir modified: /Users/emmagraham/Documents/GitHub/propagation/CLtargetprop/wandb/run-20240327_205020-2hz51sek/files/output.log
+2024-03-27 20:50:36,543 DEBUG   HandlerThread:57938 [handler.py:handle_request():146] handle_request: status_report
+2024-03-27 20:50:36,866 DEBUG   HandlerThread:57938 [handler.py:handle_request():146] handle_request: internal_messages
+2024-03-27 20:50:36,866 DEBUG   HandlerThread:57938 [handler.py:handle_request():146] handle_request: stop_status
+2024-03-27 20:50:36,867 DEBUG   SenderThread:57938 [sender.py:send_request():409] send_request: stop_status
+2024-03-27 20:50:36,871 DEBUG   HandlerThread:57938 [handler.py:handle_request():146] handle_request: partial_history
+2024-03-27 20:50:37,029 DEBUG   SenderThread:57938 [sender.py:send():382] send: history
+2024-03-27 20:50:37,029 DEBUG   SenderThread:57938 [sender.py:send_request():409] send_request: summary_record
+2024-03-27 20:50:37,030 INFO    SenderThread:57938 [sender.py:_save_file():1403] saving file wandb-summary.json with policy end
+2024-03-27 20:50:37,854 INFO    Thread-12 :57938 [dir_watcher.py:_on_file_modified():288] file/dir modified: /Users/emmagraham/Documents/GitHub/propagation/CLtargetprop/wandb/run-20240327_205020-2hz51sek/files/wandb-summary.json
+2024-03-27 20:50:39,856 INFO    Thread-12 :57938 [dir_watcher.py:_on_file_modified():288] file/dir modified: /Users/emmagraham/Documents/GitHub/propagation/CLtargetprop/wandb/run-20240327_205020-2hz51sek/files/output.log
+2024-03-27 20:50:41,604 DEBUG   HandlerThread:57938 [handler.py:handle_request():146] handle_request: status_report
+2024-03-27 20:50:41,867 INFO    Thread-12 :57938 [dir_watcher.py:_on_file_modified():288] file/dir modified: /Users/emmagraham/Documents/GitHub/propagation/CLtargetprop/wandb/run-20240327_205020-2hz51sek/files/output.log
+2024-03-27 20:50:44,847 DEBUG   HandlerThread:57938 [handler.py:handle_request():146] handle_request: partial_history
+2024-03-27 20:50:44,848 DEBUG   SenderThread:57938 [sender.py:send():382] send: history
+2024-03-27 20:50:44,848 DEBUG   SenderThread:57938 [sender.py:send_request():409] send_request: summary_record
+2024-03-27 20:50:44,849 INFO    SenderThread:57938 [sender.py:_save_file():1403] saving file wandb-summary.json with policy end
+2024-03-27 20:50:44,882 INFO    Thread-12 :57938 [dir_watcher.py:_on_file_modified():288] file/dir modified: /Users/emmagraham/Documents/GitHub/propagation/CLtargetprop/wandb/run-20240327_205020-2hz51sek/files/wandb-summary.json
+2024-03-27 20:50:45,887 INFO    Thread-12 :57938 [dir_watcher.py:_on_file_modified():288] file/dir modified: /Users/emmagraham/Documents/GitHub/propagation/CLtargetprop/wandb/run-20240327_205020-2hz51sek/files/output.log
+2024-03-27 20:50:46,608 DEBUG   HandlerThread:57938 [handler.py:handle_request():146] handle_request: status_report
+2024-03-27 20:50:47,893 INFO    Thread-12 :57938 [dir_watcher.py:_on_file_modified():288] file/dir modified: /Users/emmagraham/Documents/GitHub/propagation/CLtargetprop/wandb/run-20240327_205020-2hz51sek/files/output.log
+2024-03-27 20:50:49,904 INFO    Thread-12 :57938 [dir_watcher.py:_on_file_modified():288] file/dir modified: /Users/emmagraham/Documents/GitHub/propagation/CLtargetprop/wandb/run-20240327_205020-2hz51sek/files/output.log
+2024-03-27 20:50:51,867 DEBUG   HandlerThread:57938 [handler.py:handle_request():146] handle_request: internal_messages
+2024-03-27 20:50:51,871 DEBUG   HandlerThread:57938 [handler.py:handle_request():146] handle_request: stop_status
+2024-03-27 20:50:51,873 DEBUG   HandlerThread:57938 [handler.py:handle_request():146] handle_request: status_report
+2024-03-27 20:50:52,001 DEBUG   SenderThread:57938 [sender.py:send_request():409] send_request: stop_status
+2024-03-27 20:50:52,728 DEBUG   HandlerThread:57938 [handler.py:handle_request():146] handle_request: partial_history
+2024-03-27 20:50:52,729 DEBUG   SenderThread:57938 [sender.py:send():382] send: history
+2024-03-27 20:50:52,729 DEBUG   SenderThread:57938 [sender.py:send_request():409] send_request: summary_record
+2024-03-27 20:50:52,730 INFO    SenderThread:57938 [sender.py:_save_file():1403] saving file wandb-summary.json with policy end
+2024-03-27 20:50:52,919 INFO    Thread-12 :57938 [dir_watcher.py:_on_file_modified():288] file/dir modified: /Users/emmagraham/Documents/GitHub/propagation/CLtargetprop/wandb/run-20240327_205020-2hz51sek/files/config.yaml
+2024-03-27 20:50:52,920 INFO    Thread-12 :57938 [dir_watcher.py:_on_file_modified():288] file/dir modified: /Users/emmagraham/Documents/GitHub/propagation/CLtargetprop/wandb/run-20240327_205020-2hz51sek/files/wandb-summary.json
+2024-03-27 20:50:53,925 INFO    Thread-12 :57938 [dir_watcher.py:_on_file_modified():288] file/dir modified: /Users/emmagraham/Documents/GitHub/propagation/CLtargetprop/wandb/run-20240327_205020-2hz51sek/files/output.log
+2024-03-27 20:50:55,933 INFO    Thread-12 :57938 [dir_watcher.py:_on_file_modified():288] file/dir modified: /Users/emmagraham/Documents/GitHub/propagation/CLtargetprop/wandb/run-20240327_205020-2hz51sek/files/output.log
+2024-03-27 20:50:57,544 DEBUG   HandlerThread:57938 [handler.py:handle_request():146] handle_request: status_report
+2024-03-27 20:50:57,943 INFO    Thread-12 :57938 [dir_watcher.py:_on_file_modified():288] file/dir modified: /Users/emmagraham/Documents/GitHub/propagation/CLtargetprop/wandb/run-20240327_205020-2hz51sek/files/output.log
+2024-03-27 20:51:00,895 DEBUG   HandlerThread:57938 [handler.py:handle_request():146] handle_request: partial_history
+2024-03-27 20:51:00,896 DEBUG   SenderThread:57938 [sender.py:send():382] send: history
+2024-03-27 20:51:00,896 DEBUG   SenderThread:57938 [sender.py:send_request():409] send_request: summary_record
+2024-03-27 20:51:00,897 INFO    SenderThread:57938 [sender.py:_save_file():1403] saving file wandb-summary.json with policy end
+2024-03-27 20:51:00,959 INFO    Thread-12 :57938 [dir_watcher.py:_on_file_modified():288] file/dir modified: /Users/emmagraham/Documents/GitHub/propagation/CLtargetprop/wandb/run-20240327_205020-2hz51sek/files/wandb-summary.json
+2024-03-27 20:51:02,553 DEBUG   HandlerThread:57938 [handler.py:handle_request():146] handle_request: status_report
+2024-03-27 20:51:03,969 INFO    Thread-12 :57938 [dir_watcher.py:_on_file_modified():288] file/dir modified: /Users/emmagraham/Documents/GitHub/propagation/CLtargetprop/wandb/run-20240327_205020-2hz51sek/files/output.log
+2024-03-27 20:51:05,979 INFO    Thread-12 :57938 [dir_watcher.py:_on_file_modified():288] file/dir modified: /Users/emmagraham/Documents/GitHub/propagation/CLtargetprop/wandb/run-20240327_205020-2hz51sek/files/output.log
+2024-03-27 20:51:06,872 DEBUG   HandlerThread:57938 [handler.py:handle_request():146] handle_request: stop_status
+2024-03-27 20:51:06,872 DEBUG   SenderThread:57938 [sender.py:send_request():409] send_request: stop_status
+2024-03-27 20:51:06,872 DEBUG   HandlerThread:57938 [handler.py:handle_request():146] handle_request: internal_messages
+2024-03-27 20:51:08,029 DEBUG   HandlerThread:57938 [handler.py:handle_request():146] handle_request: status_report
+2024-03-27 20:51:08,888 DEBUG   HandlerThread:57938 [handler.py:handle_request():146] handle_request: partial_history
+2024-03-27 20:51:08,891 DEBUG   SenderThread:57938 [sender.py:send():382] send: history
+2024-03-27 20:51:08,891 DEBUG   SenderThread:57938 [sender.py:send_request():409] send_request: summary_record
+2024-03-27 20:51:08,892 INFO    SenderThread:57938 [sender.py:_save_file():1403] saving file wandb-summary.json with policy end
+2024-03-27 20:51:08,991 INFO    Thread-12 :57938 [dir_watcher.py:_on_file_modified():288] file/dir modified: /Users/emmagraham/Documents/GitHub/propagation/CLtargetprop/wandb/run-20240327_205020-2hz51sek/files/wandb-summary.json
+2024-03-27 20:51:09,996 INFO    Thread-12 :57938 [dir_watcher.py:_on_file_modified():288] file/dir modified: /Users/emmagraham/Documents/GitHub/propagation/CLtargetprop/wandb/run-20240327_205020-2hz51sek/files/output.log
+2024-03-27 20:51:12,005 INFO    Thread-12 :57938 [dir_watcher.py:_on_file_modified():288] file/dir modified: /Users/emmagraham/Documents/GitHub/propagation/CLtargetprop/wandb/run-20240327_205020-2hz51sek/files/output.log
+2024-03-27 20:51:13,500 DEBUG   HandlerThread:57938 [handler.py:handle_request():146] handle_request: status_report
+2024-03-27 20:51:14,011 INFO    Thread-12 :57938 [dir_watcher.py:_on_file_modified():288] file/dir modified: /Users/emmagraham/Documents/GitHub/propagation/CLtargetprop/wandb/run-20240327_205020-2hz51sek/files/output.log
+2024-03-27 20:51:16,774 DEBUG   HandlerThread:57938 [handler.py:handle_request():146] handle_request: partial_history
+2024-03-27 20:51:16,775 DEBUG   SenderThread:57938 [sender.py:send():382] send: history
+2024-03-27 20:51:16,775 DEBUG   SenderThread:57938 [sender.py:send_request():409] send_request: summary_record
+2024-03-27 20:51:16,776 INFO    SenderThread:57938 [sender.py:_save_file():1403] saving file wandb-summary.json with policy end
+2024-03-27 20:51:17,026 INFO    Thread-12 :57938 [dir_watcher.py:_on_file_modified():288] file/dir modified: /Users/emmagraham/Documents/GitHub/propagation/CLtargetprop/wandb/run-20240327_205020-2hz51sek/files/wandb-summary.json
+2024-03-27 20:51:18,029 INFO    Thread-12 :57938 [dir_watcher.py:_on_file_modified():288] file/dir modified: /Users/emmagraham/Documents/GitHub/propagation/CLtargetprop/wandb/run-20240327_205020-2hz51sek/files/output.log
+2024-03-27 20:51:18,502 DEBUG   HandlerThread:57938 [handler.py:handle_request():146] handle_request: status_report
+2024-03-27 20:51:20,034 INFO    Thread-12 :57938 [dir_watcher.py:_on_file_modified():288] file/dir modified: /Users/emmagraham/Documents/GitHub/propagation/CLtargetprop/wandb/run-20240327_205020-2hz51sek/files/output.log
+2024-03-27 20:51:21,068 DEBUG   SystemMonitor:57938 [system_monitor.py:_start():172] Starting system metrics aggregation loop
+2024-03-27 20:51:21,069 DEBUG   SenderThread:57938 [sender.py:send():382] send: telemetry
+2024-03-27 20:51:21,069 DEBUG   SenderThread:57938 [sender.py:send():382] send: stats
+2024-03-27 20:51:21,877 DEBUG   HandlerThread:57938 [handler.py:handle_request():146] handle_request: stop_status
+2024-03-27 20:51:21,877 DEBUG   SenderThread:57938 [sender.py:send_request():409] send_request: stop_status
+2024-03-27 20:51:21,877 DEBUG   HandlerThread:57938 [handler.py:handle_request():146] handle_request: internal_messages
+2024-03-27 20:51:22,041 INFO    Thread-12 :57938 [dir_watcher.py:_on_file_modified():288] file/dir modified: /Users/emmagraham/Documents/GitHub/propagation/CLtargetprop/wandb/run-20240327_205020-2hz51sek/files/output.log
+2024-03-27 20:51:24,021 DEBUG   HandlerThread:57938 [handler.py:handle_request():146] handle_request: status_report
+2024-03-27 20:51:24,592 DEBUG   HandlerThread:57938 [handler.py:handle_request():146] handle_request: partial_history
+2024-03-27 20:51:24,593 DEBUG   SenderThread:57938 [sender.py:send():382] send: history
+2024-03-27 20:51:24,593 DEBUG   SenderThread:57938 [sender.py:send_request():409] send_request: summary_record
+2024-03-27 20:51:24,593 INFO    SenderThread:57938 [sender.py:_save_file():1403] saving file wandb-summary.json with policy end
+2024-03-27 20:51:25,049 INFO    Thread-12 :57938 [dir_watcher.py:_on_file_modified():288] file/dir modified: /Users/emmagraham/Documents/GitHub/propagation/CLtargetprop/wandb/run-20240327_205020-2hz51sek/files/config.yaml
+2024-03-27 20:51:25,050 INFO    Thread-12 :57938 [dir_watcher.py:_on_file_modified():288] file/dir modified: /Users/emmagraham/Documents/GitHub/propagation/CLtargetprop/wandb/run-20240327_205020-2hz51sek/files/wandb-summary.json
+2024-03-27 20:51:26,055 INFO    Thread-12 :57938 [dir_watcher.py:_on_file_modified():288] file/dir modified: /Users/emmagraham/Documents/GitHub/propagation/CLtargetprop/wandb/run-20240327_205020-2hz51sek/files/output.log
+2024-03-27 20:51:28,065 INFO    Thread-12 :57938 [dir_watcher.py:_on_file_modified():288] file/dir modified: /Users/emmagraham/Documents/GitHub/propagation/CLtargetprop/wandb/run-20240327_205020-2hz51sek/files/output.log
+2024-03-27 20:51:29,404 DEBUG   HandlerThread:57938 [handler.py:handle_request():146] handle_request: status_report
+2024-03-27 20:51:30,073 INFO    Thread-12 :57938 [dir_watcher.py:_on_file_modified():288] file/dir modified: /Users/emmagraham/Documents/GitHub/propagation/CLtargetprop/wandb/run-20240327_205020-2hz51sek/files/output.log
+2024-03-27 20:51:32,756 DEBUG   HandlerThread:57938 [handler.py:handle_request():146] handle_request: partial_history
+2024-03-27 20:51:32,757 DEBUG   SenderThread:57938 [sender.py:send():382] send: history
+2024-03-27 20:51:32,757 DEBUG   SenderThread:57938 [sender.py:send_request():409] send_request: summary_record
+2024-03-27 20:51:32,760 INFO    SenderThread:57938 [sender.py:_save_file():1403] saving file wandb-summary.json with policy end
+2024-03-27 20:51:33,088 INFO    Thread-12 :57938 [dir_watcher.py:_on_file_modified():288] file/dir modified: /Users/emmagraham/Documents/GitHub/propagation/CLtargetprop/wandb/run-20240327_205020-2hz51sek/files/wandb-summary.json
+2024-03-27 20:51:34,091 INFO    Thread-12 :57938 [dir_watcher.py:_on_file_modified():288] file/dir modified: /Users/emmagraham/Documents/GitHub/propagation/CLtargetprop/wandb/run-20240327_205020-2hz51sek/files/output.log
+2024-03-27 20:51:34,409 DEBUG   HandlerThread:57938 [handler.py:handle_request():146] handle_request: status_report
+2024-03-27 20:51:36,096 INFO    Thread-12 :57938 [dir_watcher.py:_on_file_modified():288] file/dir modified: /Users/emmagraham/Documents/GitHub/propagation/CLtargetprop/wandb/run-20240327_205020-2hz51sek/files/output.log
+2024-03-27 20:51:36,882 DEBUG   HandlerThread:57938 [handler.py:handle_request():146] handle_request: stop_status
+2024-03-27 20:51:36,882 DEBUG   HandlerThread:57938 [handler.py:handle_request():146] handle_request: internal_messages
+2024-03-27 20:51:36,883 DEBUG   SenderThread:57938 [sender.py:send_request():409] send_request: stop_status
+2024-03-27 20:51:38,107 INFO    Thread-12 :57938 [dir_watcher.py:_on_file_modified():288] file/dir modified: /Users/emmagraham/Documents/GitHub/propagation/CLtargetprop/wandb/run-20240327_205020-2hz51sek/files/output.log
+2024-03-27 20:51:40,084 DEBUG   HandlerThread:57938 [handler.py:handle_request():146] handle_request: status_report
+2024-03-27 20:51:40,731 DEBUG   HandlerThread:57938 [handler.py:handle_request():146] handle_request: partial_history
+2024-03-27 20:51:40,732 DEBUG   SenderThread:57938 [sender.py:send():382] send: history
+2024-03-27 20:51:40,732 DEBUG   SenderThread:57938 [sender.py:send_request():409] send_request: summary_record
+2024-03-27 20:51:40,732 INFO    SenderThread:57938 [sender.py:_save_file():1403] saving file wandb-summary.json with policy end
+2024-03-27 20:51:41,118 INFO    Thread-12 :57938 [dir_watcher.py:_on_file_modified():288] file/dir modified: /Users/emmagraham/Documents/GitHub/propagation/CLtargetprop/wandb/run-20240327_205020-2hz51sek/files/wandb-summary.json
+2024-03-27 20:51:42,121 INFO    Thread-12 :57938 [dir_watcher.py:_on_file_modified():288] file/dir modified: /Users/emmagraham/Documents/GitHub/propagation/CLtargetprop/wandb/run-20240327_205020-2hz51sek/files/output.log
+2024-03-27 20:51:44,129 INFO    Thread-12 :57938 [dir_watcher.py:_on_file_modified():288] file/dir modified: /Users/emmagraham/Documents/GitHub/propagation/CLtargetprop/wandb/run-20240327_205020-2hz51sek/files/output.log
+2024-03-27 20:51:45,406 DEBUG   HandlerThread:57938 [handler.py:handle_request():146] handle_request: status_report
+2024-03-27 20:51:46,140 INFO    Thread-12 :57938 [dir_watcher.py:_on_file_modified():288] file/dir modified: /Users/emmagraham/Documents/GitHub/propagation/CLtargetprop/wandb/run-20240327_205020-2hz51sek/files/output.log
+2024-03-27 20:51:48,687 DEBUG   HandlerThread:57938 [handler.py:handle_request():146] handle_request: partial_history
+2024-03-27 20:51:48,688 DEBUG   SenderThread:57938 [sender.py:send():382] send: history
+2024-03-27 20:51:48,688 DEBUG   SenderThread:57938 [sender.py:send_request():409] send_request: summary_record
+2024-03-27 20:51:48,688 INFO    SenderThread:57938 [sender.py:_save_file():1403] saving file wandb-summary.json with policy end
+2024-03-27 20:51:49,149 INFO    Thread-12 :57938 [dir_watcher.py:_on_file_modified():288] file/dir modified: /Users/emmagraham/Documents/GitHub/propagation/CLtargetprop/wandb/run-20240327_205020-2hz51sek/files/wandb-summary.json
+2024-03-27 20:51:50,426 DEBUG   HandlerThread:57938 [handler.py:handle_request():146] handle_request: status_report
+2024-03-27 20:51:50,440 DEBUG   SenderThread:57938 [sender.py:send():382] send: exit
+2024-03-27 20:51:50,440 INFO    SenderThread:57938 [sender.py:send_exit():589] handling exit code: 0
+2024-03-27 20:51:50,440 INFO    SenderThread:57938 [sender.py:send_exit():591] handling runtime: 89
+2024-03-27 20:51:50,441 INFO    SenderThread:57938 [sender.py:_save_file():1403] saving file wandb-summary.json with policy end
+2024-03-27 20:51:50,441 INFO    SenderThread:57938 [sender.py:send_exit():597] send defer
+2024-03-27 20:51:50,441 DEBUG   HandlerThread:57938 [handler.py:handle_request():146] handle_request: defer
+2024-03-27 20:51:50,441 INFO    HandlerThread:57938 [handler.py:handle_request_defer():172] handle defer: 0
+2024-03-27 20:51:50,441 DEBUG   SenderThread:57938 [sender.py:send_request():409] send_request: defer
+2024-03-27 20:51:50,441 INFO    SenderThread:57938 [sender.py:send_request_defer():613] handle sender defer: 0
+2024-03-27 20:51:50,441 INFO    SenderThread:57938 [sender.py:transition_state():617] send defer: 1
+2024-03-27 20:51:50,441 DEBUG   HandlerThread:57938 [handler.py:handle_request():146] handle_request: defer
+2024-03-27 20:51:50,441 INFO    HandlerThread:57938 [handler.py:handle_request_defer():172] handle defer: 1
+2024-03-27 20:51:50,441 DEBUG   SenderThread:57938 [sender.py:send_request():409] send_request: defer
+2024-03-27 20:51:50,441 INFO    SenderThread:57938 [sender.py:send_request_defer():613] handle sender defer: 1
+2024-03-27 20:51:50,441 INFO    SenderThread:57938 [sender.py:transition_state():617] send defer: 2
+2024-03-27 20:51:50,441 DEBUG   HandlerThread:57938 [handler.py:handle_request():146] handle_request: defer
+2024-03-27 20:51:50,441 INFO    HandlerThread:57938 [handler.py:handle_request_defer():172] handle defer: 2
+2024-03-27 20:51:50,441 INFO    HandlerThread:57938 [system_monitor.py:finish():203] Stopping system monitor
+2024-03-27 20:51:50,441 DEBUG   SystemMonitor:57938 [system_monitor.py:_start():179] Finished system metrics aggregation loop
+2024-03-27 20:51:50,442 INFO    HandlerThread:57938 [interfaces.py:finish():202] Joined cpu monitor
+2024-03-27 20:51:50,442 DEBUG   SystemMonitor:57938 [system_monitor.py:_start():183] Publishing last batch of metrics
+2024-03-27 20:51:50,442 INFO    HandlerThread:57938 [interfaces.py:finish():202] Joined disk monitor
+2024-03-27 20:51:50,442 INFO    HandlerThread:57938 [interfaces.py:finish():202] Joined gpuapple monitor
+2024-03-27 20:51:50,442 INFO    HandlerThread:57938 [interfaces.py:finish():202] Joined memory monitor
+2024-03-27 20:51:50,442 INFO    HandlerThread:57938 [interfaces.py:finish():202] Joined network monitor
+2024-03-27 20:51:50,442 DEBUG   SenderThread:57938 [sender.py:send_request():409] send_request: defer
+2024-03-27 20:51:50,442 INFO    SenderThread:57938 [sender.py:send_request_defer():613] handle sender defer: 2
+2024-03-27 20:51:50,442 INFO    SenderThread:57938 [sender.py:transition_state():617] send defer: 3
+2024-03-27 20:51:50,442 DEBUG   SenderThread:57938 [sender.py:send():382] send: stats
+2024-03-27 20:51:50,442 DEBUG   HandlerThread:57938 [handler.py:handle_request():146] handle_request: defer
+2024-03-27 20:51:50,442 INFO    HandlerThread:57938 [handler.py:handle_request_defer():172] handle defer: 3
+2024-03-27 20:51:50,442 DEBUG   SenderThread:57938 [sender.py:send_request():409] send_request: defer
+2024-03-27 20:51:50,443 INFO    SenderThread:57938 [sender.py:send_request_defer():613] handle sender defer: 3
+2024-03-27 20:51:50,443 INFO    SenderThread:57938 [sender.py:transition_state():617] send defer: 4
+2024-03-27 20:51:50,443 DEBUG   HandlerThread:57938 [handler.py:handle_request():146] handle_request: defer
+2024-03-27 20:51:50,443 INFO    HandlerThread:57938 [handler.py:handle_request_defer():172] handle defer: 4
+2024-03-27 20:51:50,443 DEBUG   SenderThread:57938 [sender.py:send_request():409] send_request: defer
+2024-03-27 20:51:50,443 INFO    SenderThread:57938 [sender.py:send_request_defer():613] handle sender defer: 4
+2024-03-27 20:51:50,443 INFO    SenderThread:57938 [sender.py:transition_state():617] send defer: 5
+2024-03-27 20:51:50,443 DEBUG   HandlerThread:57938 [handler.py:handle_request():146] handle_request: defer
+2024-03-27 20:51:50,443 INFO    HandlerThread:57938 [handler.py:handle_request_defer():172] handle defer: 5
+2024-03-27 20:51:50,443 DEBUG   SenderThread:57938 [sender.py:send():382] send: summary
+2024-03-27 20:51:50,443 INFO    SenderThread:57938 [sender.py:_save_file():1403] saving file wandb-summary.json with policy end
+2024-03-27 20:51:50,443 DEBUG   SenderThread:57938 [sender.py:send_request():409] send_request: defer
+2024-03-27 20:51:50,443 INFO    SenderThread:57938 [sender.py:send_request_defer():613] handle sender defer: 5
+2024-03-27 20:51:50,443 INFO    SenderThread:57938 [sender.py:transition_state():617] send defer: 6
+2024-03-27 20:51:50,443 DEBUG   HandlerThread:57938 [handler.py:handle_request():146] handle_request: defer
+2024-03-27 20:51:50,443 INFO    HandlerThread:57938 [handler.py:handle_request_defer():172] handle defer: 6
+2024-03-27 20:51:50,443 DEBUG   SenderThread:57938 [sender.py:send_request():409] send_request: defer
+2024-03-27 20:51:50,443 INFO    SenderThread:57938 [sender.py:send_request_defer():613] handle sender defer: 6
+2024-03-27 20:51:50,443 INFO    SenderThread:57938 [sender.py:transition_state():617] send defer: 7
+2024-03-27 20:51:50,443 DEBUG   HandlerThread:57938 [handler.py:handle_request():146] handle_request: status_report
+2024-03-27 20:51:50,443 DEBUG   HandlerThread:57938 [handler.py:handle_request():146] handle_request: defer
+2024-03-27 20:51:50,444 INFO    HandlerThread:57938 [handler.py:handle_request_defer():172] handle defer: 7
+2024-03-27 20:51:50,444 DEBUG   SenderThread:57938 [sender.py:send_request():409] send_request: defer
+2024-03-27 20:51:50,444 INFO    SenderThread:57938 [sender.py:send_request_defer():613] handle sender defer: 7
+2024-03-27 20:51:51,157 INFO    Thread-12 :57938 [dir_watcher.py:_on_file_modified():288] file/dir modified: /Users/emmagraham/Documents/GitHub/propagation/CLtargetprop/wandb/run-20240327_205020-2hz51sek/files/wandb-summary.json
+2024-03-27 20:51:51,446 DEBUG   HandlerThread:57938 [handler.py:handle_request():146] handle_request: poll_exit
+2024-03-27 20:51:51,809 INFO    SenderThread:57938 [sender.py:transition_state():617] send defer: 8
+2024-03-27 20:51:51,809 DEBUG   SenderThread:57938 [sender.py:send_request():409] send_request: poll_exit
+2024-03-27 20:51:51,810 DEBUG   HandlerThread:57938 [handler.py:handle_request():146] handle_request: defer
+2024-03-27 20:51:51,810 INFO    HandlerThread:57938 [handler.py:handle_request_defer():172] handle defer: 8
+2024-03-27 20:51:51,811 DEBUG   SenderThread:57938 [sender.py:send_request():409] send_request: defer
+2024-03-27 20:51:51,811 INFO    SenderThread:57938 [sender.py:send_request_defer():613] handle sender defer: 8
+2024-03-27 20:51:51,811 INFO    SenderThread:57938 [job_builder.py:build():296] Attempting to build job artifact
+2024-03-27 20:51:51,812 INFO    SenderThread:57938 [job_builder.py:_get_source_type():426] is repo sourced job
+2024-03-27 20:51:51,841 INFO    SenderThread:57938 [job_builder.py:build():402] adding wandb-job metadata file
+2024-03-27 20:51:51,844 INFO    SenderThread:57938 [sender.py:transition_state():617] send defer: 9
+2024-03-27 20:51:51,845 DEBUG   HandlerThread:57938 [handler.py:handle_request():146] handle_request: defer
+2024-03-27 20:51:51,845 INFO    HandlerThread:57938 [handler.py:handle_request_defer():172] handle defer: 9
+2024-03-27 20:51:51,845 DEBUG   SenderThread:57938 [sender.py:send():382] send: artifact
+2024-03-27 20:51:52,164 INFO    Thread-12 :57938 [dir_watcher.py:_on_file_modified():288] file/dir modified: /Users/emmagraham/Documents/GitHub/propagation/CLtargetprop/wandb/run-20240327_205020-2hz51sek/files/output.log
+2024-03-27 20:51:52,381 INFO    SenderThread:57938 [sender.py:send_artifact():1494] sent artifact job-https___github.com_emmagg6_propagation.git_CLtargetprop_main.py - {'id': 'QXJ0aWZhY3Q6NzczNzA5Mjcz', 'state': 'COMMITTED', 'artifactSequence': {'id': 'QXJ0aWZhY3RDb2xsZWN0aW9uOjE1MTIxMDM3NQ==', 'latestArtifact': {'id': 'QXJ0aWZhY3Q6NzczNzA5Mjcz', 'versionIndex': 11}}}
+2024-03-27 20:51:52,381 DEBUG   SenderThread:57938 [sender.py:send_request():409] send_request: defer
+2024-03-27 20:51:52,381 INFO    SenderThread:57938 [sender.py:send_request_defer():613] handle sender defer: 9
+2024-03-27 20:51:52,381 INFO    SenderThread:57938 [dir_watcher.py:finish():358] shutting down directory watcher
+2024-03-27 20:51:52,448 DEBUG   HandlerThread:57938 [handler.py:handle_request():146] handle_request: poll_exit
+2024-03-27 20:51:53,167 INFO    SenderThread:57938 [dir_watcher.py:finish():388] scan: /Users/emmagraham/Documents/GitHub/propagation/CLtargetprop/wandb/run-20240327_205020-2hz51sek/files
+2024-03-27 20:51:53,168 INFO    SenderThread:57938 [dir_watcher.py:finish():402] scan save: /Users/emmagraham/Documents/GitHub/propagation/CLtargetprop/wandb/run-20240327_205020-2hz51sek/files/requirements.txt requirements.txt
+2024-03-27 20:51:53,169 INFO    SenderThread:57938 [dir_watcher.py:finish():402] scan save: /Users/emmagraham/Documents/GitHub/propagation/CLtargetprop/wandb/run-20240327_205020-2hz51sek/files/output.log output.log
+2024-03-27 20:51:53,170 INFO    SenderThread:57938 [dir_watcher.py:finish():402] scan save: /Users/emmagraham/Documents/GitHub/propagation/CLtargetprop/wandb/run-20240327_205020-2hz51sek/files/config.yaml config.yaml
+2024-03-27 20:51:53,174 INFO    SenderThread:57938 [dir_watcher.py:finish():402] scan save: /Users/emmagraham/Documents/GitHub/propagation/CLtargetprop/wandb/run-20240327_205020-2hz51sek/files/wandb-summary.json wandb-summary.json
+2024-03-27 20:51:53,177 INFO    SenderThread:57938 [dir_watcher.py:finish():402] scan save: /Users/emmagraham/Documents/GitHub/propagation/CLtargetprop/wandb/run-20240327_205020-2hz51sek/files/conda-environment.yaml conda-environment.yaml
+2024-03-27 20:51:53,180 INFO    SenderThread:57938 [dir_watcher.py:finish():402] scan save: /Users/emmagraham/Documents/GitHub/propagation/CLtargetprop/wandb/run-20240327_205020-2hz51sek/files/wandb-metadata.json wandb-metadata.json
+2024-03-27 20:51:53,181 INFO    SenderThread:57938 [sender.py:transition_state():617] send defer: 10
+2024-03-27 20:51:53,183 DEBUG   SenderThread:57938 [sender.py:send_request():409] send_request: poll_exit
+2024-03-27 20:51:53,183 DEBUG   HandlerThread:57938 [handler.py:handle_request():146] handle_request: defer
+2024-03-27 20:51:53,183 INFO    HandlerThread:57938 [handler.py:handle_request_defer():172] handle defer: 10
+2024-03-27 20:51:53,184 DEBUG   SenderThread:57938 [sender.py:send_request():409] send_request: defer
+2024-03-27 20:51:53,184 INFO    SenderThread:57938 [sender.py:send_request_defer():613] handle sender defer: 10
+2024-03-27 20:51:53,184 INFO    SenderThread:57938 [file_pusher.py:finish():172] shutting down file pusher
+2024-03-27 20:51:53,449 DEBUG   HandlerThread:57938 [handler.py:handle_request():146] handle_request: poll_exit
+2024-03-27 20:51:53,449 DEBUG   SenderThread:57938 [sender.py:send_request():409] send_request: poll_exit
+2024-03-27 20:51:53,458 INFO    wandb-upload_0:57938 [upload_job.py:push():131] Uploaded file /Users/emmagraham/Documents/GitHub/propagation/CLtargetprop/wandb/run-20240327_205020-2hz51sek/files/requirements.txt
+2024-03-27 20:51:53,719 INFO    wandb-upload_2:57938 [upload_job.py:push():131] Uploaded file /Users/emmagraham/Documents/GitHub/propagation/CLtargetprop/wandb/run-20240327_205020-2hz51sek/files/config.yaml
+2024-03-27 20:51:53,728 INFO    wandb-upload_4:57938 [upload_job.py:push():131] Uploaded file /Users/emmagraham/Documents/GitHub/propagation/CLtargetprop/wandb/run-20240327_205020-2hz51sek/files/conda-environment.yaml
+2024-03-27 20:51:53,729 INFO    wandb-upload_3:57938 [upload_job.py:push():131] Uploaded file /Users/emmagraham/Documents/GitHub/propagation/CLtargetprop/wandb/run-20240327_205020-2hz51sek/files/wandb-summary.json
+2024-03-27 20:51:53,933 INFO    wandb-upload_1:57938 [upload_job.py:push():131] Uploaded file /Users/emmagraham/Documents/GitHub/propagation/CLtargetprop/wandb/run-20240327_205020-2hz51sek/files/output.log
+2024-03-27 20:51:54,138 INFO    Thread-11 :57938 [sender.py:transition_state():617] send defer: 11
+2024-03-27 20:51:54,139 DEBUG   HandlerThread:57938 [handler.py:handle_request():146] handle_request: defer
+2024-03-27 20:51:54,139 INFO    HandlerThread:57938 [handler.py:handle_request_defer():172] handle defer: 11
+2024-03-27 20:51:54,139 DEBUG   SenderThread:57938 [sender.py:send_request():409] send_request: defer
+2024-03-27 20:51:54,139 INFO    SenderThread:57938 [sender.py:send_request_defer():613] handle sender defer: 11
+2024-03-27 20:51:54,139 INFO    SenderThread:57938 [file_pusher.py:join():178] waiting for file pusher
+2024-03-27 20:51:54,139 INFO    SenderThread:57938 [sender.py:transition_state():617] send defer: 12
+2024-03-27 20:51:54,139 DEBUG   HandlerThread:57938 [handler.py:handle_request():146] handle_request: defer
+2024-03-27 20:51:54,139 INFO    HandlerThread:57938 [handler.py:handle_request_defer():172] handle defer: 12
+2024-03-27 20:51:54,139 DEBUG   SenderThread:57938 [sender.py:send_request():409] send_request: defer
+2024-03-27 20:51:54,139 INFO    SenderThread:57938 [sender.py:send_request_defer():613] handle sender defer: 12
+2024-03-27 20:51:54,139 INFO    SenderThread:57938 [file_stream.py:finish():595] file stream finish called
+2024-03-27 20:51:54,254 INFO    SenderThread:57938 [file_stream.py:finish():599] file stream finish is done
+2024-03-27 20:51:54,254 INFO    SenderThread:57938 [sender.py:transition_state():617] send defer: 13
+2024-03-27 20:51:54,254 DEBUG   HandlerThread:57938 [handler.py:handle_request():146] handle_request: defer
+2024-03-27 20:51:54,254 INFO    HandlerThread:57938 [handler.py:handle_request_defer():172] handle defer: 13
+2024-03-27 20:51:54,254 DEBUG   SenderThread:57938 [sender.py:send_request():409] send_request: defer
+2024-03-27 20:51:54,254 INFO    SenderThread:57938 [sender.py:send_request_defer():613] handle sender defer: 13
+2024-03-27 20:51:54,254 INFO    SenderThread:57938 [sender.py:transition_state():617] send defer: 14
+2024-03-27 20:51:54,255 DEBUG   HandlerThread:57938 [handler.py:handle_request():146] handle_request: defer
+2024-03-27 20:51:54,255 INFO    HandlerThread:57938 [handler.py:handle_request_defer():172] handle defer: 14
+2024-03-27 20:51:54,255 DEBUG   SenderThread:57938 [sender.py:send():382] send: final
+2024-03-27 20:51:54,255 DEBUG   SenderThread:57938 [sender.py:send():382] send: footer
+2024-03-27 20:51:54,255 DEBUG   SenderThread:57938 [sender.py:send_request():409] send_request: defer
+2024-03-27 20:51:54,255 INFO    SenderThread:57938 [sender.py:send_request_defer():613] handle sender defer: 14
+2024-03-27 20:51:54,255 DEBUG   HandlerThread:57938 [handler.py:handle_request():146] handle_request: poll_exit
+2024-03-27 20:51:54,256 DEBUG   SenderThread:57938 [sender.py:send_request():409] send_request: poll_exit
+2024-03-27 20:51:54,256 DEBUG   HandlerThread:57938 [handler.py:handle_request():146] handle_request: poll_exit
+2024-03-27 20:51:54,256 DEBUG   HandlerThread:57938 [handler.py:handle_request():146] handle_request: server_info
+2024-03-27 20:51:54,256 DEBUG   HandlerThread:57938 [handler.py:handle_request():146] handle_request: get_summary
+2024-03-27 20:51:54,256 DEBUG   SenderThread:57938 [sender.py:send_request():409] send_request: poll_exit
+2024-03-27 20:51:54,257 DEBUG   SenderThread:57938 [sender.py:send_request():409] send_request: server_info
+2024-03-27 20:51:54,257 DEBUG   HandlerThread:57938 [handler.py:handle_request():146] handle_request: sampled_history
+2024-03-27 20:51:54,258 DEBUG   HandlerThread:57938 [handler.py:handle_request():146] handle_request: internal_messages
+2024-03-27 20:51:54,258 DEBUG   HandlerThread:57938 [handler.py:handle_request():146] handle_request: job_info
+2024-03-27 20:51:54,358 DEBUG   SenderThread:57938 [sender.py:send_request():409] send_request: job_info
+2024-03-27 20:51:54,359 INFO    MainThread:57938 [wandb_run.py:_footer_history_summary_info():3866] rendering history
+2024-03-27 20:51:54,359 INFO    MainThread:57938 [wandb_run.py:_footer_history_summary_info():3898] rendering summary
+2024-03-27 20:51:54,360 INFO    MainThread:57938 [wandb_run.py:_footer_sync_info():3825] logging synced files
+2024-03-27 20:51:54,361 DEBUG   HandlerThread:57938 [handler.py:handle_request():146] handle_request: shutdown
+2024-03-27 20:51:54,361 INFO    HandlerThread:57938 [handler.py:finish():869] shutting down handler
+2024-03-27 20:51:55,259 INFO    WriterThread:57938 [datastore.py:close():296] close: /Users/emmagraham/Documents/GitHub/propagation/CLtargetprop/wandb/run-20240327_205020-2hz51sek/run-2hz51sek.wandb
+2024-03-27 20:51:55,364 INFO    SenderThread:57938 [sender.py:finish():1572] shutting down sender
+2024-03-27 20:51:55,364 INFO    SenderThread:57938 [file_pusher.py:finish():172] shutting down file pusher
+2024-03-27 20:51:55,364 INFO    SenderThread:57938 [file_pusher.py:join():178] waiting for file pusher
