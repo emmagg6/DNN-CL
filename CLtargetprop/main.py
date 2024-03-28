@@ -188,12 +188,17 @@ def main(**kwargs):
    
    ######### MODEL ###########
     if kwargs["algorithm"] in BP_LIST:
+        if kwargs["continual"] == "yes":
+            cont = True
+        else: 
+            cont = False
+
         model = bp_net(kwargs["depth"], kwargs["in_dim"], kwargs["hid_dim"],
                        kwargs["out_dim"], kwargs["forward_function_2_activation"],
-                       loss_function, kwargs["algorithm"], device)
+                       loss_function, kwargs["algorithm"], device, continual=cont)
         # If continual learning is enabled, load the saved model parameters
-        if kwargs["continual"] == "yes":
-            model.load_model("checkpoints/bp/BP-m-f-maybe.pth")
+        if cont:
+            model.load_model("checkpoints/bp/BP-mnist.pth")
 
         model.train(train_loader, valid_loader, kwargs["epochs"], kwargs["learning_rate"],
                     kwargs["log"], kwargs["save"])
@@ -204,7 +209,7 @@ def main(**kwargs):
         
         # If continual learning is enabled, load the saved model parameters
         if kwargs["continual"] == "yes":
-            saved_state = torch.load("checkpoints/tp/FWDTP-m-f.pth")
+            saved_state = torch.load("checkpoints/tp/FWDTP-mnist.pth")
             model.load_state(saved_state)
         
         # train

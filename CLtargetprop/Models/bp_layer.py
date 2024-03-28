@@ -53,20 +53,34 @@ class bp_layer:
         '''
 
 class bp_layer:
-    def __init__(self, in_dim, out_dim, activation_function, device):
+    def __init__(self, in_dim, out_dim, activation_function, device, continual=False):
         self.device = device
         self.weight = torch.empty(out_dim, in_dim, requires_grad=True, device=device)
         nn.init.orthogonal_(self.weight)
 
-        # Determine if batch normalization should be used based on the activation_function string
-        self.use_batch_norm = '-BN' in activation_function
+        # Initialize use_batch_norm to False by default
+        self.use_batch_norm = False
+
+        self.cont = continual
+
+        # Determine if batch normalization should be used
+        if activation_function == "linear-BN" or activation_function == "tanh-BN": 
+            self.use_batch_norm = True
+
+
         if self.use_batch_norm:
             # Initialize batch normalization layer
             self.batch_norm = nn.BatchNorm1d(out_dim).to(device)
             # Remove '-BN' from the activation function string to get the base activation function
-            base_activation_function = activation_function.replace('-BN', '')
+            # base_activation_function = activation_function.replace('-BN', '')
+            base_activation_function = activation_function[:-3]
         else:
             base_activation_function = activation_function
+
+        ###### CHECK #######
+        if self.use_batch_norm:
+            print("Batch Norm running_mean:", self.batch_norm.running_mean)
+            print("Batch Norm running_var:", self.batch_norm.running_var)
 
         # Set up the activation function and its derivative
         if base_activation_function == "linear":
@@ -86,13 +100,16 @@ class bp_layer:
     def forward(self, x, update=True):
         # Apply linear transformation
         self.linear_activation = x @ self.weight.T
+        # print(f"Layer forward pass - linear activation (sample): {self.linear_activation[0][:5]}")  # first 5 values of the first sample
 
         # Apply batch normalization if it is being used
         if self.use_batch_norm:
             self.linear_activation = self.batch_norm(self.linear_activation)
+            # print(f"Layer forward pass - after batch norm (sample): {self.linear_activation[0][:5]}")  # first 5 values of the first sample
 
         # Apply the activation function
         self.activation = self.activation_function(self.linear_activation)
+        # print(f"Layer forward pass - after activation (sample): {self.activation[0][:5]}")  # first 5 values of the first sample
         return self.activation
 
     def get_params(self):
@@ -108,11 +125,20 @@ class bp_layer:
         return params
 
     def load_params(self, params):
-        # Load the parameters from a saved state
         self.weight.data.copy_(torch.tensor(params['weight'], device=self.device))
         if self.use_batch_norm and 'batch_norm' in params:
-            bn_state = params['batch_norm']
-            self.batch_norm.weight.data.copy_(torch.tensor(bn_state['weight'], device=self.device))
-            self.batch_norm.bias.data.copy_(torch.tensor(bn_state['bias'], device=self.device))
-            self.batch_norm.running_mean.copy_(torch.tensor(bn_state['running_mean'], device=self.device))
-            self.batch_norm.running_var.copy_(torch.tensor(bn_state['running_var'], device=self.device))
+            bn_params = params['batch_norm']
+            self.batch_norm.weight.data.copy_(torch.tensor(bn_params['weight'], device=self.device))
+            self.batch_norm.bias.data.copy_(torch.tensor(bn_params['bias'], device=self.device))
+            self.batch_norm.running_mean.copy_(torch.tensor(bn_params['running_mean'], device=self.device))
+            self.batch_norm.running_var.copy_(torch.tensor(bn_params['running_var'], device=self.device))
+
+        # Ensure that the weights remain trainable after loading
+        self.weight.requires_grad_(True)
+        if self.use_batch_norm:
+            self.batch_norm.weight.requires_grad_(True)
+            self.batch_norm.bias.requires_grad_(True)
+
+        if self.use_batch_norm and self.cont:
+            # Reset running stats if we are continuing training
+            self.batch_norm.reset_running_stats()

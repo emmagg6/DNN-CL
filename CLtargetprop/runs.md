@@ -52,7 +52,7 @@ STEP SIZE HYPERPARAMETER FOR FW-DTP
 
 ## Continual Learning Runs
 
-BASE FOUR : 
+BASE : 
 
 1. python main.py --algorithm=DTP-BN --dataset=MNIST --forward_last_activation=linear-BN --learning_rate=0.1 --stepsize=0.04 --test --log --save=yes --epochs=10
 > checkpoint save name : DTP-mnist
@@ -70,8 +70,8 @@ BASE FOUR :
 > checkpoint save name : FWDTP-fmnist
 > wandb : FWDTP-f
 
-5. python main.py --algorithm=BP --dataset=MNIST --learning_rate=0.05 --stepsize=0.005 --test --log --save=yes --epochs=10
-> forward : tanh, orthogonal
+5. python main.py --algorithm=BP --dataset=MNIST --learning_rate=0.1 --stepsize=0.01 --test --log --save=yes --epochs=10
+> forward : tanh-BN, orthogonal
 > checkpoint save name : BP-mnist
 > wandb : BP-m
 
@@ -88,6 +88,8 @@ CONTINUAL LEARNING 1 :
 > initialized save name : FWDTP-mnist
 > checkpoint save name : FWDTP-m-f
 
+3. python main.py --algorithm=BP --dataset=FashionMNIST --learning_rate=1 --stepsize=0.004 --test --log --save=yes --epochs=10 --continual=yes
+
 
 CONTINUAL LEARNING 2 :
 1. python main.py --algorithm=DTP-BN --dataset=MNIST --forward_last_activation=linear-BN --learning_rate=0.1 --stepsize=0.04 --test --log --save=yes --epochs=10 --continual=yes
@@ -99,3 +101,5 @@ CONTINUAL LEARNING 2 :
 > previous task : MNIST
 > initialized save name : FWDTP-m-f
 > checkpoint save name : FWDTP-m-f-m
+
+3. python main.py --algorithm=BP --dataset=MNIST --learning_rate=0.1 --stepsize=0.04 --test --log --save=yes --epochs=10 --continual=yes
