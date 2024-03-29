@@ -1,17 +1,16 @@
 '''
-Adapted from the codes were used for the experiments conducted in the submitted paper 
+Based on code used for the experiments conducted in the submitted paper 
 "Fixed-Weight Difference Target Propagation" by K. K. S. Wu, K. C. K. Lee, and T. Poggio.
 
-Adaptation for Continual Learning Benchmarking is done by: emmagg6.
-
+Adaptation for Continual Learning by emmagg6.
 
 '''
 
 from utils import worker_init_fn, set_seed, combined_loss, set_wandb, set_device
 from dataset import make_MNIST, make_FashionMNIST, make_CIFAR10, make_CIFAR100
 
-from Models.bp import bp_net
-from Models.tp_net import tp_net
+from Models.BP.bp_nn import bp_net
+from Models.TP.tp_nn import tp_net
 
 from initParameters import set_params
 
@@ -55,13 +54,13 @@ def get_args():
 
     # setting of tp_layer
     parser.add_argument("--forward_function_1", "-ff1", type=str, default="parameterized",
-                        choices=["identity", "random", "parameterized"])
+                        choices=["random", "parameterized"])
     parser.add_argument("--forward_function_2", "-ff2", type=str, default="parameterized",
-                        choices=["identity", "random", "parameterized"])
+                        choices=["random", "parameterized"])
     parser.add_argument("--backward_function_1", "-bf1", type=str, default="parameterized",
-                        choices=["identity", "random", "parameterized"])
+                        choices=["random", "parameterized"])
     parser.add_argument("--backward_function_2", "-bf2", type=str, default="parameterized",
-                        choices=["identity", "random", "difference"])
+                        choices=["random", "difference"])
 
     # neccesary if {parameterized, random} was choosed
     parser.add_argument("--forward_function_1_init", "-ff1_init", type=str, default="orthogonal",
@@ -104,7 +103,7 @@ def get_args():
     # CL
     parser.add_argument("--continual", type=str, default="no",
                         choices=["no", "yes"])
-    # save 
+    # save model params
     parser.add_argument("--save", type=str, default="no",
                         choices=["no", "yes"])
 

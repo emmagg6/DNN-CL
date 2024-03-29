@@ -1,3 +1,12 @@
+'''
+Based on code used for the experiments conducted in the submitted paper 
+"Fixed-Weight Difference Target Propagation" by K. K. S. Wu, K. C. K. Lee, and T. Poggio.
+
+Adaptation for Continual Learning by emmagg6.
+
+'''
+
+
 def set_params(kwargs):
     name = {"ff1": "forward_function_1",
             "ff2": "forward_function_2",

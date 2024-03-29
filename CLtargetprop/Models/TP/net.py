@@ -1,3 +1,10 @@
+'''
+Code used for the experiments conducted in the submitted paper 
+"Fixed-Weight Difference Target Propagation" by K. K. S. Wu, K. C. K. Lee, and T. Poggio.
+
+
+'''
+
 from utils import calc_accuracy, calc_angle, calc_accuracy_combined
 
 import torch

@@ -1,6 +1,16 @@
-from Models.tp_layer import tp_layer
-from Models.net import net
-from Models.tp_fcns import parameterized_function
+'''
+Based on code used for the experiments conducted in the submitted paper 
+"Fixed-Weight Difference Target Propagation" by K. K. S. Wu, K. C. K. Lee, and T. Poggio.
+
+Adaptation for Continual Learning by emmagg6.
+
+'''
+
+
+
+from CLtargetprop.Models.TP.tp_layers import tp_layer
+from Models.TP.net import net
+from Models.TP.tp_fcns import parameterized_function
 from utils import calc_angle
 from copy import deepcopy
 
