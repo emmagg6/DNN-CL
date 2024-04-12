@@ -1,0 +1,23 @@
+Traceback (most recent call last):
+  File "/Users/emmagraham/anaconda3/envs/target-prop/lib/python3.8/site-packages/torch/serialization.py", line 541, in _check_seekable
+    f.seek(f.tell())
+AttributeError: 'dict' object has no attribute 'seek'
+During handling of the above exception, another exception occurred:
+Traceback (most recent call last):
+  File "main.py", line 241, in <module>
+    main(**vars(FLAGS))
+  File "main.py", line 211, in main
+    model.load_state(torch.load("checkpoints/bp/BP-mnist.pth"),kwargs["learning_rate"] )
+  File "/Users/emmagraham/Documents/GitHub/propagation/CLtargetprop/Models/bp.py", line 157, in load_state
+    checkpoint = torch.load(path)
+  File "/Users/emmagraham/anaconda3/envs/target-prop/lib/python3.8/site-packages/torch/serialization.py", line 998, in load
+    with _open_file_like(f, 'rb') as opened_file:
+  File "/Users/emmagraham/anaconda3/envs/target-prop/lib/python3.8/site-packages/torch/serialization.py", line 450, in _open_file_like
+    return _open_buffer_reader(name_or_buffer)
+  File "/Users/emmagraham/anaconda3/envs/target-prop/lib/python3.8/site-packages/torch/serialization.py", line 435, in __init__
+    _check_seekable(buffer)
+  File "/Users/emmagraham/anaconda3/envs/target-prop/lib/python3.8/site-packages/torch/serialization.py", line 544, in _check_seekable
+    raise_err_msg(["seek", "tell"], e)
+  File "/Users/emmagraham/anaconda3/envs/target-prop/lib/python3.8/site-packages/torch/serialization.py", line 537, in raise_err_msg
+    raise type(e)(msg)
+AttributeError: 'dict' object has no attribute 'seek'. You can only torch.load from a file that is seekable. Please pre-load the data into a buffer like io.BytesIO and try to load from it instead.

@@ -1,0 +1,8 @@
+Traceback (most recent call last):
+  File "main.py", line 266, in <module>
+    main(**vars(FLAGS))
+  File "main.py", line 239, in main
+    model.train_model(train_loader, valid_loader, kwargs["epochs"], kwargs["learning_rate"], kwargs["log"], kwargs["save"])
+  File "/Users/emmagraham/Documents/GitHub/propagation/CLtargetprop/Models/bp.py", line 79, in train_model
+    train_loss += loss.item()
+UnboundLocalError: local variable 'train_loss' referenced before assignment

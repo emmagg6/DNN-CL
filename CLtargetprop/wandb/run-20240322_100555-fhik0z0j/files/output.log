@@ -1,0 +1,16 @@
+
+Epoch: 0
+Epoch: 1
+Epoch: 2
+Epoch: 3
+Epoch: 4
+Epoch: 5
+Epoch: 6
+Traceback (most recent call last):
+  File "main.py", line 221, in <module>
+    main(**FLAGS)
+  File "main.py", line 208, in main
+    model.train(train_loader, valid_loader, kwargs["epochs"], kwargs["learning_rate"],
+  File "/Users/emmagraham/Documents/GitHub/propagation/CLtargetprop/Models/tp_net.py", line 79, in train
+    eig, _ = torch.linalg.eig(gradf @ gradg)
+KeyboardInterrupt

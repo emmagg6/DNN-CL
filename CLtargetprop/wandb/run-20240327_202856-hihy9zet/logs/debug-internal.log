@@ -1,0 +1,189 @@
+2024-03-27 20:28:56,019 INFO    StreamThr :55814 [internal.py:wandb_internal():86] W&B internal server running at pid: 55814, started at: 2024-03-27 20:28:56.018824
+2024-03-27 20:28:56,020 DEBUG   HandlerThread:55814 [handler.py:handle_request():146] handle_request: status
+2024-03-27 20:28:56,023 INFO    WriterThread:55814 [datastore.py:open_for_write():87] open: /Users/emmagraham/Documents/GitHub/propagation/CLtargetprop/wandb/run-20240327_202856-hihy9zet/run-hihy9zet.wandb
+2024-03-27 20:28:56,023 DEBUG   SenderThread:55814 [sender.py:send():382] send: header
+2024-03-27 20:28:56,048 DEBUG   SenderThread:55814 [sender.py:send():382] send: run
+2024-03-27 20:28:56,497 INFO    SenderThread:55814 [dir_watcher.py:__init__():211] watching files in: /Users/emmagraham/Documents/GitHub/propagation/CLtargetprop/wandb/run-20240327_202856-hihy9zet/files
+2024-03-27 20:28:56,497 INFO    SenderThread:55814 [sender.py:_start_run_threads():1136] run started: hihy9zet with start time 1711585736.019009
+2024-03-27 20:28:56,508 DEBUG   HandlerThread:55814 [handler.py:handle_request():146] handle_request: check_version
+2024-03-27 20:28:56,508 DEBUG   SenderThread:55814 [sender.py:send_request():409] send_request: check_version
+2024-03-27 20:28:56,805 DEBUG   HandlerThread:55814 [handler.py:handle_request():146] handle_request: run_start
+2024-03-27 20:28:56,807 DEBUG   HandlerThread:55814 [system_info.py:__init__():27] System info init
+2024-03-27 20:28:56,807 DEBUG   HandlerThread:55814 [system_info.py:__init__():42] System info init done
+2024-03-27 20:28:56,807 INFO    HandlerThread:55814 [system_monitor.py:start():194] Starting system monitor
+2024-03-27 20:28:56,807 INFO    SystemMonitor:55814 [system_monitor.py:_start():158] Starting system asset monitoring threads
+2024-03-27 20:28:56,807 INFO    HandlerThread:55814 [system_monitor.py:probe():214] Collecting system info
+2024-03-27 20:28:56,808 INFO    SystemMonitor:55814 [interfaces.py:start():190] Started cpu monitoring
+2024-03-27 20:28:56,809 DEBUG   HandlerThread:55814 [system_info.py:probe():151] Probing system
+2024-03-27 20:28:56,811 INFO    SystemMonitor:55814 [interfaces.py:start():190] Started disk monitoring
+2024-03-27 20:28:56,814 INFO    SystemMonitor:55814 [interfaces.py:start():190] Started gpuapple monitoring
+2024-03-27 20:28:56,816 INFO    SystemMonitor:55814 [interfaces.py:start():190] Started memory monitoring
+2024-03-27 20:28:56,817 INFO    SystemMonitor:55814 [interfaces.py:start():190] Started network monitoring
+2024-03-27 20:28:56,818 DEBUG   HandlerThread:55814 [system_info.py:_probe_git():136] Probing git
+2024-03-27 20:28:56,848 DEBUG   HandlerThread:55814 [system_info.py:_probe_git():144] Probing git done
+2024-03-27 20:28:56,848 DEBUG   HandlerThread:55814 [system_info.py:probe():199] Probing system done
+2024-03-27 20:28:56,848 DEBUG   HandlerThread:55814 [system_monitor.py:probe():223] {'os': 'macOS-14.3.1-arm64-arm-64bit', 'python': '3.8.18', 'heartbeatAt': '2024-03-28T00:28:56.810006', 'startedAt': '2024-03-28T00:28:56.010904', 'docker': None, 'cuda': None, 'args': ('--algorithm=BP', '--dataset=FashionMNIST', '--learning_rate=1', '--stepsize=0.004', '--test', '--log', '--save=yes', '--epochs=10', '--continual=yes'), 'state': 'running', 'program': 'main.py', 'codePathLocal': 'main.py', 'codePath': 'CLtargetprop/main.py', 'git': {'remote': 'https://github.com/emmagg6/propagation.git', 'commit': '93959e0ab1e11ea3802bafaa8825dd13f69a8477'}, 'email': '125744177+emmagg6@users.noreply.github.com', 'root': '/Users/emmagraham/Documents/GitHub/propagation', 'host': 'vpn-investment-office-231-132-23.dartmouth.edu', 'username': 'emmagraham', 'executable': '/Users/emmagraham/anaconda3/envs/target-prop/bin/python', 'cpu_count': 8, 'cpu_count_logical': 8, 'cpu_freq': {'current': 3504, 'min': 600, 'max': 3504}, 'cpu_freq_per_core': [{'current': 3504, 'min': 600, 'max': 3504}], 'disk': {'/': {'total': 926.3517189025879, 'used': 9.436077117919922}}, 'gpuapple': {'type': 'arm', 'vendor': 'Apple'}, 'memory': {'total': 16.0}}
+2024-03-27 20:28:56,848 INFO    HandlerThread:55814 [system_monitor.py:probe():224] Finished collecting system info
+2024-03-27 20:28:56,848 INFO    HandlerThread:55814 [system_monitor.py:probe():227] Publishing system info
+2024-03-27 20:28:56,848 DEBUG   HandlerThread:55814 [system_info.py:_save_conda():208] Saving list of conda packages installed into the current environment
+2024-03-27 20:28:57,340 DEBUG   HandlerThread:55814 [system_info.py:_save_conda():220] Saving conda packages done
+2024-03-27 20:28:57,341 INFO    HandlerThread:55814 [system_monitor.py:probe():229] Finished publishing system info
+2024-03-27 20:28:57,342 DEBUG   SenderThread:55814 [sender.py:send():382] send: files
+2024-03-27 20:28:57,342 INFO    SenderThread:55814 [sender.py:_save_file():1403] saving file wandb-metadata.json with policy now
+2024-03-27 20:28:57,345 DEBUG   HandlerThread:55814 [handler.py:handle_request():146] handle_request: python_packages
+2024-03-27 20:28:57,345 DEBUG   SenderThread:55814 [sender.py:send_request():409] send_request: python_packages
+2024-03-27 20:28:57,346 DEBUG   HandlerThread:55814 [handler.py:handle_request():146] handle_request: stop_status
+2024-03-27 20:28:57,346 DEBUG   HandlerThread:55814 [handler.py:handle_request():146] handle_request: internal_messages
+2024-03-27 20:28:57,346 DEBUG   SenderThread:55814 [sender.py:send_request():409] send_request: stop_status
+2024-03-27 20:28:57,503 INFO    Thread-12 :55814 [dir_watcher.py:_on_file_created():271] file/dir created: /Users/emmagraham/Documents/GitHub/propagation/CLtargetprop/wandb/run-20240327_202856-hihy9zet/files/conda-environment.yaml
+2024-03-27 20:28:57,503 INFO    Thread-12 :55814 [dir_watcher.py:_on_file_created():271] file/dir created: /Users/emmagraham/Documents/GitHub/propagation/CLtargetprop/wandb/run-20240327_202856-hihy9zet/files/requirements.txt
+2024-03-27 20:28:57,503 INFO    Thread-12 :55814 [dir_watcher.py:_on_file_created():271] file/dir created: /Users/emmagraham/Documents/GitHub/propagation/CLtargetprop/wandb/run-20240327_202856-hihy9zet/files/wandb-metadata.json
+2024-03-27 20:28:57,644 DEBUG   SenderThread:55814 [sender.py:send():382] send: telemetry
+2024-03-27 20:28:57,871 INFO    wandb-upload_0:55814 [upload_job.py:push():131] Uploaded file /var/folders/n8/ldy_g4ps26b_8kzptnbt6bww0000gn/T/tmp7fkts0q9wandb/6adjrso8-wandb-metadata.json
+2024-03-27 20:29:00,382 DEBUG   SenderThread:55814 [sender.py:send():382] send: exit
+2024-03-27 20:29:00,382 INFO    SenderThread:55814 [sender.py:send_exit():589] handling exit code: 1
+2024-03-27 20:29:00,382 INFO    SenderThread:55814 [sender.py:send_exit():591] handling runtime: 3
+2024-03-27 20:29:00,382 INFO    SenderThread:55814 [sender.py:_save_file():1403] saving file wandb-summary.json with policy end
+2024-03-27 20:29:00,383 INFO    SenderThread:55814 [sender.py:send_exit():597] send defer
+2024-03-27 20:29:00,383 DEBUG   HandlerThread:55814 [handler.py:handle_request():146] handle_request: defer
+2024-03-27 20:29:00,383 INFO    HandlerThread:55814 [handler.py:handle_request_defer():172] handle defer: 0
+2024-03-27 20:29:00,383 DEBUG   SenderThread:55814 [sender.py:send_request():409] send_request: defer
+2024-03-27 20:29:00,383 INFO    SenderThread:55814 [sender.py:send_request_defer():613] handle sender defer: 0
+2024-03-27 20:29:00,383 INFO    SenderThread:55814 [sender.py:transition_state():617] send defer: 1
+2024-03-27 20:29:00,383 DEBUG   HandlerThread:55814 [handler.py:handle_request():146] handle_request: defer
+2024-03-27 20:29:00,383 INFO    HandlerThread:55814 [handler.py:handle_request_defer():172] handle defer: 1
+2024-03-27 20:29:00,383 DEBUG   SenderThread:55814 [sender.py:send_request():409] send_request: defer
+2024-03-27 20:29:00,383 INFO    SenderThread:55814 [sender.py:send_request_defer():613] handle sender defer: 1
+2024-03-27 20:29:00,383 INFO    SenderThread:55814 [sender.py:transition_state():617] send defer: 2
+2024-03-27 20:29:00,383 DEBUG   HandlerThread:55814 [handler.py:handle_request():146] handle_request: defer
+2024-03-27 20:29:00,383 INFO    HandlerThread:55814 [handler.py:handle_request_defer():172] handle defer: 2
+2024-03-27 20:29:00,383 INFO    HandlerThread:55814 [system_monitor.py:finish():203] Stopping system monitor
+2024-03-27 20:29:00,383 DEBUG   SystemMonitor:55814 [system_monitor.py:_start():172] Starting system metrics aggregation loop
+2024-03-27 20:29:00,384 DEBUG   SystemMonitor:55814 [system_monitor.py:_start():179] Finished system metrics aggregation loop
+2024-03-27 20:29:00,384 INFO    HandlerThread:55814 [interfaces.py:finish():202] Joined cpu monitor
+2024-03-27 20:29:00,384 DEBUG   SystemMonitor:55814 [system_monitor.py:_start():183] Publishing last batch of metrics
+2024-03-27 20:29:00,384 INFO    HandlerThread:55814 [interfaces.py:finish():202] Joined disk monitor
+2024-03-27 20:29:00,384 INFO    HandlerThread:55814 [interfaces.py:finish():202] Joined gpuapple monitor
+2024-03-27 20:29:00,384 INFO    HandlerThread:55814 [interfaces.py:finish():202] Joined memory monitor
+2024-03-27 20:29:00,384 INFO    HandlerThread:55814 [interfaces.py:finish():202] Joined network monitor
+2024-03-27 20:29:00,385 DEBUG   SenderThread:55814 [sender.py:send_request():409] send_request: defer
+2024-03-27 20:29:00,385 INFO    SenderThread:55814 [sender.py:send_request_defer():613] handle sender defer: 2
+2024-03-27 20:29:00,385 INFO    SenderThread:55814 [sender.py:transition_state():617] send defer: 3
+2024-03-27 20:29:00,385 DEBUG   SenderThread:55814 [sender.py:send():382] send: telemetry
+2024-03-27 20:29:00,385 DEBUG   SenderThread:55814 [sender.py:send():382] send: stats
+2024-03-27 20:29:00,385 DEBUG   HandlerThread:55814 [handler.py:handle_request():146] handle_request: defer
+2024-03-27 20:29:00,385 INFO    HandlerThread:55814 [handler.py:handle_request_defer():172] handle defer: 3
+2024-03-27 20:29:00,385 DEBUG   SenderThread:55814 [sender.py:send_request():409] send_request: defer
+2024-03-27 20:29:00,385 INFO    SenderThread:55814 [sender.py:send_request_defer():613] handle sender defer: 3
+2024-03-27 20:29:00,385 INFO    SenderThread:55814 [sender.py:transition_state():617] send defer: 4
+2024-03-27 20:29:00,385 DEBUG   HandlerThread:55814 [handler.py:handle_request():146] handle_request: defer
+2024-03-27 20:29:00,385 INFO    HandlerThread:55814 [handler.py:handle_request_defer():172] handle defer: 4
+2024-03-27 20:29:00,385 DEBUG   SenderThread:55814 [sender.py:send_request():409] send_request: defer
+2024-03-27 20:29:00,385 INFO    SenderThread:55814 [sender.py:send_request_defer():613] handle sender defer: 4
+2024-03-27 20:29:00,385 INFO    SenderThread:55814 [sender.py:transition_state():617] send defer: 5
+2024-03-27 20:29:00,385 DEBUG   HandlerThread:55814 [handler.py:handle_request():146] handle_request: defer
+2024-03-27 20:29:00,385 INFO    HandlerThread:55814 [handler.py:handle_request_defer():172] handle defer: 5
+2024-03-27 20:29:00,385 DEBUG   SenderThread:55814 [sender.py:send():382] send: summary
+2024-03-27 20:29:00,385 INFO    SenderThread:55814 [sender.py:_save_file():1403] saving file wandb-summary.json with policy end
+2024-03-27 20:29:00,385 DEBUG   SenderThread:55814 [sender.py:send_request():409] send_request: defer
+2024-03-27 20:29:00,385 INFO    SenderThread:55814 [sender.py:send_request_defer():613] handle sender defer: 5
+2024-03-27 20:29:00,385 INFO    SenderThread:55814 [sender.py:transition_state():617] send defer: 6
+2024-03-27 20:29:00,385 DEBUG   HandlerThread:55814 [handler.py:handle_request():146] handle_request: defer
+2024-03-27 20:29:00,386 INFO    HandlerThread:55814 [handler.py:handle_request_defer():172] handle defer: 6
+2024-03-27 20:29:00,386 DEBUG   SenderThread:55814 [sender.py:send_request():409] send_request: defer
+2024-03-27 20:29:00,386 INFO    SenderThread:55814 [sender.py:send_request_defer():613] handle sender defer: 6
+2024-03-27 20:29:00,388 DEBUG   HandlerThread:55814 [handler.py:handle_request():146] handle_request: status_report
+2024-03-27 20:29:00,518 INFO    Thread-12 :55814 [dir_watcher.py:_on_file_created():271] file/dir created: /Users/emmagraham/Documents/GitHub/propagation/CLtargetprop/wandb/run-20240327_202856-hihy9zet/files/wandb-summary.json
+2024-03-27 20:29:00,518 INFO    Thread-12 :55814 [dir_watcher.py:_on_file_created():271] file/dir created: /Users/emmagraham/Documents/GitHub/propagation/CLtargetprop/wandb/run-20240327_202856-hihy9zet/files/output.log
+2024-03-27 20:29:00,518 INFO    SenderThread:55814 [sender.py:transition_state():617] send defer: 7
+2024-03-27 20:29:00,518 DEBUG   HandlerThread:55814 [handler.py:handle_request():146] handle_request: defer
+2024-03-27 20:29:00,518 INFO    HandlerThread:55814 [handler.py:handle_request_defer():172] handle defer: 7
+2024-03-27 20:29:00,518 DEBUG   SenderThread:55814 [sender.py:send_request():409] send_request: defer
+2024-03-27 20:29:00,518 INFO    SenderThread:55814 [sender.py:send_request_defer():613] handle sender defer: 7
+2024-03-27 20:29:01,382 DEBUG   HandlerThread:55814 [handler.py:handle_request():146] handle_request: poll_exit
+2024-03-27 20:29:01,523 INFO    Thread-12 :55814 [dir_watcher.py:_on_file_modified():288] file/dir modified: /Users/emmagraham/Documents/GitHub/propagation/CLtargetprop/wandb/run-20240327_202856-hihy9zet/files/config.yaml
+2024-03-27 20:29:02,388 INFO    SenderThread:55814 [sender.py:transition_state():617] send defer: 8
+2024-03-27 20:29:02,388 DEBUG   SenderThread:55814 [sender.py:send_request():409] send_request: poll_exit
+2024-03-27 20:29:02,388 DEBUG   HandlerThread:55814 [handler.py:handle_request():146] handle_request: defer
+2024-03-27 20:29:02,389 INFO    HandlerThread:55814 [handler.py:handle_request_defer():172] handle defer: 8
+2024-03-27 20:29:02,389 DEBUG   SenderThread:55814 [sender.py:send_request():409] send_request: defer
+2024-03-27 20:29:02,389 INFO    SenderThread:55814 [sender.py:send_request_defer():613] handle sender defer: 8
+2024-03-27 20:29:02,389 INFO    SenderThread:55814 [job_builder.py:build():296] Attempting to build job artifact
+2024-03-27 20:29:02,389 INFO    SenderThread:55814 [job_builder.py:_get_source_type():426] is repo sourced job
+2024-03-27 20:29:02,410 INFO    SenderThread:55814 [job_builder.py:build():402] adding wandb-job metadata file
+2024-03-27 20:29:02,411 INFO    SenderThread:55814 [sender.py:transition_state():617] send defer: 9
+2024-03-27 20:29:02,411 DEBUG   HandlerThread:55814 [handler.py:handle_request():146] handle_request: defer
+2024-03-27 20:29:02,412 INFO    HandlerThread:55814 [handler.py:handle_request_defer():172] handle defer: 9
+2024-03-27 20:29:02,412 DEBUG   SenderThread:55814 [sender.py:send():382] send: artifact
+2024-03-27 20:29:02,528 INFO    Thread-12 :55814 [dir_watcher.py:_on_file_modified():288] file/dir modified: /Users/emmagraham/Documents/GitHub/propagation/CLtargetprop/wandb/run-20240327_202856-hihy9zet/files/output.log
+2024-03-27 20:29:02,982 INFO    SenderThread:55814 [sender.py:send_artifact():1494] sent artifact job-https___github.com_emmagg6_propagation.git_CLtargetprop_main.py - {'id': 'QXJ0aWZhY3Q6NzczNjI5MDQx', 'state': 'COMMITTED', 'artifactSequence': {'id': 'QXJ0aWZhY3RDb2xsZWN0aW9uOjE1MTIxMDM3NQ==', 'latestArtifact': {'id': 'QXJ0aWZhY3Q6NzczNjU0NjAz', 'versionIndex': 8}}}
+2024-03-27 20:29:02,983 DEBUG   SenderThread:55814 [sender.py:send_request():409] send_request: defer
+2024-03-27 20:29:02,983 INFO    SenderThread:55814 [sender.py:send_request_defer():613] handle sender defer: 9
+2024-03-27 20:29:02,983 INFO    SenderThread:55814 [dir_watcher.py:finish():358] shutting down directory watcher
+2024-03-27 20:29:03,394 DEBUG   HandlerThread:55814 [handler.py:handle_request():146] handle_request: poll_exit
+2024-03-27 20:29:03,535 INFO    SenderThread:55814 [dir_watcher.py:finish():388] scan: /Users/emmagraham/Documents/GitHub/propagation/CLtargetprop/wandb/run-20240327_202856-hihy9zet/files
+2024-03-27 20:29:03,535 INFO    SenderThread:55814 [dir_watcher.py:finish():402] scan save: /Users/emmagraham/Documents/GitHub/propagation/CLtargetprop/wandb/run-20240327_202856-hihy9zet/files/requirements.txt requirements.txt
+2024-03-27 20:29:03,535 INFO    SenderThread:55814 [dir_watcher.py:finish():402] scan save: /Users/emmagraham/Documents/GitHub/propagation/CLtargetprop/wandb/run-20240327_202856-hihy9zet/files/output.log output.log
+2024-03-27 20:29:03,536 INFO    SenderThread:55814 [dir_watcher.py:finish():402] scan save: /Users/emmagraham/Documents/GitHub/propagation/CLtargetprop/wandb/run-20240327_202856-hihy9zet/files/config.yaml config.yaml
+2024-03-27 20:29:03,536 INFO    SenderThread:55814 [dir_watcher.py:finish():402] scan save: /Users/emmagraham/Documents/GitHub/propagation/CLtargetprop/wandb/run-20240327_202856-hihy9zet/files/wandb-summary.json wandb-summary.json
+2024-03-27 20:29:03,536 INFO    SenderThread:55814 [dir_watcher.py:finish():402] scan save: /Users/emmagraham/Documents/GitHub/propagation/CLtargetprop/wandb/run-20240327_202856-hihy9zet/files/conda-environment.yaml conda-environment.yaml
+2024-03-27 20:29:03,536 INFO    SenderThread:55814 [dir_watcher.py:finish():402] scan save: /Users/emmagraham/Documents/GitHub/propagation/CLtargetprop/wandb/run-20240327_202856-hihy9zet/files/wandb-metadata.json wandb-metadata.json
+2024-03-27 20:29:03,537 INFO    SenderThread:55814 [sender.py:transition_state():617] send defer: 10
+2024-03-27 20:29:03,537 DEBUG   SenderThread:55814 [sender.py:send_request():409] send_request: poll_exit
+2024-03-27 20:29:03,537 DEBUG   HandlerThread:55814 [handler.py:handle_request():146] handle_request: defer
+2024-03-27 20:29:03,537 INFO    HandlerThread:55814 [handler.py:handle_request_defer():172] handle defer: 10
+2024-03-27 20:29:03,538 DEBUG   SenderThread:55814 [sender.py:send_request():409] send_request: defer
+2024-03-27 20:29:03,544 INFO    SenderThread:55814 [sender.py:send_request_defer():613] handle sender defer: 10
+2024-03-27 20:29:03,544 INFO    SenderThread:55814 [file_pusher.py:finish():172] shutting down file pusher
+2024-03-27 20:29:03,845 INFO    wandb-upload_0:55814 [upload_job.py:push():131] Uploaded file /Users/emmagraham/Documents/GitHub/propagation/CLtargetprop/wandb/run-20240327_202856-hihy9zet/files/output.log
+2024-03-27 20:29:03,962 INFO    wandb-upload_1:55814 [upload_job.py:push():131] Uploaded file /Users/emmagraham/Documents/GitHub/propagation/CLtargetprop/wandb/run-20240327_202856-hihy9zet/files/requirements.txt
+2024-03-27 20:29:04,088 INFO    wandb-upload_2:55814 [upload_job.py:push():131] Uploaded file /Users/emmagraham/Documents/GitHub/propagation/CLtargetprop/wandb/run-20240327_202856-hihy9zet/files/config.yaml
+2024-03-27 20:29:04,088 INFO    wandb-upload_4:55814 [upload_job.py:push():131] Uploaded file /Users/emmagraham/Documents/GitHub/propagation/CLtargetprop/wandb/run-20240327_202856-hihy9zet/files/conda-environment.yaml
+2024-03-27 20:29:04,097 INFO    wandb-upload_3:55814 [upload_job.py:push():131] Uploaded file /Users/emmagraham/Documents/GitHub/propagation/CLtargetprop/wandb/run-20240327_202856-hihy9zet/files/wandb-summary.json
+2024-03-27 20:29:04,302 INFO    Thread-11 :55814 [sender.py:transition_state():617] send defer: 11
+2024-03-27 20:29:04,303 DEBUG   HandlerThread:55814 [handler.py:handle_request():146] handle_request: defer
+2024-03-27 20:29:04,303 INFO    HandlerThread:55814 [handler.py:handle_request_defer():172] handle defer: 11
+2024-03-27 20:29:04,303 DEBUG   SenderThread:55814 [sender.py:send_request():409] send_request: defer
+2024-03-27 20:29:04,303 INFO    SenderThread:55814 [sender.py:send_request_defer():613] handle sender defer: 11
+2024-03-27 20:29:04,303 INFO    SenderThread:55814 [file_pusher.py:join():178] waiting for file pusher
+2024-03-27 20:29:04,303 INFO    SenderThread:55814 [sender.py:transition_state():617] send defer: 12
+2024-03-27 20:29:04,303 DEBUG   HandlerThread:55814 [handler.py:handle_request():146] handle_request: defer
+2024-03-27 20:29:04,303 INFO    HandlerThread:55814 [handler.py:handle_request_defer():172] handle defer: 12
+2024-03-27 20:29:04,303 DEBUG   SenderThread:55814 [sender.py:send_request():409] send_request: defer
+2024-03-27 20:29:04,304 INFO    SenderThread:55814 [sender.py:send_request_defer():613] handle sender defer: 12
+2024-03-27 20:29:04,304 INFO    SenderThread:55814 [file_stream.py:finish():595] file stream finish called
+2024-03-27 20:29:04,400 DEBUG   HandlerThread:55814 [handler.py:handle_request():146] handle_request: poll_exit
+2024-03-27 20:29:04,407 INFO    SenderThread:55814 [file_stream.py:finish():599] file stream finish is done
+2024-03-27 20:29:04,407 INFO    SenderThread:55814 [sender.py:transition_state():617] send defer: 13
+2024-03-27 20:29:04,407 DEBUG   SenderThread:55814 [sender.py:send_request():409] send_request: poll_exit
+2024-03-27 20:29:04,407 DEBUG   HandlerThread:55814 [handler.py:handle_request():146] handle_request: defer
+2024-03-27 20:29:04,408 INFO    HandlerThread:55814 [handler.py:handle_request_defer():172] handle defer: 13
+2024-03-27 20:29:04,408 DEBUG   SenderThread:55814 [sender.py:send_request():409] send_request: defer
+2024-03-27 20:29:04,408 INFO    SenderThread:55814 [sender.py:send_request_defer():613] handle sender defer: 13
+2024-03-27 20:29:04,408 INFO    SenderThread:55814 [sender.py:transition_state():617] send defer: 14
+2024-03-27 20:29:04,408 DEBUG   HandlerThread:55814 [handler.py:handle_request():146] handle_request: defer
+2024-03-27 20:29:04,408 DEBUG   SenderThread:55814 [sender.py:send():382] send: final
+2024-03-27 20:29:04,408 INFO    HandlerThread:55814 [handler.py:handle_request_defer():172] handle defer: 14
+2024-03-27 20:29:04,408 DEBUG   SenderThread:55814 [sender.py:send():382] send: footer
+2024-03-27 20:29:04,409 DEBUG   SenderThread:55814 [sender.py:send_request():409] send_request: defer
+2024-03-27 20:29:04,409 INFO    SenderThread:55814 [sender.py:send_request_defer():613] handle sender defer: 14
+2024-03-27 20:29:04,409 DEBUG   HandlerThread:55814 [handler.py:handle_request():146] handle_request: poll_exit
+2024-03-27 20:29:04,409 DEBUG   SenderThread:55814 [sender.py:send_request():409] send_request: poll_exit
+2024-03-27 20:29:04,410 DEBUG   HandlerThread:55814 [handler.py:handle_request():146] handle_request: poll_exit
+2024-03-27 20:29:04,410 DEBUG   HandlerThread:55814 [handler.py:handle_request():146] handle_request: server_info
+2024-03-27 20:29:04,410 DEBUG   HandlerThread:55814 [handler.py:handle_request():146] handle_request: get_summary
+2024-03-27 20:29:04,410 DEBUG   SenderThread:55814 [sender.py:send_request():409] send_request: poll_exit
+2024-03-27 20:29:04,410 DEBUG   HandlerThread:55814 [handler.py:handle_request():146] handle_request: sampled_history
+2024-03-27 20:29:04,410 DEBUG   SenderThread:55814 [sender.py:send_request():409] send_request: server_info
+2024-03-27 20:29:04,410 DEBUG   HandlerThread:55814 [handler.py:handle_request():146] handle_request: internal_messages
+2024-03-27 20:29:04,412 DEBUG   HandlerThread:55814 [handler.py:handle_request():146] handle_request: job_info
+2024-03-27 20:29:04,508 DEBUG   SenderThread:55814 [sender.py:send_request():409] send_request: job_info
+2024-03-27 20:29:04,509 INFO    MainThread:55814 [wandb_run.py:_footer_history_summary_info():3866] rendering history
+2024-03-27 20:29:04,509 INFO    MainThread:55814 [wandb_run.py:_footer_history_summary_info():3898] rendering summary
+2024-03-27 20:29:04,509 INFO    MainThread:55814 [wandb_run.py:_footer_sync_info():3825] logging synced files
+2024-03-27 20:29:04,509 DEBUG   HandlerThread:55814 [handler.py:handle_request():146] handle_request: shutdown
+2024-03-27 20:29:04,509 INFO    HandlerThread:55814 [handler.py:finish():869] shutting down handler
+2024-03-27 20:29:05,417 INFO    WriterThread:55814 [datastore.py:close():296] close: /Users/emmagraham/Documents/GitHub/propagation/CLtargetprop/wandb/run-20240327_202856-hihy9zet/run-hihy9zet.wandb
+2024-03-27 20:29:05,514 INFO    SenderThread:55814 [sender.py:finish():1572] shutting down sender
+2024-03-27 20:29:05,514 INFO    SenderThread:55814 [file_pusher.py:finish():172] shutting down file pusher
+2024-03-27 20:29:05,514 INFO    SenderThread:55814 [file_pusher.py:join():178] waiting for file pusher

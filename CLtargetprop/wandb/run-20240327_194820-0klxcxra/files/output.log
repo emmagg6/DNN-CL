@@ -1,0 +1,3195 @@
+Batch Norm running_mean: tensor([0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0.,
+        0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0.,
+        0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0.,
+        0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0.,
+        0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0.,
+        0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0.,
+        0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0.,
+        0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0.,
+        0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0.,
+        0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0.,
+        0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0.])
+Batch Norm running_var: tensor([1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1.,
+        1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1.,
+        1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1.,
+        1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1.,
+        1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1.,
+        1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1.,
+        1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1.,
+        1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1.,
+        1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1.,
+        1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1.,
+        1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1.,
+        1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1.,
+        1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1.,
+        1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1.,
+        1., 1., 1., 1.])
+Batch Norm running_mean: tensor([0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0.,
+        0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0.,
+        0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0.,
+        0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0.,
+        0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0.,
+        0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0.,
+        0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0.,
+        0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0.,
+        0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0.,
+        0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0.,
+        0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0.])
+Batch Norm running_var: tensor([1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1.,
+        1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1.,
+        1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1.,
+        1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1.,
+        1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1.,
+        1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1.,
+        1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1.,
+        1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1.,
+        1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1.,
+        1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1.,
+        1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1.,
+        1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1.,
+        1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1.,
+        1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1.,
+        1., 1., 1., 1.])
+Batch Norm running_mean: tensor([0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0.,
+        0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0.,
+        0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0.,
+        0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0.,
+        0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0.,
+        0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0.,
+        0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0.,
+        0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0.,
+        0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0.,
+        0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0.,
+        0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0.])
+Batch Norm running_var: tensor([1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1.,
+        1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1.,
+        1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1.,
+        1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1.,
+        1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1.,
+        1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1.,
+        1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1.,
+        1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1.,
+        1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1.,
+        1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1.,
+        1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1.,
+        1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1.,
+        1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1.,
+        1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1.,
+        1., 1., 1., 1.])
+Batch Norm running_mean: tensor([0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0.,
+        0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0.,
+        0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0.,
+        0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0.,
+        0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0.,
+        0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0.,
+        0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0.,
+        0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0.,
+        0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0.,
+        0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0.,
+        0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0.])
+Batch Norm running_var: tensor([1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1.,
+        1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1.,
+        1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1.,
+        1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1.,
+        1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1.,
+        1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1.,
+        1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1.,
+        1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1.,
+        1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1.,
+        1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1.,
+        1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1.,
+        1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1.,
+        1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1.,
+        1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1.,
+        1., 1., 1., 1.])
+Batch Norm running_mean: tensor([0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0.,
+        0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0.,
+        0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0.,
+        0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0.,
+        0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0.,
+        0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0.,
+        0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0.,
+        0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0.,
+        0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0.,
+        0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0.,
+        0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0.])
+Batch Norm running_var: tensor([1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1.,
+        1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1.,
+        1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1.,
+        1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1.,
+        1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1.,
+        1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1.,
+        1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1.,
+        1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1.,
+        1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1.,
+        1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1.,
+        1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1.,
+        1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1.,
+        1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1.,
+        1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1.,
+        1., 1., 1., 1.])
+Epoch 0
+Epoch 1
+Update weights - Loss: 1721.7518310546875
+Layer 0 - Weight gradient norm: 3948.9609375
+Layer 1 - Weight gradient norm: 3373.38232421875
+Layer 2 - Weight gradient norm: 2569.841552734375
+Layer 3 - Weight gradient norm: 2237.123291015625
+Layer 4 - Weight gradient norm: 1563.229248046875
+Layer 5 - Weight gradient norm: 762.2379150390625
+Layer 0 - Update norm: 5.020393371582031
+Layer 1 - Update norm: 4.740240097045898
+Layer 2 - Update norm: 6.088040828704834
+Layer 3 - Update norm: 7.202373027801514
+Layer 4 - Update norm: 6.577657699584961
+Layer 5 - Update norm: 4.630918502807617
+Update weights - Loss: 2552.0634765625
+Layer 0 - Weight gradient norm: 1712.662353515625
+Layer 1 - Weight gradient norm: 2710.456787109375
+Layer 2 - Weight gradient norm: 2328.98583984375
+Layer 3 - Weight gradient norm: 2002.8101806640625
+Layer 4 - Weight gradient norm: 1624.8590087890625
+Layer 5 - Weight gradient norm: 1088.2896728515625
+Layer 0 - Update norm: 27.313915252685547
+Layer 1 - Update norm: 18.956192016601562
+Layer 2 - Update norm: 15.106224060058594
+Layer 3 - Update norm: 13.128284454345703
+Layer 4 - Update norm: 8.653135299682617
+Layer 5 - Update norm: 6.346588134765625
+Update weights - Loss: 1950.1129150390625
+Layer 0 - Weight gradient norm: 250.71371459960938
+Layer 1 - Weight gradient norm: 450.0945129394531
+Layer 2 - Weight gradient norm: 378.28179931640625
+Layer 3 - Weight gradient norm: 366.8122253417969
+Layer 4 - Weight gradient norm: 770.6007080078125
+Layer 5 - Weight gradient norm: 954.0797119140625
+Layer 0 - Update norm: 2287.90673828125
+Layer 1 - Update norm: 190.19869995117188
+Layer 2 - Update norm: 55.01504135131836
+Layer 3 - Update norm: 12.454367637634277
+Layer 4 - Update norm: 7.346669673919678
+Layer 5 - Update norm: 5.446491718292236
+Update weights - Loss: 3530.3828125
+Layer 0 - Weight gradient norm: 3.6014487743377686
+Layer 1 - Weight gradient norm: 60.3403205871582
+Layer 2 - Weight gradient norm: 120.50230407714844
+Layer 3 - Weight gradient norm: 404.94830322265625
+Layer 4 - Weight gradient norm: 761.5127563476562
+Layer 5 - Weight gradient norm: 1529.8365478515625
+Layer 0 - Update norm: 106455.3515625
+Layer 1 - Update norm: 1641.538330078125
+Layer 2 - Update norm: 197.8577117919922
+Layer 3 - Update norm: 29.79916763305664
+Layer 4 - Update norm: 11.025287628173828
+Layer 5 - Update norm: 8.224234580993652
+Update weights - Loss: 5488.73046875
+Layer 0 - Weight gradient norm: 0.06232283636927605
+Layer 1 - Weight gradient norm: 14.832661628723145
+Layer 2 - Weight gradient norm: 488.4244384765625
+Layer 3 - Weight gradient norm: 1075.1522216796875
+Layer 4 - Weight gradient norm: 3264.23486328125
+Layer 5 - Weight gradient norm: 1820.6947021484375
+Layer 0 - Update norm: 2355338.25
+Layer 1 - Update norm: 5574.80712890625
+Layer 2 - Update norm: 343.9470520019531
+Layer 3 - Update norm: 33.76093673706055
+Layer 4 - Update norm: 20.761701583862305
+Layer 5 - Update norm: 10.214814186096191
+Update weights - Loss: 5936.9921875
+Layer 0 - Weight gradient norm: 0.009744708426296711
+Layer 1 - Weight gradient norm: 0.9087629318237305
+Layer 2 - Weight gradient norm: 51.70650863647461
+Layer 3 - Weight gradient norm: 828.303955078125
+Layer 4 - Weight gradient norm: 4178.10009765625
+Layer 5 - Weight gradient norm: 1528.6856689453125
+Layer 0 - Update norm: 145204208.0
+Layer 1 - Update norm: 67391.859375
+Layer 2 - Update norm: 637.7445068359375
+Layer 3 - Update norm: 108.55150604248047
+Layer 4 - Update norm: 38.63922119140625
+Layer 5 - Update norm: 8.623505592346191
+Update weights - Loss: 3427.8076171875
+Layer 0 - Weight gradient norm: 5.91536118008662e-05
+Layer 1 - Weight gradient norm: 0.1606513261795044
+Layer 2 - Weight gradient norm: 19.71167755126953
+Layer 3 - Weight gradient norm: 167.11962890625
+Layer 4 - Weight gradient norm: 604.1276245117188
+Layer 5 - Weight gradient norm: 1219.9285888671875
+Layer 0 - Update norm: 21958086656.0
+Layer 1 - Update norm: 678441.75
+Layer 2 - Update norm: 2879.61474609375
+Layer 3 - Update norm: 203.09857177734375
+Layer 4 - Update norm: 17.880571365356445
+Layer 5 - Update norm: 6.695275783538818
+Update weights - Loss: 8312.7001953125
+Layer 0 - Weight gradient norm: 5.458248779177666e-06
+Layer 1 - Weight gradient norm: 0.10540024936199188
+Layer 2 - Weight gradient norm: 20.092655181884766
+Layer 3 - Weight gradient norm: 164.69961547851562
+Layer 4 - Weight gradient norm: 660.0557250976562
+Layer 5 - Weight gradient norm: 1535.9893798828125
+Layer 0 - Update norm: 4719276720128.0
+Layer 1 - Update norm: 5086354.0
+Layer 2 - Update norm: 20890.1171875
+Layer 3 - Update norm: 374.3045959472656
+Layer 4 - Update norm: 28.834131240844727
+Layer 5 - Update norm: 8.701814651489258
+Update weights - Loss: 7240.26806640625
+Layer 0 - Weight gradient norm: 8.893643155261088e-09
+Layer 1 - Weight gradient norm: 0.01353392656892538
+Layer 2 - Weight gradient norm: 0.8124300837516785
+Layer 3 - Weight gradient norm: 72.05097198486328
+Layer 4 - Weight gradient norm: 691.2635498046875
+Layer 5 - Weight gradient norm: 2224.2177734375
+Layer 0 - Update norm: 134534389563392.0
+Layer 1 - Update norm: 443714944.0
+Layer 2 - Update norm: 55534.625
+Layer 3 - Update norm: 179.96221923828125
+Layer 4 - Update norm: 25.814899444580078
+Layer 5 - Update norm: 11.653120994567871
+Update weights - Loss: 6094.3525390625
+Layer 0 - Weight gradient norm: 2.5392657421186016e-10
+Layer 1 - Weight gradient norm: 0.00026579273981042206
+Layer 2 - Weight gradient norm: 0.741944432258606
+Layer 3 - Weight gradient norm: 97.45719909667969
+Layer 4 - Weight gradient norm: 1009.2197265625
+Layer 5 - Weight gradient norm: 1462.7998046875
+Layer 0 - Update norm: 7.721871879857766e+16
+Layer 1 - Update norm: 980878208.0
+Layer 2 - Update norm: 72631.6015625
+Layer 3 - Update norm: 418.16802978515625
+Layer 4 - Update norm: 32.92573547363281
+Layer 5 - Update norm: 7.813440799713135
+Update weights - Loss: 8969.5380859375
+Layer 0 - Weight gradient norm: 3.271558913532646e-13
+Layer 1 - Weight gradient norm: 2.886903303078725e-06
+Layer 2 - Weight gradient norm: 0.2153204381465912
+Layer 3 - Weight gradient norm: 62.706844329833984
+Layer 4 - Weight gradient norm: 1030.8572998046875
+Layer 5 - Weight gradient norm: 1735.8328857421875
+Layer 0 - Update norm: 6.617493195141939e+17
+Layer 1 - Update norm: 873035776.0
+Layer 2 - Update norm: 25844.896484375
+Layer 3 - Update norm: 306.57501220703125
+Layer 4 - Update norm: 35.39779281616211
+Layer 5 - Update norm: 9.137688636779785
+Update weights - Loss: 4051.887939453125
+Layer 0 - Weight gradient norm: 7.579465619586903e-14
+Layer 1 - Weight gradient norm: 2.617258724058047e-05
+Layer 2 - Weight gradient norm: 0.20126070082187653
+Layer 3 - Weight gradient norm: 123.28160095214844
+Layer 4 - Weight gradient norm: 1192.881103515625
+Layer 5 - Weight gradient norm: 1268.111328125
+Layer 0 - Update norm: 1.8093015308854886e+17
+Layer 1 - Update norm: 512807200.0
+Layer 2 - Update norm: 18668.849609375
+Layer 3 - Update norm: 283.68609619140625
+Layer 4 - Update norm: 25.225746154785156
+Layer 5 - Update norm: 6.926451206207275
+Update weights - Loss: 10702.5703125
+Layer 0 - Weight gradient norm: 9.101313114072938e-15
+Layer 1 - Weight gradient norm: 1.6003248219931265e-06
+Layer 2 - Weight gradient norm: 0.8743578791618347
+Layer 3 - Weight gradient norm: 40.458641052246094
+Layer 4 - Weight gradient norm: 972.1838989257812
+Layer 5 - Weight gradient norm: 1965.0908203125
+Layer 0 - Update norm: 2.488893003540726e+18
+Layer 1 - Update norm: 972109632.0
+Layer 2 - Update norm: 53589.92578125
+Layer 3 - Update norm: 401.8657531738281
+Layer 4 - Update norm: 33.02112579345703
+Layer 5 - Update norm: 10.482706069946289
+Update weights - Loss: 5776.716796875
+Layer 0 - Weight gradient norm: 7.405838603773054e-15
+Layer 1 - Weight gradient norm: 1.1255953040745226e-06
+Layer 2 - Weight gradient norm: 0.020418357104063034
+Layer 3 - Weight gradient norm: 25.9919376373291
+Layer 4 - Weight gradient norm: 612.3610229492188
+Layer 5 - Weight gradient norm: 1798.691650390625
+Layer 0 - Update norm: 7.032951222839542e+17
+Layer 1 - Update norm: 280255296.0
+Layer 2 - Update norm: 22848.197265625
+Layer 3 - Update norm: 166.26385498046875
+Layer 4 - Update norm: 22.50678253173828
+Layer 5 - Update norm: 9.522518157958984
+Update weights - Loss: 9207.9794921875
+Layer 0 - Weight gradient norm: 1.1525961019214371e-14
+Layer 1 - Weight gradient norm: 0.00011212363460799679
+Layer 2 - Weight gradient norm: 0.3362264037132263
+Layer 3 - Weight gradient norm: 77.91792297363281
+Layer 4 - Weight gradient norm: 1043.2454833984375
+Layer 5 - Weight gradient norm: 1392.9010009765625
+Layer 0 - Update norm: 9.991411282865029e+17
+Layer 1 - Update norm: 481158560.0
+Layer 2 - Update norm: 59841.421875
+Layer 3 - Update norm: 433.0266418457031
+Layer 4 - Update norm: 38.005210876464844
+Layer 5 - Update norm: 7.708634853363037
+Update weights - Loss: 3531.095947265625
+Layer 0 - Weight gradient norm: 1.0572483982577464e-14
+Layer 1 - Weight gradient norm: 2.363153271289775e-06
+Layer 2 - Weight gradient norm: 0.02397039905190468
+Layer 3 - Weight gradient norm: 13.102720260620117
+Layer 4 - Weight gradient norm: 236.6607208251953
+Layer 5 - Weight gradient norm: 1357.5059814453125
+Layer 0 - Update norm: 1.0537341483483136e+18
+Layer 1 - Update norm: 113512752.0
+Layer 2 - Update norm: 15885.4775390625
+Layer 3 - Update norm: 127.34381866455078
+Layer 4 - Update norm: 15.978861808776855
+Layer 5 - Update norm: 7.316359519958496
+Update weights - Loss: 7824.4716796875
+Layer 0 - Weight gradient norm: 3.5706457051070534e-14
+Layer 1 - Weight gradient norm: 8.341401553479955e-06
+Layer 2 - Weight gradient norm: 0.0332152433693409
+Layer 3 - Weight gradient norm: 53.96030807495117
+Layer 4 - Weight gradient norm: 505.2519226074219
+Layer 5 - Weight gradient norm: 1674.656005859375
+Layer 0 - Update norm: 3.4276618037719204e+18
+Layer 1 - Update norm: 241716672.0
+Layer 2 - Update norm: 36755.21875
+Layer 3 - Update norm: 260.4411315917969
+Layer 4 - Update norm: 24.755756378173828
+Layer 5 - Update norm: 8.860743522644043
+Update weights - Loss: 4966.40185546875
+Layer 0 - Weight gradient norm: 5.587876776553093e-15
+Layer 1 - Weight gradient norm: 7.520254257542547e-06
+Layer 2 - Weight gradient norm: 0.10047776252031326
+Layer 3 - Weight gradient norm: 86.60089874267578
+Layer 4 - Weight gradient norm: 985.0838012695312
+Layer 5 - Weight gradient norm: 1735.8988037109375
+Layer 0 - Update norm: 2.5935797046445343e+18
+Layer 1 - Update norm: 333298080.0
+Layer 2 - Update norm: 36054.9296875
+Layer 3 - Update norm: 162.4793243408203
+Layer 4 - Update norm: 22.466716766357422
+Layer 5 - Update norm: 9.315435409545898
+Update weights - Loss: 10180.0009765625
+Layer 0 - Weight gradient norm: 4.4297000827619656e-14
+Layer 1 - Weight gradient norm: 5.871363464393653e-05
+Layer 2 - Weight gradient norm: 0.0712459534406662
+Layer 3 - Weight gradient norm: 48.300472259521484
+Layer 4 - Weight gradient norm: 1140.59814453125
+Layer 5 - Weight gradient norm: 1751.561767578125
+Layer 0 - Update norm: 2.2712397290201416e+18
+Layer 1 - Update norm: 316058208.0
+Layer 2 - Update norm: 41099.36328125
+Layer 3 - Update norm: 423.2705383300781
+Layer 4 - Update norm: 32.59759521484375
+Layer 5 - Update norm: 9.772204399108887
+Update weights - Loss: 3807.031494140625
+Layer 0 - Weight gradient norm: 1.7331820454193937e-14
+Layer 1 - Weight gradient norm: 3.3068419725168496e-05
+Layer 2 - Weight gradient norm: 0.10598386824131012
+Layer 3 - Weight gradient norm: 127.46200561523438
+Layer 4 - Weight gradient norm: 448.61322021484375
+Layer 5 - Weight gradient norm: 1143.4189453125
+Layer 0 - Update norm: 2.095286807372497e+18
+Layer 1 - Update norm: 116343632.0
+Layer 2 - Update norm: 19995.849609375
+Layer 3 - Update norm: 165.51715087890625
+Layer 4 - Update norm: 18.36823081970215
+Layer 5 - Update norm: 6.19005823135376
+Update weights - Loss: 8962.876953125
+Layer 0 - Weight gradient norm: 1.0180826112162443e-14
+Layer 1 - Weight gradient norm: 8.971263014245778e-06
+Layer 2 - Weight gradient norm: 0.029423359781503677
+Layer 3 - Weight gradient norm: 12.220542907714844
+Layer 4 - Weight gradient norm: 513.580322265625
+Layer 5 - Weight gradient norm: 2248.0751953125
+Layer 0 - Update norm: 7.931347742805197e+17
+Layer 1 - Update norm: 64830016.0
+Layer 2 - Update norm: 30832.66015625
+Layer 3 - Update norm: 272.7892150878906
+Layer 4 - Update norm: 31.301340103149414
+Layer 5 - Update norm: 11.898755073547363
+Update weights - Loss: 4101.07958984375
+Layer 0 - Weight gradient norm: 4.518022579864424e-14
+Layer 1 - Weight gradient norm: 3.8602807762799785e-05
+Layer 2 - Weight gradient norm: 0.11447318643331528
+Layer 3 - Weight gradient norm: 34.751441955566406
+Layer 4 - Weight gradient norm: 601.7883911132812
+Layer 5 - Weight gradient norm: 1246.8287353515625
+Layer 0 - Update norm: 2.2084488189811098e+17
+Layer 1 - Update norm: 16223378.0
+Layer 2 - Update norm: 12334.7890625
+Layer 3 - Update norm: 149.44239807128906
+Layer 4 - Update norm: 17.193138122558594
+Layer 5 - Update norm: 6.740015506744385
+Update weights - Loss: 7996.2470703125
+Layer 0 - Weight gradient norm: 7.61520566657653e-14
+Layer 1 - Weight gradient norm: 0.00042108254274353385
+Layer 2 - Weight gradient norm: 0.8296982049942017
+Layer 3 - Weight gradient norm: 131.20147705078125
+Layer 4 - Weight gradient norm: 1144.6480712890625
+Layer 5 - Weight gradient norm: 1450.1817626953125
+Layer 0 - Update norm: 7.002579962901299e+17
+Layer 1 - Update norm: 11990011.0
+Layer 2 - Update norm: 9720.7158203125
+Layer 3 - Update norm: 207.9311981201172
+Layer 4 - Update norm: 29.173734664916992
+Layer 5 - Update norm: 7.951772212982178
+Update weights - Loss: 8369.01171875
+Layer 0 - Weight gradient norm: 2.964984621755054e-14
+Layer 1 - Weight gradient norm: 0.00018245606042910367
+Layer 2 - Weight gradient norm: 0.4899209141731262
+Layer 3 - Weight gradient norm: 31.978899002075195
+Layer 4 - Weight gradient norm: 588.7471313476562
+Layer 5 - Weight gradient norm: 1557.9522705078125
+Layer 0 - Update norm: 4.112011653514527e+17
+Layer 1 - Update norm: 130958856.0
+Layer 2 - Update norm: 70659.90625
+Layer 3 - Update norm: 349.2255554199219
+Layer 4 - Update norm: 25.154645919799805
+Layer 5 - Update norm: 8.565606117248535
+Update weights - Loss: 6662.224609375
+Layer 0 - Weight gradient norm: 1.862271391240254e-14
+Layer 1 - Weight gradient norm: 1.2197148862469476e-05
+Layer 2 - Weight gradient norm: 0.03062443993985653
+Layer 3 - Weight gradient norm: 18.97222900390625
+Layer 4 - Weight gradient norm: 476.7322998046875
+Layer 5 - Weight gradient norm: 1541.363525390625
+Layer 0 - Update norm: 1.3369198277128356e+18
+Layer 1 - Update norm: 207110448.0
+Layer 2 - Update norm: 35616.96484375
+Layer 3 - Update norm: 160.59719848632812
+Layer 4 - Update norm: 24.706819534301758
+Layer 5 - Update norm: 8.546806335449219
+Update weights - Loss: 7110.7001953125
+Layer 0 - Weight gradient norm: 2.2150336781239476e-14
+Layer 1 - Weight gradient norm: 1.728110873955302e-05
+Layer 2 - Weight gradient norm: 0.024054711684584618
+Layer 3 - Weight gradient norm: 9.771794319152832
+Layer 4 - Weight gradient norm: 396.1886901855469
+Layer 5 - Weight gradient norm: 1544.472900390625
+Layer 0 - Update norm: 6.538469232869376e+17
+Layer 1 - Update norm: 51009680.0
+Layer 2 - Update norm: 22578.6875
+Layer 3 - Update norm: 163.8150634765625
+Layer 4 - Update norm: 20.00365447998047
+Layer 5 - Update norm: 8.338518142700195
+Update weights - Loss: 2341.430419921875
+Layer 0 - Weight gradient norm: 1.5313542534728386e-14
+Layer 1 - Weight gradient norm: 2.2561293278045014e-08
+Layer 2 - Weight gradient norm: 1.0910616765613668e-06
+Layer 3 - Weight gradient norm: 0.0029781372286379337
+Layer 4 - Weight gradient norm: 4.057024955749512
+Layer 5 - Weight gradient norm: 1867.0509033203125
+Layer 0 - Update norm: 3.48074423229612e+17
+Layer 1 - Update norm: 10039349.0
+Layer 2 - Update norm: 12478.6708984375
+Layer 3 - Update norm: 145.76351928710938
+Layer 4 - Update norm: 23.541906356811523
+Layer 5 - Update norm: 9.79088020324707
+Update weights - Loss: 5755.9052734375
+Layer 0 - Weight gradient norm: 4.7451612409342425e-14
+Layer 1 - Weight gradient norm: 5.100542921354645e-07
+Layer 2 - Weight gradient norm: 0.08941002190113068
+Layer 3 - Weight gradient norm: 0.27209946513175964
+Layer 4 - Weight gradient norm: 189.59945678710938
+Layer 5 - Weight gradient norm: 2078.60595703125
+Layer 0 - Update norm: 1.2601743284109312e+18
+Layer 1 - Update norm: 29207254.0
+Layer 2 - Update norm: 28754.552734375
+Layer 3 - Update norm: 283.8937683105469
+Layer 4 - Update norm: 34.622215270996094
+Layer 5 - Update norm: 10.832462310791016
+Update weights - Loss: 589.4618530273438
+Layer 0 - Weight gradient norm: nan
+Layer 1 - Weight gradient norm: 0.0
+Layer 2 - Weight gradient norm: 0.0
+Layer 3 - Weight gradient norm: 0.0
+Layer 4 - Weight gradient norm: 0.0
+Layer 5 - Weight gradient norm: 0.0
+Layer 0 - Update norm: 3.399934869298479e+18
+Layer 1 - Update norm: 0.0
+Layer 2 - Update norm: 0.0
+Layer 3 - Update norm: 0.0
+Layer 4 - Update norm: 0.0
+Layer 5 - Update norm: 0.0
+Update weights - Loss: 11195.3125
+Layer 0 - Weight gradient norm: 1.9616969656219112e-14
+Layer 1 - Weight gradient norm: 5.531423448701389e-05
+Layer 2 - Weight gradient norm: 1.1967649459838867
+Layer 3 - Weight gradient norm: 162.40415954589844
+Layer 4 - Weight gradient norm: 1461.68896484375
+Layer 5 - Weight gradient norm: 2068.764404296875
+Layer 0 - Update norm: 1.1228950790028657e+18
+Layer 1 - Update norm: 332008608.0
+Layer 2 - Update norm: 78985.65625
+Layer 3 - Update norm: 774.5657348632812
+Layer 4 - Update norm: 57.177833557128906
+Layer 5 - Update norm: 10.994190216064453
+Update weights - Loss: 16372.2333984375
+Layer 0 - Weight gradient norm: 2.662469176335433e-14
+Layer 1 - Weight gradient norm: 7.896275928942487e-05
+Layer 2 - Weight gradient norm: 1.4586824178695679
+Layer 3 - Weight gradient norm: 259.62261962890625
+Layer 4 - Weight gradient norm: 1014.431396484375
+Layer 5 - Weight gradient norm: 2080.409912109375
+Layer 0 - Update norm: 2.9406518199462134e+18
+Layer 1 - Update norm: 586062848.0
+Layer 2 - Update norm: 98527.3359375
+Layer 3 - Update norm: 961.51416015625
+Layer 4 - Update norm: 55.58065414428711
+Layer 5 - Update norm: 11.235248565673828
+Update weights - Loss: 10521.53125
+Layer 0 - Weight gradient norm: 2.9592366561749864e-14
+Layer 1 - Weight gradient norm: 2.6084164346684702e-05
+Layer 2 - Weight gradient norm: 0.08108589798212051
+Layer 3 - Weight gradient norm: 26.406570434570312
+Layer 4 - Weight gradient norm: 514.853271484375
+Layer 5 - Weight gradient norm: 2008.049560546875
+Layer 0 - Update norm: 2.4900777273196544e+18
+Layer 1 - Update norm: 567029696.0
+Layer 2 - Update norm: 173506.921875
+Layer 3 - Update norm: 637.6658325195312
+Layer 4 - Update norm: 41.049720764160156
+Layer 5 - Update norm: 10.995081901550293
+Update weights - Loss: 9369.029296875
+Layer 0 - Weight gradient norm: 1.5964302701510814e-14
+Layer 1 - Weight gradient norm: 3.733776247827336e-05
+Layer 2 - Weight gradient norm: 0.1309213787317276
+Layer 3 - Weight gradient norm: 35.010379791259766
+Layer 4 - Weight gradient norm: 644.2647705078125
+Layer 5 - Weight gradient norm: 1601.23876953125
+Layer 0 - Update norm: 1.059099187848256e+19
+Layer 1 - Update norm: 854300352.0
+Layer 2 - Update norm: 145646.0
+Layer 3 - Update norm: 522.5145263671875
+Layer 4 - Update norm: 32.772579193115234
+Layer 5 - Update norm: 8.461175918579102
+Update weights - Loss: 589.4618530273438
+Layer 0 - Weight gradient norm: nan
+Layer 1 - Weight gradient norm: 0.0
+Layer 2 - Weight gradient norm: 0.0
+Layer 3 - Weight gradient norm: 0.0
+Layer 4 - Weight gradient norm: 0.0
+Layer 5 - Weight gradient norm: 0.0
+Layer 0 - Update norm: inf
+Layer 1 - Update norm: 0.0
+Layer 2 - Update norm: 0.0
+Layer 3 - Update norm: 0.0
+Layer 4 - Update norm: 0.0
+Layer 5 - Update norm: 0.0
+Update weights - Loss: 589.4618530273438
+Layer 0 - Weight gradient norm: nan
+Layer 1 - Weight gradient norm: 0.0
+Layer 2 - Weight gradient norm: 0.0
+Layer 3 - Weight gradient norm: 0.0
+Layer 4 - Weight gradient norm: 0.0
+Layer 5 - Weight gradient norm: 0.0
+Layer 0 - Update norm: inf
+Layer 1 - Update norm: 0.0
+Layer 2 - Update norm: 0.0
+Layer 3 - Update norm: 0.0
+Layer 4 - Update norm: 0.0
+Layer 5 - Update norm: 0.0
+Update weights - Loss: 589.4618530273438
+Layer 0 - Weight gradient norm: nan
+Layer 1 - Weight gradient norm: 0.0
+Layer 2 - Weight gradient norm: 0.0
+Layer 3 - Weight gradient norm: 0.0
+Layer 4 - Weight gradient norm: 0.0
+Layer 5 - Weight gradient norm: 0.0
+Layer 0 - Update norm: inf
+Layer 1 - Update norm: 0.0
+Layer 2 - Update norm: 0.0
+Layer 3 - Update norm: 0.0
+Layer 4 - Update norm: 0.0
+Layer 5 - Update norm: 0.0
+Update weights - Loss: 589.4618530273438
+Layer 0 - Weight gradient norm: nan
+Layer 1 - Weight gradient norm: 0.0
+Layer 2 - Weight gradient norm: 0.0
+Layer 3 - Weight gradient norm: 0.0
+Layer 4 - Weight gradient norm: 0.0
+Layer 5 - Weight gradient norm: 0.0
+Layer 0 - Update norm: inf
+Layer 1 - Update norm: 0.0
+Layer 2 - Update norm: 0.0
+Layer 3 - Update norm: 0.0
+Layer 4 - Update norm: 0.0
+Layer 5 - Update norm: 0.0
+Update weights - Loss: 589.4618530273438
+Layer 0 - Weight gradient norm: nan
+Layer 1 - Weight gradient norm: 0.0
+Layer 2 - Weight gradient norm: 0.0
+Layer 3 - Weight gradient norm: 0.0
+Layer 4 - Weight gradient norm: 0.0
+Layer 5 - Weight gradient norm: 0.0
+Layer 0 - Update norm: inf
+Layer 1 - Update norm: 0.0
+Layer 2 - Update norm: 0.0
+Layer 3 - Update norm: 0.0
+Layer 4 - Update norm: 0.0
+Layer 5 - Update norm: 0.0
+Update weights - Loss: 589.4618530273438
+Layer 0 - Weight gradient norm: nan
+Layer 1 - Weight gradient norm: 0.0
+Layer 2 - Weight gradient norm: 0.0
+Layer 3 - Weight gradient norm: 0.0
+Layer 4 - Weight gradient norm: 0.0
+Layer 5 - Weight gradient norm: 0.0
+Layer 0 - Update norm: inf
+Layer 1 - Update norm: 0.0
+Layer 2 - Update norm: 0.0
+Layer 3 - Update norm: 0.0
+Layer 4 - Update norm: 0.0
+Layer 5 - Update norm: 0.0
+Update weights - Loss: 589.4618530273438
+Layer 0 - Weight gradient norm: nan
+Layer 1 - Weight gradient norm: 0.0
+Layer 2 - Weight gradient norm: 0.0
+Layer 3 - Weight gradient norm: 0.0
+Layer 4 - Weight gradient norm: 0.0
+Layer 5 - Weight gradient norm: 0.0
+Layer 0 - Update norm: inf
+Layer 1 - Update norm: 0.0
+Layer 2 - Update norm: 0.0
+Layer 3 - Update norm: 0.0
+Layer 4 - Update norm: 0.0
+Layer 5 - Update norm: 0.0
+Update weights - Loss: 589.4618530273438
+Layer 0 - Weight gradient norm: nan
+Layer 1 - Weight gradient norm: 0.0
+Layer 2 - Weight gradient norm: 0.0
+Layer 3 - Weight gradient norm: 0.0
+Layer 4 - Weight gradient norm: 0.0
+Layer 5 - Weight gradient norm: 0.0
+Layer 0 - Update norm: inf
+Layer 1 - Update norm: 0.0
+Layer 2 - Update norm: 0.0
+Layer 3 - Update norm: 0.0
+Layer 4 - Update norm: 0.0
+Layer 5 - Update norm: 0.0
+Update weights - Loss: 589.4618530273438
+Layer 0 - Weight gradient norm: nan
+Layer 1 - Weight gradient norm: 0.0
+Layer 2 - Weight gradient norm: 0.0
+Layer 3 - Weight gradient norm: 0.0
+Layer 4 - Weight gradient norm: 0.0
+Layer 5 - Weight gradient norm: 0.0
+Layer 0 - Update norm: inf
+Layer 1 - Update norm: 0.0
+Layer 2 - Update norm: 0.0
+Layer 3 - Update norm: 0.0
+Layer 4 - Update norm: 0.0
+Layer 5 - Update norm: 0.0
+Update weights - Loss: 589.4618530273438
+Layer 0 - Weight gradient norm: nan
+Layer 1 - Weight gradient norm: 0.0
+Layer 2 - Weight gradient norm: 0.0
+Layer 3 - Weight gradient norm: 0.0
+Layer 4 - Weight gradient norm: 0.0
+Layer 5 - Weight gradient norm: 0.0
+Layer 0 - Update norm: inf
+Layer 1 - Update norm: 0.0
+Layer 2 - Update norm: 0.0
+Layer 3 - Update norm: 0.0
+Layer 4 - Update norm: 0.0
+Layer 5 - Update norm: 0.0
+Update weights - Loss: 589.4618530273438
+Layer 0 - Weight gradient norm: nan
+Layer 1 - Weight gradient norm: 0.0
+Layer 2 - Weight gradient norm: 0.0
+Layer 3 - Weight gradient norm: 0.0
+Layer 4 - Weight gradient norm: 0.0
+Layer 5 - Weight gradient norm: 0.0
+Layer 0 - Update norm: inf
+Layer 1 - Update norm: 0.0
+Layer 2 - Update norm: 0.0
+Layer 3 - Update norm: 0.0
+Layer 4 - Update norm: 0.0
+Layer 5 - Update norm: 0.0
+Update weights - Loss: 589.4618530273438
+Layer 0 - Weight gradient norm: nan
+Layer 1 - Weight gradient norm: 0.0
+Layer 2 - Weight gradient norm: 0.0
+Layer 3 - Weight gradient norm: 0.0
+Layer 4 - Weight gradient norm: 0.0
+Layer 5 - Weight gradient norm: 0.0
+Layer 0 - Update norm: inf
+Layer 1 - Update norm: 0.0
+Layer 2 - Update norm: 0.0
+Layer 3 - Update norm: 0.0
+Layer 4 - Update norm: 0.0
+Layer 5 - Update norm: 0.0
+Update weights - Loss: 589.4618530273438
+Layer 0 - Weight gradient norm: nan
+Layer 1 - Weight gradient norm: 0.0
+Layer 2 - Weight gradient norm: 0.0
+Layer 3 - Weight gradient norm: 0.0
+Layer 4 - Weight gradient norm: 0.0
+Layer 5 - Weight gradient norm: 0.0
+Layer 0 - Update norm: inf
+Layer 1 - Update norm: 0.0
+Layer 2 - Update norm: 0.0
+Layer 3 - Update norm: 0.0
+Layer 4 - Update norm: 0.0
+Layer 5 - Update norm: 0.0
+Update weights - Loss: 589.4618530273438
+Layer 0 - Weight gradient norm: nan
+Layer 1 - Weight gradient norm: 0.0
+Layer 2 - Weight gradient norm: 0.0
+Layer 3 - Weight gradient norm: 0.0
+Layer 4 - Weight gradient norm: 0.0
+Layer 5 - Weight gradient norm: 0.0
+Layer 0 - Update norm: inf
+Layer 1 - Update norm: 0.0
+Layer 2 - Update norm: 0.0
+Layer 3 - Update norm: 0.0
+Layer 4 - Update norm: 0.0
+Layer 5 - Update norm: 0.0
+Update weights - Loss: 589.4618530273438
+Layer 0 - Weight gradient norm: nan
+Layer 1 - Weight gradient norm: 0.0
+Layer 2 - Weight gradient norm: 0.0
+Layer 3 - Weight gradient norm: 0.0
+Layer 4 - Weight gradient norm: 0.0
+Layer 5 - Weight gradient norm: 0.0
+Layer 0 - Update norm: inf
+Layer 1 - Update norm: 0.0
+Layer 2 - Update norm: 0.0
+Layer 3 - Update norm: 0.0
+Layer 4 - Update norm: 0.0
+Layer 5 - Update norm: 0.0
+Update weights - Loss: 589.4618530273438
+Layer 0 - Weight gradient norm: nan
+Layer 1 - Weight gradient norm: 0.0
+Layer 2 - Weight gradient norm: 0.0
+Layer 3 - Weight gradient norm: 0.0
+Layer 4 - Weight gradient norm: 0.0
+Layer 5 - Weight gradient norm: 0.0
+Layer 0 - Update norm: inf
+Layer 1 - Update norm: 0.0
+Layer 2 - Update norm: 0.0
+Layer 3 - Update norm: 0.0
+Layer 4 - Update norm: 0.0
+Layer 5 - Update norm: 0.0
+Update weights - Loss: 589.4618530273438
+Layer 0 - Weight gradient norm: nan
+Layer 1 - Weight gradient norm: 0.0
+Layer 2 - Weight gradient norm: 0.0
+Layer 3 - Weight gradient norm: 0.0
+Layer 4 - Weight gradient norm: 0.0
+Layer 5 - Weight gradient norm: 0.0
+Layer 0 - Update norm: inf
+Layer 1 - Update norm: 0.0
+Layer 2 - Update norm: 0.0
+Layer 3 - Update norm: 0.0
+Layer 4 - Update norm: 0.0
+Layer 5 - Update norm: 0.0
+Update weights - Loss: 589.4618530273438
+Layer 0 - Weight gradient norm: nan
+Layer 1 - Weight gradient norm: 0.0
+Layer 2 - Weight gradient norm: 0.0
+Layer 3 - Weight gradient norm: 0.0
+Layer 4 - Weight gradient norm: 0.0
+Layer 5 - Weight gradient norm: 0.0
+Layer 0 - Update norm: inf
+Layer 1 - Update norm: 0.0
+Layer 2 - Update norm: 0.0
+Layer 3 - Update norm: 0.0
+Layer 4 - Update norm: 0.0
+Layer 5 - Update norm: 0.0
+Update weights - Loss: 589.4618530273438
+Layer 0 - Weight gradient norm: nan
+Layer 1 - Weight gradient norm: 0.0
+Layer 2 - Weight gradient norm: 0.0
+Layer 3 - Weight gradient norm: 0.0
+Layer 4 - Weight gradient norm: 0.0
+Layer 5 - Weight gradient norm: 0.0
+Layer 0 - Update norm: inf
+Layer 1 - Update norm: 0.0
+Layer 2 - Update norm: 0.0
+Layer 3 - Update norm: 0.0
+Layer 4 - Update norm: 0.0
+Layer 5 - Update norm: 0.0
+Update weights - Loss: 589.4618530273438
+Layer 0 - Weight gradient norm: nan
+Layer 1 - Weight gradient norm: 0.0
+Layer 2 - Weight gradient norm: 0.0
+Layer 3 - Weight gradient norm: 0.0
+Layer 4 - Weight gradient norm: 0.0
+Layer 5 - Weight gradient norm: 0.0
+Layer 0 - Update norm: inf
+Layer 1 - Update norm: 0.0
+Layer 2 - Update norm: 0.0
+Layer 3 - Update norm: 0.0
+Layer 4 - Update norm: 0.0
+Layer 5 - Update norm: 0.0
+Update weights - Loss: 589.4618530273438
+Layer 0 - Weight gradient norm: nan
+Layer 1 - Weight gradient norm: 0.0
+Layer 2 - Weight gradient norm: 0.0
+Layer 3 - Weight gradient norm: 0.0
+Layer 4 - Weight gradient norm: 0.0
+Layer 5 - Weight gradient norm: 0.0
+Layer 0 - Update norm: inf
+Layer 1 - Update norm: 0.0
+Layer 2 - Update norm: 0.0
+Layer 3 - Update norm: 0.0
+Layer 4 - Update norm: 0.0
+Layer 5 - Update norm: 0.0
+Update weights - Loss: 589.4618530273438
+Layer 0 - Weight gradient norm: nan
+Layer 1 - Weight gradient norm: 0.0
+Layer 2 - Weight gradient norm: 0.0
+Layer 3 - Weight gradient norm: 0.0
+Layer 4 - Weight gradient norm: 0.0
+Layer 5 - Weight gradient norm: 0.0
+Layer 0 - Update norm: inf
+Layer 1 - Update norm: 0.0
+Layer 2 - Update norm: 0.0
+Layer 3 - Update norm: 0.0
+Layer 4 - Update norm: 0.0
+Layer 5 - Update norm: 0.0
+Update weights - Loss: 589.4618530273438
+Layer 0 - Weight gradient norm: nan
+Layer 1 - Weight gradient norm: 0.0
+Layer 2 - Weight gradient norm: 0.0
+Layer 3 - Weight gradient norm: 0.0
+Layer 4 - Weight gradient norm: 0.0
+Layer 5 - Weight gradient norm: 0.0
+Layer 0 - Update norm: inf
+Layer 1 - Update norm: 0.0
+Layer 2 - Update norm: 0.0
+Layer 3 - Update norm: 0.0
+Layer 4 - Update norm: 0.0
+Layer 5 - Update norm: 0.0
+Update weights - Loss: 589.4618530273438
+Layer 0 - Weight gradient norm: nan
+Layer 1 - Weight gradient norm: 0.0
+Layer 2 - Weight gradient norm: 0.0
+Layer 3 - Weight gradient norm: 0.0
+Layer 4 - Weight gradient norm: 0.0
+Layer 5 - Weight gradient norm: 0.0
+Layer 0 - Update norm: inf
+Layer 1 - Update norm: 0.0
+Layer 2 - Update norm: 0.0
+Layer 3 - Update norm: 0.0
+Layer 4 - Update norm: 0.0
+Layer 5 - Update norm: 0.0
+Update weights - Loss: 589.4618530273438
+Layer 0 - Weight gradient norm: nan
+Layer 1 - Weight gradient norm: 0.0
+Layer 2 - Weight gradient norm: 0.0
+Layer 3 - Weight gradient norm: 0.0
+Layer 4 - Weight gradient norm: 0.0
+Layer 5 - Weight gradient norm: 0.0
+Layer 0 - Update norm: inf
+Layer 1 - Update norm: 0.0
+Layer 2 - Update norm: 0.0
+Layer 3 - Update norm: 0.0
+Layer 4 - Update norm: 0.0
+Layer 5 - Update norm: 0.0
+Update weights - Loss: 589.4618530273438
+Layer 0 - Weight gradient norm: nan
+Layer 1 - Weight gradient norm: 0.0
+Layer 2 - Weight gradient norm: 0.0
+Layer 3 - Weight gradient norm: 0.0
+Layer 4 - Weight gradient norm: 0.0
+Layer 5 - Weight gradient norm: 0.0
+Layer 0 - Update norm: inf
+Layer 1 - Update norm: 0.0
+Layer 2 - Update norm: 0.0
+Layer 3 - Update norm: 0.0
+Layer 4 - Update norm: 0.0
+Layer 5 - Update norm: 0.0
+Update weights - Loss: 589.4618530273438
+Layer 0 - Weight gradient norm: nan
+Layer 1 - Weight gradient norm: 0.0
+Layer 2 - Weight gradient norm: 0.0
+Layer 3 - Weight gradient norm: 0.0
+Layer 4 - Weight gradient norm: 0.0
+Layer 5 - Weight gradient norm: 0.0
+Layer 0 - Update norm: inf
+Layer 1 - Update norm: 0.0
+Layer 2 - Update norm: 0.0
+Layer 3 - Update norm: 0.0
+Layer 4 - Update norm: 0.0
+Layer 5 - Update norm: 0.0
+Update weights - Loss: 589.4618530273438
+Layer 0 - Weight gradient norm: nan
+Layer 1 - Weight gradient norm: 0.0
+Layer 2 - Weight gradient norm: 0.0
+Layer 3 - Weight gradient norm: 0.0
+Layer 4 - Weight gradient norm: 0.0
+Layer 5 - Weight gradient norm: 0.0
+Layer 0 - Update norm: inf
+Layer 1 - Update norm: 0.0
+Layer 2 - Update norm: 0.0
+Layer 3 - Update norm: 0.0
+Layer 4 - Update norm: 0.0
+Layer 5 - Update norm: 0.0
+Update weights - Loss: 589.4618530273438
+Layer 0 - Weight gradient norm: nan
+Layer 1 - Weight gradient norm: 0.0
+Layer 2 - Weight gradient norm: 0.0
+Layer 3 - Weight gradient norm: 0.0
+Layer 4 - Weight gradient norm: 0.0
+Layer 5 - Weight gradient norm: 0.0
+Layer 0 - Update norm: inf
+Layer 1 - Update norm: 0.0
+Layer 2 - Update norm: 0.0
+Layer 3 - Update norm: 0.0
+Layer 4 - Update norm: 0.0
+Layer 5 - Update norm: 0.0
+Update weights - Loss: 589.4618530273438
+Layer 0 - Weight gradient norm: nan
+Layer 1 - Weight gradient norm: 0.0
+Layer 2 - Weight gradient norm: 0.0
+Layer 3 - Weight gradient norm: 0.0
+Layer 4 - Weight gradient norm: 0.0
+Layer 5 - Weight gradient norm: 0.0
+Layer 0 - Update norm: inf
+Layer 1 - Update norm: 0.0
+Layer 2 - Update norm: 0.0
+Layer 3 - Update norm: 0.0
+Layer 4 - Update norm: 0.0
+Layer 5 - Update norm: 0.0
+Update weights - Loss: 589.4618530273438
+Layer 0 - Weight gradient norm: nan
+Layer 1 - Weight gradient norm: 0.0
+Layer 2 - Weight gradient norm: 0.0
+Layer 3 - Weight gradient norm: 0.0
+Layer 4 - Weight gradient norm: 0.0
+Layer 5 - Weight gradient norm: 0.0
+Layer 0 - Update norm: inf
+Layer 1 - Update norm: 0.0
+Layer 2 - Update norm: 0.0
+Layer 3 - Update norm: 0.0
+Layer 4 - Update norm: 0.0
+Layer 5 - Update norm: 0.0
+Update weights - Loss: 589.4618530273438
+Layer 0 - Weight gradient norm: nan
+Layer 1 - Weight gradient norm: 0.0
+Layer 2 - Weight gradient norm: 0.0
+Layer 3 - Weight gradient norm: 0.0
+Layer 4 - Weight gradient norm: 0.0
+Layer 5 - Weight gradient norm: 0.0
+Layer 0 - Update norm: inf
+Layer 1 - Update norm: 0.0
+Layer 2 - Update norm: 0.0
+Layer 3 - Update norm: 0.0
+Layer 4 - Update norm: 0.0
+Layer 5 - Update norm: 0.0
+Update weights - Loss: 589.4618530273438
+Layer 0 - Weight gradient norm: nan
+Layer 1 - Weight gradient norm: 0.0
+Layer 2 - Weight gradient norm: 0.0
+Layer 3 - Weight gradient norm: 0.0
+Layer 4 - Weight gradient norm: 0.0
+Layer 5 - Weight gradient norm: 0.0
+Layer 0 - Update norm: inf
+Layer 1 - Update norm: 0.0
+Layer 2 - Update norm: 0.0
+Layer 3 - Update norm: 0.0
+Layer 4 - Update norm: 0.0
+Layer 5 - Update norm: 0.0
+Update weights - Loss: 589.4618530273438
+Layer 0 - Weight gradient norm: nan
+Layer 1 - Weight gradient norm: 0.0
+Layer 2 - Weight gradient norm: 0.0
+Layer 3 - Weight gradient norm: 0.0
+Layer 4 - Weight gradient norm: 0.0
+Layer 5 - Weight gradient norm: 0.0
+Layer 0 - Update norm: inf
+Layer 1 - Update norm: 0.0
+Layer 2 - Update norm: 0.0
+Layer 3 - Update norm: 0.0
+Layer 4 - Update norm: 0.0
+Layer 5 - Update norm: 0.0
+Update weights - Loss: 589.4618530273438
+Layer 0 - Weight gradient norm: nan
+Layer 1 - Weight gradient norm: 0.0
+Layer 2 - Weight gradient norm: 0.0
+Layer 3 - Weight gradient norm: 0.0
+Layer 4 - Weight gradient norm: 0.0
+Layer 5 - Weight gradient norm: 0.0
+Layer 0 - Update norm: inf
+Layer 1 - Update norm: 0.0
+Layer 2 - Update norm: 0.0
+Layer 3 - Update norm: 0.0
+Layer 4 - Update norm: 0.0
+Layer 5 - Update norm: 0.0
+Update weights - Loss: 589.4618530273438
+Layer 0 - Weight gradient norm: nan
+Layer 1 - Weight gradient norm: 0.0
+Layer 2 - Weight gradient norm: 0.0
+Layer 3 - Weight gradient norm: 0.0
+Layer 4 - Weight gradient norm: 0.0
+Layer 5 - Weight gradient norm: 0.0
+Layer 0 - Update norm: inf
+Layer 1 - Update norm: 0.0
+Layer 2 - Update norm: 0.0
+Layer 3 - Update norm: 0.0
+Layer 4 - Update norm: 0.0
+Layer 5 - Update norm: 0.0
+Update weights - Loss: 589.4618530273438
+Layer 0 - Weight gradient norm: nan
+Layer 1 - Weight gradient norm: 0.0
+Layer 2 - Weight gradient norm: 0.0
+Layer 3 - Weight gradient norm: 0.0
+Layer 4 - Weight gradient norm: 0.0
+Layer 5 - Weight gradient norm: 0.0
+Layer 0 - Update norm: inf
+Layer 1 - Update norm: 0.0
+Layer 2 - Update norm: 0.0
+Layer 3 - Update norm: 0.0
+Layer 4 - Update norm: 0.0
+Layer 5 - Update norm: 0.0
+Update weights - Loss: 589.4618530273438
+Layer 0 - Weight gradient norm: nan
+Layer 1 - Weight gradient norm: 0.0
+Layer 2 - Weight gradient norm: 0.0
+Layer 3 - Weight gradient norm: 0.0
+Layer 4 - Weight gradient norm: 0.0
+Layer 5 - Weight gradient norm: 0.0
+Layer 0 - Update norm: inf
+Layer 1 - Update norm: 0.0
+Layer 2 - Update norm: 0.0
+Layer 3 - Update norm: 0.0
+Layer 4 - Update norm: 0.0
+Layer 5 - Update norm: 0.0
+Update weights - Loss: 589.4618530273438
+Layer 0 - Weight gradient norm: nan
+Layer 1 - Weight gradient norm: 0.0
+Layer 2 - Weight gradient norm: 0.0
+Layer 3 - Weight gradient norm: 0.0
+Layer 4 - Weight gradient norm: 0.0
+Layer 5 - Weight gradient norm: 0.0
+Layer 0 - Update norm: inf
+Layer 1 - Update norm: 0.0
+Layer 2 - Update norm: 0.0
+Layer 3 - Update norm: 0.0
+Layer 4 - Update norm: 0.0
+Layer 5 - Update norm: 0.0
+Update weights - Loss: 589.4618530273438
+Layer 0 - Weight gradient norm: nan
+Layer 1 - Weight gradient norm: 0.0
+Layer 2 - Weight gradient norm: 0.0
+Layer 3 - Weight gradient norm: 0.0
+Layer 4 - Weight gradient norm: 0.0
+Layer 5 - Weight gradient norm: 0.0
+Layer 0 - Update norm: inf
+Layer 1 - Update norm: 0.0
+Layer 2 - Update norm: 0.0
+Layer 3 - Update norm: 0.0
+Layer 4 - Update norm: 0.0
+Layer 5 - Update norm: 0.0
+Update weights - Loss: 589.4618530273438
+Layer 0 - Weight gradient norm: nan
+Layer 1 - Weight gradient norm: 0.0
+Layer 2 - Weight gradient norm: 0.0
+Layer 3 - Weight gradient norm: 0.0
+Layer 4 - Weight gradient norm: 0.0
+Layer 5 - Weight gradient norm: 0.0
+Layer 0 - Update norm: inf
+Layer 1 - Update norm: 0.0
+Layer 2 - Update norm: 0.0
+Layer 3 - Update norm: 0.0
+Layer 4 - Update norm: 0.0
+Layer 5 - Update norm: 0.0
+Update weights - Loss: 589.4618530273438
+Layer 0 - Weight gradient norm: nan
+Layer 1 - Weight gradient norm: 0.0
+Layer 2 - Weight gradient norm: 0.0
+Layer 3 - Weight gradient norm: 0.0
+Layer 4 - Weight gradient norm: 0.0
+Layer 5 - Weight gradient norm: 0.0
+Layer 0 - Update norm: inf
+Layer 1 - Update norm: 0.0
+Layer 2 - Update norm: 0.0
+Layer 3 - Update norm: 0.0
+Layer 4 - Update norm: 0.0
+Layer 5 - Update norm: 0.0
+Update weights - Loss: 589.4618530273438
+Layer 0 - Weight gradient norm: nan
+Layer 1 - Weight gradient norm: 0.0
+Layer 2 - Weight gradient norm: 0.0
+Layer 3 - Weight gradient norm: 0.0
+Layer 4 - Weight gradient norm: 0.0
+Layer 5 - Weight gradient norm: 0.0
+Layer 0 - Update norm: inf
+Layer 1 - Update norm: 0.0
+Layer 2 - Update norm: 0.0
+Layer 3 - Update norm: 0.0
+Layer 4 - Update norm: 0.0
+Layer 5 - Update norm: 0.0
+Update weights - Loss: 589.4618530273438
+Layer 0 - Weight gradient norm: nan
+Layer 1 - Weight gradient norm: 0.0
+Layer 2 - Weight gradient norm: 0.0
+Layer 3 - Weight gradient norm: 0.0
+Layer 4 - Weight gradient norm: 0.0
+Layer 5 - Weight gradient norm: 0.0
+Layer 0 - Update norm: inf
+Layer 1 - Update norm: 0.0
+Layer 2 - Update norm: 0.0
+Layer 3 - Update norm: 0.0
+Layer 4 - Update norm: 0.0
+Layer 5 - Update norm: 0.0
+Update weights - Loss: 589.4618530273438
+Layer 0 - Weight gradient norm: nan
+Layer 1 - Weight gradient norm: 0.0
+Layer 2 - Weight gradient norm: 0.0
+Layer 3 - Weight gradient norm: 0.0
+Layer 4 - Weight gradient norm: 0.0
+Layer 5 - Weight gradient norm: 0.0
+Layer 0 - Update norm: inf
+Layer 1 - Update norm: 0.0
+Layer 2 - Update norm: 0.0
+Layer 3 - Update norm: 0.0
+Layer 4 - Update norm: 0.0
+Layer 5 - Update norm: 0.0
+Update weights - Loss: 589.4618530273438
+Layer 0 - Weight gradient norm: nan
+Layer 1 - Weight gradient norm: 0.0
+Layer 2 - Weight gradient norm: 0.0
+Layer 3 - Weight gradient norm: 0.0
+Layer 4 - Weight gradient norm: 0.0
+Layer 5 - Weight gradient norm: 0.0
+Layer 0 - Update norm: inf
+Layer 1 - Update norm: 0.0
+Layer 2 - Update norm: 0.0
+Layer 3 - Update norm: 0.0
+Layer 4 - Update norm: 0.0
+Layer 5 - Update norm: 0.0
+Update weights - Loss: 589.4618530273438
+Layer 0 - Weight gradient norm: nan
+Layer 1 - Weight gradient norm: 0.0
+Layer 2 - Weight gradient norm: 0.0
+Layer 3 - Weight gradient norm: 0.0
+Layer 4 - Weight gradient norm: 0.0
+Layer 5 - Weight gradient norm: 0.0
+Layer 0 - Update norm: inf
+Layer 1 - Update norm: 0.0
+Layer 2 - Update norm: 0.0
+Layer 3 - Update norm: 0.0
+Layer 4 - Update norm: 0.0
+Layer 5 - Update norm: 0.0
+Update weights - Loss: 589.4618530273438
+Layer 0 - Weight gradient norm: nan
+Layer 1 - Weight gradient norm: 0.0
+Layer 2 - Weight gradient norm: 0.0
+Layer 3 - Weight gradient norm: 0.0
+Layer 4 - Weight gradient norm: 0.0
+Layer 5 - Weight gradient norm: 0.0
+Layer 0 - Update norm: inf
+Layer 1 - Update norm: 0.0
+Layer 2 - Update norm: 0.0
+Layer 3 - Update norm: 0.0
+Layer 4 - Update norm: 0.0
+Layer 5 - Update norm: 0.0
+Update weights - Loss: 589.4618530273438
+Layer 0 - Weight gradient norm: nan
+Layer 1 - Weight gradient norm: 0.0
+Layer 2 - Weight gradient norm: 0.0
+Layer 3 - Weight gradient norm: 0.0
+Layer 4 - Weight gradient norm: 0.0
+Layer 5 - Weight gradient norm: 0.0
+Layer 0 - Update norm: inf
+Layer 1 - Update norm: 0.0
+Layer 2 - Update norm: 0.0
+Layer 3 - Update norm: 0.0
+Layer 4 - Update norm: 0.0
+Layer 5 - Update norm: 0.0
+Update weights - Loss: 589.4618530273438
+Layer 0 - Weight gradient norm: nan
+Layer 1 - Weight gradient norm: 0.0
+Layer 2 - Weight gradient norm: 0.0
+Layer 3 - Weight gradient norm: 0.0
+Layer 4 - Weight gradient norm: 0.0
+Layer 5 - Weight gradient norm: 0.0
+Layer 0 - Update norm: inf
+Layer 1 - Update norm: 0.0
+Layer 2 - Update norm: 0.0
+Layer 3 - Update norm: 0.0
+Layer 4 - Update norm: 0.0
+Layer 5 - Update norm: 0.0
+Update weights - Loss: 589.4618530273438
+Layer 0 - Weight gradient norm: nan
+Layer 1 - Weight gradient norm: 0.0
+Layer 2 - Weight gradient norm: 0.0
+Layer 3 - Weight gradient norm: 0.0
+Layer 4 - Weight gradient norm: 0.0
+Layer 5 - Weight gradient norm: 0.0
+Layer 0 - Update norm: inf
+Layer 1 - Update norm: 0.0
+Layer 2 - Update norm: 0.0
+Layer 3 - Update norm: 0.0
+Layer 4 - Update norm: 0.0
+Layer 5 - Update norm: 0.0
+Update weights - Loss: 589.4618530273438
+Layer 0 - Weight gradient norm: nan
+Layer 1 - Weight gradient norm: 0.0
+Layer 2 - Weight gradient norm: 0.0
+Layer 3 - Weight gradient norm: 0.0
+Layer 4 - Weight gradient norm: 0.0
+Layer 5 - Weight gradient norm: 0.0
+Layer 0 - Update norm: inf
+Layer 1 - Update norm: 0.0
+Layer 2 - Update norm: 0.0
+Layer 3 - Update norm: 0.0
+Layer 4 - Update norm: 0.0
+Layer 5 - Update norm: 0.0
+Update weights - Loss: 589.4618530273438
+Layer 0 - Weight gradient norm: nan
+Layer 1 - Weight gradient norm: 0.0
+Layer 2 - Weight gradient norm: 0.0
+Layer 3 - Weight gradient norm: 0.0
+Layer 4 - Weight gradient norm: 0.0
+Layer 5 - Weight gradient norm: 0.0
+Layer 0 - Update norm: inf
+Layer 1 - Update norm: 0.0
+Layer 2 - Update norm: 0.0
+Layer 3 - Update norm: 0.0
+Layer 4 - Update norm: 0.0
+Layer 5 - Update norm: 0.0
+Update weights - Loss: 589.4618530273438
+Layer 0 - Weight gradient norm: nan
+Layer 1 - Weight gradient norm: 0.0
+Layer 2 - Weight gradient norm: 0.0
+Layer 3 - Weight gradient norm: 0.0
+Layer 4 - Weight gradient norm: 0.0
+Layer 5 - Weight gradient norm: 0.0
+Layer 0 - Update norm: inf
+Layer 1 - Update norm: 0.0
+Layer 2 - Update norm: 0.0
+Layer 3 - Update norm: 0.0
+Layer 4 - Update norm: 0.0
+Layer 5 - Update norm: 0.0
+Update weights - Loss: 589.4618530273438
+Layer 0 - Weight gradient norm: nan
+Layer 1 - Weight gradient norm: 0.0
+Layer 2 - Weight gradient norm: 0.0
+Layer 3 - Weight gradient norm: 0.0
+Layer 4 - Weight gradient norm: 0.0
+Layer 5 - Weight gradient norm: 0.0
+Layer 0 - Update norm: inf
+Layer 1 - Update norm: 0.0
+Layer 2 - Update norm: 0.0
+Layer 3 - Update norm: 0.0
+Layer 4 - Update norm: 0.0
+Layer 5 - Update norm: 0.0
+Update weights - Loss: 589.4618530273438
+Layer 0 - Weight gradient norm: nan
+Layer 1 - Weight gradient norm: 0.0
+Layer 2 - Weight gradient norm: 0.0
+Layer 3 - Weight gradient norm: 0.0
+Layer 4 - Weight gradient norm: 0.0
+Layer 5 - Weight gradient norm: 0.0
+Layer 0 - Update norm: inf
+Layer 1 - Update norm: 0.0
+Layer 2 - Update norm: 0.0
+Layer 3 - Update norm: 0.0
+Layer 4 - Update norm: 0.0
+Layer 5 - Update norm: 0.0
+Update weights - Loss: 589.4618530273438
+Layer 0 - Weight gradient norm: nan
+Layer 1 - Weight gradient norm: 0.0
+Layer 2 - Weight gradient norm: 0.0
+Layer 3 - Weight gradient norm: 0.0
+Layer 4 - Weight gradient norm: 0.0
+Layer 5 - Weight gradient norm: 0.0
+Layer 0 - Update norm: inf
+Layer 1 - Update norm: 0.0
+Layer 2 - Update norm: 0.0
+Layer 3 - Update norm: 0.0
+Layer 4 - Update norm: 0.0
+Layer 5 - Update norm: 0.0
+Update weights - Loss: 589.4618530273438
+Layer 0 - Weight gradient norm: nan
+Layer 1 - Weight gradient norm: 0.0
+Layer 2 - Weight gradient norm: 0.0
+Layer 3 - Weight gradient norm: 0.0
+Layer 4 - Weight gradient norm: 0.0
+Layer 5 - Weight gradient norm: 0.0
+Layer 0 - Update norm: inf
+Layer 1 - Update norm: 0.0
+Layer 2 - Update norm: 0.0
+Layer 3 - Update norm: 0.0
+Layer 4 - Update norm: 0.0
+Layer 5 - Update norm: 0.0
+Update weights - Loss: 589.4618530273438
+Layer 0 - Weight gradient norm: nan
+Layer 1 - Weight gradient norm: 0.0
+Layer 2 - Weight gradient norm: 0.0
+Layer 3 - Weight gradient norm: 0.0
+Layer 4 - Weight gradient norm: 0.0
+Layer 5 - Weight gradient norm: 0.0
+Layer 0 - Update norm: inf
+Layer 1 - Update norm: 0.0
+Layer 2 - Update norm: 0.0
+Layer 3 - Update norm: 0.0
+Layer 4 - Update norm: 0.0
+Layer 5 - Update norm: 0.0
+Update weights - Loss: 589.4618530273438
+Layer 0 - Weight gradient norm: nan
+Layer 1 - Weight gradient norm: 0.0
+Layer 2 - Weight gradient norm: 0.0
+Layer 3 - Weight gradient norm: 0.0
+Layer 4 - Weight gradient norm: 0.0
+Layer 5 - Weight gradient norm: 0.0
+Layer 0 - Update norm: inf
+Layer 1 - Update norm: 0.0
+Layer 2 - Update norm: 0.0
+Layer 3 - Update norm: 0.0
+Layer 4 - Update norm: 0.0
+Layer 5 - Update norm: 0.0
+Update weights - Loss: 589.4618530273438
+Layer 0 - Weight gradient norm: nan
+Layer 1 - Weight gradient norm: 0.0
+Layer 2 - Weight gradient norm: 0.0
+Layer 3 - Weight gradient norm: 0.0
+Layer 4 - Weight gradient norm: 0.0
+Layer 5 - Weight gradient norm: 0.0
+Layer 0 - Update norm: inf
+Layer 1 - Update norm: 0.0
+Layer 2 - Update norm: 0.0
+Layer 3 - Update norm: 0.0
+Layer 4 - Update norm: 0.0
+Layer 5 - Update norm: 0.0
+Update weights - Loss: 589.4618530273438
+Layer 0 - Weight gradient norm: nan
+Layer 1 - Weight gradient norm: 0.0
+Layer 2 - Weight gradient norm: 0.0
+Layer 3 - Weight gradient norm: 0.0
+Layer 4 - Weight gradient norm: 0.0
+Layer 5 - Weight gradient norm: 0.0
+Layer 0 - Update norm: inf
+Layer 1 - Update norm: 0.0
+Layer 2 - Update norm: 0.0
+Layer 3 - Update norm: 0.0
+Layer 4 - Update norm: 0.0
+Layer 5 - Update norm: 0.0
+Update weights - Loss: 589.4618530273438
+Layer 0 - Weight gradient norm: nan
+Layer 1 - Weight gradient norm: 0.0
+Layer 2 - Weight gradient norm: 0.0
+Layer 3 - Weight gradient norm: 0.0
+Layer 4 - Weight gradient norm: 0.0
+Layer 5 - Weight gradient norm: 0.0
+Layer 0 - Update norm: inf
+Layer 1 - Update norm: 0.0
+Layer 2 - Update norm: 0.0
+Layer 3 - Update norm: 0.0
+Layer 4 - Update norm: 0.0
+Layer 5 - Update norm: 0.0
+Update weights - Loss: 589.4618530273438
+Layer 0 - Weight gradient norm: nan
+Layer 1 - Weight gradient norm: 0.0
+Layer 2 - Weight gradient norm: 0.0
+Layer 3 - Weight gradient norm: 0.0
+Layer 4 - Weight gradient norm: 0.0
+Layer 5 - Weight gradient norm: 0.0
+Layer 0 - Update norm: inf
+Layer 1 - Update norm: 0.0
+Layer 2 - Update norm: 0.0
+Layer 3 - Update norm: 0.0
+Layer 4 - Update norm: 0.0
+Layer 5 - Update norm: 0.0
+Update weights - Loss: 589.4618530273438
+Layer 0 - Weight gradient norm: nan
+Layer 1 - Weight gradient norm: 0.0
+Layer 2 - Weight gradient norm: 0.0
+Layer 3 - Weight gradient norm: 0.0
+Layer 4 - Weight gradient norm: 0.0
+Layer 5 - Weight gradient norm: 0.0
+Layer 0 - Update norm: inf
+Layer 1 - Update norm: 0.0
+Layer 2 - Update norm: 0.0
+Layer 3 - Update norm: 0.0
+Layer 4 - Update norm: 0.0
+Layer 5 - Update norm: 0.0
+Update weights - Loss: 589.4618530273438
+Layer 0 - Weight gradient norm: nan
+Layer 1 - Weight gradient norm: 0.0
+Layer 2 - Weight gradient norm: 0.0
+Layer 3 - Weight gradient norm: 0.0
+Layer 4 - Weight gradient norm: 0.0
+Layer 5 - Weight gradient norm: 0.0
+Layer 0 - Update norm: inf
+Layer 1 - Update norm: 0.0
+Layer 2 - Update norm: 0.0
+Layer 3 - Update norm: 0.0
+Layer 4 - Update norm: 0.0
+Layer 5 - Update norm: 0.0
+Update weights - Loss: 589.4618530273438
+Layer 0 - Weight gradient norm: nan
+Layer 1 - Weight gradient norm: 0.0
+Layer 2 - Weight gradient norm: 0.0
+Layer 3 - Weight gradient norm: 0.0
+Layer 4 - Weight gradient norm: 0.0
+Layer 5 - Weight gradient norm: 0.0
+Layer 0 - Update norm: inf
+Layer 1 - Update norm: 0.0
+Layer 2 - Update norm: 0.0
+Layer 3 - Update norm: 0.0
+Layer 4 - Update norm: 0.0
+Layer 5 - Update norm: 0.0
+Update weights - Loss: 589.4618530273438
+Layer 0 - Weight gradient norm: nan
+Layer 1 - Weight gradient norm: 0.0
+Layer 2 - Weight gradient norm: 0.0
+Layer 3 - Weight gradient norm: 0.0
+Layer 4 - Weight gradient norm: 0.0
+Layer 5 - Weight gradient norm: 0.0
+Layer 0 - Update norm: inf
+Layer 1 - Update norm: 0.0
+Layer 2 - Update norm: 0.0
+Layer 3 - Update norm: 0.0
+Layer 4 - Update norm: 0.0
+Layer 5 - Update norm: 0.0
+Update weights - Loss: 589.4618530273438
+Layer 0 - Weight gradient norm: nan
+Layer 1 - Weight gradient norm: 0.0
+Layer 2 - Weight gradient norm: 0.0
+Layer 3 - Weight gradient norm: 0.0
+Layer 4 - Weight gradient norm: 0.0
+Layer 5 - Weight gradient norm: 0.0
+Layer 0 - Update norm: inf
+Layer 1 - Update norm: 0.0
+Layer 2 - Update norm: 0.0
+Layer 3 - Update norm: 0.0
+Layer 4 - Update norm: 0.0
+Layer 5 - Update norm: 0.0
+Update weights - Loss: 589.4618530273438
+Layer 0 - Weight gradient norm: nan
+Layer 1 - Weight gradient norm: 0.0
+Layer 2 - Weight gradient norm: 0.0
+Layer 3 - Weight gradient norm: 0.0
+Layer 4 - Weight gradient norm: 0.0
+Layer 5 - Weight gradient norm: 0.0
+Layer 0 - Update norm: inf
+Layer 1 - Update norm: 0.0
+Layer 2 - Update norm: 0.0
+Layer 3 - Update norm: 0.0
+Layer 4 - Update norm: 0.0
+Layer 5 - Update norm: 0.0
+Update weights - Loss: 589.4618530273438
+Layer 0 - Weight gradient norm: nan
+Layer 1 - Weight gradient norm: 0.0
+Layer 2 - Weight gradient norm: 0.0
+Layer 3 - Weight gradient norm: 0.0
+Layer 4 - Weight gradient norm: 0.0
+Layer 5 - Weight gradient norm: 0.0
+Layer 0 - Update norm: inf
+Layer 1 - Update norm: 0.0
+Layer 2 - Update norm: 0.0
+Layer 3 - Update norm: 0.0
+Layer 4 - Update norm: 0.0
+Layer 5 - Update norm: 0.0
+Update weights - Loss: 589.4618530273438
+Layer 0 - Weight gradient norm: nan
+Layer 1 - Weight gradient norm: 0.0
+Layer 2 - Weight gradient norm: 0.0
+Layer 3 - Weight gradient norm: 0.0
+Layer 4 - Weight gradient norm: 0.0
+Layer 5 - Weight gradient norm: 0.0
+Layer 0 - Update norm: inf
+Layer 1 - Update norm: 0.0
+Layer 2 - Update norm: 0.0
+Layer 3 - Update norm: 0.0
+Layer 4 - Update norm: 0.0
+Layer 5 - Update norm: 0.0
+Update weights - Loss: 589.4618530273438
+Layer 0 - Weight gradient norm: nan
+Layer 1 - Weight gradient norm: 0.0
+Layer 2 - Weight gradient norm: 0.0
+Layer 3 - Weight gradient norm: 0.0
+Layer 4 - Weight gradient norm: 0.0
+Layer 5 - Weight gradient norm: 0.0
+Layer 0 - Update norm: inf
+Layer 1 - Update norm: 0.0
+Layer 2 - Update norm: 0.0
+Layer 3 - Update norm: 0.0
+Layer 4 - Update norm: 0.0
+Layer 5 - Update norm: 0.0
+Update weights - Loss: 589.4618530273438
+Layer 0 - Weight gradient norm: nan
+Layer 1 - Weight gradient norm: 0.0
+Layer 2 - Weight gradient norm: 0.0
+Layer 3 - Weight gradient norm: 0.0
+Layer 4 - Weight gradient norm: 0.0
+Layer 5 - Weight gradient norm: 0.0
+Layer 0 - Update norm: inf
+Layer 1 - Update norm: 0.0
+Layer 2 - Update norm: 0.0
+Layer 3 - Update norm: 0.0
+Layer 4 - Update norm: 0.0
+Layer 5 - Update norm: 0.0
+Update weights - Loss: 589.4618530273438
+Layer 0 - Weight gradient norm: nan
+Layer 1 - Weight gradient norm: 0.0
+Layer 2 - Weight gradient norm: 0.0
+Layer 3 - Weight gradient norm: 0.0
+Layer 4 - Weight gradient norm: 0.0
+Layer 5 - Weight gradient norm: 0.0
+Layer 0 - Update norm: inf
+Layer 1 - Update norm: 0.0
+Layer 2 - Update norm: 0.0
+Layer 3 - Update norm: 0.0
+Layer 4 - Update norm: 0.0
+Layer 5 - Update norm: 0.0
+Update weights - Loss: 589.4618530273438
+Layer 0 - Weight gradient norm: nan
+Layer 1 - Weight gradient norm: 0.0
+Layer 2 - Weight gradient norm: 0.0
+Layer 3 - Weight gradient norm: 0.0
+Layer 4 - Weight gradient norm: 0.0
+Layer 5 - Weight gradient norm: 0.0
+Layer 0 - Update norm: inf
+Layer 1 - Update norm: 0.0
+Layer 2 - Update norm: 0.0
+Layer 3 - Update norm: 0.0
+Layer 4 - Update norm: 0.0
+Layer 5 - Update norm: 0.0
+Update weights - Loss: 589.4618530273438
+Layer 0 - Weight gradient norm: nan
+Layer 1 - Weight gradient norm: 0.0
+Layer 2 - Weight gradient norm: 0.0
+Layer 3 - Weight gradient norm: 0.0
+Layer 4 - Weight gradient norm: 0.0
+Layer 5 - Weight gradient norm: 0.0
+Layer 0 - Update norm: inf
+Layer 1 - Update norm: 0.0
+Layer 2 - Update norm: 0.0
+Layer 3 - Update norm: 0.0
+Layer 4 - Update norm: 0.0
+Layer 5 - Update norm: 0.0
+Update weights - Loss: 589.4618530273438
+Layer 0 - Weight gradient norm: nan
+Layer 1 - Weight gradient norm: 0.0
+Layer 2 - Weight gradient norm: 0.0
+Layer 3 - Weight gradient norm: 0.0
+Layer 4 - Weight gradient norm: 0.0
+Layer 5 - Weight gradient norm: 0.0
+Layer 0 - Update norm: inf
+Layer 1 - Update norm: 0.0
+Layer 2 - Update norm: 0.0
+Layer 3 - Update norm: 0.0
+Layer 4 - Update norm: 0.0
+Layer 5 - Update norm: 0.0
+Update weights - Loss: 589.4618530273438
+Layer 0 - Weight gradient norm: nan
+Layer 1 - Weight gradient norm: 0.0
+Layer 2 - Weight gradient norm: 0.0
+Layer 3 - Weight gradient norm: 0.0
+Layer 4 - Weight gradient norm: 0.0
+Layer 5 - Weight gradient norm: 0.0
+Layer 0 - Update norm: inf
+Layer 1 - Update norm: 0.0
+Layer 2 - Update norm: 0.0
+Layer 3 - Update norm: 0.0
+Layer 4 - Update norm: 0.0
+Layer 5 - Update norm: 0.0
+Update weights - Loss: 589.4618530273438
+Layer 0 - Weight gradient norm: nan
+Layer 1 - Weight gradient norm: 0.0
+Layer 2 - Weight gradient norm: 0.0
+Layer 3 - Weight gradient norm: 0.0
+Layer 4 - Weight gradient norm: 0.0
+Layer 5 - Weight gradient norm: 0.0
+Layer 0 - Update norm: inf
+Layer 1 - Update norm: 0.0
+Layer 2 - Update norm: 0.0
+Layer 3 - Update norm: 0.0
+Layer 4 - Update norm: 0.0
+Layer 5 - Update norm: 0.0
+Update weights - Loss: 589.4618530273438
+Layer 0 - Weight gradient norm: nan
+Layer 1 - Weight gradient norm: 0.0
+Layer 2 - Weight gradient norm: 0.0
+Layer 3 - Weight gradient norm: 0.0
+Layer 4 - Weight gradient norm: 0.0
+Layer 5 - Weight gradient norm: 0.0
+Layer 0 - Update norm: inf
+Layer 1 - Update norm: 0.0
+Layer 2 - Update norm: 0.0
+Layer 3 - Update norm: 0.0
+Layer 4 - Update norm: 0.0
+Layer 5 - Update norm: 0.0
+Update weights - Loss: 589.4618530273438
+Layer 0 - Weight gradient norm: nan
+Layer 1 - Weight gradient norm: 0.0
+Layer 2 - Weight gradient norm: 0.0
+Layer 3 - Weight gradient norm: 0.0
+Layer 4 - Weight gradient norm: 0.0
+Layer 5 - Weight gradient norm: 0.0
+Layer 0 - Update norm: inf
+Layer 1 - Update norm: 0.0
+Layer 2 - Update norm: 0.0
+Layer 3 - Update norm: 0.0
+Layer 4 - Update norm: 0.0
+Layer 5 - Update norm: 0.0
+Update weights - Loss: 589.4618530273438
+Layer 0 - Weight gradient norm: nan
+Layer 1 - Weight gradient norm: 0.0
+Layer 2 - Weight gradient norm: 0.0
+Layer 3 - Weight gradient norm: 0.0
+Layer 4 - Weight gradient norm: 0.0
+Layer 5 - Weight gradient norm: 0.0
+Layer 0 - Update norm: inf
+Layer 1 - Update norm: 0.0
+Layer 2 - Update norm: 0.0
+Layer 3 - Update norm: 0.0
+Layer 4 - Update norm: 0.0
+Layer 5 - Update norm: 0.0
+Update weights - Loss: 589.4618530273438
+Layer 0 - Weight gradient norm: nan
+Layer 1 - Weight gradient norm: 0.0
+Layer 2 - Weight gradient norm: 0.0
+Layer 3 - Weight gradient norm: 0.0
+Layer 4 - Weight gradient norm: 0.0
+Layer 5 - Weight gradient norm: 0.0
+Layer 0 - Update norm: inf
+Layer 1 - Update norm: 0.0
+Layer 2 - Update norm: 0.0
+Layer 3 - Update norm: 0.0
+Layer 4 - Update norm: 0.0
+Layer 5 - Update norm: 0.0
+Update weights - Loss: 589.4618530273438
+Layer 0 - Weight gradient norm: nan
+Layer 1 - Weight gradient norm: 0.0
+Layer 2 - Weight gradient norm: 0.0
+Layer 3 - Weight gradient norm: 0.0
+Layer 4 - Weight gradient norm: 0.0
+Layer 5 - Weight gradient norm: 0.0
+Layer 0 - Update norm: inf
+Layer 1 - Update norm: 0.0
+Layer 2 - Update norm: 0.0
+Layer 3 - Update norm: 0.0
+Layer 4 - Update norm: 0.0
+Layer 5 - Update norm: 0.0
+Update weights - Loss: 589.4618530273438
+Layer 0 - Weight gradient norm: nan
+Layer 1 - Weight gradient norm: 0.0
+Layer 2 - Weight gradient norm: 0.0
+Layer 3 - Weight gradient norm: 0.0
+Layer 4 - Weight gradient norm: 0.0
+Layer 5 - Weight gradient norm: 0.0
+Layer 0 - Update norm: inf
+Layer 1 - Update norm: 0.0
+Layer 2 - Update norm: 0.0
+Layer 3 - Update norm: 0.0
+Layer 4 - Update norm: 0.0
+Layer 5 - Update norm: 0.0
+Update weights - Loss: 589.4618530273438
+Layer 0 - Weight gradient norm: nan
+Layer 1 - Weight gradient norm: 0.0
+Layer 2 - Weight gradient norm: 0.0
+Layer 3 - Weight gradient norm: 0.0
+Layer 4 - Weight gradient norm: 0.0
+Layer 5 - Weight gradient norm: 0.0
+Layer 0 - Update norm: inf
+Layer 1 - Update norm: 0.0
+Layer 2 - Update norm: 0.0
+Layer 3 - Update norm: 0.0
+Layer 4 - Update norm: 0.0
+Layer 5 - Update norm: 0.0
+Update weights - Loss: 589.4618530273438
+Layer 0 - Weight gradient norm: nan
+Layer 1 - Weight gradient norm: 0.0
+Layer 2 - Weight gradient norm: 0.0
+Layer 3 - Weight gradient norm: 0.0
+Layer 4 - Weight gradient norm: 0.0
+Layer 5 - Weight gradient norm: 0.0
+Layer 0 - Update norm: inf
+Layer 1 - Update norm: 0.0
+Layer 2 - Update norm: 0.0
+Layer 3 - Update norm: 0.0
+Layer 4 - Update norm: 0.0
+Layer 5 - Update norm: 0.0
+Update weights - Loss: 589.4618530273438
+Layer 0 - Weight gradient norm: nan
+Layer 1 - Weight gradient norm: 0.0
+Layer 2 - Weight gradient norm: 0.0
+Layer 3 - Weight gradient norm: 0.0
+Layer 4 - Weight gradient norm: 0.0
+Layer 5 - Weight gradient norm: 0.0
+Layer 0 - Update norm: inf
+Layer 1 - Update norm: 0.0
+Layer 2 - Update norm: 0.0
+Layer 3 - Update norm: 0.0
+Layer 4 - Update norm: 0.0
+Layer 5 - Update norm: 0.0
+Update weights - Loss: 589.4618530273438
+Layer 0 - Weight gradient norm: nan
+Layer 1 - Weight gradient norm: 0.0
+Layer 2 - Weight gradient norm: 0.0
+Layer 3 - Weight gradient norm: 0.0
+Layer 4 - Weight gradient norm: 0.0
+Layer 5 - Weight gradient norm: 0.0
+Layer 0 - Update norm: inf
+Layer 1 - Update norm: 0.0
+Layer 2 - Update norm: 0.0
+Layer 3 - Update norm: 0.0
+Layer 4 - Update norm: 0.0
+Layer 5 - Update norm: 0.0
+Update weights - Loss: 589.4618530273438
+Layer 0 - Weight gradient norm: nan
+Layer 1 - Weight gradient norm: 0.0
+Layer 2 - Weight gradient norm: 0.0
+Layer 3 - Weight gradient norm: 0.0
+Layer 4 - Weight gradient norm: 0.0
+Layer 5 - Weight gradient norm: 0.0
+Layer 0 - Update norm: inf
+Layer 1 - Update norm: 0.0
+Layer 2 - Update norm: 0.0
+Layer 3 - Update norm: 0.0
+Layer 4 - Update norm: 0.0
+Layer 5 - Update norm: 0.0
+Update weights - Loss: 589.4618530273438
+Layer 0 - Weight gradient norm: nan
+Layer 1 - Weight gradient norm: 0.0
+Layer 2 - Weight gradient norm: 0.0
+Layer 3 - Weight gradient norm: 0.0
+Layer 4 - Weight gradient norm: 0.0
+Layer 5 - Weight gradient norm: 0.0
+Layer 0 - Update norm: inf
+Layer 1 - Update norm: 0.0
+Layer 2 - Update norm: 0.0
+Layer 3 - Update norm: 0.0
+Layer 4 - Update norm: 0.0
+Layer 5 - Update norm: 0.0
+Update weights - Loss: 589.4618530273438
+Layer 0 - Weight gradient norm: nan
+Layer 1 - Weight gradient norm: 0.0
+Layer 2 - Weight gradient norm: 0.0
+Layer 3 - Weight gradient norm: 0.0
+Layer 4 - Weight gradient norm: 0.0
+Layer 5 - Weight gradient norm: 0.0
+Layer 0 - Update norm: inf
+Layer 1 - Update norm: 0.0
+Layer 2 - Update norm: 0.0
+Layer 3 - Update norm: 0.0
+Layer 4 - Update norm: 0.0
+Layer 5 - Update norm: 0.0
+Update weights - Loss: 589.4618530273438
+Layer 0 - Weight gradient norm: nan
+Layer 1 - Weight gradient norm: 0.0
+Layer 2 - Weight gradient norm: 0.0
+Layer 3 - Weight gradient norm: 0.0
+Layer 4 - Weight gradient norm: 0.0
+Layer 5 - Weight gradient norm: 0.0
+Layer 0 - Update norm: inf
+Layer 1 - Update norm: 0.0
+Layer 2 - Update norm: 0.0
+Layer 3 - Update norm: 0.0
+Layer 4 - Update norm: 0.0
+Layer 5 - Update norm: 0.0
+Update weights - Loss: 589.4618530273438
+Layer 0 - Weight gradient norm: nan
+Layer 1 - Weight gradient norm: 0.0
+Layer 2 - Weight gradient norm: 0.0
+Layer 3 - Weight gradient norm: 0.0
+Layer 4 - Weight gradient norm: 0.0
+Layer 5 - Weight gradient norm: 0.0
+Layer 0 - Update norm: inf
+Layer 1 - Update norm: 0.0
+Layer 2 - Update norm: 0.0
+Layer 3 - Update norm: 0.0
+Layer 4 - Update norm: 0.0
+Layer 5 - Update norm: 0.0
+Update weights - Loss: 589.4618530273438
+Layer 0 - Weight gradient norm: nan
+Layer 1 - Weight gradient norm: 0.0
+Layer 2 - Weight gradient norm: 0.0
+Layer 3 - Weight gradient norm: 0.0
+Layer 4 - Weight gradient norm: 0.0
+Layer 5 - Weight gradient norm: 0.0
+Layer 0 - Update norm: inf
+Layer 1 - Update norm: 0.0
+Layer 2 - Update norm: 0.0
+Layer 3 - Update norm: 0.0
+Layer 4 - Update norm: 0.0
+Layer 5 - Update norm: 0.0
+Update weights - Loss: 589.4618530273438
+Layer 0 - Weight gradient norm: nan
+Layer 1 - Weight gradient norm: 0.0
+Layer 2 - Weight gradient norm: 0.0
+Layer 3 - Weight gradient norm: 0.0
+Layer 4 - Weight gradient norm: 0.0
+Layer 5 - Weight gradient norm: 0.0
+Layer 0 - Update norm: inf
+Layer 1 - Update norm: 0.0
+Layer 2 - Update norm: 0.0
+Layer 3 - Update norm: 0.0
+Layer 4 - Update norm: 0.0
+Layer 5 - Update norm: 0.0
+Update weights - Loss: 589.4618530273438
+Layer 0 - Weight gradient norm: nan
+Layer 1 - Weight gradient norm: 0.0
+Layer 2 - Weight gradient norm: 0.0
+Layer 3 - Weight gradient norm: 0.0
+Layer 4 - Weight gradient norm: 0.0
+Layer 5 - Weight gradient norm: 0.0
+Layer 0 - Update norm: inf
+Layer 1 - Update norm: 0.0
+Layer 2 - Update norm: 0.0
+Layer 3 - Update norm: 0.0
+Layer 4 - Update norm: 0.0
+Layer 5 - Update norm: 0.0
+Update weights - Loss: 589.4618530273438
+Layer 0 - Weight gradient norm: nan
+Layer 1 - Weight gradient norm: 0.0
+Layer 2 - Weight gradient norm: 0.0
+Layer 3 - Weight gradient norm: 0.0
+Layer 4 - Weight gradient norm: 0.0
+Layer 5 - Weight gradient norm: 0.0
+Layer 0 - Update norm: inf
+Layer 1 - Update norm: 0.0
+Layer 2 - Update norm: 0.0
+Layer 3 - Update norm: 0.0
+Layer 4 - Update norm: 0.0
+Layer 5 - Update norm: 0.0
+Update weights - Loss: 589.4618530273438
+Layer 0 - Weight gradient norm: nan
+Layer 1 - Weight gradient norm: 0.0
+Layer 2 - Weight gradient norm: 0.0
+Layer 3 - Weight gradient norm: 0.0
+Layer 4 - Weight gradient norm: 0.0
+Layer 5 - Weight gradient norm: 0.0
+Layer 0 - Update norm: inf
+Layer 1 - Update norm: 0.0
+Layer 2 - Update norm: 0.0
+Layer 3 - Update norm: 0.0
+Layer 4 - Update norm: 0.0
+Layer 5 - Update norm: 0.0
+Update weights - Loss: 589.4618530273438
+Layer 0 - Weight gradient norm: nan
+Layer 1 - Weight gradient norm: 0.0
+Layer 2 - Weight gradient norm: 0.0
+Layer 3 - Weight gradient norm: 0.0
+Layer 4 - Weight gradient norm: 0.0
+Layer 5 - Weight gradient norm: 0.0
+Layer 0 - Update norm: inf
+Layer 1 - Update norm: 0.0
+Layer 2 - Update norm: 0.0
+Layer 3 - Update norm: 0.0
+Layer 4 - Update norm: 0.0
+Layer 5 - Update norm: 0.0
+Update weights - Loss: 589.4618530273438
+Layer 0 - Weight gradient norm: nan
+Layer 1 - Weight gradient norm: 0.0
+Layer 2 - Weight gradient norm: 0.0
+Layer 3 - Weight gradient norm: 0.0
+Layer 4 - Weight gradient norm: 0.0
+Layer 5 - Weight gradient norm: 0.0
+Layer 0 - Update norm: inf
+Layer 1 - Update norm: 0.0
+Layer 2 - Update norm: 0.0
+Layer 3 - Update norm: 0.0
+Layer 4 - Update norm: 0.0
+Layer 5 - Update norm: 0.0
+Update weights - Loss: 589.4618530273438
+Layer 0 - Weight gradient norm: nan
+Layer 1 - Weight gradient norm: 0.0
+Layer 2 - Weight gradient norm: 0.0
+Layer 3 - Weight gradient norm: 0.0
+Layer 4 - Weight gradient norm: 0.0
+Layer 5 - Weight gradient norm: 0.0
+Layer 0 - Update norm: inf
+Layer 1 - Update norm: 0.0
+Layer 2 - Update norm: 0.0
+Layer 3 - Update norm: 0.0
+Layer 4 - Update norm: 0.0
+Layer 5 - Update norm: 0.0
+Update weights - Loss: 589.4618530273438
+Layer 0 - Weight gradient norm: nan
+Layer 1 - Weight gradient norm: 0.0
+Layer 2 - Weight gradient norm: 0.0
+Layer 3 - Weight gradient norm: 0.0
+Layer 4 - Weight gradient norm: 0.0
+Layer 5 - Weight gradient norm: 0.0
+Layer 0 - Update norm: inf
+Layer 1 - Update norm: 0.0
+Layer 2 - Update norm: 0.0
+Layer 3 - Update norm: 0.0
+Layer 4 - Update norm: 0.0
+Layer 5 - Update norm: 0.0
+Update weights - Loss: 589.4618530273438
+Layer 0 - Weight gradient norm: nan
+Layer 1 - Weight gradient norm: 0.0
+Layer 2 - Weight gradient norm: 0.0
+Layer 3 - Weight gradient norm: 0.0
+Layer 4 - Weight gradient norm: 0.0
+Layer 5 - Weight gradient norm: 0.0
+Layer 0 - Update norm: inf
+Layer 1 - Update norm: 0.0
+Layer 2 - Update norm: 0.0
+Layer 3 - Update norm: 0.0
+Layer 4 - Update norm: 0.0
+Layer 5 - Update norm: 0.0
+Update weights - Loss: 589.4618530273438
+Layer 0 - Weight gradient norm: nan
+Layer 1 - Weight gradient norm: 0.0
+Layer 2 - Weight gradient norm: 0.0
+Layer 3 - Weight gradient norm: 0.0
+Layer 4 - Weight gradient norm: 0.0
+Layer 5 - Weight gradient norm: 0.0
+Layer 0 - Update norm: inf
+Layer 1 - Update norm: 0.0
+Layer 2 - Update norm: 0.0
+Layer 3 - Update norm: 0.0
+Layer 4 - Update norm: 0.0
+Layer 5 - Update norm: 0.0
+Update weights - Loss: 589.4618530273438
+Layer 0 - Weight gradient norm: nan
+Layer 1 - Weight gradient norm: 0.0
+Layer 2 - Weight gradient norm: 0.0
+Layer 3 - Weight gradient norm: 0.0
+Layer 4 - Weight gradient norm: 0.0
+Layer 5 - Weight gradient norm: 0.0
+Layer 0 - Update norm: inf
+Layer 1 - Update norm: 0.0
+Layer 2 - Update norm: 0.0
+Layer 3 - Update norm: 0.0
+Layer 4 - Update norm: 0.0
+Layer 5 - Update norm: 0.0
+Update weights - Loss: 589.4618530273438
+Layer 0 - Weight gradient norm: nan
+Layer 1 - Weight gradient norm: 0.0
+Layer 2 - Weight gradient norm: 0.0
+Layer 3 - Weight gradient norm: 0.0
+Layer 4 - Weight gradient norm: 0.0
+Layer 5 - Weight gradient norm: 0.0
+Layer 0 - Update norm: inf
+Layer 1 - Update norm: 0.0
+Layer 2 - Update norm: 0.0
+Layer 3 - Update norm: 0.0
+Layer 4 - Update norm: 0.0
+Layer 5 - Update norm: 0.0
+Update weights - Loss: 589.4618530273438
+Layer 0 - Weight gradient norm: nan
+Layer 1 - Weight gradient norm: 0.0
+Layer 2 - Weight gradient norm: 0.0
+Layer 3 - Weight gradient norm: 0.0
+Layer 4 - Weight gradient norm: 0.0
+Layer 5 - Weight gradient norm: 0.0
+Layer 0 - Update norm: inf
+Layer 1 - Update norm: 0.0
+Layer 2 - Update norm: 0.0
+Layer 3 - Update norm: 0.0
+Layer 4 - Update norm: 0.0
+Layer 5 - Update norm: 0.0
+Update weights - Loss: 589.4618530273438
+Layer 0 - Weight gradient norm: nan
+Layer 1 - Weight gradient norm: 0.0
+Layer 2 - Weight gradient norm: 0.0
+Layer 3 - Weight gradient norm: 0.0
+Layer 4 - Weight gradient norm: 0.0
+Layer 5 - Weight gradient norm: 0.0
+Layer 0 - Update norm: inf
+Layer 1 - Update norm: 0.0
+Layer 2 - Update norm: 0.0
+Layer 3 - Update norm: 0.0
+Layer 4 - Update norm: 0.0
+Layer 5 - Update norm: 0.0
+Update weights - Loss: 589.4618530273438
+Layer 0 - Weight gradient norm: nan
+Layer 1 - Weight gradient norm: 0.0
+Layer 2 - Weight gradient norm: 0.0
+Layer 3 - Weight gradient norm: 0.0
+Layer 4 - Weight gradient norm: 0.0
+Layer 5 - Weight gradient norm: 0.0
+Layer 0 - Update norm: inf
+Layer 1 - Update norm: 0.0
+Layer 2 - Update norm: 0.0
+Layer 3 - Update norm: 0.0
+Layer 4 - Update norm: 0.0
+Layer 5 - Update norm: 0.0
+Update weights - Loss: 589.4618530273438
+Layer 0 - Weight gradient norm: nan
+Layer 1 - Weight gradient norm: 0.0
+Layer 2 - Weight gradient norm: 0.0
+Layer 3 - Weight gradient norm: 0.0
+Layer 4 - Weight gradient norm: 0.0
+Layer 5 - Weight gradient norm: 0.0
+Layer 0 - Update norm: inf
+Layer 1 - Update norm: 0.0
+Layer 2 - Update norm: 0.0
+Layer 3 - Update norm: 0.0
+Layer 4 - Update norm: 0.0
+Layer 5 - Update norm: 0.0
+Update weights - Loss: 589.4618530273438
+Layer 0 - Weight gradient norm: nan
+Layer 1 - Weight gradient norm: 0.0
+Layer 2 - Weight gradient norm: 0.0
+Layer 3 - Weight gradient norm: 0.0
+Layer 4 - Weight gradient norm: 0.0
+Layer 5 - Weight gradient norm: 0.0
+Layer 0 - Update norm: inf
+Layer 1 - Update norm: 0.0
+Layer 2 - Update norm: 0.0
+Layer 3 - Update norm: 0.0
+Layer 4 - Update norm: 0.0
+Layer 5 - Update norm: 0.0
+Update weights - Loss: 589.4618530273438
+Layer 0 - Weight gradient norm: nan
+Layer 1 - Weight gradient norm: 0.0
+Layer 2 - Weight gradient norm: 0.0
+Layer 3 - Weight gradient norm: 0.0
+Layer 4 - Weight gradient norm: 0.0
+Layer 5 - Weight gradient norm: 0.0
+Layer 0 - Update norm: inf
+Layer 1 - Update norm: 0.0
+Layer 2 - Update norm: 0.0
+Layer 3 - Update norm: 0.0
+Layer 4 - Update norm: 0.0
+Layer 5 - Update norm: 0.0
+Update weights - Loss: 589.4618530273438
+Layer 0 - Weight gradient norm: nan
+Layer 1 - Weight gradient norm: 0.0
+Layer 2 - Weight gradient norm: 0.0
+Layer 3 - Weight gradient norm: 0.0
+Layer 4 - Weight gradient norm: 0.0
+Layer 5 - Weight gradient norm: 0.0
+Layer 0 - Update norm: inf
+Layer 1 - Update norm: 0.0
+Layer 2 - Update norm: 0.0
+Layer 3 - Update norm: 0.0
+Layer 4 - Update norm: 0.0
+Layer 5 - Update norm: 0.0
+Update weights - Loss: 589.4618530273438
+Layer 0 - Weight gradient norm: nan
+Layer 1 - Weight gradient norm: 0.0
+Layer 2 - Weight gradient norm: 0.0
+Layer 3 - Weight gradient norm: 0.0
+Layer 4 - Weight gradient norm: 0.0
+Layer 5 - Weight gradient norm: 0.0
+Layer 0 - Update norm: inf
+Layer 1 - Update norm: 0.0
+Layer 2 - Update norm: 0.0
+Layer 3 - Update norm: 0.0
+Layer 4 - Update norm: 0.0
+Layer 5 - Update norm: 0.0
+Update weights - Loss: 589.4618530273438
+Layer 0 - Weight gradient norm: nan
+Layer 1 - Weight gradient norm: 0.0
+Layer 2 - Weight gradient norm: 0.0
+Layer 3 - Weight gradient norm: 0.0
+Layer 4 - Weight gradient norm: 0.0
+Layer 5 - Weight gradient norm: 0.0
+Layer 0 - Update norm: inf
+Layer 1 - Update norm: 0.0
+Layer 2 - Update norm: 0.0
+Layer 3 - Update norm: 0.0
+Layer 4 - Update norm: 0.0
+Layer 5 - Update norm: 0.0
+Update weights - Loss: 589.4618530273438
+Layer 0 - Weight gradient norm: nan
+Layer 1 - Weight gradient norm: 0.0
+Layer 2 - Weight gradient norm: 0.0
+Layer 3 - Weight gradient norm: 0.0
+Layer 4 - Weight gradient norm: 0.0
+Layer 5 - Weight gradient norm: 0.0
+Layer 0 - Update norm: inf
+Layer 1 - Update norm: 0.0
+Layer 2 - Update norm: 0.0
+Layer 3 - Update norm: 0.0
+Layer 4 - Update norm: 0.0
+Layer 5 - Update norm: 0.0
+Update weights - Loss: 589.4618530273438
+Layer 0 - Weight gradient norm: nan
+Layer 1 - Weight gradient norm: 0.0
+Layer 2 - Weight gradient norm: 0.0
+Layer 3 - Weight gradient norm: 0.0
+Layer 4 - Weight gradient norm: 0.0
+Layer 5 - Weight gradient norm: 0.0
+Layer 0 - Update norm: inf
+Layer 1 - Update norm: 0.0
+Layer 2 - Update norm: 0.0
+Layer 3 - Update norm: 0.0
+Layer 4 - Update norm: 0.0
+Layer 5 - Update norm: 0.0
+Update weights - Loss: 589.4618530273438
+Layer 0 - Weight gradient norm: nan
+Layer 1 - Weight gradient norm: 0.0
+Layer 2 - Weight gradient norm: 0.0
+Layer 3 - Weight gradient norm: 0.0
+Layer 4 - Weight gradient norm: 0.0
+Layer 5 - Weight gradient norm: 0.0
+Layer 0 - Update norm: inf
+Layer 1 - Update norm: 0.0
+Layer 2 - Update norm: 0.0
+Layer 3 - Update norm: 0.0
+Layer 4 - Update norm: 0.0
+Layer 5 - Update norm: 0.0
+Update weights - Loss: 589.4618530273438
+Layer 0 - Weight gradient norm: nan
+Layer 1 - Weight gradient norm: 0.0
+Layer 2 - Weight gradient norm: 0.0
+Layer 3 - Weight gradient norm: 0.0
+Layer 4 - Weight gradient norm: 0.0
+Layer 5 - Weight gradient norm: 0.0
+Layer 0 - Update norm: inf
+Layer 1 - Update norm: 0.0
+Layer 2 - Update norm: 0.0
+Layer 3 - Update norm: 0.0
+Layer 4 - Update norm: 0.0
+Layer 5 - Update norm: 0.0
+Update weights - Loss: 589.4618530273438
+Layer 0 - Weight gradient norm: nan
+Layer 1 - Weight gradient norm: 0.0
+Layer 2 - Weight gradient norm: 0.0
+Layer 3 - Weight gradient norm: 0.0
+Layer 4 - Weight gradient norm: 0.0
+Layer 5 - Weight gradient norm: 0.0
+Layer 0 - Update norm: inf
+Layer 1 - Update norm: 0.0
+Layer 2 - Update norm: 0.0
+Layer 3 - Update norm: 0.0
+Layer 4 - Update norm: 0.0
+Layer 5 - Update norm: 0.0
+Update weights - Loss: 589.4618530273438
+Layer 0 - Weight gradient norm: nan
+Layer 1 - Weight gradient norm: 0.0
+Layer 2 - Weight gradient norm: 0.0
+Layer 3 - Weight gradient norm: 0.0
+Layer 4 - Weight gradient norm: 0.0
+Layer 5 - Weight gradient norm: 0.0
+Layer 0 - Update norm: inf
+Layer 1 - Update norm: 0.0
+Layer 2 - Update norm: 0.0
+Layer 3 - Update norm: 0.0
+Layer 4 - Update norm: 0.0
+Layer 5 - Update norm: 0.0
+Update weights - Loss: 589.4618530273438
+Layer 0 - Weight gradient norm: nan
+Layer 1 - Weight gradient norm: 0.0
+Layer 2 - Weight gradient norm: 0.0
+Layer 3 - Weight gradient norm: 0.0
+Layer 4 - Weight gradient norm: 0.0
+Layer 5 - Weight gradient norm: 0.0
+Layer 0 - Update norm: inf
+Layer 1 - Update norm: 0.0
+Layer 2 - Update norm: 0.0
+Layer 3 - Update norm: 0.0
+Layer 4 - Update norm: 0.0
+Layer 5 - Update norm: 0.0
+Update weights - Loss: 589.4618530273438
+Layer 0 - Weight gradient norm: nan
+Layer 1 - Weight gradient norm: 0.0
+Layer 2 - Weight gradient norm: 0.0
+Layer 3 - Weight gradient norm: 0.0
+Layer 4 - Weight gradient norm: 0.0
+Layer 5 - Weight gradient norm: 0.0
+Layer 0 - Update norm: inf
+Layer 1 - Update norm: 0.0
+Layer 2 - Update norm: 0.0
+Layer 3 - Update norm: 0.0
+Layer 4 - Update norm: 0.0
+Layer 5 - Update norm: 0.0
+Update weights - Loss: 589.4618530273438
+Layer 0 - Weight gradient norm: nan
+Layer 1 - Weight gradient norm: 0.0
+Layer 2 - Weight gradient norm: 0.0
+Layer 3 - Weight gradient norm: 0.0
+Layer 4 - Weight gradient norm: 0.0
+Layer 5 - Weight gradient norm: 0.0
+Layer 0 - Update norm: inf
+Layer 1 - Update norm: 0.0
+Layer 2 - Update norm: 0.0
+Layer 3 - Update norm: 0.0
+Layer 4 - Update norm: 0.0
+Layer 5 - Update norm: 0.0
+Update weights - Loss: 589.4618530273438
+Layer 0 - Weight gradient norm: nan
+Layer 1 - Weight gradient norm: 0.0
+Layer 2 - Weight gradient norm: 0.0
+Layer 3 - Weight gradient norm: 0.0
+Layer 4 - Weight gradient norm: 0.0
+Layer 5 - Weight gradient norm: 0.0
+Layer 0 - Update norm: inf
+Layer 1 - Update norm: 0.0
+Layer 2 - Update norm: 0.0
+Layer 3 - Update norm: 0.0
+Layer 4 - Update norm: 0.0
+Layer 5 - Update norm: 0.0
+Update weights - Loss: 589.4618530273438
+Layer 0 - Weight gradient norm: nan
+Layer 1 - Weight gradient norm: 0.0
+Layer 2 - Weight gradient norm: 0.0
+Layer 3 - Weight gradient norm: 0.0
+Layer 4 - Weight gradient norm: 0.0
+Layer 5 - Weight gradient norm: 0.0
+Layer 0 - Update norm: inf
+Layer 1 - Update norm: 0.0
+Layer 2 - Update norm: 0.0
+Layer 3 - Update norm: 0.0
+Layer 4 - Update norm: 0.0
+Layer 5 - Update norm: 0.0
+Update weights - Loss: 589.4618530273438
+Layer 0 - Weight gradient norm: nan
+Layer 1 - Weight gradient norm: 0.0
+Layer 2 - Weight gradient norm: 0.0
+Layer 3 - Weight gradient norm: 0.0
+Layer 4 - Weight gradient norm: 0.0
+Layer 5 - Weight gradient norm: 0.0
+Layer 0 - Update norm: inf
+Layer 1 - Update norm: 0.0
+Layer 2 - Update norm: 0.0
+Layer 3 - Update norm: 0.0
+Layer 4 - Update norm: 0.0
+Layer 5 - Update norm: 0.0
+Update weights - Loss: 589.4618530273438
+Layer 0 - Weight gradient norm: nan
+Layer 1 - Weight gradient norm: 0.0
+Layer 2 - Weight gradient norm: 0.0
+Layer 3 - Weight gradient norm: 0.0
+Layer 4 - Weight gradient norm: 0.0
+Layer 5 - Weight gradient norm: 0.0
+Layer 0 - Update norm: inf
+Layer 1 - Update norm: 0.0
+Layer 2 - Update norm: 0.0
+Layer 3 - Update norm: 0.0
+Layer 4 - Update norm: 0.0
+Layer 5 - Update norm: 0.0
+Update weights - Loss: 589.4618530273438
+Layer 0 - Weight gradient norm: nan
+Layer 1 - Weight gradient norm: 0.0
+Layer 2 - Weight gradient norm: 0.0
+Layer 3 - Weight gradient norm: 0.0
+Layer 4 - Weight gradient norm: 0.0
+Layer 5 - Weight gradient norm: 0.0
+Layer 0 - Update norm: inf
+Layer 1 - Update norm: 0.0
+Layer 2 - Update norm: 0.0
+Layer 3 - Update norm: 0.0
+Layer 4 - Update norm: 0.0
+Layer 5 - Update norm: 0.0
+Update weights - Loss: 589.4618530273438
+Layer 0 - Weight gradient norm: nan
+Layer 1 - Weight gradient norm: 0.0
+Layer 2 - Weight gradient norm: 0.0
+Layer 3 - Weight gradient norm: 0.0
+Layer 4 - Weight gradient norm: 0.0
+Layer 5 - Weight gradient norm: 0.0
+Layer 0 - Update norm: inf
+Layer 1 - Update norm: 0.0
+Layer 2 - Update norm: 0.0
+Layer 3 - Update norm: 0.0
+Layer 4 - Update norm: 0.0
+Layer 5 - Update norm: 0.0
+Update weights - Loss: 589.4618530273438
+Layer 0 - Weight gradient norm: nan
+Layer 1 - Weight gradient norm: 0.0
+Layer 2 - Weight gradient norm: 0.0
+Layer 3 - Weight gradient norm: 0.0
+Layer 4 - Weight gradient norm: 0.0
+Layer 5 - Weight gradient norm: 0.0
+Layer 0 - Update norm: inf
+Layer 1 - Update norm: 0.0
+Layer 2 - Update norm: 0.0
+Layer 3 - Update norm: 0.0
+Layer 4 - Update norm: 0.0
+Layer 5 - Update norm: 0.0
+Update weights - Loss: 589.4618530273438
+Layer 0 - Weight gradient norm: nan
+Layer 1 - Weight gradient norm: 0.0
+Layer 2 - Weight gradient norm: 0.0
+Layer 3 - Weight gradient norm: 0.0
+Layer 4 - Weight gradient norm: 0.0
+Layer 5 - Weight gradient norm: 0.0
+Layer 0 - Update norm: inf
+Layer 1 - Update norm: 0.0
+Layer 2 - Update norm: 0.0
+Layer 3 - Update norm: 0.0
+Layer 4 - Update norm: 0.0
+Layer 5 - Update norm: 0.0
+Update weights - Loss: 589.4618530273438
+Layer 0 - Weight gradient norm: nan
+Layer 1 - Weight gradient norm: 0.0
+Layer 2 - Weight gradient norm: 0.0
+Layer 3 - Weight gradient norm: 0.0
+Layer 4 - Weight gradient norm: 0.0
+Layer 5 - Weight gradient norm: 0.0
+Layer 0 - Update norm: inf
+Layer 1 - Update norm: 0.0
+Layer 2 - Update norm: 0.0
+Layer 3 - Update norm: 0.0
+Layer 4 - Update norm: 0.0
+Layer 5 - Update norm: 0.0
+Update weights - Loss: 589.4618530273438
+Layer 0 - Weight gradient norm: nan
+Layer 1 - Weight gradient norm: 0.0
+Layer 2 - Weight gradient norm: 0.0
+Layer 3 - Weight gradient norm: 0.0
+Layer 4 - Weight gradient norm: 0.0
+Layer 5 - Weight gradient norm: 0.0
+Layer 0 - Update norm: inf
+Layer 1 - Update norm: 0.0
+Layer 2 - Update norm: 0.0
+Layer 3 - Update norm: 0.0
+Layer 4 - Update norm: 0.0
+Layer 5 - Update norm: 0.0
+Update weights - Loss: 589.4618530273438
+Layer 0 - Weight gradient norm: nan
+Layer 1 - Weight gradient norm: 0.0
+Layer 2 - Weight gradient norm: 0.0
+Layer 3 - Weight gradient norm: 0.0
+Layer 4 - Weight gradient norm: 0.0
+Layer 5 - Weight gradient norm: 0.0
+Layer 0 - Update norm: inf
+Layer 1 - Update norm: 0.0
+Layer 2 - Update norm: 0.0
+Layer 3 - Update norm: 0.0
+Layer 4 - Update norm: 0.0
+Layer 5 - Update norm: 0.0
+Update weights - Loss: 589.4618530273438
+Layer 0 - Weight gradient norm: nan
+Layer 1 - Weight gradient norm: 0.0
+Layer 2 - Weight gradient norm: 0.0
+Layer 3 - Weight gradient norm: 0.0
+Layer 4 - Weight gradient norm: 0.0
+Layer 5 - Weight gradient norm: 0.0
+Layer 0 - Update norm: inf
+Layer 1 - Update norm: 0.0
+Layer 2 - Update norm: 0.0
+Layer 3 - Update norm: 0.0
+Layer 4 - Update norm: 0.0
+Layer 5 - Update norm: 0.0
+Update weights - Loss: 589.4618530273438
+Layer 0 - Weight gradient norm: nan
+Layer 1 - Weight gradient norm: 0.0
+Layer 2 - Weight gradient norm: 0.0
+Layer 3 - Weight gradient norm: 0.0
+Layer 4 - Weight gradient norm: 0.0
+Layer 5 - Weight gradient norm: 0.0
+Layer 0 - Update norm: inf
+Layer 1 - Update norm: 0.0
+Layer 2 - Update norm: 0.0
+Layer 3 - Update norm: 0.0
+Layer 4 - Update norm: 0.0
+Layer 5 - Update norm: 0.0
+Update weights - Loss: 589.4618530273438
+Layer 0 - Weight gradient norm: nan
+Layer 1 - Weight gradient norm: 0.0
+Layer 2 - Weight gradient norm: 0.0
+Layer 3 - Weight gradient norm: 0.0
+Layer 4 - Weight gradient norm: 0.0
+Layer 5 - Weight gradient norm: 0.0
+Layer 0 - Update norm: inf
+Layer 1 - Update norm: 0.0
+Layer 2 - Update norm: 0.0
+Layer 3 - Update norm: 0.0
+Layer 4 - Update norm: 0.0
+Layer 5 - Update norm: 0.0
+Update weights - Loss: 589.4618530273438
+Layer 0 - Weight gradient norm: nan
+Layer 1 - Weight gradient norm: 0.0
+Layer 2 - Weight gradient norm: 0.0
+Layer 3 - Weight gradient norm: 0.0
+Layer 4 - Weight gradient norm: 0.0
+Layer 5 - Weight gradient norm: 0.0
+Layer 0 - Update norm: inf
+Layer 1 - Update norm: 0.0
+Layer 2 - Update norm: 0.0
+Layer 3 - Update norm: 0.0
+Layer 4 - Update norm: 0.0
+Layer 5 - Update norm: 0.0
+Update weights - Loss: 589.4618530273438
+Layer 0 - Weight gradient norm: nan
+Layer 1 - Weight gradient norm: 0.0
+Layer 2 - Weight gradient norm: 0.0
+Layer 3 - Weight gradient norm: 0.0
+Layer 4 - Weight gradient norm: 0.0
+Layer 5 - Weight gradient norm: 0.0
+Layer 0 - Update norm: inf
+Layer 1 - Update norm: 0.0
+Layer 2 - Update norm: 0.0
+Layer 3 - Update norm: 0.0
+Layer 4 - Update norm: 0.0
+Layer 5 - Update norm: 0.0
+Update weights - Loss: 589.4618530273438
+Layer 0 - Weight gradient norm: nan
+Layer 1 - Weight gradient norm: 0.0
+Layer 2 - Weight gradient norm: 0.0
+Layer 3 - Weight gradient norm: 0.0
+Layer 4 - Weight gradient norm: 0.0
+Layer 5 - Weight gradient norm: 0.0
+Layer 0 - Update norm: inf
+Layer 1 - Update norm: 0.0
+Layer 2 - Update norm: 0.0
+Layer 3 - Update norm: 0.0
+Layer 4 - Update norm: 0.0
+Layer 5 - Update norm: 0.0
+Update weights - Loss: 589.4618530273438
+Layer 0 - Weight gradient norm: nan
+Layer 1 - Weight gradient norm: 0.0
+Layer 2 - Weight gradient norm: 0.0
+Layer 3 - Weight gradient norm: 0.0
+Layer 4 - Weight gradient norm: 0.0
+Layer 5 - Weight gradient norm: 0.0
+Layer 0 - Update norm: inf
+Layer 1 - Update norm: 0.0
+Layer 2 - Update norm: 0.0
+Layer 3 - Update norm: 0.0
+Layer 4 - Update norm: 0.0
+Layer 5 - Update norm: 0.0
+Update weights - Loss: 589.4618530273438
+Layer 0 - Weight gradient norm: nan
+Layer 1 - Weight gradient norm: 0.0
+Layer 2 - Weight gradient norm: 0.0
+Layer 3 - Weight gradient norm: 0.0
+Layer 4 - Weight gradient norm: 0.0
+Layer 5 - Weight gradient norm: 0.0
+Layer 0 - Update norm: inf
+Layer 1 - Update norm: 0.0
+Layer 2 - Update norm: 0.0
+Layer 3 - Update norm: 0.0
+Layer 4 - Update norm: 0.0
+Layer 5 - Update norm: 0.0
+Update weights - Loss: 589.4618530273438
+Layer 0 - Weight gradient norm: nan
+Layer 1 - Weight gradient norm: 0.0
+Layer 2 - Weight gradient norm: 0.0
+Layer 3 - Weight gradient norm: 0.0
+Layer 4 - Weight gradient norm: 0.0
+Layer 5 - Weight gradient norm: 0.0
+Layer 0 - Update norm: inf
+Layer 1 - Update norm: 0.0
+Layer 2 - Update norm: 0.0
+Layer 3 - Update norm: 0.0
+Layer 4 - Update norm: 0.0
+Layer 5 - Update norm: 0.0
+Update weights - Loss: 589.4618530273438
+Layer 0 - Weight gradient norm: nan
+Layer 1 - Weight gradient norm: 0.0
+Layer 2 - Weight gradient norm: 0.0
+Layer 3 - Weight gradient norm: 0.0
+Layer 4 - Weight gradient norm: 0.0
+Layer 5 - Weight gradient norm: 0.0
+Layer 0 - Update norm: inf
+Layer 1 - Update norm: 0.0
+Layer 2 - Update norm: 0.0
+Layer 3 - Update norm: 0.0
+Layer 4 - Update norm: 0.0
+Layer 5 - Update norm: 0.0
+Update weights - Loss: 589.4618530273438
+Layer 0 - Weight gradient norm: nan
+Layer 1 - Weight gradient norm: 0.0
+Layer 2 - Weight gradient norm: 0.0
+Layer 3 - Weight gradient norm: 0.0
+Layer 4 - Weight gradient norm: 0.0
+Layer 5 - Weight gradient norm: 0.0
+Layer 0 - Update norm: inf
+Layer 1 - Update norm: 0.0
+Layer 2 - Update norm: 0.0
+Layer 3 - Update norm: 0.0
+Layer 4 - Update norm: 0.0
+Layer 5 - Update norm: 0.0
+Update weights - Loss: 589.4618530273438
+Layer 0 - Weight gradient norm: nan
+Layer 1 - Weight gradient norm: 0.0
+Layer 2 - Weight gradient norm: 0.0
+Layer 3 - Weight gradient norm: 0.0
+Layer 4 - Weight gradient norm: 0.0
+Layer 5 - Weight gradient norm: 0.0
+Layer 0 - Update norm: inf
+Layer 1 - Update norm: 0.0
+Layer 2 - Update norm: 0.0
+Layer 3 - Update norm: 0.0
+Layer 4 - Update norm: 0.0
+Layer 5 - Update norm: 0.0
+Update weights - Loss: 589.4618530273438
+Layer 0 - Weight gradient norm: nan
+Layer 1 - Weight gradient norm: 0.0
+Layer 2 - Weight gradient norm: 0.0
+Layer 3 - Weight gradient norm: 0.0
+Layer 4 - Weight gradient norm: 0.0
+Layer 5 - Weight gradient norm: 0.0
+Layer 0 - Update norm: inf
+Layer 1 - Update norm: 0.0
+Layer 2 - Update norm: 0.0
+Layer 3 - Update norm: 0.0
+Layer 4 - Update norm: 0.0
+Layer 5 - Update norm: 0.0
+Update weights - Loss: 589.4618530273438
+Layer 0 - Weight gradient norm: nan
+Layer 1 - Weight gradient norm: 0.0
+Layer 2 - Weight gradient norm: 0.0
+Layer 3 - Weight gradient norm: 0.0
+Layer 4 - Weight gradient norm: 0.0
+Layer 5 - Weight gradient norm: 0.0
+Layer 0 - Update norm: inf
+Layer 1 - Update norm: 0.0
+Layer 2 - Update norm: 0.0
+Layer 3 - Update norm: 0.0
+Layer 4 - Update norm: 0.0
+Layer 5 - Update norm: 0.0
+Update weights - Loss: 589.4618530273438
+Layer 0 - Weight gradient norm: nan
+Layer 1 - Weight gradient norm: 0.0
+Layer 2 - Weight gradient norm: 0.0
+Layer 3 - Weight gradient norm: 0.0
+Layer 4 - Weight gradient norm: 0.0
+Layer 5 - Weight gradient norm: 0.0
+Layer 0 - Update norm: inf
+Layer 1 - Update norm: 0.0
+Layer 2 - Update norm: 0.0
+Layer 3 - Update norm: 0.0
+Layer 4 - Update norm: 0.0
+Layer 5 - Update norm: 0.0
+Update weights - Loss: 589.4618530273438
+Layer 0 - Weight gradient norm: nan
+Layer 1 - Weight gradient norm: 0.0
+Layer 2 - Weight gradient norm: 0.0
+Layer 3 - Weight gradient norm: 0.0
+Layer 4 - Weight gradient norm: 0.0
+Layer 5 - Weight gradient norm: 0.0
+Layer 0 - Update norm: inf
+Layer 1 - Update norm: 0.0
+Layer 2 - Update norm: 0.0
+Layer 3 - Update norm: 0.0
+Layer 4 - Update norm: 0.0
+Layer 5 - Update norm: 0.0
+Update weights - Loss: 589.4618530273438
+Layer 0 - Weight gradient norm: nan
+Layer 1 - Weight gradient norm: 0.0
+Layer 2 - Weight gradient norm: 0.0
+Layer 3 - Weight gradient norm: 0.0
+Layer 4 - Weight gradient norm: 0.0
+Layer 5 - Weight gradient norm: 0.0
+Layer 0 - Update norm: inf
+Layer 1 - Update norm: 0.0
+Layer 2 - Update norm: 0.0
+Layer 3 - Update norm: 0.0
+Layer 4 - Update norm: 0.0
+Layer 5 - Update norm: 0.0
+Update weights - Loss: 589.4618530273438
+Layer 0 - Weight gradient norm: nan
+Layer 1 - Weight gradient norm: 0.0
+Layer 2 - Weight gradient norm: 0.0
+Layer 3 - Weight gradient norm: 0.0
+Layer 4 - Weight gradient norm: 0.0
+Layer 5 - Weight gradient norm: 0.0
+Layer 0 - Update norm: inf
+Layer 1 - Update norm: 0.0
+Layer 2 - Update norm: 0.0
+Layer 3 - Update norm: 0.0
+Layer 4 - Update norm: 0.0
+Layer 5 - Update norm: 0.0
+Update weights - Loss: 589.4618530273438
+Layer 0 - Weight gradient norm: nan
+Layer 1 - Weight gradient norm: 0.0
+Layer 2 - Weight gradient norm: 0.0
+Layer 3 - Weight gradient norm: 0.0
+Layer 4 - Weight gradient norm: 0.0
+Layer 5 - Weight gradient norm: 0.0
+Layer 0 - Update norm: inf
+Layer 1 - Update norm: 0.0
+Layer 2 - Update norm: 0.0
+Layer 3 - Update norm: 0.0
+Layer 4 - Update norm: 0.0
+Layer 5 - Update norm: 0.0
+Update weights - Loss: 589.4618530273438
+Layer 0 - Weight gradient norm: nan
+Layer 1 - Weight gradient norm: 0.0
+Layer 2 - Weight gradient norm: 0.0
+Layer 3 - Weight gradient norm: 0.0
+Layer 4 - Weight gradient norm: 0.0
+Layer 5 - Weight gradient norm: 0.0
+Layer 0 - Update norm: inf
+Layer 1 - Update norm: 0.0
+Layer 2 - Update norm: 0.0
+Layer 3 - Update norm: 0.0
+Layer 4 - Update norm: 0.0
+Layer 5 - Update norm: 0.0
+Update weights - Loss: 589.4618530273438
+Layer 0 - Weight gradient norm: nan
+Layer 1 - Weight gradient norm: 0.0
+Layer 2 - Weight gradient norm: 0.0
+Layer 3 - Weight gradient norm: 0.0
+Layer 4 - Weight gradient norm: 0.0
+Layer 5 - Weight gradient norm: 0.0
+Layer 0 - Update norm: inf
+Layer 1 - Update norm: 0.0
+Layer 2 - Update norm: 0.0
+Layer 3 - Update norm: 0.0
+Layer 4 - Update norm: 0.0
+Layer 5 - Update norm: 0.0
+Update weights - Loss: 589.4618530273438
+Layer 0 - Weight gradient norm: nan
+Layer 1 - Weight gradient norm: 0.0
+Layer 2 - Weight gradient norm: 0.0
+Layer 3 - Weight gradient norm: 0.0
+Layer 4 - Weight gradient norm: 0.0
+Layer 5 - Weight gradient norm: 0.0
+Layer 0 - Update norm: inf
+Layer 1 - Update norm: 0.0
+Layer 2 - Update norm: 0.0
+Layer 3 - Update norm: 0.0
+Layer 4 - Update norm: 0.0
+Layer 5 - Update norm: 0.0
+Update weights - Loss: 589.4618530273438
+Layer 0 - Weight gradient norm: nan
+Layer 1 - Weight gradient norm: 0.0
+Layer 2 - Weight gradient norm: 0.0
+Layer 3 - Weight gradient norm: 0.0
+Layer 4 - Weight gradient norm: 0.0
+Layer 5 - Weight gradient norm: 0.0
+Layer 0 - Update norm: inf
+Layer 1 - Update norm: 0.0
+Layer 2 - Update norm: 0.0
+Layer 3 - Update norm: 0.0
+Layer 4 - Update norm: 0.0
+Layer 5 - Update norm: 0.0
+Update weights - Loss: 589.4618530273438
+Layer 0 - Weight gradient norm: nan
+Layer 1 - Weight gradient norm: 0.0
+Layer 2 - Weight gradient norm: 0.0
+Layer 3 - Weight gradient norm: 0.0
+Layer 4 - Weight gradient norm: 0.0
+Layer 5 - Weight gradient norm: 0.0
+Layer 0 - Update norm: inf
+Layer 1 - Update norm: 0.0
+Layer 2 - Update norm: 0.0
+Layer 3 - Update norm: 0.0
+Layer 4 - Update norm: 0.0
+Layer 5 - Update norm: 0.0
+Update weights - Loss: 589.4618530273438
+Layer 0 - Weight gradient norm: nan
+Layer 1 - Weight gradient norm: 0.0
+Layer 2 - Weight gradient norm: 0.0
+Layer 3 - Weight gradient norm: 0.0
+Layer 4 - Weight gradient norm: 0.0
+Layer 5 - Weight gradient norm: 0.0
+Layer 0 - Update norm: inf
+Layer 1 - Update norm: 0.0
+Layer 2 - Update norm: 0.0
+Layer 3 - Update norm: 0.0
+Layer 4 - Update norm: 0.0
+Layer 5 - Update norm: 0.0
+Update weights - Loss: 589.4618530273438
+Layer 0 - Weight gradient norm: nan
+Layer 1 - Weight gradient norm: 0.0
+Layer 2 - Weight gradient norm: 0.0
+Layer 3 - Weight gradient norm: 0.0
+Layer 4 - Weight gradient norm: 0.0
+Layer 5 - Weight gradient norm: 0.0
+Layer 0 - Update norm: inf
+Layer 1 - Update norm: 0.0
+Layer 2 - Update norm: 0.0
+Layer 3 - Update norm: 0.0
+Layer 4 - Update norm: 0.0
+Layer 5 - Update norm: 0.0
+Update weights - Loss: 589.4618530273438
+Layer 0 - Weight gradient norm: nan
+Layer 1 - Weight gradient norm: 0.0
+Layer 2 - Weight gradient norm: 0.0
+Layer 3 - Weight gradient norm: 0.0
+Layer 4 - Weight gradient norm: 0.0
+Layer 5 - Weight gradient norm: 0.0
+Layer 0 - Update norm: inf
+Layer 1 - Update norm: 0.0
+Layer 2 - Update norm: 0.0
+Layer 3 - Update norm: 0.0
+Layer 4 - Update norm: 0.0
+Layer 5 - Update norm: 0.0
+Update weights - Loss: 589.4618530273438
+Layer 0 - Weight gradient norm: nan
+Layer 1 - Weight gradient norm: 0.0
+Layer 2 - Weight gradient norm: 0.0
+Layer 3 - Weight gradient norm: 0.0
+Layer 4 - Weight gradient norm: 0.0
+Layer 5 - Weight gradient norm: 0.0
+Layer 0 - Update norm: inf
+Layer 1 - Update norm: 0.0
+Layer 2 - Update norm: 0.0
+Layer 3 - Update norm: 0.0
+Layer 4 - Update norm: 0.0
+Layer 5 - Update norm: 0.0
+Update weights - Loss: 589.4618530273438
+Layer 0 - Weight gradient norm: nan
+Layer 1 - Weight gradient norm: 0.0
+Layer 2 - Weight gradient norm: 0.0
+Layer 3 - Weight gradient norm: 0.0
+Layer 4 - Weight gradient norm: 0.0
+Layer 5 - Weight gradient norm: 0.0
+Layer 0 - Update norm: inf
+Layer 1 - Update norm: 0.0
+Layer 2 - Update norm: 0.0
+Layer 3 - Update norm: 0.0
+Layer 4 - Update norm: 0.0
+Layer 5 - Update norm: 0.0
+Update weights - Loss: 589.4618530273438
+Layer 0 - Weight gradient norm: nan
+Layer 1 - Weight gradient norm: 0.0
+Layer 2 - Weight gradient norm: 0.0
+Layer 3 - Weight gradient norm: 0.0
+Layer 4 - Weight gradient norm: 0.0
+Layer 5 - Weight gradient norm: 0.0
+Layer 0 - Update norm: inf
+Layer 1 - Update norm: 0.0
+Layer 2 - Update norm: 0.0
+Layer 3 - Update norm: 0.0
+Layer 4 - Update norm: 0.0
+Layer 5 - Update norm: 0.0
+Update weights - Loss: 589.4618530273438
+Layer 0 - Weight gradient norm: nan
+Layer 1 - Weight gradient norm: 0.0
+Layer 2 - Weight gradient norm: 0.0
+Layer 3 - Weight gradient norm: 0.0
+Layer 4 - Weight gradient norm: 0.0
+Layer 5 - Weight gradient norm: 0.0
+Layer 0 - Update norm: inf
+Layer 1 - Update norm: 0.0
+Layer 2 - Update norm: 0.0
+Layer 3 - Update norm: 0.0
+Layer 4 - Update norm: 0.0
+Layer 5 - Update norm: 0.0
+Update weights - Loss: 589.4618530273438
+Layer 0 - Weight gradient norm: nan
+Layer 1 - Weight gradient norm: 0.0
+Layer 2 - Weight gradient norm: 0.0
+Layer 3 - Weight gradient norm: 0.0
+Layer 4 - Weight gradient norm: 0.0
+Layer 5 - Weight gradient norm: 0.0
+Layer 0 - Update norm: inf
+Layer 1 - Update norm: 0.0
+Layer 2 - Update norm: 0.0
+Layer 3 - Update norm: 0.0
+Layer 4 - Update norm: 0.0
+Layer 5 - Update norm: 0.0
+Update weights - Loss: 589.4618530273438
+Layer 0 - Weight gradient norm: nan
+Layer 1 - Weight gradient norm: 0.0
+Layer 2 - Weight gradient norm: 0.0
+Layer 3 - Weight gradient norm: 0.0
+Layer 4 - Weight gradient norm: 0.0
+Layer 5 - Weight gradient norm: 0.0
+Layer 0 - Update norm: inf
+Layer 1 - Update norm: 0.0
+Layer 2 - Update norm: 0.0
+Layer 3 - Update norm: 0.0
+Layer 4 - Update norm: 0.0
+Layer 5 - Update norm: 0.0
+Update weights - Loss: 589.4618530273438
+Layer 0 - Weight gradient norm: nan
+Layer 1 - Weight gradient norm: 0.0
+Layer 2 - Weight gradient norm: 0.0
+Layer 3 - Weight gradient norm: 0.0
+Layer 4 - Weight gradient norm: 0.0
+Layer 5 - Weight gradient norm: 0.0
+Layer 0 - Update norm: inf
+Layer 1 - Update norm: 0.0
+Layer 2 - Update norm: 0.0
+Layer 3 - Update norm: 0.0
+Layer 4 - Update norm: 0.0
+Layer 5 - Update norm: 0.0
+Update weights - Loss: 589.4618530273438
+Layer 0 - Weight gradient norm: nan
+Layer 1 - Weight gradient norm: 0.0
+Layer 2 - Weight gradient norm: 0.0
+Layer 3 - Weight gradient norm: 0.0
+Layer 4 - Weight gradient norm: 0.0
+Layer 5 - Weight gradient norm: 0.0
+Layer 0 - Update norm: inf
+Layer 1 - Update norm: 0.0
+Layer 2 - Update norm: 0.0
+Layer 3 - Update norm: 0.0
+Layer 4 - Update norm: 0.0
+Layer 5 - Update norm: 0.0
+Update weights - Loss: 589.4618530273438
+Layer 0 - Weight gradient norm: nan
+Layer 1 - Weight gradient norm: 0.0
+Layer 2 - Weight gradient norm: 0.0
+Layer 3 - Weight gradient norm: 0.0
+Layer 4 - Weight gradient norm: 0.0
+Layer 5 - Weight gradient norm: 0.0
+Layer 0 - Update norm: inf
+Layer 1 - Update norm: 0.0
+Layer 2 - Update norm: 0.0
+Layer 3 - Update norm: 0.0
+Layer 4 - Update norm: 0.0
+Layer 5 - Update norm: 0.0
+Update weights - Loss: 589.4618530273438
+Layer 0 - Weight gradient norm: nan
+Layer 1 - Weight gradient norm: 0.0
+Layer 2 - Weight gradient norm: 0.0
+Layer 3 - Weight gradient norm: 0.0
+Layer 4 - Weight gradient norm: 0.0
+Layer 5 - Weight gradient norm: 0.0
+Layer 0 - Update norm: inf
+Layer 1 - Update norm: 0.0
+Layer 2 - Update norm: 0.0
+Layer 3 - Update norm: 0.0
+Layer 4 - Update norm: 0.0
+Layer 5 - Update norm: 0.0
+Update weights - Loss: 589.4618530273438
+Layer 0 - Weight gradient norm: nan
+Layer 1 - Weight gradient norm: 0.0
+Layer 2 - Weight gradient norm: 0.0
+Layer 3 - Weight gradient norm: 0.0
+Layer 4 - Weight gradient norm: 0.0
+Layer 5 - Weight gradient norm: 0.0
+Layer 0 - Update norm: inf
+Layer 1 - Update norm: 0.0
+Layer 2 - Update norm: 0.0
+Layer 3 - Update norm: 0.0
+Layer 4 - Update norm: 0.0
+Layer 5 - Update norm: 0.0
+Update weights - Loss: 589.4618530273438
+Layer 0 - Weight gradient norm: nan
+Layer 1 - Weight gradient norm: 0.0
+Layer 2 - Weight gradient norm: 0.0
+Layer 3 - Weight gradient norm: 0.0
+Layer 4 - Weight gradient norm: 0.0
+Layer 5 - Weight gradient norm: 0.0
+Layer 0 - Update norm: inf
+Layer 1 - Update norm: 0.0
+Layer 2 - Update norm: 0.0
+Layer 3 - Update norm: 0.0
+Layer 4 - Update norm: 0.0
+Layer 5 - Update norm: 0.0
+Update weights - Loss: 589.4618530273438
+Layer 0 - Weight gradient norm: nan
+Layer 1 - Weight gradient norm: 0.0
+Layer 2 - Weight gradient norm: 0.0
+Layer 3 - Weight gradient norm: 0.0
+Layer 4 - Weight gradient norm: 0.0
+Layer 5 - Weight gradient norm: 0.0
+Layer 0 - Update norm: inf
+Layer 1 - Update norm: 0.0
+Layer 2 - Update norm: 0.0
+Layer 3 - Update norm: 0.0
+Layer 4 - Update norm: 0.0
+Layer 5 - Update norm: 0.0
+Update weights - Loss: 589.4618530273438
+Layer 0 - Weight gradient norm: nan
+Layer 1 - Weight gradient norm: 0.0
+Layer 2 - Weight gradient norm: 0.0
+Layer 3 - Weight gradient norm: 0.0
+Layer 4 - Weight gradient norm: 0.0
+Layer 5 - Weight gradient norm: 0.0
+Layer 0 - Update norm: inf
+Layer 1 - Update norm: 0.0
+Layer 2 - Update norm: 0.0
+Layer 3 - Update norm: 0.0
+Layer 4 - Update norm: 0.0
+Layer 5 - Update norm: 0.0
+Update weights - Loss: 589.4618530273438
+Layer 0 - Weight gradient norm: nan
+Layer 1 - Weight gradient norm: 0.0
+Layer 2 - Weight gradient norm: 0.0
+Layer 3 - Weight gradient norm: 0.0
+Layer 4 - Weight gradient norm: 0.0
+Layer 5 - Weight gradient norm: 0.0
+Layer 0 - Update norm: inf
+Layer 1 - Update norm: 0.0
+Layer 2 - Update norm: 0.0
+Layer 3 - Update norm: 0.0
+Layer 4 - Update norm: 0.0
+Layer 5 - Update norm: 0.0
+Update weights - Loss: 589.4618530273438
+Layer 0 - Weight gradient norm: nan
+Layer 1 - Weight gradient norm: 0.0
+Layer 2 - Weight gradient norm: 0.0
+Layer 3 - Weight gradient norm: 0.0
+Layer 4 - Weight gradient norm: 0.0
+Layer 5 - Weight gradient norm: 0.0
+Layer 0 - Update norm: inf
+Layer 1 - Update norm: 0.0
+Layer 2 - Update norm: 0.0
+Layer 3 - Update norm: 0.0
+Layer 4 - Update norm: 0.0
+Layer 5 - Update norm: 0.0
+Update weights - Loss: 589.4618530273438
+Layer 0 - Weight gradient norm: nan
+Layer 1 - Weight gradient norm: 0.0
+Layer 2 - Weight gradient norm: 0.0
+Layer 3 - Weight gradient norm: 0.0
+Layer 4 - Weight gradient norm: 0.0
+Layer 5 - Weight gradient norm: 0.0
+Layer 0 - Update norm: inf
+Layer 1 - Update norm: 0.0
+Layer 2 - Update norm: 0.0
+Layer 3 - Update norm: 0.0
+Layer 4 - Update norm: 0.0
+Layer 5 - Update norm: 0.0
+Update weights - Loss: 589.4618530273438
+Layer 0 - Weight gradient norm: nan
+Layer 1 - Weight gradient norm: 0.0
+Layer 2 - Weight gradient norm: 0.0
+Layer 3 - Weight gradient norm: 0.0
+Layer 4 - Weight gradient norm: 0.0
+Layer 5 - Weight gradient norm: 0.0
+Layer 0 - Update norm: inf
+Layer 1 - Update norm: 0.0
+Layer 2 - Update norm: 0.0
+Layer 3 - Update norm: 0.0
+Layer 4 - Update norm: 0.0
+Layer 5 - Update norm: 0.0
+Update weights - Loss: 589.4618530273438
+Layer 0 - Weight gradient norm: nan
+Layer 1 - Weight gradient norm: 0.0
+Layer 2 - Weight gradient norm: 0.0
+Layer 3 - Weight gradient norm: 0.0
+Layer 4 - Weight gradient norm: 0.0
+Layer 5 - Weight gradient norm: 0.0
+Layer 0 - Update norm: inf
+Layer 1 - Update norm: 0.0
+Layer 2 - Update norm: 0.0
+Layer 3 - Update norm: 0.0
+Layer 4 - Update norm: 0.0
+Layer 5 - Update norm: 0.0
+Update weights - Loss: 589.4618530273438
+Layer 0 - Weight gradient norm: nan
+Layer 1 - Weight gradient norm: 0.0
+Layer 2 - Weight gradient norm: 0.0
+Layer 3 - Weight gradient norm: 0.0
+Layer 4 - Weight gradient norm: 0.0
+Layer 5 - Weight gradient norm: 0.0
+Layer 0 - Update norm: inf
+Layer 1 - Update norm: 0.0
+Layer 2 - Update norm: 0.0
+Layer 3 - Update norm: 0.0
+Layer 4 - Update norm: 0.0
+Layer 5 - Update norm: 0.0
+Update weights - Loss: 589.4618530273438
+Layer 0 - Weight gradient norm: nan
+Layer 1 - Weight gradient norm: 0.0
+Layer 2 - Weight gradient norm: 0.0
+Layer 3 - Weight gradient norm: 0.0
+Layer 4 - Weight gradient norm: 0.0
+Layer 5 - Weight gradient norm: 0.0
+Layer 0 - Update norm: inf
+Layer 1 - Update norm: 0.0
+Layer 2 - Update norm: 0.0
+Layer 3 - Update norm: 0.0
+Layer 4 - Update norm: 0.0
+Layer 5 - Update norm: 0.0
+Update weights - Loss: 589.4618530273438
+Layer 0 - Weight gradient norm: nan
+Layer 1 - Weight gradient norm: 0.0
+Layer 2 - Weight gradient norm: 0.0
+Layer 3 - Weight gradient norm: 0.0
+Layer 4 - Weight gradient norm: 0.0
+Layer 5 - Weight gradient norm: 0.0
+Layer 0 - Update norm: inf
+Layer 1 - Update norm: 0.0
+Layer 2 - Update norm: 0.0
+Layer 3 - Update norm: 0.0
+Layer 4 - Update norm: 0.0
+Layer 5 - Update norm: 0.0
+Update weights - Loss: 589.4618530273438
+Layer 0 - Weight gradient norm: nan
+Layer 1 - Weight gradient norm: 0.0
+Layer 2 - Weight gradient norm: 0.0
+Layer 3 - Weight gradient norm: 0.0
+Layer 4 - Weight gradient norm: 0.0
+Layer 5 - Weight gradient norm: 0.0
+Layer 0 - Update norm: inf
+Layer 1 - Update norm: 0.0
+Layer 2 - Update norm: 0.0
+Layer 3 - Update norm: 0.0
+Layer 4 - Update norm: 0.0
+Layer 5 - Update norm: 0.0
+Update weights - Loss: 589.4618530273438
+Layer 0 - Weight gradient norm: nan
+Layer 1 - Weight gradient norm: 0.0
+Layer 2 - Weight gradient norm: 0.0
+Layer 3 - Weight gradient norm: 0.0
+Layer 4 - Weight gradient norm: 0.0
+Layer 5 - Weight gradient norm: 0.0
+Layer 0 - Update norm: inf
+Layer 1 - Update norm: 0.0
+Layer 2 - Update norm: 0.0
+Layer 3 - Update norm: 0.0
+Layer 4 - Update norm: 0.0
+Layer 5 - Update norm: 0.0
+Update weights - Loss: 589.4618530273438
+Layer 0 - Weight gradient norm: nan
+Layer 1 - Weight gradient norm: 0.0
+Layer 2 - Weight gradient norm: 0.0
+Layer 3 - Weight gradient norm: 0.0
+Layer 4 - Weight gradient norm: 0.0
+Layer 5 - Weight gradient norm: 0.0
+Layer 0 - Update norm: inf
+Layer 1 - Update norm: 0.0
+Layer 2 - Update norm: 0.0
+Layer 3 - Update norm: 0.0
+Layer 4 - Update norm: 0.0
+Layer 5 - Update norm: 0.0
+Update weights - Loss: 589.4618530273438
+Layer 0 - Weight gradient norm: nan
+Layer 1 - Weight gradient norm: 0.0
+Layer 2 - Weight gradient norm: 0.0
+Layer 3 - Weight gradient norm: 0.0
+Layer 4 - Weight gradient norm: 0.0
+Layer 5 - Weight gradient norm: 0.0
+Layer 0 - Update norm: inf
+Layer 1 - Update norm: 0.0
+Layer 2 - Update norm: 0.0
+Layer 3 - Update norm: 0.0
+Layer 4 - Update norm: 0.0
+Layer 5 - Update norm: 0.0
+Update weights - Loss: 589.4618530273438
+Layer 0 - Weight gradient norm: nan
+Layer 1 - Weight gradient norm: 0.0
+Layer 2 - Weight gradient norm: 0.0
+Layer 3 - Weight gradient norm: 0.0
+Layer 4 - Weight gradient norm: 0.0
+Layer 5 - Weight gradient norm: 0.0
+Layer 0 - Update norm: inf
+Layer 1 - Update norm: 0.0
+Layer 2 - Update norm: 0.0
+Layer 3 - Update norm: 0.0
+Layer 4 - Update norm: 0.0
+Layer 5 - Update norm: 0.0
+Update weights - Loss: 589.4618530273438
+Layer 0 - Weight gradient norm: nan
+Layer 1 - Weight gradient norm: 0.0
+Layer 2 - Weight gradient norm: 0.0
+Layer 3 - Weight gradient norm: 0.0
+Layer 4 - Weight gradient norm: 0.0
+Layer 5 - Weight gradient norm: 0.0
+Layer 0 - Update norm: inf
+Layer 1 - Update norm: 0.0
+Layer 2 - Update norm: 0.0
+Layer 3 - Update norm: 0.0
+Layer 4 - Update norm: 0.0
+Layer 5 - Update norm: 0.0
+Update weights - Loss: 589.4618530273438
+Layer 0 - Weight gradient norm: nan
+Layer 1 - Weight gradient norm: 0.0
+Layer 2 - Weight gradient norm: 0.0
+Layer 3 - Weight gradient norm: 0.0
+Layer 4 - Weight gradient norm: 0.0
+Layer 5 - Weight gradient norm: 0.0
+Layer 0 - Update norm: inf
+Layer 1 - Update norm: 0.0
+Layer 2 - Update norm: 0.0
+Layer 3 - Update norm: 0.0
+Layer 4 - Update norm: 0.0
+Layer 5 - Update norm: 0.0
+Update weights - Loss: 589.4618530273438
+Layer 0 - Weight gradient norm: nan
+Layer 1 - Weight gradient norm: 0.0
+Layer 2 - Weight gradient norm: 0.0
+Layer 3 - Weight gradient norm: 0.0
+Layer 4 - Weight gradient norm: 0.0
+Layer 5 - Weight gradient norm: 0.0
+Layer 0 - Update norm: inf
+Layer 1 - Update norm: 0.0
+Layer 2 - Update norm: 0.0
+Layer 3 - Update norm: 0.0
+Layer 4 - Update norm: 0.0
+Layer 5 - Update norm: 0.0
+Update weights - Loss: 589.4618530273438
+Layer 0 - Weight gradient norm: nan
+Layer 1 - Weight gradient norm: 0.0
+Layer 2 - Weight gradient norm: 0.0
+Layer 3 - Weight gradient norm: 0.0
+Layer 4 - Weight gradient norm: 0.0
+Layer 5 - Weight gradient norm: 0.0
+Layer 0 - Update norm: inf
+Layer 1 - Update norm: 0.0
+Layer 2 - Update norm: 0.0
+Layer 3 - Update norm: 0.0
+Layer 4 - Update norm: 0.0
+Layer 5 - Update norm: 0.0
+Update weights - Loss: 589.4618530273438
+Layer 0 - Weight gradient norm: nan
+Layer 1 - Weight gradient norm: 0.0
+Layer 2 - Weight gradient norm: 0.0
+Layer 3 - Weight gradient norm: 0.0
+Layer 4 - Weight gradient norm: 0.0
+Layer 5 - Weight gradient norm: 0.0
+Layer 0 - Update norm: inf
+Layer 1 - Update norm: 0.0
+Layer 2 - Update norm: 0.0
+Layer 3 - Update norm: 0.0
+Layer 4 - Update norm: 0.0
+Layer 5 - Update norm: 0.0
+Update weights - Loss: 589.4618530273438
+Layer 0 - Weight gradient norm: nan
+Layer 1 - Weight gradient norm: 0.0
+Layer 2 - Weight gradient norm: 0.0
+Layer 3 - Weight gradient norm: 0.0
+Layer 4 - Weight gradient norm: 0.0
+Layer 5 - Weight gradient norm: 0.0
+Layer 0 - Update norm: inf
+Layer 1 - Update norm: 0.0
+Layer 2 - Update norm: 0.0
+Layer 3 - Update norm: 0.0
+Layer 4 - Update norm: 0.0
+Layer 5 - Update norm: 0.0
+Update weights - Loss: 589.4618530273438
+Layer 0 - Weight gradient norm: nan
+Layer 1 - Weight gradient norm: 0.0
+Layer 2 - Weight gradient norm: 0.0
+Layer 3 - Weight gradient norm: 0.0
+Layer 4 - Weight gradient norm: 0.0
+Layer 5 - Weight gradient norm: 0.0
+Layer 0 - Update norm: inf
+Layer 1 - Update norm: 0.0
+Layer 2 - Update norm: 0.0
+Layer 3 - Update norm: 0.0
+Layer 4 - Update norm: 0.0
+Layer 5 - Update norm: 0.0
+Update weights - Loss: 589.4618530273438
+Layer 0 - Weight gradient norm: nan
+Layer 1 - Weight gradient norm: 0.0
+Layer 2 - Weight gradient norm: 0.0
+Layer 3 - Weight gradient norm: 0.0
+Layer 4 - Weight gradient norm: 0.0
+Layer 5 - Weight gradient norm: 0.0
+Layer 0 - Update norm: inf
+Layer 1 - Update norm: 0.0
+Layer 2 - Update norm: 0.0
+Layer 3 - Update norm: 0.0
+Layer 4 - Update norm: 0.0
+Layer 5 - Update norm: 0.0
+Update weights - Loss: 589.4618530273438
+Layer 0 - Weight gradient norm: nan
+Layer 1 - Weight gradient norm: 0.0
+Layer 2 - Weight gradient norm: 0.0
+Layer 3 - Weight gradient norm: 0.0
+Layer 4 - Weight gradient norm: 0.0
+Layer 5 - Weight gradient norm: 0.0
+Layer 0 - Update norm: inf
+Layer 1 - Update norm: 0.0
+Layer 2 - Update norm: 0.0
+Layer 3 - Update norm: 0.0
+Layer 4 - Update norm: 0.0
+Layer 5 - Update norm: 0.0
+Update weights - Loss: 589.4618530273438
+Layer 0 - Weight gradient norm: nan
+Layer 1 - Weight gradient norm: 0.0
+Layer 2 - Weight gradient norm: 0.0
+Layer 3 - Weight gradient norm: 0.0
+Layer 4 - Weight gradient norm: 0.0
+Layer 5 - Weight gradient norm: 0.0
+Layer 0 - Update norm: inf
+Layer 1 - Update norm: 0.0
+Layer 2 - Update norm: 0.0
+Layer 3 - Update norm: 0.0
+Layer 4 - Update norm: 0.0
+Layer 5 - Update norm: 0.0
+Update weights - Loss: 221.04818725585938
+Layer 0 - Weight gradient norm: nan
+Layer 1 - Weight gradient norm: 0.0
+Layer 2 - Weight gradient norm: 0.0
+Layer 3 - Weight gradient norm: 0.0
+Layer 4 - Weight gradient norm: 0.0
+Layer 5 - Weight gradient norm: 0.0
+Layer 0 - Update norm: inf
+Layer 1 - Update norm: 0.0
+Layer 2 - Update norm: 0.0
+Layer 3 - Update norm: 0.0
+Layer 4 - Update norm: 0.0
+Layer 5 - Update norm: 0.0
+Traceback (most recent call last):
+  File "main.py", line 224, in <module>
+    main(**FLAGS)
+  File "main.py", line 198, in main
+    model.train(train_loader, valid_loader, kwargs["epochs"], kwargs["learning_rate"],
+  File "/Users/emmagraham/Documents/GitHub/propagation/CLtargetprop/Models/bp_net.py", line 83, in train
+    wandb.log(log_dict)
+KeyboardInterrupt

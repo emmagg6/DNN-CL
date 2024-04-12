@@ -1,0 +1,29 @@
+
+Epoch: 0, Train Loss 2.5635513231913247, Train Acc 0.07035, Valid Loss: 2.565448165512085, Valid Acc: 0.0731
+Epoch: 1, Train Loss: 1.135135733795166, Train Acc: 0.9107, Valid Loss: 0.9440702674865723, Valid Acc: 0.9139
+Epoch: 2, Train Loss: 0.9226124818166097, Train Acc: 0.9346, Valid Loss: 0.8986991325378418, Valid Acc: 0.9373
+Epoch: 3, Train Loss: 0.89064973042806, Train Acc: 0.9493166666666667, Valid Loss: 0.8749233400344849, Valid Acc: 0.9533
+Epoch: 4, Train Loss: 0.876469804763794, Train Acc: 0.9603333333333334, Valid Loss: 0.8637927236557007, Valid Acc: 0.9597
+Epoch: 5, Train Loss: 0.8655329305013021, Train Acc: 0.9616666666666667, Valid Loss: 0.8637366683006287, Valid Acc: 0.9571
+Traceback (most recent call last):
+  File "main.py", line 240, in <module>
+    main(**vars(FLAGS))
+  File "main.py", line 213, in main
+    model.train_model(train_loader, valid_loader, kwargs["epochs"], kwargs["learning_rate"], kwargs["log"], kwargs["save"])
+  File "/Users/emmagraham/Documents/GitHub/propagation/CLtargetprop/Models/bp.py", line 109, in train_model
+    for x, y in train_loader:
+  File "/Users/emmagraham/anaconda3/envs/target-prop/lib/python3.8/site-packages/torch/utils/data/dataloader.py", line 631, in __next__
+    data = self._next_data()
+  File "/Users/emmagraham/anaconda3/envs/target-prop/lib/python3.8/site-packages/torch/utils/data/dataloader.py", line 1318, in _next_data
+    self._shutdown_workers()
+  File "/Users/emmagraham/anaconda3/envs/target-prop/lib/python3.8/site-packages/torch/utils/data/dataloader.py", line 1443, in _shutdown_workers
+    w.join(timeout=_utils.MP_STATUS_CHECK_INTERVAL)
+  File "/Users/emmagraham/anaconda3/envs/target-prop/lib/python3.8/multiprocessing/process.py", line 149, in join
+    res = self._popen.wait(timeout)
+  File "/Users/emmagraham/anaconda3/envs/target-prop/lib/python3.8/multiprocessing/popen_fork.py", line 44, in wait
+    if not wait([self.sentinel], timeout):
+  File "/Users/emmagraham/anaconda3/envs/target-prop/lib/python3.8/multiprocessing/connection.py", line 931, in wait
+    ready = selector.select(timeout)
+  File "/Users/emmagraham/anaconda3/envs/target-prop/lib/python3.8/selectors.py", line 415, in select
+    fd_event_list = self._selector.poll(timeout)
+KeyboardInterrupt

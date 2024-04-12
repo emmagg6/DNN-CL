@@ -1,0 +1,20 @@
+
+Epoch: 0, Valid Loss: 594.5189089775085, Valid Acc: 7.09
+Epoch: 1, Train Loss: 302.9232939699863, Train Acc: 90.06333333333333, Valid Loss: 238.80593585968018, Valid Acc: 90.62
+Epoch: 2, Train Loss: 238.65328593152634, Train Acc: 93.73166666666667, Valid Loss: 224.46685955524444, Valid Acc: 93.83
+Epoch: 3, Train Loss: 228.15695304058968, Train Acc: 94.52333333333333, Valid Loss: 221.1092046737671, Valid Acc: 94.62
+Epoch: 4, Train Loss: 224.14317938622008, Train Acc: 95.52, Valid Loss: 217.15584042072297, Valid Acc: 95.51
+Epoch: 5, Train Loss: 221.13615751875207, Train Acc: 95.65, Valid Loss: 216.87417578697205, Valid Acc: 95.67
+Epoch: 6, Train Loss: 219.2077250703852, Train Acc: 96.78666666666666, Valid Loss: 213.83957102298737, Valid Acc: 96.22
+Epoch: 7, Train Loss: 217.90580794963432, Train Acc: 96.71666666666667, Valid Loss: 214.03862364292144, Valid Acc: 96.36
+Epoch: 8, Train Loss: 216.48984621737867, Train Acc: 97.14666666666666, Valid Loss: 212.38772277832032, Valid Acc: 96.73
+Epoch: 9, Train Loss: 215.61515752914104, Train Acc: 96.86666666666666, Valid Loss: 214.42646219730378, Valid Acc: 96.19
+Epoch: 10, Train Loss: 215.34048961882897, Train Acc: 97.51166666666667, Valid Loss: 211.90668244361876, Valid Acc: 96.84
+Traceback (most recent call last):
+  File "main.py", line 266, in <module>
+    main(**vars(FLAGS))
+  File "main.py", line 258, in main
+    loss, acc = model.external_test(test_loader)
+  File "/Users/emmagraham/anaconda3/envs/target-prop/lib/python3.8/site-packages/torch/nn/modules/module.py", line 1688, in __getattr__
+    raise AttributeError(f"'{type(self).__name__}' object has no attribute '{name}'")
+AttributeError: 'bp_net' object has no attribute 'external_test'

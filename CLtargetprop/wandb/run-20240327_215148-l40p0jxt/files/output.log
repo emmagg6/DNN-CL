@@ -1,0 +1,12 @@
+Traceback (most recent call last):
+  File "main.py", line 230, in <module>
+    main(**FLAGS)
+  File "main.py", line 205, in main
+    model.train_model(train_loader, valid_loader, kwargs["epochs"], kwargs["learning_rate"], kwargs["log"], kwargs["save"])
+  File "/Users/emmagraham/Documents/GitHub/propagation/CLtargetprop/Models/bp_net_cl.py", line 41, in train_model
+    train_loss, train_acc = self.evaluate(train_loader)
+  File "/Users/emmagraham/Documents/GitHub/propagation/CLtargetprop/Models/bp_net_cl.py", line 193, in evaluate
+    outputs = self.forward(inputs)
+  File "/Users/emmagraham/Documents/GitHub/propagation/CLtargetprop/Models/bp_net_cl.py", line 154, in forward
+    y = self.layers[d].forward(y, update=update)
+TypeError: forward() got an unexpected keyword argument 'update'
