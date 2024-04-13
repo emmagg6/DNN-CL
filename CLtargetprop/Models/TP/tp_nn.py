@@ -2,10 +2,9 @@
 Based on code used for the experiments conducted in the submitted paper 
 "Fixed-Weight Difference Target Propagation" by K. K. S. Wu, K. C. K. Lee, and T. Poggio.
 
-Adaptation for Continual Learning by emmagg6.
+Adaptation for runs of Continual Learning by emmagg6.
 
 '''
-
 
 
 from Models.TP.tp_layers import tp_layer
@@ -22,6 +21,7 @@ import torch
 from torch import nn
 from torch.autograd.functional import jacobian
 import os
+import json
 
 
 class tp_net(net):
@@ -50,7 +50,15 @@ class tp_net(net):
             y = self.layers[d].forward(y, update=update)
         return y
 
-    def train(self, train_loader, valid_loader, epochs, lr, lrb, std, stepsize, log, save, params=None):
+    def train(self, train_loader, valid_loader, epochs, lr, lrb, std, stepsize, log, save, params=None,
+              trial = 0, save_ckpts = '', new_ckpt = '', train_ckpts = ''):
+        
+        train_losses = []
+        train_accuracies = []
+        test_losses = []
+        test_accuracies = []
+        trials = []
+
         # Pre-train the feedback weights
         for e in range(params["epochs_backward"]):
             torch.cuda.empty_cache()
@@ -97,6 +105,13 @@ class tp_net(net):
             with torch.no_grad():
                 train_loss, train_acc = self.test(train_loader)
                 valid_loss, valid_acc = self.test(valid_loader)
+
+            train_losses.append(train_loss)
+            train_accuracies.append(train_acc)
+            test_losses.append(valid_loss)
+            test_accuracies.append(valid_acc)
+            trials.append(e)
+
             # Logging
             if log:
                 log_dict = {}
@@ -125,9 +140,14 @@ class tp_net(net):
                     print(f"\teigenvalue ratio-{d}: {eigenvalues_ratio[d].item()}")
                 for d in range(1, self.depth - self.direct_depth + 1):
                     print(f"\teigenvalue trace-{d}: {eigenvalues_trace[d].item()}")
+            
+            if e == 0:
+                self.save_initial_results(train_loss, train_acc, valid_loss, valid_acc, 
+                                          trial, save_ckpts)
 
         if save == 'yes':
-            self.save_model()
+            self.save_model(new_ckpt)
+            self.save_training_dynamics(train_losses, train_accuracies, test_losses, test_accuracies, trials, train_ckpts)
         
 
     def train_back_weights(self, x, y, lrb, std, loss_type="L-DRL"):
@@ -206,8 +226,8 @@ class tp_net(net):
             }
         return layer_params
 
-    def save_model(self, path="checkpoints/tp/params.pth"):
-        # Ensure the checkpoint directory exists
+    def save_model(self, ckpt):
+        path = ckpt
         os.makedirs(os.path.dirname(path), exist_ok=True)
         # Collect the parameters from each layer's functions
         layer_params = {}
@@ -220,6 +240,66 @@ class tp_net(net):
             }
         # Save the collected parameters to the specified path
         torch.save(layer_params, path)
+
+
+    def save_initial_results(self, train_loss, train_acc, valid_loss, valid_acc, trial, ckpt):
+        path = ckpt
+        os.makedirs(os.path.dirname(path), exist_ok=True)
+
+        # Check if the file exists and has content
+        if os.path.exists(path) and os.path.getsize(path) > 0:
+            with open(path, "r") as file:
+                data = json.load(file)
+        else:
+            # Initialize the dictionary with lists to store results
+            data = [{
+                "Trial": [],
+                "Train Loss": [],
+                "Train Acc": [],
+                "Valid Loss": [],
+                "Valid Acc": []
+            }]
+
+        # Append new results to each list within the first dictionary entry
+        data[0]["Trial"].append(trial)
+        data[0]["Train Loss"].append(train_loss)
+        data[0]["Train Acc"].append(train_acc)
+        data[0]["Valid Loss"].append(valid_loss)
+        data[0]["Valid Acc"].append(valid_acc)
+
+        # Write the updated dictionary back to the file
+        with open(path, "w") as file:
+            json.dump(data, file, indent=4)
+
+    def save_training_dynamics(self, train_losses, train_accuracies, test_losses, test_accuracies, trials, ckpt):
+        path = ckpt
+        os.makedirs(os.path.dirname(path), exist_ok=True)
+
+        # Check if the file exists and has content
+        if os.path.exists(path) and os.path.getsize(path) > 0:
+            with open(path, "r") as file:
+                data = json.load(file)
+        else:
+            # Initialize the dictionary with lists to store results
+            data = [{
+                "Trial": [],
+                "Train Losses": [],
+                "Train Accuracies": [],
+                "Test Losses": [],
+                "Test Accuracies": []
+            }]
+
+        # Append new results to each list within the first dictionary entry
+        data[0]["Trial"].append(trials)
+        data[0]["Train Losses"].append(train_losses)
+        data[0]["Train Accuracies"].append(train_accuracies)
+        data[0]["Test Losses"].append(test_losses)
+        data[0]["Test Accuracies"].append(test_accuracies)
+
+        # Write the updated dictionary back to the file
+        with open(path, "w") as file:
+            json.dump(data, file, indent=4)
+
 
 
     def load_state(self, state_dict):

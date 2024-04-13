@@ -1,0 +1,4 @@
+Traceback (most recent call last):
+  File "testingRuns.py", line 153, in <module>
+    train_loader = torch.utils.data.DataLoader(trainset,
+NameError: name 'trainset' is not defined

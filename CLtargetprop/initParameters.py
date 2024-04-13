@@ -109,4 +109,7 @@ def set_params(kwargs):
         params["bf2"] = {"type": "difference",
                          "init": None,
                          "act": "linear-BN"}
+        
+    print("Parameters set for " + kwargs["algorithm"] + " algorithm: \n" )
+    print(params)
     return params

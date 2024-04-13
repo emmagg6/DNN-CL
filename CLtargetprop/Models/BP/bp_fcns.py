@@ -19,7 +19,9 @@ class ParameterizedFunction(nn.Module):
 
         # Define the parameter tensor and initialize it
         self.weight = nn.Parameter(torch.Tensor(out_dim, in_dim))
-        self.initialize_weights(params["init"])
+        # self.initialize_weights(params["init"])  # NOT WORKING NOT SURE WHY
+        # print(f"initial_weights : {self.weight}")
+        nn.init.orthogonal_(self.weight)
 
         # Define the activation function
         if params["act"] == "tanh":
@@ -35,15 +37,20 @@ class ParameterizedFunction(nn.Module):
         elif params["act"] == "linear-BN":
             self.activation_function = nn.BatchNorm1d(out_dim)  # Use out_dim instead of in_dim
 
-    def initialize_weights(self, init_type):
+
+    # NOT WORKING NOT SURE WHY SO SKIPPING AND JUST INITIALIZING ABOVE
+    def initialize_weights(self, init_type): # NOT WORKING
         if init_type == "uniform":
             nn.init.uniform_(self.weight, -1e-2, 1e-2)
         elif init_type == "gaussian":
             nn.init.normal_(self.weight, 0, 1e-3)
         elif init_type == "orthogonal":
+            print("orthogonal")
             nn.init.orthogonal_(self.weight)
+            print(f"orthogonal_weights : {self.weight}")
         else:
             raise NotImplementedError()
+    ##################################################################
 
     def forward(self, input):
         # Apply the weights to the input and pass it through the activation function

@@ -1,5 +1,4 @@
 from Models.BP.bp_layers import bp_layers
-from Models.BP.bp_fcns import ParameterizedFunction
 
 import torch
 from torch import nn
@@ -45,21 +44,27 @@ class bp_net(nn.Module):
         return correct / total
 
     def train_model(self, train_loader, valid_loader, epochs, lr, log, save, 
-                    trial = 0, mod_name = '', str_previous_checkpoint = '', data_name = ''):
+                    trial = 0, save_ckpts='', new_ckpt= '',train_ckpts = ''):
         if self.opt == False:
             self.optimizer = torch.optim.SGD(self.parameters(), lr=lr)
         # optimizer = torch.optim.Adam(self.parameters(), lr=lr)
-
         #### for epoch 0
         epoch = 0
         # Set the model to training mode
         self.train()
-        train_loss = 0
+
+        train_losses = []
+        train_accuracies = []
+        test_losses = []
+        test_accuracies = []
+        trials = []
+        
+        initial_train_loss = 0
         for x, y in train_loader:
             x, y = x.to(self.device), y.to(self.device)
             y_pred = self(x)
             loss = self.loss_function(y_pred, y)
-            train_loss += loss.item()
+            initial_train_loss += loss.item()
         
         initial_train_loss /= len(train_loader.dataset)
         initial_train_acc = self.calculate_accuracy(train_loader)
@@ -67,11 +72,17 @@ class bp_net(nn.Module):
         # Evaluate the model on the validation set before training starts (epoch 0)
         self.eval()
         initial_test_loss, initial_test_acc = self.external_test(valid_loader)
+        
+        train_losses.append(initial_train_loss)
+        train_accuracies.append(initial_train_acc)
+        test_losses.append(initial_test_loss)
+        test_accuracies.append(initial_test_acc)
+        trials.append(epoch)
 
         if save == 'yes':
             self.save_initial_results(initial_train_loss, initial_train_acc, 
                                       initial_test_loss, initial_test_acc,
-                                      trial, mod_name, str_previous_checkpoint)
+                                      trial, save_ckpts)
 
         # Log the initial validation loss and accuracy (epoch 0)
         if log:
@@ -106,6 +117,12 @@ class bp_net(nn.Module):
             # testing phase
             test_loss, test_acc = self.external_test(valid_loader)  # Calculate validation loss and accuracy
 
+            train_losses.append(train_loss)
+            train_accuracies.append(train_acc)
+            test_losses.append(test_loss)
+            test_accuracies.append(test_acc)
+            trials.append(epoch)
+
             # Logging after each epoch of training
             if log:
                 wandb.log({
@@ -118,7 +135,8 @@ class bp_net(nn.Module):
             print(f"Epoch: {epoch}, Train Loss: {train_loss}, Train Acc: {train_acc}, Valid Loss: {test_loss}, Valid Acc: {test_acc}")
 
         if save == 'yes':
-            self.save_model(trial, mod_name, str_previous_checkpoint, data_name)
+            self.save_model(new_ckpt)
+            self.save_training_dynamics(train_losses, train_accuracies, test_losses, test_accuracies, trials, train_ckpts)
 
 
 #--------------------- SAVING ---------------------
@@ -130,8 +148,8 @@ class bp_net(nn.Module):
     # def load_state(self, path):
     #     self.load_state_dict(torch.load(path))
  
-    def save_model(self, trial, mod, str_previous, data_name, gen_path="checkpoints/BP/"):
-        path = gen_path + mod + str_previous + "-" + data_name + "-" + str(trial) + ".pth"
+    def save_model(self, new_ckpt):
+        path = new_ckpt
         os.makedirs(os.path.dirname(path), exist_ok=True)
         torch.save({
             'model_state_dict': self.state_dict(),
@@ -139,28 +157,61 @@ class bp_net(nn.Module):
         }, path)
 
 
-    def save_initial_results(self, train_loss, train_acc, valid_loss, valid_acc, trial, mod, str_previous, gen_path="checkpoints/BP/"):
-        path = gen_path + "EVAL-" + mod + str_previous[:-2] + ".json"
+    def save_initial_results(self, train_loss, train_acc, valid_loss, valid_acc, trial, ckpt):
+        path = ckpt
         os.makedirs(os.path.dirname(path), exist_ok=True)
-
-        # Prepare the new data entry
-        new_entry = {
-            "Trial": trial,
-            "Train Loss": train_loss,
-            "Train Acc": train_acc,
-            "Valid Loss": valid_loss,
-            "Valid Acc": valid_acc
-        }
 
         # Check if the file exists and has content
         if os.path.exists(path) and os.path.getsize(path) > 0:
             with open(path, "r") as file:
                 data = json.load(file)
-                data.append(new_entry)
         else:
-            data = [new_entry]
+            # Initialize the dictionary with lists to store results
+            data = [{
+                "Trial": [],
+                "Train Loss": [],
+                "Train Acc": [],
+                "Valid Loss": [],
+                "Valid Acc": []
+            }]
 
-        # Write the updated list back to the file
+        # Append new results to each list within the first dictionary entry
+        data[0]["Trial"].append(trial)
+        data[0]["Train Loss"].append(train_loss)
+        data[0]["Train Acc"].append(train_acc)
+        data[0]["Valid Loss"].append(valid_loss)
+        data[0]["Valid Acc"].append(valid_acc)
+
+        # Write the updated dictionary back to the file
+        with open(path, "w") as file:
+            json.dump(data, file, indent=4)
+
+    def save_training_dynamics(self, train_losses, train_accuracies, test_losses, test_accuracies, trials, ckpt):
+        path = ckpt
+        os.makedirs(os.path.dirname(path), exist_ok=True)
+
+        # Check if the file exists and has content
+        if os.path.exists(path) and os.path.getsize(path) > 0:
+            with open(path, "r") as file:
+                data = json.load(file)
+        else:
+            # Initialize the dictionary with lists to store results
+            data = [{
+                "Trial": [],
+                "Train Losses": [],
+                "Train Accuracies": [],
+                "Test Losses": [],
+                "Test Accuracies": []
+            }]
+
+        # Append new results to each list within the first dictionary entry
+        data[0]["Trial"].append(trials)
+        data[0]["Train Losses"].append(train_losses)
+        data[0]["Train Accuracies"].append(train_accuracies)
+        data[0]["Test Losses"].append(test_losses)
+        data[0]["Test Accuracies"].append(test_accuracies)
+
+        # Write the updated dictionary back to the file
         with open(path, "w") as file:
             json.dump(data, file, indent=4)
 
