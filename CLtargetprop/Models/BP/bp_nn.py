@@ -57,7 +57,7 @@ class bp_net(nn.Module):
         train_accuracies = []
         test_losses = []
         test_accuracies = []
-        trials = []
+        eps = []
         
         initial_train_loss = 0
         for x, y in train_loader:
@@ -77,12 +77,12 @@ class bp_net(nn.Module):
         train_accuracies.append(initial_train_acc)
         test_losses.append(initial_test_loss)
         test_accuracies.append(initial_test_acc)
-        trials.append(epoch)
+        eps.append(epoch)
 
-        if save == 'yes':
-            self.save_initial_results(initial_train_loss, initial_train_acc, 
-                                      initial_test_loss, initial_test_acc,
-                                      trial, save_ckpts)
+        # if save == 'yes':
+        #     self.save_initial_results(initial_train_loss, initial_train_acc, 
+        #                               initial_test_loss, initial_test_acc,
+        #                               trial, save_ckpts)
 
         # Log the initial validation loss and accuracy (epoch 0)
         if log:
@@ -136,7 +136,7 @@ class bp_net(nn.Module):
 
         if save == 'yes':
             self.save_model(new_ckpt)
-            self.save_training_dynamics(train_losses, train_accuracies, test_losses, test_accuracies, trials, train_ckpts)
+            self.save_training_dynamics(train_losses, train_accuracies, test_losses, test_accuracies, trial, train_ckpts)
 
 
 #--------------------- SAVING ---------------------
@@ -186,7 +186,7 @@ class bp_net(nn.Module):
         with open(path, "w") as file:
             json.dump(data, file, indent=4)
 
-    def save_training_dynamics(self, train_losses, train_accuracies, test_losses, test_accuracies, trials, ckpt):
+    def save_training_dynamics(self, train_losses, train_accuracies, test_losses, test_accuracies, trial, ckpt):
         path = ckpt
         os.makedirs(os.path.dirname(path), exist_ok=True)
 
@@ -205,7 +205,7 @@ class bp_net(nn.Module):
             }]
 
         # Append new results to each list within the first dictionary entry
-        data[0]["Trial"].append(trials)
+        data[0]["Trial"].append(trial)
         data[0]["Train Losses"].append(train_losses)
         data[0]["Train Accuracies"].append(train_accuracies)
         data[0]["Test Losses"].append(test_losses)

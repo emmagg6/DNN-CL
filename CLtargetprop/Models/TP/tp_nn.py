@@ -1,5 +1,5 @@
 '''
-Based on code used for the experiments conducted in the submitted paper 
+Based on the code used for the experiments conducted in the submitted paper 
 "Fixed-Weight Difference Target Propagation" by K. K. S. Wu, K. C. K. Lee, and T. Poggio.
 
 Adaptation for runs of Continual Learning by emmagg6.
@@ -38,6 +38,8 @@ class tp_net(net):
         layers = [None] * self.depth
         dims = [in_dim] + [hid_dim] * (self.depth - 1) + [out_dim]
         for d in range(self.depth - 1):
+            # print(f"Layer {d}: {dims[d]} -> {dims[d + 1]}")
+            # print(f"ff1: {params['ff1']}")
             layers[d] = tp_layer(dims[d], dims[d + 1], self.device, params)
         params_last = deepcopy(params)
         params_last["ff2"]["act"] = params["last"]
@@ -50,21 +52,21 @@ class tp_net(net):
             y = self.layers[d].forward(y, update=update)
         return y
 
-    def train(self, train_loader, valid_loader, epochs, lr, lrb, std, stepsize, log, save, params=None,
-              trial = 0, save_ckpts = '', new_ckpt = '', train_ckpts = ''):
+    def train(self, train_loader, valid_loader, epochs, lr, lrb, std, stepsize, log, save, hyperparams=None,
+              trial = 0, new_ckpt = '', train_ckpts = ''):
         
         train_losses = []
         train_accuracies = []
         test_losses = []
         test_accuracies = []
-        trials = []
+        eps = []
 
         # Pre-train the feedback weights
-        for e in range(params["epochs_backward"]):
+        for e in range(hyperparams["epochs_backward"]):
             torch.cuda.empty_cache()
             for x, y in train_loader:
                 x, y = x.to(self.device), y.to(self.device)
-                self.train_back_weights(x, y, lrb, std, loss_type=params["loss_feedback"])
+                self.train_back_weights(x, y, lrb, std, loss_type=hyperparams["loss_feedback"])
 
         # Train the feedforward and feedback weights
         for e in range(epochs + 1):
@@ -75,8 +77,8 @@ class tp_net(net):
                 for x, y in train_loader:
                     x, y = x.to(self.device), y.to(self.device)
                     # Train feedback weights
-                    for i in range(params["epochs_backward"]):
-                        self.train_back_weights(x, y, lrb, std, loss_type=params["loss_feedback"])
+                    for i in range(hyperparams["epochs_backward"]):
+                        self.train_back_weights(x, y, lrb, std, loss_type=hyperparams["loss_feedback"])
                     # Train forward weights
                     self.compute_target(x, y, stepsize)
                     self.update_weights(x, lr)
@@ -106,11 +108,12 @@ class tp_net(net):
                 train_loss, train_acc = self.test(train_loader)
                 valid_loss, valid_acc = self.test(valid_loader)
 
-            train_losses.append(train_loss)
+
+            train_losses.append(train_loss.item())
             train_accuracies.append(train_acc)
-            test_losses.append(valid_loss)
+            test_losses.append(valid_loss.item())
             test_accuracies.append(valid_acc)
-            trials.append(e)
+            eps.append(e)
 
             # Logging
             if log:
@@ -129,31 +132,20 @@ class tp_net(net):
                 wandb.log(log_dict)
 
             else:
-                print(f"\tTrain Loss       : {train_loss}")
-                print(f"\tValid Loss       : {valid_loss}")
                 if train_acc is not None:
                     print(f"\tTrain Acc        : {train_acc}")
                 if valid_acc is not None:
                     print(f"\tValid Acc        : {valid_acc}")
 
-                for d in range(1, self.depth - self.direct_depth + 1):
-                    print(f"\teigenvalue ratio-{d}: {eigenvalues_ratio[d].item()}")
-                for d in range(1, self.depth - self.direct_depth + 1):
-                    print(f"\teigenvalue trace-{d}: {eigenvalues_trace[d].item()}")
-            
-            if e == 0:
-                self.save_initial_results(train_loss, train_acc, valid_loss, valid_acc, 
-                                          trial, save_ckpts)
-
         if save == 'yes':
             self.save_model(new_ckpt)
-            self.save_training_dynamics(train_losses, train_accuracies, test_losses, test_accuracies, trials, train_ckpts)
+            self.save_training_dynamics(train_losses, train_accuracies, test_losses, test_accuracies, trial, train_ckpts)
         
 
-    def train_back_weights(self, x, y, lrb, std, loss_type="L-DRL"):
+    def train_back_weights(self, x, y, lrb, std, loss_type="DTP"):
         if not self.back_trainable:
             return
-
+        # print("loss_type: ", loss_type)
         self.forward(x)
         for d in reversed(range(1, self.depth - self.direct_depth + 1)):
             if loss_type == "DTP":
@@ -162,28 +154,6 @@ class tp_net(net):
                 q_upper = self.layers[d].forward(q)
                 h = self.layers[d].backward_function_1.forward(q_upper)
                 loss = self.MSELoss(h, q)
-            elif loss_type == "DRL":
-                h = self.layers[d - 1].output.detach().clone()
-                q = h + torch.normal(0, std, size=h.shape, device=self.device)
-                for _d in range(d, self.depth - self.direct_depth + 1):
-                    q = self.layers[_d].forward(q)
-                for _d in range(d, self.depth - self.direct_depth + 1):
-                    h = self.layers[_d].forward(h)
-                for _d in reversed(range(d, self.depth - self.direct_depth + 1)):
-                    q = self.layers[_d].backward_function_1.forward(q)
-                    q = self.layers[_d].backward_function_2.forward(q, self.layers[_d - 1].output)
-                loss = self.MSELoss(self.layers[d].input.clone(), q)
-            elif loss_type == "L-DRL":
-                h = self.layers[d - 1].output.detach().clone()
-                q = h + torch.normal(0, std, size=h.shape, device=self.device)
-                q_up = self.layers[d].forward(q)
-                _q_up = self.layers[d].backward_function_1.forward(q_up)
-                q_rec = self.layers[d].backward_function_2.forward(_q_up, h)
-                h_up = self.layers[d].forward(h)
-                r_up = h_up + torch.normal(0, std, size=h_up.shape, device=self.device)
-                _r_up = self.layers[d].backward_function_1.forward(r_up)
-                r_rec = self.layers[d].backward_function_2.forward(_r_up, h)
-                loss = -((q - h) * (q_rec - h)).sum() + self.MSELoss(r_rec, h) / 2
             else:
                 raise NotImplementedError()
             self.layers[d].zero_grad()
@@ -222,7 +192,7 @@ class tp_net(net):
                 'forward_function_1': layer.forward_function_1.get_params(),
                 'forward_function_2': layer.forward_function_2.get_params(),
                 'backward_function_1': layer.backward_function_1.get_params(),
-                'backward_function_2': layer.backward_function_2.get_params()
+                'backward_function_2': layer.backward_function_2.get_params(),
             }
         return layer_params
 
@@ -236,42 +206,14 @@ class tp_net(net):
                 'forward_function_1': layer.forward_function_1.get_params(),
                 'forward_function_2': layer.forward_function_2.get_params(),
                 'backward_function_1': layer.backward_function_1.get_params(),
-                'backward_function_2': layer.backward_function_2.get_params()
+                'backward_function_2': layer.backward_function_2.get_params(),
             }
         # Save the collected parameters to the specified path
         torch.save(layer_params, path)
 
 
-    def save_initial_results(self, train_loss, train_acc, valid_loss, valid_acc, trial, ckpt):
-        path = ckpt
-        os.makedirs(os.path.dirname(path), exist_ok=True)
 
-        # Check if the file exists and has content
-        if os.path.exists(path) and os.path.getsize(path) > 0:
-            with open(path, "r") as file:
-                data = json.load(file)
-        else:
-            # Initialize the dictionary with lists to store results
-            data = [{
-                "Trial": [],
-                "Train Loss": [],
-                "Train Acc": [],
-                "Valid Loss": [],
-                "Valid Acc": []
-            }]
-
-        # Append new results to each list within the first dictionary entry
-        data[0]["Trial"].append(trial)
-        data[0]["Train Loss"].append(train_loss)
-        data[0]["Train Acc"].append(train_acc)
-        data[0]["Valid Loss"].append(valid_loss)
-        data[0]["Valid Acc"].append(valid_acc)
-
-        # Write the updated dictionary back to the file
-        with open(path, "w") as file:
-            json.dump(data, file, indent=4)
-
-    def save_training_dynamics(self, train_losses, train_accuracies, test_losses, test_accuracies, trials, ckpt):
+    def save_training_dynamics(self, train_losses, train_accuracies, test_losses, test_accuracies, trial, ckpt):
         path = ckpt
         os.makedirs(os.path.dirname(path), exist_ok=True)
 
@@ -290,7 +232,7 @@ class tp_net(net):
             }]
 
         # Append new results to each list within the first dictionary entry
-        data[0]["Trial"].append(trials)
+        data[0]["Trial"].append(trial)
         data[0]["Train Losses"].append(train_losses)
         data[0]["Train Accuracies"].append(train_accuracies)
         data[0]["Test Losses"].append(test_losses)
@@ -319,6 +261,7 @@ class tp_net(net):
             if 'backward_function_2' in layer_state and hasattr(layer.backward_function_2, 'load_params'):
                 layer.backward_function_2.load_params(layer_state['backward_function_2'])
 
+        print("Model loaded successfully")
 
     def external_test(self, test_loader, state_dict=None):
         if state_dict is not None:
