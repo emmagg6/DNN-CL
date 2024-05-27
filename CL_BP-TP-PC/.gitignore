@@ -2,3 +2,4 @@
 *.pth
 /wandb/
 /old/
+*.npy
