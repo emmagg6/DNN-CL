@@ -3,3 +3,5 @@
 /wandb/
 /old/
 *.npy
+/data/
+/__pycache__/
