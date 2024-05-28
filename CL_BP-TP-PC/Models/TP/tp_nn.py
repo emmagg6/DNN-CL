@@ -263,19 +263,19 @@ class tp_net(net):
 
         print("Model loaded successfully")
 
-    def external_test(self, test_loader, state_dict=None):
-        if state_dict is not None:
-            self.load_state(state_dict)
-        loss = 0
-        correct = 0
-        total = 0
-        for x, y in test_loader:
-            x, y = x.to(self.device), y.to(self.device)
-            y_pred = self.forward(x)
-            loss += self.loss_function(y_pred, y).item()
-            _, predicted = y_pred.max(1)
-            total += y.size(0)
-            correct += predicted.eq(y).sum().item()
-        return loss / total, 100 * correct / total
+    # def external_test(self, test_loader, state_dict=None):
+    #     if state_dict is not None:
+    #         self.load_state(state_dict)
+    #     loss = 0
+    #     correct = 0
+    #     total = 0
+    #     for x, y in test_loader:
+    #         x, y = x.to(self.device), y.to(self.device)
+    #         y_pred = self.forward(x)
+    #         loss += self.loss_function(y_pred, y).item()
+    #         _, predicted = y_pred.max(1)
+    #         total += y.size(0)
+    #         correct += predicted.eq(y).sum().item()
+    #     return loss / total, 100 * correct / total
 
 
