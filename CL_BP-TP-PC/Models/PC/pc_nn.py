@@ -168,7 +168,7 @@ class pc_net(object):
       np.save(logdir+"/weight_diffs.npy",np.array(weight_diffs_list))
       np.save(logdir+"/test_accs.npy",np.array(test_accs))
       subprocess.call(['rsync','--archive','--update','--compress','--progress',str(logdir) +"/",str(savedir)])
-      print("Rsynced files from: " + str(logdir) + "/ " + " to" + str(savedir))
+      # print("Rsynced files from: " + str(logdir) + "/ " + " to" + str(savedir))
       now = datetime.now()
       current_time = str(now.strftime("%H:%M:%S"))
       subprocess.call(['echo','saved at time: ' + str(current_time)])

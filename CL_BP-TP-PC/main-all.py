@@ -122,7 +122,7 @@ def main(TRIALS, models, datasets, epochs, epochs_backward, batch_size,
                 # lr = 0.0005 # default in the paper
                 loss_fn, loss_fn_deriv = parse_loss_function("crossentropy")
 
-                if not larger:
+                if not larger: # then mnist size
 
                     l1 = ConvLayer(input_size=28, num_channels=1, num_filters=6, batch_size=batch_size, kernel_size=5, learning_rate=lr, f=relu, df=relu_deriv, device=device)
 
@@ -145,15 +145,27 @@ def main(TRIALS, models, datasets, epochs, epochs_backward, batch_size,
                     layers = [l1, l2, l3, l4, l5, l6]
 
                 else:
-                ## input for cifar 10, so 28x28 --> 28x28x3 to account for rbg
-                    l1 = ConvLayer(input_size=28, num_channels=3, num_filters=6, batch_size=batch_size, kernel_size=5, learning_rate=lr, f=relu, df=relu_deriv, device=device)
+                ## input for cifar 10, so 28x28 --> 32x32x3 to account for rbg
+
+                    l1 = ConvLayer(input_size=32, num_channels=3, num_filters=6, batch_size=batch_size, kernel_size=5, learning_rate=lr, f=relu, df=relu_deriv, device=device)
+
+                    # Max pooling layer with kernel size 2x2
                     l2 = MaxPool(2, device=device)
-                    l3 = ConvLayer(input_size=12, num_channels=6, num_filters=16, batch_size=batch_size, kernel_size=5, learning_rate=lr, f=relu, df=relu_deriv, device=device)
-                    l4 = MaxPool(2, device=device)
-                    l5 = ConvLayer(input_size=4, num_channels=16, num_filters=120, batch_size=batch_size, kernel_size=5, learning_rate=lr, f=relu, df=relu_deriv, device=device)
-                    l6 = FCLayer(input_size=120, output_size=84, batch_size=64, learning_rate=lr, f=relu, df=relu_deriv, device=device)
-                    l7 = FCLayer(input_size=84, output_size=10, batch_size=64, learning_rate=lr, f=F.softmax, df=linear_deriv, device=device)
-                    layers = [l1, l2, l3, l4, l5, l6, l7]
+
+                    # Convolutional layer with input size 14x14 (after max pooling), 6 input channels, 16 output filters, kernel size 5x5
+                    l3 = ConvLayer(input_size=14, num_channels=6, num_filters=16, batch_size=batch_size, kernel_size=5, learning_rate=lr, f=relu, df=relu_deriv, device=device)
+
+                    # Projection layer with input size corresponding to the output size of the previous conv layer, 16x5x5
+                    l4 = ProjectionLayer(input_size=(64, 16, 10, 10), output_size=200, f=relu, df=relu_deriv, learning_rate=lr, device=device)
+
+                    # Fully connected layer
+                    l5 = FCLayer(input_size=200, output_size=150, batch_size=batch_size, learning_rate=lr, f=relu, df=relu_deriv, device=device)
+
+                    # Final fully connected layer with 10 output classes for MNIST
+                    l6 = FCLayer(input_size=150, output_size=10, batch_size=64, learning_rate=lr, f=F.softmax, df=linear_deriv, device=device)
+
+                    # List of layers
+                    layers = [l1, l2, l3, l4, l5, l6]
                 
                 params["name"] = mod
             elif mod == "PCDTP":
@@ -223,9 +235,9 @@ def main(TRIALS, models, datasets, epochs, epochs_backward, batch_size,
                     
                     stepsize = 0.05
                     if mod == "KAN":
-                        lr = 0.005
+                        lr = 0.005 # 0.005
                     else:
-                        lr = 0.1
+                        lr = 0.1 #0.1
 
                 elif data == "s":
                     print("making STL10 ...")
@@ -241,7 +253,7 @@ def main(TRIALS, models, datasets, epochs, epochs_backward, batch_size,
                     if mod == "KAN":
                         lr = 0.005
                     else:
-                        lr = 0.1
+                        lr = 0.5
                 else :
                     raise ValueError("Unkown dataset. Please choose from MNIST ('m'), FashionMNIST ('f'), CIFAR10 ('c').")
 
@@ -468,8 +480,8 @@ def main(TRIALS, models, datasets, epochs, epochs_backward, batch_size,
 
 if __name__ == "__main__":
     # models = ["BP", "DTP", "FWDTP", "PC", "KAN"]
-    models = ["KAN"]
-    datasets = ['m', 'f', 'm', 'f', 'm']
+    models = ["PC"]
+    datasets = ['s']
 
     if 'c' in datasets or 's' in datasets:
         larger = True
@@ -479,7 +491,7 @@ if __name__ == "__main__":
     print("Larger input dimensions? : ", larger)
 
     # TESINGING AND MODEL PARAMETERS
-    epochs = 5
+    epochs = 3
     epochs_backward = 5
     # batch_size = int(256)
     batch_size = 64
@@ -499,13 +511,13 @@ if __name__ == "__main__":
     # input and output dimensions depend on the dataset
     hid_dim = 256
 
-    log = True # for wandb visuals
-    save = "yes"
+    log = False # for wandb visuals
+    save = "no"
 
     n_inference_steps = 50
     inference_lr = 0.1
 
-    TRIALS = 5
+    TRIALS = 1
     main(TRIALS, models, datasets, epochs, epochs_backward, batch_size, 
          test, depth, direct_depth, lr, lr_backward, std_backward, 
          loss_feedback, sparse_ratio_str, hid_dim, log, save,

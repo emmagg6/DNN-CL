@@ -110,9 +110,9 @@ def make_CIFAR10(dim=None, test=False, pc = False):
     
 
 
-def make_STL10(dim=None, test=False):
+def make_STL10(dim=None, test=False, pc=False):
     transform = transforms.Compose([
-        transforms.Resize((28, 28)),  # Resize images to 28x28 -- matching cifar10
+        # transforms.Resize((28, 28)),  # Resize images to 28x28 -- matching cifar10
         transforms.ToTensor(),
         transforms.Normalize((0.485, 0.456, 0.406), (0.229, 0.224, 0.225))  # Normalization values for STL-10
     ])

@@ -5,3 +5,4 @@
 *.npy
 /data/
 /__pycache__/
+*.pyc
