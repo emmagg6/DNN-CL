@@ -79,6 +79,11 @@ class pc_dtp_net(object):
       self.mus[-1] = label.clone() #setup final label
       self.prediction_errors[-1] = -self.loss_fn_deriv(self.outs[-1], self.mus[-1])#self.mus[-1] - self.outs[-1] #setup final prediction errors
       self.predictions[-1] = self.prediction_errors[-1].clone()
+      
+      # setup final prediction targets 
+      # TODO : set up target propagation in the form of targets (like in tp_net and tp_layers) and the difference for each layer
+         
+
       for n in range(self.n_inference_steps_train):
       #reversed inference
         for j in reversed(range(len(self.layers))):
@@ -87,6 +92,8 @@ class pc_dtp_net(object):
             self.predictions[j] = self.layers[j].backward(self.prediction_errors[j+1])
             dx_l = self.prediction_errors[j] - self.predictions[j]
             self.mus[j] -= self.inference_learning_rate * (2*dx_l)
+            # targets 
+            
       #update weights
       weight_diffs = self.update_weights()
       #get loss:
