@@ -67,9 +67,9 @@ def create_cost(name, beta):
         CEnergy object
     """
     if name == "squared_error":
-        return cost.SquaredError(beta)
+        return SquaredError(beta)
     elif name == "cross_entropy":
-        return cost.CrossEntropy(beta)
+        return CrossEntropy(beta)
     else:
         raise ValueError("Cost function \"{}\" not defined".format(name))
 
@@ -113,7 +113,7 @@ class EnergyBasedModel(abc.ABC, torch.nn.Module):
         u: List of pre-activations
 
     """
-    def __init__(self, dimensions, c_energy, batch_size, phi):
+    def __init__(self, dimensions, c_energy, batch_size, phi, device = 'cpu'):
         super(EnergyBasedModel, self).__init__()
 
         self.batch_size = batch_size
@@ -124,10 +124,11 @@ class EnergyBasedModel(abc.ABC, torch.nn.Module):
         self.n_layers = len(dimensions)
         self.phi = phi
         self.u = None
+        self.device = device
         self.W = torch.nn.ModuleList(
             torch.nn.Linear(dim1, dim2)
             for dim1, dim2 in zip(self.dimensions[:-1], self.dimensions[1:])
-        ).to(config.device)
+        ).to(self.device)
 
         # Input (u_0) is clamped by default
         self.clamp_du[0] = True
@@ -179,7 +180,7 @@ class EnergyBasedModel(abc.ABC, torch.nn.Module):
         for i in range(self.n_layers):
             self.u.append(torch.randn((self.batch_size, self.dimensions[i]),
                                       requires_grad=not(self.clamp_du[i]),
-                                      device=config.device))
+                                      device=self.device))
         self.update_energy()
 
     def set_C_target(self, target):

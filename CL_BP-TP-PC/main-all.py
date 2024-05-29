@@ -13,9 +13,7 @@ from Models.BP.bp_nn import bp_net
 from Models.TP.tp_nn import tp_net
 from Models.PC.pc_nn import pc_net
 from Models.KAN.kan_nn import kan_net
-from Models.PCDTP.pcdtp_nn import pcdtp_net
 from Models.PC.pc_layers import ConvLayer, MaxPool, ProjectionLayer, FCLayer
-from Models.PCDTP.pcdtp_layers import ConvLayer_dtp, MaxPool_dtp, ProjectionLayer_dtp, FCLayer_dtp
 
 import os
 import sys
@@ -39,7 +37,7 @@ def main(TRIALS, models, datasets, epochs, epochs_backward, batch_size,
 
     for mod in models:
 
-        for trial in range(0, TRIALS + 1):
+        for trial in range(6, TRIALS + 1):
             print("\n -------------------------------------")
             print(f"TRIAL: {trial}")
             print(" -------------------------------------\n")
@@ -287,17 +285,17 @@ def main(TRIALS, models, datasets, epochs, epochs_backward, batch_size,
 
 
                 ## for saving checkpoints
-                str_datasets_trials_1 = "-" + "m-f-m-f-m" + "-" + datasets[0]
+                str_datasets_trials_1 = "-" + datasets[0] # "m-f-m-f-m" + "-" +
                 if len(datasets) > 1 :
-                    str_datasets_trials_2 = "-" + "m-f-m-f-m" + "-" + datasets[0] + "-" + datasets[1]
+                    str_datasets_trials_2 = "-" + datasets[0] + "-" + datasets[1]
                 if len(datasets) > 2 :
-                    str_datasets_trials_3 = "-" + "m-f-m-f-m" + "-" + datasets[0] + "-" + datasets[1] + "-" + datasets[2]
+                    str_datasets_trials_3 = "-" + datasets[0] + "-" + datasets[1] + "-" + datasets[2]
                 if len(datasets) > 3 :
-                    str_datasets_trials_4 = "-" + "m-f-m-f-m" + "-" + datasets[0] + "-" + datasets[1] + "-" + datasets[2] + "-" + datasets[3]
+                    str_datasets_trials_4 = "-" + datasets[0] + "-" + datasets[1] + "-" + datasets[2] + "-" + datasets[3]
                 if len(datasets) > 4 :
-                    str_datasets_trials_5 = "-" + "m-f-m-f-m" + "-" + datasets[0] + "-" + datasets[1] + "-" + datasets[2] + "-" + datasets[3] + "-" + datasets[4]
+                    str_datasets_trials_5 = "-" + datasets[0] + "-" + datasets[1] + "-" + datasets[2] + "-" + datasets[3] + "-" + datasets[4]
                 if len(datasets) > 5 :
-                    str_datasets_trials_6 = "-" + "m-f-m-f-m" + "-" + datasets[0] + "-" + datasets[1] + "-" + datasets[2] + "-" + datasets[3] + "-" + datasets[4] + "-" + datasets[5]
+                    str_datasets_trials_6 = "-" + datasets[0] + "-" + datasets[1] + "-" + datasets[2] + "-" + datasets[3] + "-" + datasets[4] + "-" + datasets[5]
 
 
 
@@ -480,8 +478,9 @@ def main(TRIALS, models, datasets, epochs, epochs_backward, batch_size,
 
 if __name__ == "__main__":
     # models = ["BP", "DTP", "FWDTP", "PC", "KAN"]
-    models = ["PC"]
-    datasets = ['s']
+    # models = ["PC"]
+    models = ["BP", "DTP", "FWDTP", "PC"]
+    datasets = ['m', 'f', 'm', 'f', 'm']
 
     if 'c' in datasets or 's' in datasets:
         larger = True
@@ -491,7 +490,7 @@ if __name__ == "__main__":
     print("Larger input dimensions? : ", larger)
 
     # TESINGING AND MODEL PARAMETERS
-    epochs = 3
+    epochs = 5
     epochs_backward = 5
     # batch_size = int(256)
     batch_size = 64
@@ -511,13 +510,13 @@ if __name__ == "__main__":
     # input and output dimensions depend on the dataset
     hid_dim = 256
 
-    log = False # for wandb visuals
-    save = "no"
+    log = True # for wandb visuals
+    save = "yes"
 
     n_inference_steps = 50
     inference_lr = 0.1
 
-    TRIALS = 1
+    TRIALS = 9
     main(TRIALS, models, datasets, epochs, epochs_backward, batch_size, 
          test, depth, direct_depth, lr, lr_backward, std_backward, 
          loss_feedback, sparse_ratio_str, hid_dim, log, save,
