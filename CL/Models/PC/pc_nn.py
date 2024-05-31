@@ -1,3 +1,9 @@
+'''
+Adapted from https://github.com/BerenMillidge/PredictiveCodingBackprop/blob/master/cnn.py
+
+by emmagg6
+'''
+
 import numpy as np
 import matplotlib.pyplot as plt
 import torch

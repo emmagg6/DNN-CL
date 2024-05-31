@@ -1,3 +1,11 @@
+'''
+Inspired by code used for the experiments conducted in the submitted paper 
+"Fixed-Weight Difference Target Propagation" by K. K. S. Wu, K. C. K. Lee, and T. Poggio.
+
+Adaptation for Continual Learning by emmagg6.
+
+'''
+
 import torch
 from torch import nn
 import os

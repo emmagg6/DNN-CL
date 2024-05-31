@@ -1,4 +1,2 @@
-# Target Propagation, Difference Target Propagation, Fixed-Weight Target Propagation, and Back Propagation Benchmarking of Continual Learning
+# Deep Neural Network Continal Learning in the Supervised Learning Setting
 
-
-Inspiration from the code related to the paper "Fixed-Weight Difference Target Propagation" for continual learning.

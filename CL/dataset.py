@@ -56,7 +56,7 @@ def make_MNIST(dim=None, test=False, pc = False, ep = False):
     testset = MyClassification(test_x, test_y)
 
     if ep:
-            mnist_train = tv.datasets.MNIST('../data/', train=True, download=True,
+            mnist_train = tv.datasets.MNIST('./data/', train=True, download=True,
                                  transform=transforms.Compose([
                                      transforms.ToTensor(),
                                      transforms.Normalize((0.1307,), (0.3081,)),
@@ -64,7 +64,7 @@ def make_MNIST(dim=None, test=False, pc = False, ep = False):
                                  target_transform=_one_hot_ten
                                  )
 
-            mnist_test = tv.datasets.MNIST('../data/', train=False, download=True,
+            mnist_test = tv.datasets.MNIST('./data/', train=False, download=True,
                                         transform=transforms.Compose([
                                             transforms.ToTensor(),
                                             transforms.Normalize((0.1307,), (0.3081,)),
@@ -105,7 +105,7 @@ def make_FashionMNIST(dim=None, test=False, pc = False, ep = False):
     testset = MyClassification(test_x, test_y)
 
     if ep:
-            Fmnist_train = tv.datasets.FashionMNIST('../data/', train=True, download=True,
+            Fmnist_train = tv.datasets.FashionMNIST('./data/', train=True, download=True,
                                  transform=transforms.Compose([
                                      transforms.ToTensor(),
                                      transforms.Normalize((0.1307,), (0.3081,)),
@@ -113,7 +113,7 @@ def make_FashionMNIST(dim=None, test=False, pc = False, ep = False):
                                  target_transform=_one_hot_ten
                                  )
 
-            Fmnist_test = tv.datasets.FashionMNIST('../data/', train=False, download=True,
+            Fmnist_test = tv.datasets.FashionMNIST('./data/', train=False, download=True,
                                         transform=transforms.Compose([
                                             transforms.ToTensor(),
                                             transforms.Normalize((0.1307,), (0.3081,)),
