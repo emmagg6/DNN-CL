@@ -1,0 +1,8 @@
+*.json
+*.pth
+/wandb/
+/old/
+*.npy
+/data/
+/__pycache__/
+*.pyc
