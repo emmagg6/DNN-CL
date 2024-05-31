@@ -17,10 +17,22 @@ class MyClassification(torch.utils.data.Dataset):
         feature = self.X[index]
         label = self.y[index]
         return feature, label
+    
+def _one_hot_ten(label):
+    """
+    Helper function to convert to a one hot encoding with 10 classes.
+
+    Args:
+        label: target label as single number
+
+    Returns:
+        One-hot tensor with dimension (*, 10) encoding label
+    """
+    return torch.nn.functional.one_hot(torch.tensor(label), num_classes=10)
 
 
 
-def make_MNIST(dim=None, test=False, pc = False):
+def make_MNIST(dim=None, test=False, pc = False, ep = False):
     transform = transforms.Compose([transforms.ToTensor(),
                                     transforms.Normalize((0.1307,), (0.3081,))])
 
@@ -43,13 +55,31 @@ def make_MNIST(dim=None, test=False, pc = False):
 
     testset = MyClassification(test_x, test_y)
 
+    if ep:
+            mnist_train = tv.datasets.MNIST('../data/', train=True, download=True,
+                                 transform=transforms.Compose([
+                                     transforms.ToTensor(),
+                                     transforms.Normalize((0.1307,), (0.3081,)),
+                                 ]),
+                                 target_transform=_one_hot_ten
+                                 )
+
+            mnist_test = tv.datasets.MNIST('../data/', train=False, download=True,
+                                        transform=transforms.Compose([
+                                            transforms.ToTensor(),
+                                            transforms.Normalize((0.1307,), (0.3081,)),
+                                        ]),
+                                        target_transform=_one_hot_ten
+                                        )
+            return mnist_train, mnist_test
+
     if pc :
         return mnist_train, mnist_test
     else:
         return trainset, validset, testset
 
 
-def make_FashionMNIST(dim=None, test=False, pc = False):
+def make_FashionMNIST(dim=None, test=False, pc = False, ep = False):
     transform = transforms.Compose([transforms.ToTensor(),
                                     transforms.Normalize((0.1307,), (0.3081,))])
 
@@ -73,6 +103,24 @@ def make_FashionMNIST(dim=None, test=False, pc = False):
             validset = MyClassification(train_x[55000:], train_y[55000:])
 
     testset = MyClassification(test_x, test_y)
+
+    if ep:
+            Fmnist_train = tv.datasets.FashionMNIST('../data/', train=True, download=True,
+                                 transform=transforms.Compose([
+                                     transforms.ToTensor(),
+                                     transforms.Normalize((0.1307,), (0.3081,)),
+                                 ]),
+                                 target_transform=_one_hot_ten
+                                 )
+
+            Fmnist_test = tv.datasets.FashionMNIST('../data/', train=False, download=True,
+                                        transform=transforms.Compose([
+                                            transforms.ToTensor(),
+                                            transforms.Normalize((0.1307,), (0.3081,)),
+                                        ]),
+                                        target_transform=_one_hot_ten
+                                        )
+            return Fmnist_train, Fmnist_test
 
     if pc :
         return fashion_train, fashion_test

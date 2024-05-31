@@ -32,19 +32,19 @@ from Models.EP.ep_layers import RestrictedHopfield, ConditionalGaussian
 
 
 class ep_net:
-    def __init__(self, optimizer, type='restr_hopfield', dimensions=[28*28, 640, 10], cost_energy='cross_entropy', batch_size=64, device='cpu'):
+    def __init__(self, type='restr_hopfield', dimensions=[28*28, 640, 10], cost_energy='cross_entropy', batch_size=64, beta = 1, device='cpu'):
         self.type = type
-        # self.dimensions = dimensions
+        self.cost_energy = create_cost(cost_energy, beta)
         self.phi = create_activations("sigmoid", len(dimensions))
         if self.type == 'restr_hopfield':
-            self.model = RestrictedHopfield(dimensions, batch_size, self.phi)
+            self.model = RestrictedHopfield(dimensions, self.cost_energy, batch_size, self.phi)
         elif self.type == 'cond_gaussian':
-            self.model = ConditionalGaussian(dimensions, batch_size, self.phi)
+            self.model = ConditionalGaussian(dimensions, self.cost_energy, batch_size, self.phi)
         else:
             raise ValueError('Unknown model type.')
-        self.cost_energy = create_cost(cost_energy, dimensions)
+        
         self.device = device
-        self.optimizer = optimizer
+        self.opt = False
         
 
     def predict_batch(self, x_batch, dynamics, fast_init):
@@ -69,13 +69,19 @@ class ep_net:
                 total += x_batch.size(0)
         return correct / total, test_E / total
 
-    def train_model(self, train_loader, valid_loader, epochs, dynamics, fast_init = True, log=False, save=False, trial=0, new_ckpt='', train_ckpts=''):
+    def train_model(self, train_loader, valid_loader, epochs, dynamics, lr = 0.01, fast_init = True, log=False, save=False, trial=0, new_ckpt='', train_ckpts=''):
+        if self.opt == False:
+            self.optimizer = create_optimizer(self.model, "adam",  lr=lr) # options: sgd, adam, adagrad
         epoch = 0
         test_accs = []
         test_acc, test_E = self.test_model(valid_loader, dynamics, fast_init)
+
+        if log:
+            wandb.log({"epoch": epoch, "valid accuracy": test_acc})
+        print(f"Epoch: {epoch}, Test Acc: {test_acc}, Test E: {test_E}")
         test_accs.append(test_acc)
         
-        for epoch in range(1, epochs + 1):
+        for epoch in range(1, epochs+1):
             self.model.train()
             for batch_idx, (x_batch, y_batch) in enumerate(train_loader):
                 x_batch, y_batch = x_batch.to(self.device), y_batch.to(self.device)
@@ -105,24 +111,26 @@ class ep_net:
 
             test_acc, test_E = self.test_model(valid_loader, dynamics, fast_init)
             if log:
-                wandb.log({"epoch": epoch, "test_acc": test_acc, "test_E": test_E})
+                wandb.log({"epoch": epoch, "valid accuracy": test_acc})
             print(f"Epoch: {epoch}, Test Acc: {test_acc}, Test E: {test_E}")
             test_accs.append(test_acc)
 
         if save:
             self.save_model(new_ckpt)
-            self.save_training_dynamics(train_loader, valid_loader, trial, train_ckpts)
+            # self.save_training_dynamics(train_loader, valid_loader, trial, train_ckpts)
 
-    def save_model(self, path="checkpoints/ep/params.pth"):
+    def save_model(self, path="checkpoints/EP/params.pth"):
         os.makedirs(os.path.dirname(path), exist_ok=True)
         torch.save({
             'model_state_dict': self.model.state_dict(),
             'optimizer_state_dict': self.optimizer.state_dict(),
         }, path)
 
-    def load_state(self, path):
+    def load_state(self, path, lr):
         checkpoint = torch.load(path)
         self.model.load_state_dict(checkpoint['model_state_dict'])
+        self.optimizer = create_optimizer(self.model, "adam", lr=lr)
+        self.opt = True
         self.optimizer.load_state_dict(checkpoint['optimizer_state_dict'])
 
     def save_training_dynamics(self, test_accuracies, trial, ckpt):

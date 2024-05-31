@@ -141,6 +141,15 @@ class CrossEntropy(CEnergy):
             Activation of the last layer, i.e. the prediction
         """
         loss = torch.nn.functional.cross_entropy(u_last, self.target, reduction='none')
+        # print("Loss is :", loss)
+        # print("Beta is :", self.beta)
+
+        # shape and type of loss: 
+        # print("Shape of loss is :", loss.shape)
+        # print("Type of loss is :", loss.dtype)
+
+        # check is nan in loss:
+        # print("Is nan in loss: ", torch.isnan(loss).any())
         return self.beta * loss
 
     def set_target(self, target):

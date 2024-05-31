@@ -72,6 +72,7 @@ def main(TRIALS, models, datasets, epochs, epochs_backward, batch_size,
                     },
                     'name': {mod}
                 }
+                # params["name"] = mod
             elif mod == "TP":
                 params["ff1"] = {"type": "identity",
                                 "init": None,
@@ -171,6 +172,15 @@ def main(TRIALS, models, datasets, epochs, epochs_backward, batch_size,
                 
                 params["name"] = mod
             elif mod == "EP":
+                params['cost_energy'] = 'cross_entropy'
+                params['batch_size'] = batch_size
+                params['tyoe'] = 'cond_gaussian'
+                params['dynamics'] = {
+                                        "dt": 0.1,
+                                        "n_relax": 20,
+                                        "tau": 1,
+                                        "tol": 0
+                                    }
                 params["name"] = mod
             elif mod == "KAN":
                 params["name"] = mod
@@ -190,12 +200,17 @@ def main(TRIALS, models, datasets, epochs, epochs_backward, batch_size,
                     out_dim = 10
                     if mod == "PC" or mod == "KAN":
                         trainset, validset = make_MNIST(out_dim, test, True)
+                    elif mod == "EP":
+                        params['dimensions'] = [784, batch_size*out_dim, out_dim]
+                        trainset, validset = make_MNIST(out_dim, test, ep = True)
                     else:
                         trainset, validset, testset = make_MNIST(out_dim, test)
                     
                     stepsize = 0.04
                     if mod == "KAN":
                         lr = 0.005 #0.0005
+                    elif mod == "EP":
+                        lr = 0.005
                     else: 
                         lr = 0.1
                 elif data == "f":
@@ -204,6 +219,9 @@ def main(TRIALS, models, datasets, epochs, epochs_backward, batch_size,
                     out_dim = 10
                     if mod == "PC" or mod == "KAN":
                         trainset, validset = make_FashionMNIST(out_dim, test, True)
+                    elif mod == "EP":
+                        params['dimensions'] = [784, batch_size*out_dim, out_dim]
+                        trainset, validset = make_FashionMNIST(out_dim, test, ep = True)
                     else:
                         trainset, validset, testset = make_FashionMNIST(out_dim, test)
                     
@@ -211,6 +229,8 @@ def main(TRIALS, models, datasets, epochs, epochs_backward, batch_size,
                     stepsize = 0.004
                     if mod == "KAN":
                         lr = 0.005
+                    elif mod == "EP":
+                        lr = 0.01
                     else :
                         lr = 0.9
 
@@ -264,6 +284,9 @@ def main(TRIALS, models, datasets, epochs, epochs_backward, batch_size,
                 elif mod == "KAN":
                     train_loader = torch.utils.data.DataLoader(trainset, batch_size=batch_size, pin_memory=True, shuffle=True)
                     valid_loader = torch.utils.data.DataLoader(validset, batch_size=batch_size, pin_memory=True, shuffle=False)
+                elif mod == "EP":
+                    train_loader = torch.utils.data.DataLoader(trainset, batch_size=batch_size, drop_last=True, shuffle=True)
+                    valid_loader = torch.utils.data.DataLoader(validset, batch_size=batch_size, drop_last=True, shuffle=False)
                 else :
                     train_loader = torch.utils.data.DataLoader(trainset,
                                                             batch_size=batch_size,
@@ -460,7 +483,37 @@ def main(TRIALS, models, datasets, epochs, epochs_backward, batch_size,
                     model.train_model(train_loader, valid_loader, epochs, lr, log, save, 
                               trial=trial, new_ckpt=ckpt, train_ckpts=save_training)
                 elif mod == "EP":
-                    pass
+                    model = ep_net(type='cond_gaussian', dimensions=params["dimensions"], cost_energy=params["cost_energy"], batch_size=params["batch_size"])
+                    print("Model: ", mod)
+                    ckpt = "checkpoints/" + mod + "/models/" + mod + str_datasets_trials_1 + "-trial" + str(trial) + ".pth"
+                    save_training = "checkpoints/" + mod + "/TRAIN-" + mod + str_datasets_trials_1 + ".json"
+                    if d > 0 :
+                        if d == 1:
+                            prev_ckpt = "checkpoints/" + mod + "/models/" + mod + str_datasets_trials_1 + "-trial" + str(trial) + ".pth"
+                            ckpt = "checkpoints/" + mod + "/models/" + mod + str_datasets_trials_2 + "-trial" + str(trial) + ".pth"
+                            save_training = "checkpoints/" + mod + "/TRAIN-" + mod + str_datasets_trials_2 + ".json"
+                        elif d == 2:
+                            prev_ckpt = "checkpoints/" + mod + "/models/" + mod + str_datasets_trials_2 + "-trial" + str(trial) + ".pth"
+                            ckpt = "checkpoints/" + mod + "/models/" + mod + str_datasets_trials_3  + "-trial" + str(trial) + ".pth"
+                            save_training = "checkpoints/" + mod + "/TRAIN-" + mod + str_datasets_trials_3 + ".json"
+                        elif d == 3:
+                            prev_ckpt = "checkpoints/" + mod + "/models/" + mod + str_datasets_trials_3 + "-trial" + str(trial) + ".pth"
+                            ckpt = "checkpoints/" + mod + "/models/" + mod + str_datasets_trials_4 + "-trial" + str(trial) + ".pth"
+                            save_training = "checkpoints/" + mod + "/TRAIN-" + mod + str_datasets_trials_4 + ".json"
+                        elif d == 4:
+                            prev_ckpt = "checkpoints/" + mod + "/models/" + mod + str_datasets_trials_4 + "-trial" + str(trial) + ".pth"
+                            ckpt = "checkpoints/" + mod + "/models/" + mod + str_datasets_trials_5 + "-trial" + str(trial) + ".pth"
+                            save_training = "checkpoints/" + mod + "/TRAIN-" + mod + str_datasets_trials_5 + ".json"
+                        elif d == 5:
+                            prev_ckpt = "checkpoints/" + mod + "/models/" + mod + str_datasets_trials_5 + "-trial" + str(trial) + ".pth"
+                            ckpt = "checkpoints/" + mod + "/models/" + mod + str_datasets_trials_6 + "-trial" + str(trial) + ".pth"
+                            save_training = "checkpoints/" + mod + "/TRAIN-" + mod + str_datasets_trials_6 + ".json"
+                        
+                        saved_state = torch.load(prev_ckpt)
+                        model.load_state(prev_ckpt, lr)
+
+                    model.train_model(train_loader, valid_loader, epochs, params['dynamics'], lr=lr, log=log, save=save, 
+                              trial=trial, new_ckpt=ckpt, train_ckpts=save_training)
 
                 else :
                     raise ValueError("Unkown algorithm. Please choose from BP, TP, DTP, FWDTP, or KAN.")
@@ -471,8 +524,8 @@ def main(TRIALS, models, datasets, epochs, epochs_backward, batch_size,
 
 if __name__ == "__main__":
     # models = ["BP", "DTP", "FWDTP", "PC", "KAN"]
-    # models = ["DTP"]
-    models = ["BP", "DTP", "PC"]
+    models = ["EP"]
+    models = ["BP", "DTP", "PC", "EP"]
     datasets = ['m', 'f', 'm', 'f', 'm']
 
     if 'c' in datasets or 's' in datasets:
@@ -504,7 +557,10 @@ if __name__ == "__main__":
     hid_dim = 256
 
     log = True # for wandb visuals
-    save = "yes"
+    if len(models) > 1:
+        save = "yes"
+    else:
+        save = "no"
 
     n_inference_steps = 50
     inference_lr = 0.1
