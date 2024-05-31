@@ -22,130 +22,131 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-import logging
-
 import torch
+import os
+import json
+import wandb
 
-from Models.EP.ep_fcns import CEnergy, CrossEntropy, SquaredError
-from Models.EP.ep_layers import EnergyBasedModel
-
-
-
-def predict_batch(model, x_batch, dynamics, fast_init):
-    """
-    Compute the softmax prediction probabilities for a given data batch.
-
-    Args:
-        model: EnergyBasedModel
-        x_batch: Batch of input tensors
-        dynamics: Dictionary containing the keyword arguments
-            for the relaxation dynamics on u
-        fast_init: Boolean to specify if fast feedforward initilization
-            is used for the prediction
-
-    Returns:
-        Softmax classification probabilities for the given data batch
-    """
-    # Initialize the neural state variables
-    model.reset_state()
-
-    # Clamp the input to the test sample, and remove nudging from ouput
-    model.clamp_layer(0, x_batch.view(-1, model.dimensions[0]))
-    model.set_C_target(None)
-
-    # Generate the prediction
-    if fast_init:
-        model.fast_init()
-    else:
-        model.u_relax(**dynamics)
-
-    return torch.nn.functional.softmax(model.u[-1].detach(), dim=1)
+from Models.EP.ep_fcns import CEnergy, CrossEntropy, SquaredError, create_cost, create_activations, create_optimizer
+from Models.EP.ep_layers import RestrictedHopfield, ConditionalGaussian
 
 
-def test(model, test_loader, dynamics, fast_init, device = 'cpu'):
-    """
-    Evaluate prediction accuracy of an energy-based model on a given test set.
-
-    Args:
-        model: EnergyBasedModel
-        test_loader: Dataloader containing the test dataset
-        dynamics: Dictionary containing the keyword arguments
-            for the relaxation dynamics on u
-        fast_init: Boolean to specify if fast feedforward initilization
-            is used for the prediction
-
-    Returns:
-        Test accuracy
-        Mean energy of the model per batch
-    """
-    test_E, correct, total = 0.0, 0.0, 0.0
-
-    for x_batch, y_batch in test_loader:
-        # Prepare the new batch
-        x_batch, y_batch = x_batch.to(device), y_batch.to(device)
-
-        # Extract prediction as the output unit with the strongest activity
-        output = predict_batch(model, x_batch, dynamics, fast_init)
-        prediction = torch.argmax(output, 1)
-
-        with torch.no_grad():
-            # Compute test batch accuracy, energy and store number of seen batches
-            correct += float(torch.sum(prediction == y_batch.argmax(dim=1)))
-            test_E += float(torch.sum(model.E))
-            total += x_batch.size(0)
-
-    return correct / total, test_E / total
-
-
-def train(model, train_loader, dynamics, w_optimizer, fast_init, device = 'cpu'):
-    """
-    Use equilibrium propagation to train an energy-based model.
-
-    Args:
-        model: EnergyBasedModel
-        train_loader: Dataloader containing the training dataset
-        dynamics: Dictionary containing the keyword arguments
-            for the relaxation dynamics on u
-        w_optimizer: torch.optim.Optimizer object for the model parameters
-        fast_init: Boolean to specify if fast feedforward initilization
-            is used for the prediction
-    """
-    for batch_idx, (x_batch, y_batch) in enumerate(train_loader):
-        x_batch, y_batch = x_batch.to(device), y_batch.to(device)
-
-        # Reinitialize the neural state variables
-        model.reset_state()
-
-        # Clamp the input to the training sample
-        model.clamp_layer(0, x_batch.view(-1, model.dimensions[0]))
-
-        # Free phase
-        if fast_init:
-            # Skip the free phase using fast feed-forward initialization instead
-            model.fast_init()
-            free_grads = [torch.zeros_like(p) for p in model.parameters()]
+class ep_net:
+    def __init__(self, optimizer, type='restr_hopfield', dimensions=[28*28, 640, 10], cost_energy='cross_entropy', batch_size=64, device='cpu'):
+        self.type = type
+        # self.dimensions = dimensions
+        self.phi = create_activations("sigmoid", len(dimensions))
+        if self.type == 'restr_hopfield':
+            self.model = RestrictedHopfield(dimensions, batch_size, self.phi)
+        elif self.type == 'cond_gaussian':
+            self.model = ConditionalGaussian(dimensions, batch_size, self.phi)
         else:
-            # Run free phase until settled to fixed point and collect the free phase derivates
-            model.set_C_target(None)
-            dE = model.u_relax(**dynamics)
-            free_grads = model.w_get_gradients()
+            raise ValueError('Unknown model type.')
+        self.cost_energy = create_cost(cost_energy, dimensions)
+        self.device = device
+        self.optimizer = optimizer
+        
 
-        # Run nudged phase until settled to fixed point and collect the nudged phase derivates
-        model.set_C_target(y_batch)
-        dE = model.u_relax(**dynamics)
-        nudged_grads = model.w_get_gradients()
+    def predict_batch(self, x_batch, dynamics, fast_init):
+        self.model.reset_state()
+        self.model.clamp_layer(0, x_batch.view(-1, self.model.dimensions[0]))
+        self.model.set_C_target(None)
+        if fast_init:
+            self.model.fast_init()
+        else:
+            self.model.u_relax(**dynamics)
+        return torch.nn.functional.softmax(self.model.u[-1].detach(), dim=1)
 
-        # Optimize the parameters using the contrastive Hebbian style update
-        model.w_optimize(free_grads, nudged_grads, w_optimizer)
-
-        # Logging key statistics
-        if batch_idx % (len(train_loader) // 10) == 0:
-
-            # Extract prediction as the output unit with the strongest activity
-            output = predict_batch(model, x_batch, dynamics, fast_init)
+    def test_model(self, test_loader, dynamics, fast_init):
+        test_E, correct, total = 0.0, 0.0, 0.0
+        for x_batch, y_batch in test_loader:
+            x_batch, y_batch = x_batch.to(self.device), y_batch.to(self.device)
+            output = self.predict_batch(x_batch, dynamics, fast_init)
             prediction = torch.argmax(output, 1)
+            with torch.no_grad():
+                correct += float(torch.sum(prediction == y_batch.argmax(dim=1)))
+                test_E += float(torch.sum(self.model.E))
+                total += x_batch.size(0)
+        return correct / total, test_E / total
 
-            # Log energy and batch accuracy
-            batch_acc = float(torch.sum(prediction == y_batch.argmax(dim=1))) / x_batch.size(0)
-            # logging.info('{:.0f}%:\tE: {:.2f}\tdE {:.2f}\tbatch_acc {:.4f}'.format(
-            #     100. * batch_idx / len(train_loader), torch.mean(model.E), dE, batch_acc))
+    def train_model(self, train_loader, valid_loader, epochs, dynamics, fast_init = True, log=False, save=False, trial=0, new_ckpt='', train_ckpts=''):
+        epoch = 0
+        test_accs = []
+        test_acc, test_E = self.test_model(valid_loader, dynamics, fast_init)
+        test_accs.append(test_acc)
+        
+        for epoch in range(1, epochs + 1):
+            self.model.train()
+            for batch_idx, (x_batch, y_batch) in enumerate(train_loader):
+                x_batch, y_batch = x_batch.to(self.device), y_batch.to(self.device)
+                
+                # reinitialize the neural state variables
+                self.model.reset_state()
+                # input just the training sample
+                self.model.clamp_layer(0, x_batch.view(-1, self.model.dimensions[0]))
+
+                # Free phase
+                if fast_init:
+                    self.model.fast_init() # fast feed-forward initialization (skip free phase)
+                    free_grads = [torch.zeros_like(p) for p in self.model.parameters()]
+                else:
+                    # run free phase and get gradients
+                    self.model.set_C_target(None)
+                    dE = self.model.u_relax(**dynamics)
+                    free_grads = self.model.w_get_gradients()
+
+                # Nudged phase
+                self.model.set_C_target(y_batch)
+                dE = self.model.u_relax(**dynamics)
+                nudged_grads = self.model.w_get_gradients()
+
+                # Update weights
+                self.model.w_optimize(free_grads, nudged_grads, self.optimizer)
+
+            test_acc, test_E = self.test_model(valid_loader, dynamics, fast_init)
+            if log:
+                wandb.log({"epoch": epoch, "test_acc": test_acc, "test_E": test_E})
+            print(f"Epoch: {epoch}, Test Acc: {test_acc}, Test E: {test_E}")
+            test_accs.append(test_acc)
+
+        if save:
+            self.save_model(new_ckpt)
+            self.save_training_dynamics(train_loader, valid_loader, trial, train_ckpts)
+
+    def save_model(self, path="checkpoints/ep/params.pth"):
+        os.makedirs(os.path.dirname(path), exist_ok=True)
+        torch.save({
+            'model_state_dict': self.model.state_dict(),
+            'optimizer_state_dict': self.optimizer.state_dict(),
+        }, path)
+
+    def load_state(self, path):
+        checkpoint = torch.load(path)
+        self.model.load_state_dict(checkpoint['model_state_dict'])
+        self.optimizer.load_state_dict(checkpoint['optimizer_state_dict'])
+
+    def save_training_dynamics(self, test_accuracies, trial, ckpt):
+        path = ckpt
+        os.makedirs(os.path.dirname(path), exist_ok=True)
+
+        if os.path.exists(path) and os.path.getsize(path) > 0:
+            with open(path, "r") as file:
+                data = json.load(file)
+        else:
+            data = [{
+                "Trial": [],
+                # "Train Losses": [],
+                # "Train Accuracies": [],
+                # "Test Losses": [],
+                "Test Accuracies": []
+            }]
+
+        data[0]["Trial"].append(trial)
+        # data[0]["Train Losses"].append(train_losses)
+        # data[0]["Train Accuracies"].append(train_accuracies)
+        # data[0]["Test Losses"].append(test_losses)
+        data[0]["Test Accuracies"].append(test_accuracies)
+
+        with open(path, "w") as file:
+            json.dump(data, file, indent=4)
+

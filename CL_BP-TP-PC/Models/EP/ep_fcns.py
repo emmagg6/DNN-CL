@@ -25,6 +25,74 @@ import abc
 import torch
 
 
+def create_activations(name, n_layers):
+    """
+    Create  activation functions for every layer of the network.
+
+    Args:
+        name: Name of the activation function
+        n_layers: Number of layers
+
+    Returns:
+        List of activation functions for every layer
+    """
+    if name == 'relu':
+        phi_l = torch.relu
+    elif name == "leaky_relu":
+        def phi_l(x): torch.nn.functional.leaky_relu(x, negative_slope=0.05)
+    elif name == 'softplus':
+        phi_l = torch.nn.functional.softplus
+    elif name == 'sigmoid':
+        phi_l = torch.sigmoid
+    elif name == 'hard_sigmoid':
+        def phi_l(x): torch.clamp(x, min=0, max=1)
+    else:
+        raise ValueError(f'Nonlinearity \"{name}\" not defined.')
+
+    return [lambda x: x] + [phi_l] * (n_layers - 1)
+
+
+def create_cost(name, beta):
+    """
+    Create a supervised learning cost function used to nudge
+    the network towards a desired state during training.
+
+    Args:
+        name: Name of the cost function
+        beta: Scalar weighting factor of the cost function
+
+    Returns:
+        CEnergy object
+    """
+    if name == "squared_error":
+        return SquaredError(beta)
+    elif name == "cross_entropy":
+        return CrossEntropy(beta)
+    else:
+        raise ValueError("Cost function \"{}\" not defined".format(name))
+
+
+def create_optimizer(model, name, **kwargs):
+    """
+    Create optimizer for the given model.
+
+    Args:
+        model: nn.Module whose parameters will be optimized
+        name: Name of the optimizer to be used
+
+    Returns:
+        torch.optim.Optimizer instance for the given model
+    """
+    if name == "adagrad":
+        return torch.optim.Adagrad(model.parameters(), **kwargs)
+    elif name == "adam":
+        return torch.optim.Adam(model.parameters(), **kwargs)
+    elif name == "sgd":
+        return torch.optim.SGD(model.parameters(), **kwargs)
+    else:
+        raise ValueError("Optimizer \"{}\" undefined".format(name))
+
+
 class CEnergy(abc.ABC):
     """
     Abstract base class for all supervised learning cost functions.
@@ -101,71 +169,3 @@ class SquaredError(CEnergy):
         return self.beta * 0.5 * torch.sum(loss, dim=1)
     
 
-
-
-def create_activations(name, n_layers):
-    """
-    Create  activation functions for every layer of the network.
-
-    Args:
-        name: Name of the activation function
-        n_layers: Number of layers
-
-    Returns:
-        List of activation functions for every layer
-    """
-    if name == 'relu':
-        phi_l = torch.relu
-    elif name == "leaky_relu":
-        def phi_l(x): torch.nn.functional.leaky_relu(x, negative_slope=0.05)
-    elif name == 'softplus':
-        phi_l = torch.nn.functional.softplus
-    elif name == 'sigmoid':
-        phi_l = torch.sigmoid
-    elif name == 'hard_sigmoid':
-        def phi_l(x): torch.clamp(x, min=0, max=1)
-    else:
-        raise ValueError(f'Nonlinearity \"{name}\" not defined.')
-
-    return [lambda x: x] + [phi_l] * (n_layers - 1)
-
-
-def create_cost(name, beta):
-    """
-    Create a supervised learning cost function used to nudge
-    the network towards a desired state during training.
-
-    Args:
-        name: Name of the cost function
-        beta: Scalar weighting factor of the cost function
-
-    Returns:
-        CEnergy object
-    """
-    if name == "squared_error":
-        return cost.SquaredError(beta)
-    elif name == "cross_entropy":
-        return cost.CrossEntropy(beta)
-    else:
-        raise ValueError("Cost function \"{}\" not defined".format(name))
-
-
-def create_optimizer(model, name, **kwargs):
-    """
-    Create optimizer for the given model.
-
-    Args:
-        model: nn.Module whose parameters will be optimized
-        name: Name of the optimizer to be used
-
-    Returns:
-        torch.optim.Optimizer instance for the given model
-    """
-    if name == "adagrad":
-        return torch.optim.Adagrad(model.parameters(), **kwargs)
-    elif name == "adam":
-        return torch.optim.Adam(model.parameters(), **kwargs)
-    elif name == "sgd":
-        return torch.optim.SGD(model.parameters(), **kwargs)
-    else:
-        raise ValueError("Optimizer \"{}\" undefined".format(name))

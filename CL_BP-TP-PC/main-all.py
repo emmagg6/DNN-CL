@@ -13,7 +13,11 @@ from Models.BP.bp_nn import bp_net
 from Models.TP.tp_nn import tp_net
 from Models.PC.pc_nn import pc_net
 from Models.KAN.kan_nn import kan_net
+from Models.EP.ep_nn import ep_net
 from Models.PC.pc_layers import ConvLayer, MaxPool, ProjectionLayer, FCLayer
+from Models.EP.ep_fcns import create_cost, create_activations, create_optimizer
+from Models.EP.ep_layers import ConditionalGaussian
+
 
 import os
 import sys
@@ -166,16 +170,7 @@ def main(TRIALS, models, datasets, epochs, epochs_backward, batch_size,
                     layers = [l1, l2, l3, l4, l5, l6]
                 
                 params["name"] = mod
-            elif mod == "PCDTP":
-                loss_fn, loss_fn_deriv = parse_loss_function("crossentropy")
-                if not larger:
-                    l1 = ConvLayer_dtp(input_size=28, num_channels=1, num_filters=6, batch_size=batch_size, kernel_size=5, learning_rate=lr, f=relu, df=relu_deriv, device=device)
-                    l2 = MaxPool_dtp(2, device=device)
-                    l3 = ConvLayer_dtp(input_size=12, num_channels=6, num_filters=16, batch_size=batch_size, kernel_size=5, learning_rate=lr, f=relu, df=relu_deriv, device=device)
-                    l4 = ProjectionLayer_dtp(input_size=(64, 16, 8, 8), output_size=120, f=relu, df=relu_deriv, learning_rate=lr, device=device)
-                    l5 = FCLayer_dtp(input_size=120, output_size=84, batch_size=64, learning_rate=lr, f=relu, df=relu_deriv, device=device)
-                    l6 = FCLayer_dtp(input_size=84, output_size=10, batch_size=64, learning_rate=lr, f=F.softmax, df=linear_deriv, device=device)
-                    layers = [l1, l2, l3, l4, l5, l6]
+            elif mod == "EP":
                 params["name"] = mod
             elif mod == "KAN":
                 params["name"] = mod
@@ -260,7 +255,7 @@ def main(TRIALS, models, datasets, epochs, epochs_backward, batch_size,
                 loss_function = nn.CrossEntropyLoss(reduction="sum")
 
                 
-                if mod == "PC" or mod == "PCDTP":
+                if mod == "PC":
                     trainloader = torch.utils.data.DataLoader(trainset, batch_size=batch_size, shuffle=True)
                     validloader = torch.utils.data.DataLoader(validset, batch_size=batch_size, shuffle=False)
                 # elif mod == "PCDTP":
@@ -335,11 +330,8 @@ def main(TRIALS, models, datasets, epochs, epochs_backward, batch_size,
                                     trial=trial, new_ckpt= ckpt, train_ckpts=save_training)
                     # print("trained BP")
 
-                elif mod == "PC" or mod == "PCDTP":
-                    if mod == "PC":
-                        model = pc_net(layers, num_inference_steps, inference_lr, loss_fn = loss_fn, loss_fn_deriv = loss_fn_deriv, device=device)
-                    elif mod == "PCDTP":
-                        model = pcdtp_net(layers, num_inference_steps, inference_lr, loss_fn = loss_fn, loss_fn_deriv = loss_fn_deriv, device=device)
+                elif mod == "PC":
+                    model = pc_net(layers, num_inference_steps, inference_lr, loss_fn = loss_fn, loss_fn_deriv = loss_fn_deriv, device=device)
                     print("Model: ", mod)
 
                     ckpt = "checkpoints/" + mod + "/models/" + mod + str_datasets_trials_1 + "-trial" + str(trial)
@@ -467,7 +459,8 @@ def main(TRIALS, models, datasets, epochs, epochs_backward, batch_size,
 
                     model.train_model(train_loader, valid_loader, epochs, lr, log, save, 
                               trial=trial, new_ckpt=ckpt, train_ckpts=save_training)
-
+                elif mod == "EP":
+                    pass
 
                 else :
                     raise ValueError("Unkown algorithm. Please choose from BP, TP, DTP, FWDTP, or KAN.")
@@ -478,8 +471,8 @@ def main(TRIALS, models, datasets, epochs, epochs_backward, batch_size,
 
 if __name__ == "__main__":
     # models = ["BP", "DTP", "FWDTP", "PC", "KAN"]
-    # models = ["PC"]
-    models = ["BP", "DTP", "FWDTP", "PC"]
+    # models = ["DTP"]
+    models = ["BP", "DTP", "PC"]
     datasets = ['m', 'f', 'm', 'f', 'm']
 
     if 'c' in datasets or 's' in datasets:
@@ -504,7 +497,7 @@ if __name__ == "__main__":
     lr_backward = 1e-3
     std_backward = 0.01
     loss_feedback = "DTP"
-    sparse_ratio = 0.1 #[0.1, 0.5, 0.9] # for FWDTP
+    sparse_ratio = 0.5 #[0.1, 0.5, 0.9] # for FWDTP
     sparse_ratio_str = f"-sparse-{sparse_ratio}" if 0 <= sparse_ratio <= 1 else ""
 
     # input and output dimensions depend on the dataset
@@ -516,7 +509,7 @@ if __name__ == "__main__":
     n_inference_steps = 50
     inference_lr = 0.1
 
-    TRIALS = 9
+    TRIALS = 19
     main(TRIALS, models, datasets, epochs, epochs_backward, batch_size, 
          test, depth, direct_depth, lr, lr_backward, std_backward, 
          loss_feedback, sparse_ratio_str, hid_dim, log, save,
