@@ -16,7 +16,7 @@ from copy import deepcopy
 import sys
 import time
 import wandb
-import numpy as np
+import numpy as np 
 import torch
 from torch import nn
 from torch.autograd.functional import jacobian
@@ -134,7 +134,7 @@ class tp_net(net):
             else:
                 if train_acc is not None:
                     print(f"\tTrain Acc        : {train_acc}")
-                if valid_acc is not None:
+            if valid_acc is not None:
                     print(f"\tValid Acc        : {valid_acc}")
 
         if save == 'yes':
