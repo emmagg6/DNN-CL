@@ -1,9 +1,3 @@
-'''
-Adapted from https://github.com/BerenMillidge/PredictiveCodingBackprop/blob/master/cnn.py
-
-by emmagg6
-'''
-
 import numpy as np
 import matplotlib.pyplot as plt
 import torch
@@ -24,7 +18,7 @@ from utils import *
 
 
 class pc_net(object):
-  def __init__(self, layers, n_inference_steps_train, inference_learning_rate, loss_fn, loss_fn_deriv, device='cpu',numerical_check=False):
+  def __init__(self, layers, n_inference_steps_train, inference_learning_rate, loss_fn, loss_fn_deriv, device='cpu', numerical_check=False):
     self.layers= layers
     self.n_inference_steps_train = n_inference_steps_train
     self.inference_learning_rate = inference_learning_rate

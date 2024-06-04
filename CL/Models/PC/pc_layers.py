@@ -169,7 +169,7 @@ class ProjectionLayer(object):
 
 
 class FCLayer(object):
-  def __init__(self, input_size,output_size,batch_size, learning_rate,f,df,device="cpu"):
+  def __init__(self, input_size,output_size,batch_size, learning_rate, f, df,device="cpu"):
     self.input_size = input_size
     self.output_size = output_size
     self.batch_size = batch_size

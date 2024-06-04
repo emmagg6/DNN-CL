@@ -39,7 +39,7 @@ def main(TRIALS, models, datasets, epochs, epochs_backward, batch_size,
 
     for mod in models:
 
-        for trial in range(0, TRIALS + 1):
+        for trial in range(1, TRIALS + 1):
             print("\n -------------------------------------")
             print(f"TRIAL: {trial}")
             print(" -------------------------------------\n")
@@ -107,7 +107,9 @@ def main(TRIALS, models, datasets, epochs, epochs_backward, batch_size,
                                 "init": None,
                                 "act": "linear-BN"}
                 params["last"] = "linear"
-                params["name"] = mod
+                params["name"] = str(mod + "-eq")
+                name = mod + "-eq-" + str(trial)
+                name = str(name)
 
             elif mod == "FWDTP":
                 params["ff1"] = {"type": "identity",
@@ -203,7 +205,7 @@ def main(TRIALS, models, datasets, epochs, epochs_backward, batch_size,
                     in_dim = 784
                     out_dim = 10
                     if mod == "PC" or mod == "KAN":
-                        trainset, validset = make_MNIST(out_dim, test, True)
+                        trainset, validset = make_MNIST(out_dim, test, pc = True)
                     elif mod == "EP":
                         params['dimensions'] = [784, batch_size*out_dim, out_dim]
                         trainset, validset = make_MNIST(out_dim, test, ep = True)
@@ -217,13 +219,13 @@ def main(TRIALS, models, datasets, epochs, epochs_backward, batch_size,
                     in_dim = 784
                     out_dim = 10
                     if mod == "PC" or mod == "KAN":
-                        trainset, validset = make_FashionMNIST(out_dim, test, True)
+                        trainset, validset = make_FashionMNIST(out_dim, test, pc = True)
                     elif mod == "EP":
                         params['dimensions'] = [784, batch_size*out_dim, out_dim]
                         trainset, validset = make_FashionMNIST(out_dim, test, ep = True)
                     else:
                         trainset, validset, testset = make_FashionMNIST(out_dim, test)
-                    stepsize = 0.004
+                    stepsize = 0.04 # 0.004
 
 
                 elif data == "c":
@@ -260,9 +262,6 @@ def main(TRIALS, models, datasets, epochs, epochs_backward, batch_size,
                 if mod == "PC":
                     trainloader = torch.utils.data.DataLoader(trainset, batch_size=batch_size, shuffle=True)
                     validloader = torch.utils.data.DataLoader(validset, batch_size=batch_size, shuffle=False)
-                # elif mod == "PCDTP":
-                #     train_loader = torch.utils.data.DataLoader(trainset(torch.stack([data[0] for data in trainset]), torch.stack([data[1] for data in trainset])), batch_size=batch_size, shuffle=True)
-                #     valid_loader = torch.utils.data.DataLoader(validset(torch.stack([data[0] for data in validset]), torch.stack([data[1] for data in validset])), batch_size=batch_size, shuffle=False)
                 elif mod == "KAN":
                     train_loader = torch.utils.data.DataLoader(trainset, batch_size=batch_size, pin_memory=True, shuffle=True)
                     valid_loader = torch.utils.data.DataLoader(validset, batch_size=batch_size, pin_memory=True, shuffle=False)
@@ -506,7 +505,7 @@ def main(TRIALS, models, datasets, epochs, epochs_backward, batch_size,
 
 if __name__ == "__main__":
     # models = ["BP", "DTP", "FWDTP", "PC", "KAN"]
-    models = ["PC", "EP", "FWDTP"]
+    models = ["PC"]
     # models = ["BP", "DTP", "PC", "EP"]
     datasets = ['m', 'f', 'm', 'f', 'm']
 
@@ -537,7 +536,7 @@ if __name__ == "__main__":
     # input and output dimensions depend on the dataset
     hid_dim = 256
 
-    log = True # for wandb visuals
+    log = False # for wandb visuals
     if len(datasets) > 1:
         save = "yes"
     else:
@@ -551,3 +550,4 @@ if __name__ == "__main__":
          test, depth, direct_depth, lr, lr_backward, std_backward, 
          loss_feedback, sparse_ratio_str, hid_dim, log, save,
          n_inference_steps, inference_lr, larger=larger)
+    

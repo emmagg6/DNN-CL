@@ -1,3 +1,5 @@
+
+
 import numpy as np
 import torch
 import torch.nn.functional as F
@@ -56,7 +58,7 @@ def make_MNIST(dim=None, test=False, pc = False, ep = False):
     testset = MyClassification(test_x, test_y)
 
     if ep:
-            mnist_train = tv.datasets.MNIST('./data/', train=True, download=True,
+            Mnist_train = tv.datasets.MNIST('./data/', train=True, download=True,
                                  transform=transforms.Compose([
                                      transforms.ToTensor(),
                                      transforms.Normalize((0.1307,), (0.3081,)),
@@ -64,14 +66,14 @@ def make_MNIST(dim=None, test=False, pc = False, ep = False):
                                  target_transform=_one_hot_ten
                                  )
 
-            mnist_test = tv.datasets.MNIST('./data/', train=False, download=True,
+            Mnist_test = tv.datasets.MNIST('./data/', train=False, download=True,
                                         transform=transforms.Compose([
                                             transforms.ToTensor(),
                                             transforms.Normalize((0.1307,), (0.3081,)),
                                         ]),
                                         target_transform=_one_hot_ten
                                         )
-            return mnist_train, mnist_test
+            return Mnist_train, Mnist_test
 
     if pc :
         return mnist_train, mnist_test

@@ -254,10 +254,10 @@ def mse_loss(out, label):
 def mse_deriv(out,label):
       return 2 * (out - label)
 
-ce_loss = nn.CrossEntropyLoss()
+# ce_loss = nn.CrossEntropyLoss()
 
 def cross_entropy_loss(out,label):
-      return ce_loss(out,label)
+      return nn.CrossEntropyLoss(out,label)
 
 def my_cross_entropy(out,label):
       return -torch.sum(label * torch.log(out + 1e-6))
