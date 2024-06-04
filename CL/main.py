@@ -1,8 +1,8 @@
 '''
 
-CL training -- 100 tests runs -- BP, DTP, FWDTP trained in mnist, then fashionmnist, then mnist
+CL training
 
-Checkpoint tests for accuracy and loss for each model at the start and end of training.
+Checkpoint tests for accuracy of each model after each epoch of training.
 
 '''
 
@@ -508,6 +508,7 @@ if __name__ == "__main__":
     models = ["PC"]
     # models = ["BP", "DTP", "PC", "EP"]
     datasets = ['m', 'f', 'm', 'f', 'm']
+    datasets = ['m']
 
     if 'c' in datasets or 's' in datasets:
         larger = True
@@ -542,7 +543,7 @@ if __name__ == "__main__":
     else:
         save = "no"
 
-    n_inference_steps = 50
+    n_inference_steps = 25
     inference_lr = 0.1
 
     TRIALS = 20
