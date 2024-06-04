@@ -61,6 +61,7 @@ def main(TRIALS, models, datasets, epochs, epochs_backward, batch_size,
                 lr = 0.005
             if mod == "EP":
                 lr = 0.005
+            stepsize = 0.04
 
             if mod == "BP":
                 params = {
@@ -74,9 +75,8 @@ def main(TRIALS, models, datasets, epochs, epochs_backward, batch_size,
                         "act": "tanh-BN",
                         "init": "orthogonal"
                     },
-                    'name': {mod}
                 }
-                # params["name"] = mod
+                params["name"] = mod
             elif mod == "TP":
                 params["ff1"] = {"type": "identity",
                                 "init": None,
@@ -158,22 +158,16 @@ def main(TRIALS, models, datasets, epochs, epochs_backward, batch_size,
 
                     l1 = ConvLayer(input_size=32, num_channels=3, num_filters=6, batch_size=batch_size, kernel_size=5, learning_rate=lr, f=relu, df=relu_deriv, device=device)
 
-                    # Max pooling layer with kernel size 2x2
                     l2 = MaxPool(2, device=device)
 
-                    # Convolutional layer with input size 14x14 (after max pooling), 6 input channels, 16 output filters, kernel size 5x5
                     l3 = ConvLayer(input_size=14, num_channels=6, num_filters=16, batch_size=batch_size, kernel_size=5, learning_rate=lr, f=relu, df=relu_deriv, device=device)
 
-                    # Projection layer with input size corresponding to the output size of the previous conv layer, 16x5x5
                     l4 = ProjectionLayer(input_size=(64, 16, 10, 10), output_size=200, f=relu, df=relu_deriv, learning_rate=lr, device=device)
 
-                    # Fully connected layer
                     l5 = FCLayer(input_size=200, output_size=150, batch_size=batch_size, learning_rate=lr, f=relu, df=relu_deriv, device=device)
 
-                    # Final fully connected layer with 10 output classes for MNIST
-                    l6 = FCLayer(input_size=150, output_size=10, batch_size=64, learning_rate=lr, f=F.softmax, df=linear_deriv, device=device)
+                    l6 = FCLayer(input_size=150, output_size=10, batch_size=64, learning_rate=lr, f=softmax, df=linear_deriv, device=device)
 
-                    # List of layers
                     layers = [l1, l2, l3, l4, l5, l6]
                 
                 params["name"] = mod
@@ -211,8 +205,6 @@ def main(TRIALS, models, datasets, epochs, epochs_backward, batch_size,
                         trainset, validset = make_MNIST(out_dim, test, ep = True)
                     else:
                         trainset, validset, testset = make_MNIST(out_dim, test)
-                    
-                    stepsize = 0.04
 
                 elif data == "f":
                     print("making FashionMNIST ...")
@@ -225,7 +217,7 @@ def main(TRIALS, models, datasets, epochs, epochs_backward, batch_size,
                         trainset, validset = make_FashionMNIST(out_dim, test, ep = True)
                     else:
                         trainset, validset, testset = make_FashionMNIST(out_dim, test)
-                    stepsize = 0.04 # 0.004
+                    
 
 
                 elif data == "c":
@@ -238,8 +230,6 @@ def main(TRIALS, models, datasets, epochs, epochs_backward, batch_size,
                     else:
                         trainset, validset, testset = make_CIFAR10(out_dim, test)
 
-                    stepsize = 0.05
-
                 elif data == "s":
                     print("making STL10 ...")
                     in_dim = 3072
@@ -249,8 +239,6 @@ def main(TRIALS, models, datasets, epochs, epochs_backward, batch_size,
                         trainset, validset = make_STL10(out_dim, test, True)
                     else:
                         trainset, validset, testset = make_STL10(out_dim, test)
-
-                    stepsize = 0.05
                 else :
                     raise ValueError("Unkown dataset. Please choose from MNIST ('m'), FashionMNIST ('f'), CIFAR10 ('c').")
 
