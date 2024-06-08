@@ -11,10 +11,10 @@ from dataset import make_MNIST, make_FashionMNIST, make_CIFAR10, make_STL10
 
 from Models.BP.bp_nn import bp_net
 from Models.TP.tp_nn import tp_net
-from Models.PC.pc_nn import pc_net
+# from Models.PC.pc_nn import pc_net
 from Models.KAN.kan_nn import kan_net
 from Models.EP.ep_nn import ep_net
-from Models.PC.pc_layers import ConvLayer, MaxPool, ProjectionLayer, FCLayer
+# from Models.PC.pc_layers import ConvLayer, MaxPool, ProjectionLayer, FCLayer
 
 
 import os
@@ -57,9 +57,7 @@ def main(TRIALS, models, datasets, epochs, epochs_backward, batch_size,
             print("Parameter Setup ... ")
 
             lr = 0.1
-            if mod == "KAN":
-                lr = 0.005
-            if mod == "EP":
+            if mod == "KAN" or mod == "EP" or mod == "PC":
                 lr = 0.005
             stepsize = 0.04
 
@@ -145,10 +143,10 @@ def main(TRIALS, models, datasets, epochs, epochs_backward, batch_size,
                     l4 = ProjectionLayer(input_size=(64, 16, 8, 8), output_size=120, f=relu, df=relu_deriv, learning_rate=lr, device=device)
 
                     # Fully connected layer
-                    l5 = FCLayer(input_size=120, output_size=84, batch_size=64, learning_rate=lr, f=relu, df=relu_deriv, device=device)
+                    l5 = FCLayer(input_size=120, output_size=84, batch_size=64, learning_rate=lr, f = relu, df = relu_deriv, device=device)
 
                     # Final fully connected layer with 10 output classes for MNIST
-                    l6 = FCLayer(input_size=84, output_size=10, batch_size=64, learning_rate=lr, f=F.softmax, df=linear_deriv, device=device)
+                    l6 = FCLayer(input_size=84, output_size=10, batch_size=64, learning_rate=lr, f = F.softmax, df= linear_deriv, device=device)
 
                     # List of layers
                     layers = [l1, l2, l3, l4, l5, l6]
@@ -166,7 +164,7 @@ def main(TRIALS, models, datasets, epochs, epochs_backward, batch_size,
 
                     l5 = FCLayer(input_size=200, output_size=150, batch_size=batch_size, learning_rate=lr, f=relu, df=relu_deriv, device=device)
 
-                    l6 = FCLayer(input_size=150, output_size=10, batch_size=64, learning_rate=lr, f=softmax, df=linear_deriv, device=device)
+                    l6 = FCLayer(input_size=150, output_size=10, batch_size=64, learning_rate=lr, f = F.softmax, df = linear_deriv, device=device)
 
                     layers = [l1, l2, l3, l4, l5, l6]
                 
@@ -493,10 +491,10 @@ def main(TRIALS, models, datasets, epochs, epochs_backward, batch_size,
 
 if __name__ == "__main__":
     # models = ["BP", "DTP", "FWDTP", "PC", "KAN"]
-    models = ["PC"]
-    # models = ["BP", "DTP", "PC", "EP"]
+    # models = ["PC"]
+    models = ["BP", "DTP", "EP", "KAN", "FWDTP"]
     datasets = ['m', 'f', 'm', 'f', 'm']
-    datasets = ['m']
+    # datasets = ['m']
 
     if 'c' in datasets or 's' in datasets:
         larger = True
@@ -515,7 +513,7 @@ if __name__ == "__main__":
     direct_depth = 1
 
     # for TP
-    lr = 0.1
+    lr = 0.01
     lr_backward = 1e-3
     std_backward = 0.01
     loss_feedback = "DTP"
@@ -531,10 +529,10 @@ if __name__ == "__main__":
     else:
         save = "no"
 
-    n_inference_steps = 25
-    inference_lr = 0.1
+    n_inference_steps = 100
+    inference_lr = 0.01
 
-    TRIALS = 20
+    TRIALS = 100
     main(TRIALS, models, datasets, epochs, epochs_backward, batch_size, 
          test, depth, direct_depth, lr, lr_backward, std_backward, 
          loss_feedback, sparse_ratio_str, hid_dim, log, save,

@@ -154,7 +154,7 @@ def sequence_accuracy(model, target_batch):
         #print("pred idx: ", torch.argmax(model.mu_y[i][:,b]).item())
         if torch.argmax(target_batch[i][:,b]) ==torch.argmax(model.mu_y[i][:,b]):
           accuracy+=1
-    print("accs: ", s)
+    # print("accs: ", s)
     return accuracy / (L * B)
 
 def custom_onehot(idx, shape):
@@ -230,7 +230,7 @@ def linear_deriv(x):
     return set_tensor(torch.ones((1,)))
 
 def relu(xs):
-  return torch.clamp(xs,min=0)
+  return torch.clamp(xs, min=0)
 
 def relu_deriv(xs):
   rel = relu(xs)
@@ -297,6 +297,12 @@ def glorot_init(W):
 def std_uniform_init(W,hidden_size):
   stdv = 1.0 / math.sqrt(hidden_size)
   return init.uniform_(W, -stdv, stdv)
+
+
+################ other pc
+def ToOneHot(labels, num_classes):
+    y = torch.eye(num_classes)
+    return y[labels]
 
 
 

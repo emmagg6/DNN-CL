@@ -166,8 +166,6 @@ class ProjectionLayer(object):
     weights = np.load(logdir +"/layer_"+str(i)+"_weights.npy")
     self.weights = set_tensor(torch.from_numpy(weights))
 
-
-
 class FCLayer(object):
   def __init__(self, input_size,output_size,batch_size, learning_rate,f,df,device="cpu"):
     self.input_size = input_size
@@ -182,6 +180,8 @@ class FCLayer(object):
   def forward(self,x):
     self.inp = x.clone()
     self.activations = torch.matmul(self.inp, self.weights)
+    # if self.f == F.softmax :
+    #     return self.f(self.activations, dim=self.activations.dim()-1)
     return self.f(self.activations)
 
   def backward(self,e):
