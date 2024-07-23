@@ -34,6 +34,7 @@ function [] = Main(modelName, frontendSpec, trnSpec)
     cfg0 = struct();
     cfg0.seed = 1000;
     SetRNG(cfg0);
+    fprintf("seed set to %d\n", cfg0.seed);
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
     trndat = Dataset(cfg.frontend_spec, "trn");
@@ -87,6 +88,7 @@ function [] = Main(modelName, frontendSpec, trnSpec)
     cfg0 = struct();
     cfg0.seed = 1000;
     SetRNG(cfg0);
+    fprintf("reset seed set to %d\n", cfg0.seed);
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     
     %% encode
