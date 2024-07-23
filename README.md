@@ -1,4 +1,4 @@
-# propagation
+# DNN Training & Architectures
 
 *In artificially intelligent systems, does training neural networks with different neuroscience-inspired algorithms impact continual learning capabilities?*
 
