@@ -82,7 +82,12 @@ function [] = Main(modelName, frontendSpec, trnSpec)
         disp("issue exporting to json... moving on");
     end
 
-    SetRNG(cfg0); % reset RNG after training
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% E
+    % Create configuration structure with seed value and set the random number generator state
+    cfg0 = struct();
+    cfg0.seed = 1000;
+    SetRNG(cfg0);
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     
     %% encode
     trnCode = struct();
