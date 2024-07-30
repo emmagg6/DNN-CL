@@ -12,9 +12,13 @@
 %   Main("metacred",  "ucicreditgerman", "tier1.memorize-->tier1.extractcorr.icacropsome.100.50.unsupsplit-->meta.extractcorr.kmeans.10.50.unsupsplit");
 %   Main("groupedimg", "mnistpy.128", "connectedpart.memorize-->connectedpart.extractconnec.25-->connectedpart.transl.2");
 %   Main("clevrpos1", "clevrpossimple", "tier1.memorize");
-%   %%%%%%%%%%%%%%%%% emmagg6 extending to fashion mnist %%%%%%%%%%%%%%%%%
-%   Main("groupedimg", "mnistpy.128", "connectedpart.memorize-->connectedpart.extractconnec.25-->connectedpart.transl.2");
-%   Main("groupedimg", "fashion_mnistpy.128", "connectedpart.memorize-->connectedpart.extractconnec.25-->connectedpart.transl.2");
+
+% (emmagg6)
+% Hint:: check if your pyenv is connected to your matlab setup:
+% >>> insert(py.sys.path, int32(0),
+% "/Library/Developer/CommandLineTools/usr/bin/python3"); % replace with
+% your python_dir_path
+% >>> count(py.sys.path, "/Library/Developer/CommandLineTools/usr/bin/python3")
 
 function [] = Main(modelName, frontendSpec, trnSpec)
     assert(endsWith(Config.MyDir(), "/matlab") || endsWith(Config.MyDir(), "\matlab"), "Main() expects to be run from the hnet/matlab/ directory");
@@ -29,14 +33,8 @@ function [] = Main(modelName, frontendSpec, trnSpec)
     
     layout = Layout(modelName);
     
-    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% E
-    % Create configuration structure with seed value and set the random number generator state
-    cfg0 = struct();
-    cfg0.seed = 1000;
-    SetRNG(cfg0);
-    fprintf("seed set to %d\n", cfg0.seed);
-    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
+    %% load dataset
+    SetRNG(1000);
     trndat = Dataset(cfg.frontend_spec, "trn");
     tstdat = Dataset(cfg.frontend_spec, "tst");
     
@@ -83,13 +81,7 @@ function [] = Main(modelName, frontendSpec, trnSpec)
         disp("issue exporting to json... moving on");
     end
 
-    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% E
-    % Create configuration structure with seed value and set the random number generator state
-    cfg0 = struct();
-    cfg0.seed = 1000;
-    SetRNG(cfg0);
-    fprintf("reset seed set to %d\n", cfg0.seed);
-    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    SetRNG(cfg); % reset RNG after training
     
     %% encode
     trnCode = struct();

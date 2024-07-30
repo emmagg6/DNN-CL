@@ -12,6 +12,29 @@ function [pixels,label_idx,uniq_classes,pixel_metadata,label_metadata,other_meta
     other_metadata = struct();
 
     if spec == "mnistpy"
+        % (emmagg6) connect pyenv dir path
+        % Ensure the correct Python path is set
+        python_code_dir = '/Users/emmagraham/Documents/GitHub/DNN-CL/CL/DNN/Hnet/hnet-main/datasets/img_captchas';
+        if count(py.sys.path, python_code_dir) == 0
+            insert(py.sys.path, int32(0), python_code_dir);
+        end
+
+        % Debugging information
+        % disp('Python path:');
+        % disp(py.sys.path);
+
+        % Attempt to import the module and reload it
+        try
+            python_code = py.importlib.import_module('python_code');
+            py.importlib.reload(python_code);
+            disp('python_code module reloaded successfully.');
+        catch ME
+            disp('Failed to import/reload python_code module.');
+            disp(ME.message);
+            rethrow(ME);
+        end
+        %%%%%%%%%%%%%%%
+
         % clear classes
         python_code = py.importlib.import_module("python_code");
         py.importlib.reload(python_code);

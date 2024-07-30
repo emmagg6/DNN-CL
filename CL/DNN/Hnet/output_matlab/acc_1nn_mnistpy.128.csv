@@ -1,0 +1,2 @@
+analysis,hnet_tst_acc,edge_tst_acc,pixel_tst_acc,hnet_trn_acc,edge_trn_acc,pixel_trn_acc,timestamp,p_us_vs_in
+groupedimg_connectedpart.memorize-->connectedpart.extractconnec.25-->connectedpart.transl.2,0.8103,0.5253,0.5663,0.9977,0.9688,0.9211,29-Jul-2024 18:45:42,0

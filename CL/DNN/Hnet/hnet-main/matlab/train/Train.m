@@ -3,9 +3,6 @@
 % If you use this code, cite:
 %   Rodriguez A, Bowen EFW, Granger R (2022) https://github.com/DartmouthGrangerLab/hnet
 %   Bowen, EFW, Granger, R, Rodriguez, A (2023). A logical re-conception of neural networks: Hamiltonian bitwise part-whole architecture. Presented at AAAI EDGeS 2023.
-% %%%%%%%%%%%%%%%%%%%%%%%%
-% Adapted emmagg6 for Matlab v. 2023b
-% %%%%%%%%%%%%%%%%%%%%%%%%
 % INPUTS
 %   cfg    - scalar (struct) configuration struct
 %   layout - scalar (struct)
@@ -16,16 +13,8 @@ function model = Train(cfg, layout, dat)
     arguments
         cfg(1,1) struct, layout(1,1) struct, dat(1,1) Dataset
     end
-
-    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% E
-    % Changed (if seed) bc of errors when using Matlab 2023b
-    if isfield(cfg, 'seed')
-        SetRNG(cfgSeed);
-    else
-        fprintf("no seed")
-    end
-    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     
+    SetRNG(cfg);
     
     model = Model(layout, dat.n_nodes, dat.n_classes, dat.pixel_metadata, dat.img_sz);
     

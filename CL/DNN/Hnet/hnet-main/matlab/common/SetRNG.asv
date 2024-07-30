@@ -23,7 +23,7 @@
 % end
 
 
-% emmagg6  29 July 2024
+% 
 function state = SetRNG(data2Hash)
     if isnumeric(data2Hash) && numel(data2Hash) == 1 && mod(data2Hash, 1) == 0
         seed = data2Hash;

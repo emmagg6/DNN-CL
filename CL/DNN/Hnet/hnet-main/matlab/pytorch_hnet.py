@@ -4,9 +4,6 @@
 # Please feel free to use this code for any non-commercial purpose under the CC Attribution-NonCommercial-ShareAlike license: https://creativecommons.org/licenses/by-nc-sa/4.0/
 #   Rodriguez A, Bowen EFW, Granger R (2022) https://github.com/DartmouthGrangerLab/hnet
 #   Bowen, EFW, Granger, R, Rodriguez, A (2023). A logical re-conception of neural networks: Hamiltonian bitwise part-whole architecture. Presented at AAAI EDGeS 2023.
-
-# Adapted by emmagg6 (E)
-
 """
 CALLABLE FUNCTIONS:
     construct_hnet_model_from_json(filename:str, energy_mode:str) -> HNetModel
@@ -18,7 +15,7 @@ import json
 import re
 import numpy as np
 import numpy.matlib
-import torch                  # pip install --upgrade typing-extensions
+import torch
 import torch.nn as nn
 import sklearn.svm
 
@@ -532,18 +529,18 @@ def evaluate(model:HNetModel, data) -> np.ndarray:
 
 def main():
     """main function, if you just want to test things out (otherwise call evaluate from your own code)"""
-    output_path = "../output/" # must end with "/"
-    # model_filename       = output_path + "basiccred_ucicreditgerman_tier1.memorize.hnetmodel.json"
-    # trn_dataset_filename = output_path + "ucicreditgerman_trn.dataset.json"
-    # tst_dataset_filename = output_path + "ucicreditgerman_tst.dataset.json"
+    output_path = "D:\Projects/output_matlab/" # must end with "/"
+    model_filename       = output_path + "basiccred_ucicreditgerman_tier1.memorize.hnetmodel.json"
+    trn_dataset_filename = output_path + "ucicreditgerman_trn.dataset.json"
+    tst_dataset_filename = output_path + "ucicreditgerman_tst.dataset.json"
 
     # model_filename       = output_path + "metacred_ucicreditgerman_tier1.memorize-tier1.extractcorr.icacropsome.100.50.unsupsplit-meta.extractcorr.kmeans.10.50.unsupsplit.hnetmodel.json"
     # trn_dataset_filename = output_path + "ucicreditgerman_trn.dataset.json"
     # tst_dataset_filename = output_path + "ucicreditgerman_tst.dataset.json"
 
-    model_filename       = output_path + "???.hnetmodel.json"
-    trn_dataset_filename = output_path + "mnistpy.128_trn.dataset.json"
-    tst_dataset_filename = output_path + "mnistpy.128_tst.dataset.json"
+    # model_filename       = output_path + "???.hnetmodel.json"
+    # trn_dataset_filename = output_path + "mnistpy.128_trn.dataset.json"
+    # tst_dataset_filename = output_path + "mnistpy.128_tst.dataset.json"
 
     trn_data, trn_label_idx = _load_dataset(trn_dataset_filename)
     tst_data, tst_label_idx = _load_dataset(tst_dataset_filename)
