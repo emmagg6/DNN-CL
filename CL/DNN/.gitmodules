@@ -1,3 +1,6 @@
 [submodule "/fw-targetprop"]
 	path = propagation/fw-targetprop
 	url = https://github.com/TatsukichiShibuya/Fixed-Weight-Difference-Target-Propagation
+[submodule "Hnet/liblinear"]
+	path = Hnet/liblinear
+	url = https://github.com/cjlin1/liblinear.git

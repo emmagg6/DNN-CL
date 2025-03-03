@@ -1,0 +1,32 @@
+// Em - added this configuration for the C/C++ debugger
+
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "(lldb) Launch",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/train", // Adjust the path to your executable
+            "args": [],
+            "stopAtEntry": false,
+            "cwd": "${workspaceFolder}",
+            "environment": [],
+            "externalConsole": false,
+            "MIMode": "lldb",
+            "setupCommands": [
+                {
+                    "description": "Enable pretty-printing for lldb",
+                    "text": "settings set target.max-children-count 256",
+                    "ignoreFailures": true
+                }
+            ],
+            "preLaunchTask": "build all",
+            "miDebuggerPath": "/usr/bin/lldb",
+            "internalConsoleOptions": "openOnSessionStart",
+            "osx": {
+                "MIMode": "lldb"
+            }
+        }
+    ]
+}

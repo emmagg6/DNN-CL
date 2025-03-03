@@ -11,10 +11,10 @@ from dataset import make_MNIST, make_FashionMNIST, make_CIFAR10, make_STL10
 
 from Models.BP.bp_nn import bp_net
 from Models.TP.tp_nn import tp_net
-# from Models.PC.pc_nn import pc_net
+from Models.PC.pc_nn import pc_net
 from Models.KAN.kan_nn import kan_net
 from Models.EP.ep_nn import ep_net
-# from Models.PC.pc_layers import ConvLayer, MaxPool, ProjectionLayer, FCLayer
+from Models.PC.pc_layers import ConvLayer, MaxPool, ProjectionLayer, FCLayer
 
 
 import os
@@ -492,10 +492,11 @@ def main(TRIALS, models, datasets, epochs, epochs_backward, batch_size,
 if __name__ == "__main__":
     # models = ["BP", "DTP", "FWDTP", "PC", "KAN"]
     # models = ["PC"]
-    models = ["BP", "DTP", "EP", "KAN", "FWDTP"]
+    # models = ["BP", "DTP", "EP", "KAN", "FWDTP"]
+    models = ["BP", "PC", "DTP", "EP"]
     datasets = ['m', 'f', 'm', 'f', 'm']
     # datasets = ['m']
-
+ßß
     if 'c' in datasets or 's' in datasets:
         larger = True
     else:
