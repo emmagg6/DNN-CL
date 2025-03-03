@@ -495,8 +495,7 @@ if __name__ == "__main__":
     # models = ["BP", "DTP", "EP", "KAN", "FWDTP"]
     models = ["BP", "PC", "DTP", "EP"]
     datasets = ['m', 'f', 'm', 'f', 'm']
-    # datasets = ['m']
-ßß
+
     if 'c' in datasets or 's' in datasets:
         larger = True
     else:
