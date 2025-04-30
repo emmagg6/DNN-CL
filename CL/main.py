@@ -188,7 +188,7 @@ def main(TRIALS, models, datasets, epochs, epochs_backward, batch_size,
             
             if log :
                 # print("Logging")
-                wandb.init(project="IWAI", config=params, name=name,  reinit=True)
+                wandb.init(project="trials", config=params, name=name,  reinit=True)
 
             ########### DATA ########### AND LEARNING RATE
             for d, data in enumerate(datasets): 
