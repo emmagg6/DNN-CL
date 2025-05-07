@@ -11,7 +11,8 @@ from dataset import make_MNIST, make_FashionMNIST, make_CIFAR10, make_STL10
 
 from Models.BP.bp_nn import bp_net
 from Models.TP.tp_nn import tp_net
-from Models.PC.pc_nn import pc_net
+# from Models.PC.pc_nn import pc_net
+from Models.PC.pc_nn_test import pc_net
 from Models.KAN.kan_nn import kan_net
 from Models.EP.ep_nn import ep_net
 from Models.PC.pc_layers import ConvLayer, MaxPool, ProjectionLayer, FCLayer
@@ -321,64 +322,79 @@ def main(TRIALS, models, datasets, epochs, epochs_backward, batch_size,
                     # print("trained BP")
 
                 elif mod == "PC":
-                    model = pc_net(layers, num_inference_steps, inference_lr, loss_fn = loss_fn, loss_fn_deriv = loss_fn_deriv, device=device)
+                    # model = pc_net(layers, num_inference_steps, inference_lr, loss_fn = loss_fn, loss_fn_deriv = loss_fn_deriv, device=device)
+                    model = pc_net(depth, in_dim, hid_dim, out_dim, loss_function, device, batch_size, params=params)
                     print("Model: ", mod)
 
-                    ckpt = "checkpoints/" + mod + "/models/" + mod + str_datasets_trials_1 + "-trial" + str(trial)
+                    ckpt = "checkpoints/" + mod + "/models/" + mod + str_datasets_trials_1 + "-trial" + str(trial)+ ".pth"
                     save_training = "checkpoints/" + mod + "/TRAIN-" + mod + str_datasets_trials_1 + ".json"
                     prev_ckpt = "None"
                     log_dir = "checkpoints/" + mod + "/logs/" + mod + str_datasets_trials_1 + "-trial" + str(trial)
                     # make directories if not there
-                    if not os.path.exists(ckpt):
-                        os.makedirs(ckpt)
+                    # if not os.path.exists(ckpt):
+                    #     os.makedirs(ckpt)
                     if not os.path.exists(log_dir):
                         os.makedirs(log_dir)
                     if d > 0 :
                         if d == 1:
-                            prev_ckpt = "checkpoints/" + mod + "/models/" + mod + str_datasets_trials_1 + "-trial" + str(trial)
-                            ckpt = "checkpoints/" + mod + "/models/" + mod + str_datasets_trials_2 + "-trial" + str(trial)
+                            prev_ckpt = "checkpoints/" + mod + "/models/" + mod + str_datasets_trials_1 + "-trial" + str(trial)+ ".pth"
+                            ckpt = "checkpoints/" + mod + "/models/" + mod + str_datasets_trials_2 + "-trial" + str(trial)+ ".pth"
                             save_training = "checkpoints/" + mod + "/TRAIN-" + mod + str_datasets_trials_2 + ".json"
-                            if not os.path.exists(ckpt):
-                                os.makedirs(ckpt)
+                            # if not os.path.exists(ckpt):
+                            #     os.makedirs(ckpt)
                             if not os.path.exists(log_dir):
                                 os.makedirs(log_dir)
                         elif d == 2:
-                            prev_ckpt = "checkpoints/" + mod + "/models/" + mod + str_datasets_trials_2 + "-trial" + str(trial)
-                            ckpt = "checkpoints/" + mod + "/models/" + mod + str_datasets_trials_3  + "-trial" + str(trial) 
+                            prev_ckpt = "checkpoints/" + mod + "/models/" + mod + str_datasets_trials_2 + "-trial" + str(trial)+ ".pth"
+                            ckpt = "checkpoints/" + mod + "/models/" + mod + str_datasets_trials_3  + "-trial" + str(trial) + ".pth"
                             save_training = "checkpoints/" + mod + "/TRAIN-" + mod + str_datasets_trials_3 + ".json"
-                            if not os.path.exists(ckpt):
-                                os.makedirs(ckpt)
+                            # if not os.path.exists(ckpt):
+                            #     os.makedirs(ckpt)
                             if not os.path.exists(log_dir):
                                 os.makedirs(log_dir)
                         elif d == 3:
-                            prev_ckpt = "checkpoints/" + mod + "/models/" + mod + str_datasets_trials_3 + "-trial" + str(trial)
-                            ckpt = "checkpoints/" + mod + "/models/" + mod + str_datasets_trials_4 + "-trial" + str(trial)
+                            prev_ckpt = "checkpoints/" + mod + "/models/" + mod + str_datasets_trials_3 + "-trial" + str(trial)+ ".pth"
+                            ckpt = "checkpoints/" + mod + "/models/" + mod + str_datasets_trials_4 + "-trial" + str(trial)+ ".pth"
                             save_training = "checkpoints/" + mod + "/TRAIN-" + mod + str_datasets_trials_4 + ".json"
-                            if not os.path.exists(ckpt):
-                                os.makedirs(ckpt)
+                            # if not os.path.exists(ckpt):
+                            #     os.makedirs(ckpt)
                             if not os.path.exists(log_dir):
                                 os.makedirs(log_dir)
                         elif d == 4:
-                            prev_ckpt = "checkpoints/" + mod + "/models/" + mod + str_datasets_trials_4 + "-trial" + str(trial)
-                            ckpt = "checkpoints/" + mod + "/models/" + mod + str_datasets_trials_5 + "-trial" + str(trial)
+                            prev_ckpt = "checkpoints/" + mod + "/models/" + mod + str_datasets_trials_4 + "-trial" + str(trial)+ ".pth"
+                            ckpt = "checkpoints/" + mod + "/models/" + mod + str_datasets_trials_5 + "-trial" + str(trial)+ ".pth"
                             save_training = "checkpoints/" + mod + "/TRAIN-" + mod + str_datasets_trials_5 + ".json"
-                            if not os.path.exists(ckpt):
-                                os.makedirs(ckpt)
+                            # if not os.path.exists(ckpt):
+                            #     os.makedirs(ckpt)
                             if not os.path.exists(log_dir):
                                 os.makedirs(log_dir)
                         elif d == 5:
-                            prev_ckpt = "checkpoints/" + mod + "/models/" + mod + str_datasets_trials_5 + "-trial" + str(trial)
-                            ckpt = "checkpoints/" + mod + "/models/" + mod + str_datasets_trials_6 + "-trial" + str(trial)
+                            prev_ckpt = "checkpoints/" + mod + "/models/" + mod + str_datasets_trials_5 + "-trial" + str(trial)+ ".pth"
+                            ckpt = "checkpoints/" + mod + "/models/" + mod + str_datasets_trials_6 + "-trial" + str(trial)+ ".pth"
                             save_training = "checkpoints/" + mod + "/TRAIN-" + mod + str_datasets_trials_6 + ".json"
-                            if not os.path.exists(ckpt):
-                                os.makedirs(ckpt)
+                            # if not os.path.exists(ckpt):
+                            #     os.makedirs(ckpt)
                             if not os.path.exists(log_dir):
                                 os.makedirs(log_dir)
-                        model.load_model(prev_ckpt)
+
+                        # saved_state = torch.load(prev_ckpt)
+                        # model.load_state(saved_state)
+                        model.load_state(prev_ckpt)
                         # train(self,dataset,testset,n_epochs,n_inference_steps,logdir,savedir, old_savedir,save_every=1,print_every=10):
                     train_data = list(iter(trainloader))
                     valid_data = list(iter(validloader))
-                    model.train(train_data[0:-2], valid_data[0:-2], epochs, num_inference_steps, "log", ckpt, prev_ckpt, log = log)
+                    # model.train(train_data[0:-2], valid_data[0:-2], epochs, num_inference_steps, "log", ckpt, prev_ckpt, log = log)
+                    # model.train_model(trainloader, validloader, epochs, lr, log, save, 
+                    #                 trial=trial, new_ckpt= ckpt, train_ckpts=save_training)
+                    # model.train_model(train_data, valid_data, epochs, lr, log, save, 
+                    #                 trial=trial, new_ckpt= ckpt, train_ckpts=save_training)
+                    # model.train_model(train_data, valid_data, epochs, trainloader, validloader, batch_size, log, save, trial=trial, new_ckpt= ckpt, train_ckpts=save_training)
+                    # model.train_model(train_data, valid_data, epochs, trainloader, validloader, batch_size, log, save)
+                    
+                    model.train_model(train_data, valid_data, epochs, trainloader, validloader, batch_size, log, save, trial=trial, new_ckpt= ckpt, train_ckpts=save_training)
+
+                    # need to ad check points/savins
+                    # model.train_model(trainloader, validloader, epochs, trainloader, batch_size)
 
                 elif mod == "DTP" or mod == "FWDTP":
                     model = tp_net(depth, direct_depth, in_dim, hid_dim, out_dim, loss_function, device, params=params)
@@ -491,9 +507,10 @@ def main(TRIALS, models, datasets, epochs, epochs_backward, batch_size,
 
 if __name__ == "__main__":
     # models = ["BP", "DTP", "FWDTP", "PC", "KAN"]
-    # models = ["PC"]
+    models = ["PC"]
     # models = ["BP", "DTP", "EP", "KAN", "FWDTP"]
-    models = ["BP", "PC", "DTP", "EP"]
+    # models = ["BP", "PC", "DTP", "EP"]
+
     datasets = ['m', 'f', 'm', 'f', 'm']
 
     if 'c' in datasets or 's' in datasets:
@@ -505,8 +522,11 @@ if __name__ == "__main__":
 
     # TESINGING AND MODEL PARAMETERS
     epochs = 5
+    # epochs = 1
     epochs_backward = 5
     batch_size = 64
+    # batch_size = 5000
+
     test = True  # from FWDTP paper's main.py
     # label_augentation = False  # from FWDTP paper's main.py
     depth = 6
@@ -523,7 +543,9 @@ if __name__ == "__main__":
     # input and output dimensions depend on the dataset
     hid_dim = 256
 
-    log = False # for wandb visuals
+    # log = False # for wandb visuals
+
+    log = True
     if len(datasets) > 1:
         save = "yes"
     else:
