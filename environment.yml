@@ -1,0 +1,16 @@
+name: cdl
+channels:
+  - conda-forge
+  - pytorch
+  - defaults
+dependencies:
+  - python=3.8
+  - libtiff
+  - pillow
+  - numpy
+  - matplotlib
+  - pytorch
+  - torchvision
+  - torchaudio
+  - pip:
+    - wandb
