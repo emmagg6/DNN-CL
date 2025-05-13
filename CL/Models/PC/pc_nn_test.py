@@ -273,4 +273,3 @@ class pc_net(nn.Module):
         self.load_state_dict(checkpoint['model_state_dict'], strict=False)
         self.optimizer_x.load_state_dict(checkpoint['optimizer_x_state_dict'])
         self.optimizer_p.load_state_dict(checkpoint['optimizer_p_state_dict'])
-
