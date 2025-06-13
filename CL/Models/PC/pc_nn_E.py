@@ -51,11 +51,13 @@ class pc_net(nn.Module):
         self.pc_model.train()
 
         # PCTrainer configuration
-        self.T = 25 # giving fewer inference steps can help mititgate exploding gradients
+        self.T = 50 # giving fewer inference steps can help mititgate exploding gradients
         self.optimizer_x_fn = optim.Adam
-        self.optimizer_x_kwargs = {'lr': 0.020}
+        self.opt_x_lr = 0.0002
+        self.optimizer_x_kwargs = {'lr': self.opt_x_lr}
         self.optimizer_p_fn = optim.Adam
-        self.optimizer_p_kwargs = {"lr": 0.001}
+        self.opt_p_lr = 0.00002
+        self.optimizer_p_kwargs = {"lr": self.opt_p_lr}
 
         self.trainer = pc.PCTrainer(
             self.pc_model,
@@ -79,7 +81,7 @@ class pc_net(nn.Module):
     def loss_fn(self, output, target):
         return self.loss_function(output, target)
 
-    def test_normal(self, model, dataset, batch_size, epoch):
+    def test_normal(self, model, dataset, batch_size, epoch, log=True):
         # Ensure the model is in evaluation mode
         model.eval()
         
@@ -87,7 +89,7 @@ class pc_net(nn.Module):
 
         correct_count, all_count = 0., 0.
         
-        with torch.no_grad():  # Disable gradient computation for efficiency
+        with torch.no_grad():
             for data, labels in tqdm(test_loader, desc=f"Epoch: {epoch + 1}"):
                 data, labels = data.to(self.device), labels.to(self.device)
                 data_flat = data.view(data.size(0), -1)  # flatten the images
@@ -122,8 +124,8 @@ class pc_net(nn.Module):
         if log:
             wandb.log({
                 "epoch": epoch,
-                "train_acc": train_acc_epoch,
-                "val_acc": val_acc_epoch
+                "train accuracy": train_acc_epoch,
+                "valid accuracy": val_acc_epoch
                 # Add more metrics if tracked
             })
         print(f'Epoch {epoch}: Train Acc: {train_acc_epoch:.4f}, Val Acc: {val_acc_epoch:.4f}, flush=True\n\n')
@@ -173,8 +175,8 @@ class pc_net(nn.Module):
             if log:
                 wandb.log({
                     "epoch": epoch + 1,
-                    "train_acc": train_acc_epoch,
-                    "val_acc": val_acc_epoch
+                    "train accuracy": train_acc_epoch,
+                    "valid accuracy": val_acc_epoch
                     # Add more metrics if tracked
                 })
             print(f'Epoch {epoch+1}: Train Acc: {train_acc_epoch:.4f}, Val Acc: {val_acc_epoch:.4f}, flush=True \n\n')
@@ -199,17 +201,17 @@ class pc_net(nn.Module):
             data = [{
                 "Trial": [],
                 # "Train Loss": [],
-                "Train Acc": [],
+                "train accuracy": [],
                 # "Valid Loss": [],
-                "Valid Acc": []
+                "valid accuracy": []
             }]
 
         # Append new results to each list within the first dictionary entry
         data[0]["Trial"].append(trial)
         # data[0]["Train Loss"].append(train_loss)
-        data[0]["Train Acc"].append(train_acc)
+        data[0]["train accuracy"].append(train_acc)
         # data[0]["Valid Loss"].append(valid_loss)
-        data[0]["Valid Acc"].append(valid_acc)
+        data[0]["valid accuracy"].append(valid_acc)
 
         # Write the updated dictionary back to the file
         with open(path, "w") as file:
@@ -290,10 +292,10 @@ class pc_net(nn.Module):
         model.load_state_dict(checkpoint['model_state_dict'], strict=False)
 
         # reconstruct optimizers with saved learning rates
-        optimizer_x_lr = model_config.get('optimizer_x_lr', 0.001)
-        optimizer_p_lr = model_config.get('optimizer_p_lr', 0.001)
-        model.optimizer_x = optim.Adam(model.parameters(), lr=optimizer_x_lr)
-        model.optimizer_p = optim.Adam(model.parameters(), lr=optimizer_p_lr)
+        # optimizer_x_lr = model_config.get('optimizer_x_lr', 0.0002)
+        # optimizer_p_lr = model_config.get('optimizer_p_lr', 0.00002)
+        model.optimizer_x = optim.Adam(model.parameters(), lr=0.0002)
+        model.optimizer_p = optim.Adam(model.parameters(), lr=0.00002)
 
         # optimizer states
         model.optimizer_x.load_state_dict(checkpoint['optimizer_x_state_dict'])
