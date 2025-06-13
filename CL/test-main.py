@@ -12,7 +12,11 @@ from dataset import make_MNIST, make_FashionMNIST, make_CIFAR10, make_STL10
 from Models.BP.bp_nn import bp_net
 from Models.TP.tp_nn import tp_net
 # from Models.PC.pc_nn import pc_net
+
 from Models.PC.pc_nn_E import pc_net
+
+# from Models.PC.pc_nn_test import pc_net
+
 from Models.KAN.kan_nn import kan_net
 from Models.EP.ep_nn import ep_net
 from Models.PC.pc_layers import ConvLayer, MaxPool, ProjectionLayer, FCLayer
@@ -50,6 +54,7 @@ def main(TRIALS, models, datasets, epochs, epochs_backward, batch_size,
             name = str(name)
 
             set_seed(trial)
+
             params = {}
             print("Parameter Setup ... ")
 
@@ -67,26 +72,25 @@ def main(TRIALS, models, datasets, epochs, epochs_backward, batch_size,
                     print("making MNIST ...")
                     in_dim = 784
                     out_dim = 10
+
                     trainset, validset, testset = make_MNIST(out_dim, test)
 
                 elif data == "f":
                     print("making FashionMNIST ...")
                     in_dim = 784
                     out_dim = 10
+
                     trainset, validset, testset = make_FashionMNIST(out_dim, test)
                     
+
 
     # <torch.utils.data.dataloader.DataLoader object at 0x1020366a0> 
 
                 loss_function = nn.CrossEntropyLoss(reduction="sum")
 
                 
+
                 train_loader = torch.utils.data.DataLoader(trainset,
-                                                            batch_size=batch_size,
-                                                            shuffle=True,
-                                                            num_workers=0, # slower but necessary due to loop of trials and datasets
-                                                            pin_memory=True,
-                                                            worker_init_fn=worker_init_fn)
                 valid_loader = torch.utils.data.DataLoader(validset,
                                                             batch_size=batch_size,
                                                             shuffle=False,
@@ -111,6 +115,7 @@ def main(TRIALS, models, datasets, epochs, epochs_backward, batch_size,
 
 
             ######### MODEL ###########
+
                 model = pc_net(depth, in_dim, hid_dim, out_dim, loss_function, device, batch_size, params=params)
                 print("Model: ", mod)
 
@@ -157,16 +162,19 @@ def main(TRIALS, models, datasets, epochs, epochs_backward, batch_size,
                 model.save_model(ckpt)
 
                 
+
             if log :
                 wandb.finish()
             
     print("DONE")
 
 if __name__ == "__main__":
+
     models = ["PC"]
 
     datasets = ['m', 'f', 'm', 'f', 'm']
     # datasets = ['m', 'm']
+
 
     if 'c' in datasets or 's' in datasets:
         larger = True
@@ -198,7 +206,9 @@ if __name__ == "__main__":
     # input and output dimensions depend on the dataset
     hid_dim = 256
 
-    # log = True # for wandb visuals
+
+    # log = False # for wandb visuals
+
 
     log = False
     if len(datasets) > 1:
