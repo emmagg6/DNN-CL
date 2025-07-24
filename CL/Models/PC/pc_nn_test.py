@@ -124,19 +124,7 @@ class pc_net(nn.Module):
     # def train_model(self, train_dataset, val_dataset, epochs, train_loader, valid_loader, batch_size, log, save):
     def train_model(self, train_dataset, val_dataset, epochs, train_loader, valid_loader, batch_size, log, save, trial, new_ckpt= '',train_ckpts = ''):
 
-        # best_val_acc = 0
-        # best_model = copy.deepcopy(self.pc_model.state_dict())
-        # best_model_idx = None
-
-
-        # train_losses = []
-        # train_accuracies = []
-        # test_losses = []
-        # test_accuracies = []
         eps = []
-
-        # train_acc = [self.test_normal(self.pc_model, train_dataset, batch_size)]
-        # val_acc = [self.test_normal(self.pc_model, val_dataset, batch_size)]
         train_acc = [] 
         val_acc = []
 
@@ -153,6 +141,9 @@ class pc_net(nn.Module):
         #       "train_acc": train_acc[0],
         #       "val_acc": val_acc[0]
         #   })
+
+        log_history = []
+
         
         for epoch in range(epochs):
             for data, label in tqdm(train_loader, desc=f'Epoch {epoch+1}'):
@@ -181,14 +172,37 @@ class pc_net(nn.Module):
 
             
             # Log metrics to wandb
+            # if log:
+            #   wandb.log({
+            #       "epoch": epoch + 1,
+            #       "train_acc": train_acc_epoch,
+            #       "val_acc": val_acc_epoch
+            #   })
+            #   print(f'Epoch {epoch+1} - Val acc: {val_acc[-1]}')
             if log:
-              wandb.log({
-                  "epoch": epoch + 1,
-                  "train_acc": train_acc_epoch,
-                  "val_acc": val_acc_epoch
-              })
-              print(f'Epoch {epoch+1} - Val acc: {val_acc[-1]}')
+                log_entry = {
+                    "epoch": epoch + 1,
+                    "train_acc": train_acc_epoch,
+                    "val_acc": val_acc_epoch
+                }
+                wandb.log(log_entry)
+                print(f'Epoch {epoch+1} - Val acc: {val_acc[-1]}')
+                log_history.append(log_entry)
 
+        if log:
+            # Ensure directory exists
+            log_dir = "JSON_logs"
+            os.makedirs(log_dir, exist_ok=True)
+
+            # Create filename using trial number
+            json_log_path = os.path.join(log_dir, f"PC_trial_{trial}.json")
+
+            # Save the log history to the JSON file
+            with open(json_log_path, "w") as f:
+                json.dump(log_history, f, indent=4)
+
+            print(f"Wandb log saved to {json_log_path}")
+                
         if save == 'yes':
             self.save_model(new_ckpt)
             # self.save_training_dynamics(train_losses, train_accuracies, test_losses, test_accuracies, trial, train_ckpts)

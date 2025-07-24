@@ -52,7 +52,7 @@ class tp_net(net):
             y = self.layers[d].forward(y, update=update)
         return y
 
-    def train(self, train_loader, valid_loader, epochs, lr, lrb, std, stepsize, log, save, hyperparams=None,
+    def train(self, type, count, train_loader, valid_loader, epochs, lr, lrb, std, stepsize, log, save, hyperparams=None,
               trial = 0, new_ckpt = '', train_ckpts = ''):
         
         train_losses = []
@@ -60,6 +60,8 @@ class tp_net(net):
         test_losses = []
         test_accuracies = []
         eps = []
+
+        log_history = []
 
         # Pre-train the feedback weights
         for e in range(hyperparams["epochs_backward"]):
@@ -131,6 +133,9 @@ class tp_net(net):
 
                 wandb.log(log_dict)
 
+                # JSON logging
+                log_history.append(log_dict)
+
             else:
                 if train_acc is not None:
                     print(f"\tTrain Acc        : {train_acc}")
@@ -138,9 +143,39 @@ class tp_net(net):
                     print(f"\tValid Acc        : {valid_acc}")
 
         if save == 'yes':
+
+            def tensor_to_python(obj):
+                if isinstance(obj, torch.Tensor):
+                    return obj.item()
+                elif isinstance(obj, dict):
+                    return {k: tensor_to_python(v) for k, v in obj.items()}
+                elif isinstance(obj, list):
+                    return [tensor_to_python(i) for i in obj]
+                return obj
+            
+            log_history = [tensor_to_python(entry) for entry in log_history]
+
+
+            # JSON logging
+            log_dir = f"JSON_logs/TP/Trial_{trial}"
+            os.makedirs(log_dir, exist_ok=True)
+
+            json_log_path = os.path.join(log_dir, f"TP_{type}_{count}.json")
+
+            print(f"Saving data to {json_log_path}")
+
+            with open(json_log_path, "w") as f:
+                json.dump(log_history, f, indent=4)
+
+            print(f"Wandb log saved to {json_log_path}")
+
+            # original save model
             self.save_model(new_ckpt)
             self.save_training_dynamics(train_losses, train_accuracies, test_losses, test_accuracies, trial, train_ckpts)
         
+
+    
+
 
     def train_back_weights(self, x, y, lrb, std, loss_type="DTP"):
         if not self.back_trainable:

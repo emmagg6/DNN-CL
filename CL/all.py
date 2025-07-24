@@ -147,8 +147,13 @@ def main(TRIALS, models, datasets, epochs, epochs_backward, batch_size,
                 wandb.init(project="IWAI25-l", config=params, name=name,  reinit=True)
 
             ########### DATA ########### AND LEARNING RATE
+            count = 0
+            type = "start"
             for d, data in enumerate(datasets): 
+                count += 1
                 if data == "m":
+                    type = "m"
+
                     print("making MNIST ...")
                     in_dim = 784
                     out_dim = 10
@@ -161,6 +166,8 @@ def main(TRIALS, models, datasets, epochs, epochs_backward, batch_size,
                         trainset, validset, testset = make_MNIST(out_dim, test)
 
                 elif data == "f":
+                    type = "f"
+
                     print("making FashionMNIST ...")
                     in_dim = 784
                     out_dim = 10
@@ -175,6 +182,9 @@ def main(TRIALS, models, datasets, epochs, epochs_backward, batch_size,
 
 
                 elif data == "c":
+
+                    type = "c"
+
                     print("making CIFAR10 ...")
                     in_dim = 3072
                     out_dim = 10
@@ -185,6 +195,9 @@ def main(TRIALS, models, datasets, epochs, epochs_backward, batch_size,
                         trainset, validset, testset = make_CIFAR10(out_dim, test)
 
                 elif data == "s":
+
+                    type = "s"
+
                     print("making STL10 ...")
                     in_dim = 3072
                     out_dim = 10
@@ -269,7 +282,7 @@ def main(TRIALS, models, datasets, epochs, epochs_backward, batch_size,
                         saved_state = torch.load(prev_ckpt)
                         model.load_state(prev_ckpt, lr)
 
-                    model.train_model(train_loader, valid_loader, epochs, lr, log, save, 
+                    model.train_model(type, count, train_loader, valid_loader, epochs, lr, log, save, 
                                     trial=trial, new_ckpt= ckpt, train_ckpts=save_training)
                     # print("trained BP")
 
@@ -311,8 +324,8 @@ def main(TRIALS, models, datasets, epochs, epochs_backward, batch_size,
 
                     train_data = list(iter(train_loader))
                     valid_data = list(iter(valid_loader))
-                    
-                    model.train_model(train_data, valid_data, epochs, train_loader, valid_loader, batch_size, log, save, trial=trial, new_ckpt= ckpt, train_ckpts=save_training)
+
+                    model.train_model(type, count, train_data, valid_data, epochs, train_loader, valid_loader, batch_size, log, save, trial=trial, new_ckpt= ckpt, train_ckpts=save_training)
 
                     model.save_model(ckpt)
 
@@ -347,7 +360,7 @@ def main(TRIALS, models, datasets, epochs, epochs_backward, batch_size,
                         saved_state = torch.load(prev_ckpt)
                         model.load_state(saved_state)
 
-                    model.train(train_loader, valid_loader, epochs, lr, lr_backward, std_backward, stepsize, 
+                    model.train( type, count, train_loader, valid_loader, epochs, lr, lr_backward, std_backward, stepsize, 
                                 log, save, hyperparams={"loss_feedback": loss_feedback, "epochs_backward": epochs_backward}, 
                                 trial=trial, new_ckpt= ckpt, train_ckpts=save_training)
 
@@ -383,7 +396,7 @@ def main(TRIALS, models, datasets, epochs, epochs_backward, batch_size,
                         saved_state = torch.load(prev_ckpt)
                         model.load_state(prev_ckpt, lr)
 
-                    model.train_model(train_loader, valid_loader, epochs, lr, log, save, 
+                    model.train_model(type, count, train_loader, valid_loader, epochs, lr, log, save, 
                               trial=trial, new_ckpt=ckpt, train_ckpts=save_training)
                 elif mod == "EP":
                     model = ep_net(type='cond_gaussian', dimensions=params["dimensions"], cost_energy=params["cost_energy"], batch_size=params["batch_size"])
@@ -415,7 +428,7 @@ def main(TRIALS, models, datasets, epochs, epochs_backward, batch_size,
                         saved_state = torch.load(prev_ckpt)
                         model.load_state(prev_ckpt, lr)
 
-                    model.train_model(train_loader, valid_loader, epochs, params['dynamics'], lr=lr, log=log, save=save, 
+                    model.train_model(type, count, train_loader, valid_loader, epochs, params['dynamics'], lr=lr, log=log, save=save, 
                               trial=trial, new_ckpt=ckpt, train_ckpts=save_training)
 
                 else :
@@ -431,9 +444,14 @@ if __name__ == "__main__":
     # models = ["DTP"]
     # models = ["BP", "DTP", "EP", "KAN", "FWDTP"]
     # models = ["BP", "PC", "EP", "DTP"]
-    models = ["EP"]
+    # models = ["PC"]
+    # models = ["EP"]
+    # models = ["BP"]
+    models = ["DTP"]
 
-    datasets = ['m', 'f', 'm', 'f', 'm', 'f']
+    datasets = ['m', 'f']
+
+    # datasets = ['m', 'f', 'm', 'f', 'm', 'f']
     # datasets = ['m', 'm', 'm', 'm', 'm', 'm']
 
     if 'c' in datasets or 's' in datasets:
@@ -444,10 +462,14 @@ if __name__ == "__main__":
     print("Larger input dimensions? : ", larger)
 
     # TESINGING AND MODEL PARAMETERS
-    epochs = 5
+
+    epochs = 1
+    batch_size = 1000
+
+    # epochs = 5
     # epochs = 1
     epochs_backward = 5
-    batch_size = 64
+    # batch_size = 64
     # batch_size = 5000
 
     test = True  # from FWDTP paper's main.py
@@ -477,7 +499,8 @@ if __name__ == "__main__":
     n_inference_steps = 100
     inference_lr = 0.01
 
-    TRIALS = 49
+    TRIALS = 26
+    # TRIALS = 2
     main(TRIALS, models, datasets, epochs, epochs_backward, batch_size, 
          test, depth, direct_depth, lr, lr_backward, std_backward, 
          loss_feedback, sparse_ratio_str, hid_dim, log, save,

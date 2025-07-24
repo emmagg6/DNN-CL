@@ -107,10 +107,12 @@ class pc_net(nn.Module):
         return accuracy
 
 
-    def train_model(self, train_dataset, val_dataset, epochs, train_loader, valid_loader, batch_size, log, save, trial, new_ckpt='', train_ckpts=''):
+    def train_model(self, type, count, train_dataset, val_dataset, epochs, train_loader, valid_loader, batch_size, log, save, trial, new_ckpt='', train_ckpts=''):
         train_acc = []
         val_acc = []
         eps = []
+
+        log_history = []
 
         ### testing untrained model ###
         epoch = 0
@@ -122,12 +124,13 @@ class pc_net(nn.Module):
 
         # Logging
         if log:
-            wandb.log({
+            log_entry = {
                 "epoch": epoch,
                 "train accuracy": train_acc_epoch,
                 "valid accuracy": val_acc_epoch
-                # Add more metrics if tracked
-            })
+            }
+            wandb.log(log_entry)
+            log_history.append(log_entry)
         print(f'Epoch {epoch}: Train Acc: {train_acc_epoch:.4f}, Val Acc: {val_acc_epoch:.4f}, flush=True\n\n')
         ###############################
 
@@ -173,18 +176,54 @@ class pc_net(nn.Module):
             eps.append(epoch)
 
             if log:
-                wandb.log({
+                log_entry = {
                     "epoch": epoch + 1,
                     "train accuracy": train_acc_epoch,
                     "valid accuracy": val_acc_epoch
-                    # Add more metrics if tracked
-                })
+                }
+                log_history.append(log_entry)
+                wandb.log(log_entry)
+
             print(f'Epoch {epoch+1}: Train Acc: {train_acc_epoch:.4f}, Val Acc: {val_acc_epoch:.4f}, flush=True \n\n')
 
-        # Saving the model and training dynamics
-        # if save == 'yes':
-        #     self.save_model(new_ckpt)
-        #     self.save_training_dynamics(train_acc, val_acc, trial, train_ckpts)
+        if save == 'yes':
+
+            # JSON logging
+            log_dir = f"JSON_logs/PC/Trial_{trial}"
+            os.makedirs(log_dir, exist_ok=True)
+
+            json_log_path = os.path.join(log_dir, f"PC_{type}_{count}.json")
+
+            print(f"Saving data to {json_log_path}")
+
+            with open(json_log_path, "w") as f:
+                json.dump(log_history, f, indent=4)
+
+            print(f"Wandb log saved to {json_log_path}")
+
+            # original save model
+            self.save_model(new_ckpt)
+            self.save_training_dynamics(train_acc, val_acc, trial, train_ckpts)
+    
+    def save_training_dynamics(self, train_acc, val_acc, trial, ckpt):
+        os.makedirs(os.path.dirname(ckpt), exist_ok=True)
+        
+        result = {
+            "trial": trial,
+            "train_accuracy": train_acc,
+            "val_accuracy": val_acc
+        }
+
+        if os.path.exists(ckpt) and os.path.getsize(ckpt) > 0:
+            with open(ckpt, "r") as f:
+                existing = json.load(f)
+        else:
+            existing = []
+
+        existing.append(result)
+
+        with open(ckpt, "w") as f:
+            json.dump(existing, f, indent=4)
 
 
     # def save_initial_results(self, train_loss, train_acc, valid_loss, valid_acc, trial, ckpt):

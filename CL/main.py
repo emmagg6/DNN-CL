@@ -383,14 +383,7 @@ def main(TRIALS, models, datasets, epochs, epochs_backward, batch_size,
                         # train(self,dataset,testset,n_epochs,n_inference_steps,logdir,savedir, old_savedir,save_every=1,print_every=10):
                     train_data = list(iter(trainloader))
                     valid_data = list(iter(validloader))
-                    # model.train(train_data[0:-2], valid_data[0:-2], epochs, num_inference_steps, "log", ckpt, prev_ckpt, log = log)
-                    # model.train_model(trainloader, validloader, epochs, lr, log, save, 
-                    #                 trial=trial, new_ckpt= ckpt, train_ckpts=save_training)
-                    # model.train_model(train_data, valid_data, epochs, lr, log, save, 
-                    #                 trial=trial, new_ckpt= ckpt, train_ckpts=save_training)
-                    # model.train_model(train_data, valid_data, epochs, trainloader, validloader, batch_size, log, save, trial=trial, new_ckpt= ckpt, train_ckpts=save_training)
-                    # model.train_model(train_data, valid_data, epochs, trainloader, validloader, batch_size, log, save)
-                    
+
                     model.train_model(train_data, valid_data, epochs, trainloader, validloader, batch_size, log, save, trial=trial, new_ckpt= ckpt, train_ckpts=save_training)
 
                     # need to ad check points/savins
@@ -511,7 +504,7 @@ if __name__ == "__main__":
     # models = ["BP", "DTP", "EP", "KAN", "FWDTP"]
     # models = ["BP", "PC", "DTP", "EP"]
 
-    datasets = ['m', 'f', 'm', 'f', 'm']
+    datasets = ['m', 'f', 'm', 'f', 'm', "f"]
 
     if 'c' in datasets or 's' in datasets:
         larger = True

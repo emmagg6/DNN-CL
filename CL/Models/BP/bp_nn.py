@@ -43,7 +43,7 @@ class bp_net(nn.Module):
                 correct += (predicted == y).sum().item()
         return correct / total
 
-    def train_model(self, train_loader, valid_loader, epochs, lr, log, save, 
+    def train_model(self, type, count, train_loader, valid_loader, epochs, lr, log, save, 
                     trial = 0, new_ckpt= '',train_ckpts = ''):
         if self.opt == False:
             self.optimizer = torch.optim.SGD(self.parameters(), lr=lr)
@@ -58,6 +58,8 @@ class bp_net(nn.Module):
         test_losses = []
         test_accuracies = []
         eps = []
+
+        log_history = []
         
         initial_train_loss = 0
         for x, y in train_loader:
@@ -85,14 +87,25 @@ class bp_net(nn.Module):
         #                               trial, save_ckpts)
 
         # Log the initial validation loss and accuracy (epoch 0)
+        # if log:
+        #     wandb.log({
+        #         "epoch": epoch,
+        #         "train loss": initial_train_loss,
+        #         "train accuracy": initial_train_acc,
+        #         "valid loss": initial_test_loss,
+        #         "valid accuracy": initial_test_acc
+        #     })
+
         if log:
-            wandb.log({
+            log_entry = {
                 "epoch": epoch,
                 "train loss": initial_train_loss,
                 "train accuracy": initial_train_acc,
                 "valid loss": initial_test_loss,
                 "valid accuracy": initial_test_acc
-            })
+            }
+            log_history.append(log_entry)
+            wandb.log(log_entry)
         
         print(f"Epoch: {epoch}, Train Acc {initial_train_acc}, Valid Acc: {initial_test_acc}")
 
@@ -125,16 +138,34 @@ class bp_net(nn.Module):
 
             # Logging after each epoch of training
             if log:
-                wandb.log({
+                log_entry = {
                     "epoch": epoch,
                     "train loss": train_loss,
                     "train accuracy": train_acc,
                     "valid loss": test_loss,
                     "valid accuracy": test_acc
-                })
+                }
+                wandb.log(log_entry)
+                print(f"Logging -- Epoch: {epoch}, Train Loss: {train_loss}, Train Acc: {train_acc}, Valid Loss: {test_loss}, Valid Acc: {test_acc}")
+                log_history.append(log_entry)
             print(f"Epoch: {epoch},  Train Acc: {train_acc}, Valid Acc: {test_acc}")
 
         if save == 'yes':
+            
+            # JSON logging
+            log_dir = f"JSON_logs/BP/Trial_{trial}"
+            os.makedirs(log_dir, exist_ok=True)
+
+            json_log_path = os.path.join(log_dir, f"BP_{type}_{count}.json")
+
+            print(f"Saving data to {json_log_path}")
+
+            with open(json_log_path, "w") as f:
+                json.dump(log_history, f, indent=4)
+
+            print(f"Wandb log saved to {json_log_path}")
+
+            # original save model
             self.save_model(new_ckpt)
             self.save_training_dynamics(train_losses, train_accuracies, test_losses, test_accuracies, trial, train_ckpts)
 

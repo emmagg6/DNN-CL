@@ -69,15 +69,26 @@ class ep_net:
                 total += x_batch.size(0)
         return correct / total, test_E / total
 
-    def train_model(self, train_loader, valid_loader, epochs, dynamics, lr = 0.01, fast_init = True, log=False, save=False, trial=0, new_ckpt='', train_ckpts=''):
+    def train_model(self, type, count, train_loader, valid_loader, epochs, dynamics, lr = 0.01, fast_init = True, log=False, save=False, trial=0, new_ckpt='', train_ckpts=''):
         if self.opt == False:
             self.optimizer = create_optimizer(self.model, "adam",  lr=lr) # options: sgd, adam, adagrad
         epoch = 0
         test_accs = []
+        log_history = []
+
         test_acc, test_E = self.test_model(valid_loader, dynamics, fast_init)
 
+        # if log:
+        #     wandb.log({"epoch": epoch, "valid accuracy": test_acc})
+
         if log:
-            wandb.log({"epoch": epoch, "valid accuracy": test_acc})
+            log_entry = {
+                "epoch": epoch,
+                "valid accuracy": test_acc
+            }
+            log_history.append(log_entry)
+            wandb.log(log_entry)
+
         print(f"Epoch: {epoch}, Test Acc: {test_acc}, Test E: {test_E}")
         test_accs.append(test_acc)
         
@@ -110,12 +121,35 @@ class ep_net:
                 self.model.w_optimize(free_grads, nudged_grads, self.optimizer)
 
             test_acc, test_E = self.test_model(valid_loader, dynamics, fast_init)
+            # if log:
+            #     wandb.log({"epoch": epoch, "valid accuracy": test_acc})
+
             if log:
-                wandb.log({"epoch": epoch, "valid accuracy": test_acc})
+                log_entry = {
+                    "epoch": epoch,
+                    "valid accuracy": test_acc
+                }
+                log_history.append(log_entry)
+                wandb.log(log_entry)
+
             print(f"Epoch: {epoch}, Test Acc: {test_acc}, Test E: {test_E}")
             test_accs.append(test_acc)
 
         if save:
+
+            # JSON logging
+            log_dir = f"JSON_logs/EP/Trial_{trial}"
+            os.makedirs(log_dir, exist_ok=True)
+
+            json_log_path = os.path.join(log_dir, f"EP_{type}_{count}.json")
+
+            print(f"Saving data to {json_log_path}")
+
+            with open(json_log_path, "w") as f:
+                json.dump(log_history, f, indent=4)
+
+            print(f"Wandb log saved to {json_log_path}")
+
             self.save_model(new_ckpt)
             # self.save_training_dynamics(train_loader, valid_loader, trial, train_ckpts)
 
