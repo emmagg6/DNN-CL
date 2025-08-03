@@ -2,8 +2,9 @@
 import torch
 import torch.nn as nn
 import torch.optim as optim
+import os
 
-from hnetconv2d import HNetConv2d  
+from .hnetconv2d import HNetConv2d
 
 
 class hn(nn.Module):
@@ -51,7 +52,7 @@ class hn(nn.Module):
         return x
 
 
-def train_epoch(model, loader, criterion, optimizer, device):
+def Hnet_train_epoch(model, loader, criterion, optimizer, device):
     model.train()
     total_loss = 0.0
     for xb, yb in loader:
@@ -65,7 +66,7 @@ def train_epoch(model, loader, criterion, optimizer, device):
     return total_loss / len(loader.dataset)
 
 
-def evaluate(model, loader, criterion, device):
+def Hnet_evaluate(model, loader, criterion, device):
     model.eval()
     total_loss = 0.0
     correct = 0
