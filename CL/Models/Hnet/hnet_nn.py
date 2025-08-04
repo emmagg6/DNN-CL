@@ -52,7 +52,7 @@ class hn(nn.Module):
         return x
 
 
-def Hnet_train_epoch(model, loader, criterion, optimizer, device):
+def hn_train(model, loader, criterion, optimizer, device):
     model.train()
     total_loss = 0.0
     for xb, yb in loader:
@@ -66,7 +66,7 @@ def Hnet_train_epoch(model, loader, criterion, optimizer, device):
     return total_loss / len(loader.dataset)
 
 
-def Hnet_evaluate(model, loader, criterion, device):
+def hn_evaluate(model, loader, criterion, device):
     model.eval()
     total_loss = 0.0
     correct = 0
