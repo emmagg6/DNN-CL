@@ -16,6 +16,7 @@ from Models.PC.pc_nn_E import pc_net
 from Models.KAN.kan_nn import kan_net
 from Models.EP.ep_nn import ep_net
 from Models.PC.pc_layers import ConvLayer, MaxPool, ProjectionLayer, FCLayer
+from Models.Hnet.hnet_nn import hn, hn_train, hn_evaluate
 
 
 import os
@@ -40,7 +41,7 @@ def main(TRIALS, models, datasets, epochs, epochs_backward, batch_size,
 
     for mod in models:
 
-        for trial in range(26, TRIALS+1):
+        for trial in range(0, TRIALS+1):
             print("\n -------------------------------------")
             print(f"TRIAL: {trial}")
             print(" -------------------------------------\n")
@@ -57,6 +58,8 @@ def main(TRIALS, models, datasets, epochs, epochs_backward, batch_size,
             if mod == "KAN" or mod == "EP":
                 lr = 0.005
             stepsize = 0.04
+            if mod == "HNET":
+                lr = 1e-3
 
             if mod == "BP":
                 params = {
@@ -123,7 +126,7 @@ def main(TRIALS, models, datasets, epochs, epochs_backward, batch_size,
                 params["name"] = mod
 
             elif mod == "PC":
-                name = mod #mod + "0.0005.0.00005"
+                params["name"] = mod #mod + "0.0005.0.00005"
                 # name = str(name)
             elif mod == "EP":
                 params['cost_energy'] = 'cross_entropy'
@@ -138,13 +141,17 @@ def main(TRIALS, models, datasets, epochs, epochs_backward, batch_size,
                 params["name"] = mod
             elif mod == "KAN":
                 params["name"] = mod
+            elif mod == "HNET":
+                params["name"] = mod
+                params['n_edges1'] = None
+                criterion = nn.CrossEntropyLoss()
             else :
                 raise ValueError("Unkown algorithm. Please choose from BP, TP, DTP, FWDTP, KAN.")
 
             
             if log :
                 # print("Logging")
-                wandb.init(project="IWAI25-l", config=params, name=name,  reinit=True)
+                wandb.init(project="Aug2025", config=params, name=name,  reinit=True)
 
             ########### DATA ########### AND LEARNING RATE
             count = 0
@@ -430,6 +437,90 @@ def main(TRIALS, models, datasets, epochs, epochs_backward, batch_size,
 
                     model.train_model(type, count, train_loader, valid_loader, epochs, params['dynamics'], lr=lr, log=log, save=save, 
                               trial=trial, new_ckpt=ckpt, train_ckpts=save_training)
+                elif mod == "HNET":
+                    model = hn().to(device)
+                    optim = torch.optim.Adam(model.parameters(), lr=lr)
+                    print("Model: ", mod)
+                    ckpt = "checkpoints/" + mod + "/models/" + mod + str_datasets_trials_1 + "-trial" + str(trial) + ".pth"
+                    save_training = "checkpoints/" + mod + "/TRAIN-" + mod + str_datasets_trials_1 + ".json"
+                    if d > 0 :
+                        if d == 1:
+                            prev_ckpt = "checkpoints/" + mod + "/models/" + mod + str_datasets_trials_1 + "-trial" + str(trial) + ".pth"
+                            ckpt = "checkpoints/" + mod + "/models/" + mod + str_datasets_trials_2 + "-trial" + str(trial) + ".pth"
+                            save_training = "checkpoints/" + mod + "/TRAIN-" + mod + str_datasets_trials_2 + ".json"
+                        elif d == 2:
+                            prev_ckpt = "checkpoints/" + mod + "/models/" + mod + str_datasets_trials_2 + "-trial" + str(trial) + ".pth"
+                            ckpt = "checkpoints/" + mod + "/models/" + mod + str_datasets_trials_3  + "-trial" + str(trial) + ".pth"
+                            save_training = "checkpoints/" + mod + "/TRAIN-" + mod + str_datasets_trials_3 + ".json"
+                        elif d == 3:
+                            prev_ckpt = "checkpoints/" + mod + "/models/" + mod + str_datasets_trials_3 + "-trial" + str(trial) + ".pth"
+                            ckpt = "checkpoints/" + mod + "/models/" + mod + str_datasets_trials_4 + "-trial" + str(trial) + ".pth"
+                            save_training = "checkpoints/" + mod + "/TRAIN-" + mod + str_datasets_trials_4 + ".json"
+                        elif d == 4:
+                            prev_ckpt = "checkpoints/" + mod + "/models/" + mod + str_datasets_trials_4 + "-trial" + str(trial) + ".pth"
+                            ckpt = "checkpoints/" + mod + "/models/" + mod + str_datasets_trials_5 + "-trial" + str(trial) + ".pth"
+                            save_training = "checkpoints/" + mod + "/TRAIN-" + mod + str_datasets_trials_5 + ".json"
+                        elif d == 5:
+                            prev_ckpt = "checkpoints/" + mod + "/models/" + mod + str_datasets_trials_5 + "-trial" + str(trial) + ".pth"
+                            ckpt = "checkpoints/" + mod + "/models/" + mod + str_datasets_trials_6 + "-trial" + str(trial) + ".pth"
+                            save_training = "checkpoints/" + mod + "/TRAIN-" + mod + str_datasets_trials_6 + ".json"
+                        saved_state = torch.load(prev_ckpt)
+                        model.load_state_dict(saved_state['model_state_dict'])
+                        optim = torch.optim.Adam(model.parameters(), lr=lr)
+
+                    print(f"Epoch 0 / {epochs} for dataset {data} ...")
+                    val_loss, val_acc = hn_evaluate(model, valid_loader, criterion, device)
+                    print(f"Val Loss: {val_loss:.4f}, Val Acc: {val_acc:.4f}")
+                    if log:
+                        log_entry = {
+                            "valid accuracy": val_acc,
+                            "train loss": 0,
+                            "epoch": 0,
+                        }
+                        wandb.log(log_entry)
+
+                    # if save == "yes":
+                    #     log_dir = f"JSON_logs/{mod}/Trial_{trial}"
+                    #     os.makedirs(log_dir, exist_ok=True)
+                    #     json_log_path = os.path.join(log_dir, f"HNET_{type}_{count}.json")
+
+                    #     print(f"Saving training log to {json_log_path}")
+                    #     with open(json_log_path, "w") as f:
+                    #         json.dump(log_history, f, indent=4)
+
+                    #     print(f"Wandb log saved to {json_log_path}")
+
+                    #     # original save model
+                    #     self.save_model(new_ckpt)
+                    #     self.save_training_dynamics(train_acc, val_acc, trial, train_ckpts)
+
+                    for epoch_i in range(epochs):
+                        print(f"Epoch {epoch_i + 1} / {epochs} for dataset {data} ...")
+                        train_loss = hn_train(model, train_loader, criterion, optim, device)
+                        val_loss, val_acc = hn_evaluate(model, valid_loader, criterion, device)
+                        print(f"Train Loss: {train_loss:.4f}")
+                        print(f"Val Loss: {val_loss:.4f}, Val Acc: {val_acc:.4f}")
+
+                        if log:
+                            log_entry = {
+                                "valid accuracy": val_acc,
+                                "train loss": train_loss,
+                                "epoch": epoch_i + 1,
+                            }
+                            wandb.log(log_entry)
+                    
+                    # if save == "yes":
+                    #     json_log_path = os.path.join(log_dir, f"HNET_{type}_{count}.json")
+
+                    #     print(f"Saving training log to {json_log_path}")
+                    #     with open(json_log_path, "w") as f:
+                    #         json.dump(log_history, f, indent=4)
+
+                    #     print(f"Wandb log saved to {json_log_path}")
+
+                    #     # original save model
+                    #     self.save_model(new_ckpt)
+                    #     self.save_training_dynamics(train_acc, val_acc, trial, train_ckpts)
 
                 else :
                     raise ValueError("Unkown algorithm. Please choose from BP, TP, DTP, FWDTP, or KAN.")
@@ -439,19 +530,16 @@ def main(TRIALS, models, datasets, epochs, epochs_backward, batch_size,
     print("DONE")
 
 if __name__ == "__main__":
-    # models = ["BP", "DTP", "FWDTP", "PC", "KAN"]
-    # models = ["PC", "BP", "DTP", "EP"]
-    # models = ["DTP"]
-    # models = ["BP", "DTP", "EP", "KAN", "FWDTP"]
-    # models = ["BP", "PC", "EP", "DTP"]
+    # models = ["BP", "PC", "EP", "DTP", "KAN", "HNET"]
     # models = ["PC"]
     # models = ["EP"]
-    models = ["BP"]
+    # models = ["BP"]
     # models = ["DTP"]
+    models = ["HNET", "BP"]
 
-    datasets = ['m', 'f']
+    # datasets = ['m', 'f']
 
-    # datasets = ['m', 'f', 'm', 'f', 'm', 'f']
+    datasets = ['m', 'f', 'm', 'f', 'm', 'f']
     # datasets = ['m', 'm', 'm', 'm', 'm', 'm']
 
     if 'c' in datasets or 's' in datasets:
@@ -463,7 +551,7 @@ if __name__ == "__main__":
 
     # TESINGING AND MODEL PARAMETERS
 
-    epochs = 1
+    epochs = 5
     batch_size = 1000
 
     # epochs = 5
@@ -490,7 +578,7 @@ if __name__ == "__main__":
 
     # log = False # for wandb visuals
 
-    log = False
+    log = True
     if len(datasets) > 1:
         save = "yes"
     else:
@@ -499,8 +587,7 @@ if __name__ == "__main__":
     n_inference_steps = 100
     inference_lr = 0.01
 
-    TRIALS = 26
-    # TRIALS = 2
+    TRIALS = 3
     main(TRIALS, models, datasets, epochs, epochs_backward, batch_size, 
          test, depth, direct_depth, lr, lr_backward, std_backward, 
          loss_feedback, sparse_ratio_str, hid_dim, log, save,

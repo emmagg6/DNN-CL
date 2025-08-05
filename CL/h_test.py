@@ -12,7 +12,7 @@ from Models.Hnet.hnet_nn import hn, hn_train, hn_evaluate
 
 def main():
     # hyperparams
-    batch_size = 64
+    batch_size = 100
     lr = 1e-3
     epochs = 3
 
