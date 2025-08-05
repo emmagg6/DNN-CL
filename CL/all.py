@@ -157,6 +157,7 @@ def main(TRIALS, models, datasets, epochs, epochs_backward, batch_size,
             count = 0
             type = "start"
             for d, data in enumerate(datasets): 
+                print(f"Dataset: {data}: {d}/{len(datasets)}.")
                 count += 1
                 if data == "m":
                     type = "m"
@@ -438,6 +439,7 @@ def main(TRIALS, models, datasets, epochs, epochs_backward, batch_size,
                     model.train_model(type, count, train_loader, valid_loader, epochs, params['dynamics'], lr=lr, log=log, save=save, 
                               trial=trial, new_ckpt=ckpt, train_ckpts=save_training)
                 elif mod == "HNET":
+                    device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
                     model = hn().to(device)
                     optim = torch.optim.Adam(model.parameters(), lr=lr)
                     print("Model: ", mod)
@@ -468,14 +470,14 @@ def main(TRIALS, models, datasets, epochs, epochs_backward, batch_size,
                         model.load_state_dict(saved_state['model_state_dict'])
                         optim = torch.optim.Adam(model.parameters(), lr=lr)
 
-                    print(f"Epoch 0 / {epochs} for dataset {data} ...")
+                    print(f"Initial epoch {epochs*(d) + (d)} for dataset {data}")
                     val_loss, val_acc = hn_evaluate(model, valid_loader, criterion, device)
                     print(f"Val Loss: {val_loss:.4f}, Val Acc: {val_acc:.4f}")
                     if log:
                         log_entry = {
                             "valid accuracy": val_acc,
-                            "train loss": 0,
-                            "epoch": 0,
+                            # "train loss": 0,
+                            "epoch": epochs*(d) + d,
                         }
                         wandb.log(log_entry)
 
@@ -495,7 +497,7 @@ def main(TRIALS, models, datasets, epochs, epochs_backward, batch_size,
                     #     self.save_training_dynamics(train_acc, val_acc, trial, train_ckpts)
 
                     for epoch_i in range(epochs):
-                        print(f"Epoch {epoch_i + 1} / {epochs} for dataset {data} ...")
+                        print(f"Epoch {(epoch_i+1) + ((epochs+1) * d)} / {(epochs+1)*((len(datasets)))} -- for dataset {data} ...")
                         train_loss = hn_train(model, train_loader, criterion, optim, device)
                         val_loss, val_acc = hn_evaluate(model, valid_loader, criterion, device)
                         print(f"Train Loss: {train_loss:.4f}")
@@ -505,7 +507,7 @@ def main(TRIALS, models, datasets, epochs, epochs_backward, batch_size,
                             log_entry = {
                                 "valid accuracy": val_acc,
                                 "train loss": train_loss,
-                                "epoch": epoch_i + 1,
+                                "epoch": (epoch_i+1) + ((epochs+1) * d) ,
                             }
                             wandb.log(log_entry)
                     
@@ -521,7 +523,10 @@ def main(TRIALS, models, datasets, epochs, epochs_backward, batch_size,
                     #     # original save model
                     #     self.save_model(new_ckpt)
                     #     self.save_training_dynamics(train_acc, val_acc, trial, train_ckpts)
-
+                    torch.save({
+                        'model_state_dict': model.state_dict(),
+                        'optimizer_state_dict': optim.state_dict(),
+                    }, ckpt)
                 else :
                     raise ValueError("Unkown algorithm. Please choose from BP, TP, DTP, FWDTP, or KAN.")
             if log :
