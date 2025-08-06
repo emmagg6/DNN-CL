@@ -16,7 +16,6 @@ from Models.PC.pc_nn_E import pc_net
 from Models.KAN.kan_nn import kan_net
 from Models.EP.ep_nn import ep_net
 from Models.PC.pc_layers import ConvLayer, MaxPool, ProjectionLayer, FCLayer
-from Models.Hnet.hnet_nn import hnet
 
 
 import os
@@ -41,7 +40,7 @@ def main(TRIALS, models, datasets, epochs, epochs_backward, batch_size,
 
     for mod in models:
 
-        for trial in range(26, TRIALS+1):
+        for trial in range(0, TRIALS):
             print("\n -------------------------------------")
             print(f"TRIAL: {trial}")
             print(" -------------------------------------\n")
@@ -145,7 +144,7 @@ def main(TRIALS, models, datasets, epochs, epochs_backward, batch_size,
             
             if log :
                 # print("Logging")
-                wandb.init(project="IWAI25-l", config=params, name=name,  reinit=True)
+                wandb.init(project="Aug2025", config=params, name=name,  reinit=True)
 
             ########### DATA ########### AND LEARNING RATE
             for d, data in enumerate(datasets): 
@@ -431,8 +430,8 @@ if __name__ == "__main__":
     # models = ["PC", "BP", "DTP", "EP"]
     # models = ["DTP"]
     # models = ["BP", "DTP", "EP", "KAN", "FWDTP"]
-    # models = ["BP", "PC", "EP", "DTP"]
-    models = ["HNET"]
+    models = ["BP", "PC", "EP", "DTP"]
+    # models = ["HNET"]
 
     datasets = ['m', 'f', 'm', 'f', 'm', 'f']
     # datasets = ['m', 'm', 'm', 'm', 'm', 'm']
@@ -448,8 +447,8 @@ if __name__ == "__main__":
     epochs = 5
     # epochs = 1
     epochs_backward = 5
-    batch_size = 64
-    # batch_size = 5000
+    # batch_size = 64
+    batch_size = 1000
 
     test = True  # from FWDTP paper's main.py
     # label_augentation = False  # from FWDTP paper's main.py
@@ -478,7 +477,7 @@ if __name__ == "__main__":
     n_inference_steps = 100
     inference_lr = 0.01
 
-    TRIALS = 49
+    TRIALS = 5
     main(TRIALS, models, datasets, epochs, epochs_backward, batch_size, 
          test, depth, direct_depth, lr, lr_backward, std_backward, 
          loss_feedback, sparse_ratio_str, hid_dim, log, save,

@@ -10,7 +10,6 @@ from utils import *
 from dataset import make_MNIST, make_FashionMNIST, make_CIFAR10, make_STL10
 
 from Models.BP.bp_nn import bp_net
-from Models.BP.bp_nn_j import bp_net
 from Models.TP.tp_nn import tp_net
 # from Models.PC.pc_nn import pc_net
 from Models.PC.pc_nn_E import pc_net
@@ -42,7 +41,7 @@ def main(TRIALS, models, datasets, epochs, epochs_backward, batch_size,
 
     for mod in models:
 
-        for trial in range(1, TRIALS+1):
+        for trial in range(0, TRIALS+1):
             print("\n -------------------------------------")
             print(f"TRIAL: {trial}")
             print(" -------------------------------------\n")
@@ -155,13 +154,13 @@ def main(TRIALS, models, datasets, epochs, epochs_backward, batch_size,
                 wandb.init(project="Aug2025", config=params, name=name,  reinit=True)
 
             ########### DATA ########### AND LEARNING RATE
-            count = 0
-            type = "start"
+            # count = 0
+            # type = "start"
             for d, data in enumerate(datasets): 
                 print(f"Dataset: {data}: {d}/{len(datasets)}.")
-                count += 1
+                # count += 1
                 if data == "m":
-                    type = "m"
+                    # type = "m"
 
                     print("making MNIST ...")
                     in_dim = 784
@@ -175,7 +174,7 @@ def main(TRIALS, models, datasets, epochs, epochs_backward, batch_size,
                         trainset, validset, testset = make_MNIST(out_dim, test)
 
                 elif data == "f":
-                    type = "f"
+                    # type = "f"
 
                     print("making FashionMNIST ...")
                     in_dim = 784
@@ -192,7 +191,7 @@ def main(TRIALS, models, datasets, epochs, epochs_backward, batch_size,
 
                 elif data == "c":
 
-                    type = "c"
+                    # type = "c"
 
                     print("making CIFAR10 ...")
                     in_dim = 3072
@@ -205,7 +204,7 @@ def main(TRIALS, models, datasets, epochs, epochs_backward, batch_size,
 
                 elif data == "s":
 
-                    type = "s"
+                    # type = "s"
 
                     print("making STL10 ...")
                     in_dim = 3072
@@ -291,8 +290,10 @@ def main(TRIALS, models, datasets, epochs, epochs_backward, batch_size,
                         saved_state = torch.load(prev_ckpt)
                         model.load_state(prev_ckpt, lr)
 
-                    model.train_model(type, count, train_loader, valid_loader, epochs, lr, log, save, 
+                    model.train_model(train_loader, valid_loader, epochs, lr, log, save, 
                                     trial=trial, new_ckpt= ckpt, train_ckpts=save_training)
+                    # model.train_model(type, count, train_loader, valid_loader, epochs, lr, log, save, 
+                    #                 trial=trial, new_ckpt= ckpt, train_ckpts=save_training)
                     # print("trained BP")
 
                 elif mod == "PC":
@@ -334,7 +335,8 @@ def main(TRIALS, models, datasets, epochs, epochs_backward, batch_size,
                     train_data = list(iter(train_loader))
                     valid_data = list(iter(valid_loader))
 
-                    model.train_model(type, count, train_data, valid_data, epochs, train_loader, valid_loader, batch_size, log, save, trial=trial, new_ckpt= ckpt, train_ckpts=save_training)
+                    # model.train_model(type, count, train_data, valid_data, epochs, train_loader, valid_loader, batch_size, log, save, trial=trial, new_ckpt= ckpt, train_ckpts=save_training)
+                    model.train_model(train_data, valid_data, epochs, train_loader, valid_loader, batch_size, log, save, trial=trial, new_ckpt= ckpt, train_ckpts=save_training)
 
                     model.save_model(ckpt)
 
@@ -369,9 +371,10 @@ def main(TRIALS, models, datasets, epochs, epochs_backward, batch_size,
                         saved_state = torch.load(prev_ckpt)
                         model.load_state(saved_state)
 
-                    model.train( type, count, train_loader, valid_loader, epochs, lr, lr_backward, std_backward, stepsize, 
-                                log, save, hyperparams={"loss_feedback": loss_feedback, "epochs_backward": epochs_backward}, 
-                                trial=trial, new_ckpt= ckpt, train_ckpts=save_training)
+                    # model.train( type, count, train_loader, valid_loader, epochs, lr, lr_backward, std_backward, stepsize, 
+                                # log, save, hyperparams={"loss_feedback": loss_feedback, "epochs_backward": epochs_backward}, 
+                                # trial=trial, new_ckpt= ckpt, train_ckpts=save_training)
+                    model.train(train_loader, valid_loader, epochs, lr, lr_backward, std_backward, stepsize, log, save, hyperparams={"loss_feedback": loss_feedback, "epochs_backward": epochs_backward}, trial=trial, new_ckpt= ckpt, train_ckpts=save_training)
 
                 elif mod == "KAN":
                     
@@ -405,8 +408,10 @@ def main(TRIALS, models, datasets, epochs, epochs_backward, batch_size,
                         saved_state = torch.load(prev_ckpt)
                         model.load_state(prev_ckpt, lr)
 
-                    model.train_model(type, count, train_loader, valid_loader, epochs, lr, log, save, 
+                    model.train_model(train_loader, valid_loader, epochs, lr, log, save, 
                               trial=trial, new_ckpt=ckpt, train_ckpts=save_training)
+                    # model.train_model(type, count, train_loader, valid_loader, epochs, lr, log, save, 
+                            #   trial=trial, new_ckpt=ckpt, train_ckpts=save_training)
                 elif mod == "EP":
                     model = ep_net(type='cond_gaussian', dimensions=params["dimensions"], cost_energy=params["cost_energy"], batch_size=params["batch_size"])
                     print("Model: ", mod)
@@ -437,8 +442,11 @@ def main(TRIALS, models, datasets, epochs, epochs_backward, batch_size,
                         saved_state = torch.load(prev_ckpt)
                         model.load_state(prev_ckpt, lr)
 
-                    model.train_model(type, count, train_loader, valid_loader, epochs, params['dynamics'], lr=lr, log=log, save=save, 
-                              trial=trial, new_ckpt=ckpt, train_ckpts=save_training)
+                    # model.train_model(type, count, train_loader, valid_loader, epochs, params['dynamics'], lr=lr, log=log, save=save, 
+                            #   trial=trial, new_ckpt=ckpt, train_ckpts=save_training)
+                    model.train_model(train_loader, valid_loader, epochs, params['dynamics'], lr=lr, log=log, save=save, trial=trial, new_ckpt=ckpt, train_ckpts=save_training)
+                
+
                 elif mod == "HNET":
                     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
                     model = hn().to(device)
@@ -482,21 +490,6 @@ def main(TRIALS, models, datasets, epochs, epochs_backward, batch_size,
                         }
                         wandb.log(log_entry)
 
-                    # if save == "yes":
-                    #     log_dir = f"JSON_logs/{mod}/Trial_{trial}"
-                    #     os.makedirs(log_dir, exist_ok=True)
-                    #     json_log_path = os.path.join(log_dir, f"HNET_{type}_{count}.json")
-
-                    #     print(f"Saving training log to {json_log_path}")
-                    #     with open(json_log_path, "w") as f:
-                    #         json.dump(log_history, f, indent=4)
-
-                    #     print(f"Wandb log saved to {json_log_path}")
-
-                    #     # original save model
-                    #     self.save_model(new_ckpt)
-                    #     self.save_training_dynamics(train_acc, val_acc, trial, train_ckpts)
-
                     for epoch_i in range(epochs):
                         print(f"Epoch {(epoch_i+1) + ((epochs+1) * d)} / {(epochs+1)*((len(datasets)))} -- for dataset {data} ...")
                         train_loss = hn_train(model, train_loader, criterion, optim, device)
@@ -512,22 +505,12 @@ def main(TRIALS, models, datasets, epochs, epochs_backward, batch_size,
                             }
                             wandb.log(log_entry)
                     
-                    # if save == "yes":
-                    #     json_log_path = os.path.join(log_dir, f"HNET_{type}_{count}.json")
-
-                    #     print(f"Saving training log to {json_log_path}")
-                    #     with open(json_log_path, "w") as f:
-                    #         json.dump(log_history, f, indent=4)
-
-                    #     print(f"Wandb log saved to {json_log_path}")
-
-                    #     # original save model
-                    #     self.save_model(new_ckpt)
-                    #     self.save_training_dynamics(train_acc, val_acc, trial, train_ckpts)
                     torch.save({
                         'model_state_dict': model.state_dict(),
                         'optimizer_state_dict': optim.state_dict(),
                     }, ckpt)
+
+                
                 else :
                     raise ValueError("Unkown algorithm. Please choose from BP, TP, DTP, FWDTP, or KAN.")
             if log :
@@ -536,12 +519,12 @@ def main(TRIALS, models, datasets, epochs, epochs_backward, batch_size,
     print("DONE")
 
 if __name__ == "__main__":
-    models = ["BP", "KAN", "HNET", "PC", "EP", "DTP"]
+    # models = ["BP", "PC", "EP", "DTP", "KAN"]
     # models = ["PC"]
     # models = ["EP"]
-    # models = ["BP"]
+    models = ["BP"]
     # models = ["DTP"]
-    # models = ["BP"]
+    # models = ["HNET", "BP"]
 
     # datasets = ['m', 'f']
 
@@ -558,7 +541,7 @@ if __name__ == "__main__":
     # TESINGING AND MODEL PARAMETERS
 
     epochs = 5
-    batch_size = 100
+    batch_size = 1000
 
     # epochs = 5
     # epochs = 1
@@ -593,7 +576,7 @@ if __name__ == "__main__":
     n_inference_steps = 100
     inference_lr = 0.01
 
-    TRIALS = 10
+    TRIALS = 3
     main(TRIALS, models, datasets, epochs, epochs_backward, batch_size, 
          test, depth, direct_depth, lr, lr_backward, std_backward, 
          loss_feedback, sparse_ratio_str, hid_dim, log, save,
