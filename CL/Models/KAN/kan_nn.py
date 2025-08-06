@@ -245,10 +245,10 @@ class kan_net(nn.Module):
             if log:
                 log_entry = {
                     "epoch": epoch,
-                    "train loss": initial_train_loss,
-                    "train accuracy": initial_train_acc,
-                    "valid loss": initial_test_loss,
-                    "valid accuracy": initial_test_acc
+                    "train loss": train_loss,
+                    "train accuracy": train_acc,
+                    "valid loss": test_loss,
+                    "valid accuracy": test_acc
                 }
                 log_history.append(log_entry)
 

@@ -536,12 +536,13 @@ def main(TRIALS, models, datasets, epochs, epochs_backward, batch_size,
     print("DONE")
 
 if __name__ == "__main__":
-    models = ["BP", "KAN", "HNET", "PC", "EP", "DTP"]
+    # models = ["BP", "KAN", "HNET", "PC", "EP", "DTP"]
     # models = ["PC"]
     # models = ["EP"]
     # models = ["BP"]
     # models = ["DTP"]
     # models = ["BP"]
+    models = ["KAN", "HNET", "PC", "EP", "DTP"]
 
     # datasets = ['m', 'f']
 
