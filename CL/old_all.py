@@ -12,7 +12,7 @@ from dataset import make_MNIST, make_FashionMNIST, make_CIFAR10, make_STL10
 from Models.BP.bp_nn import bp_net
 from Models.TP.tp_nn import tp_net
 # from Models.PC.pc_nn import pc_net
-from Models.PC.pc_nn_test import pc_net
+from Models.PC.pc_nn_E import pc_net
 from Models.KAN.kan_nn import kan_net
 from Models.EP.ep_nn import ep_net
 from Models.PC.pc_layers import ConvLayer, MaxPool, ProjectionLayer, FCLayer
@@ -23,7 +23,7 @@ import sys
 import wandb
 import torch
 import numpy as np
-from torch import nn
+from torch import nn     
 import torch.nn.functional as F
 
 # os.environ['KMP_DUPLICATE_LIB_OK'] = 'True'
@@ -40,7 +40,7 @@ def main(TRIALS, models, datasets, epochs, epochs_backward, batch_size,
 
     for mod in models:
 
-        for trial in range(1, TRIALS + 1):
+        for trial in range(0, TRIALS):
             print("\n -------------------------------------")
             print(f"TRIAL: {trial}")
             print(" -------------------------------------\n")
@@ -50,15 +50,11 @@ def main(TRIALS, models, datasets, epochs, epochs_backward, batch_size,
             name = str(name)
 
             set_seed(trial)
-            # name = {"ff1": "forward_function_1",
-            #     "ff2": "forward_function_2",
-            #     "bf1": "backward_function_1",
-            #     "bf2": "backward_function_2"}
             params = {}
             print("Parameter Setup ... ")
 
             lr = 0.1
-            if mod == "KAN" or mod == "EP" or mod == "PC":
+            if mod == "KAN" or mod == "EP":
                 lr = 0.005
             stepsize = 0.04
 
@@ -127,49 +123,8 @@ def main(TRIALS, models, datasets, epochs, epochs_backward, batch_size,
                 params["name"] = mod
 
             elif mod == "PC":
-                # lr = 0.0005 # default in the paper
-                loss_fn, loss_fn_deriv = parse_loss_function("crossentropy")
-
-                if not larger: # then mnist size
-
-                    l1 = ConvLayer(input_size=28, num_channels=1, num_filters=6, batch_size=batch_size, kernel_size=5, learning_rate=lr, f=relu, df=relu_deriv, device=device)
-
-                    # Max pooling layer with kernel size 2x2
-                    l2 = MaxPool(2, device=device)
-
-                    # Convolutional layer with input size 14x14 (after max pooling), 6 input channels, 16 output filters, kernel size 5x5
-                    l3 = ConvLayer(input_size=12, num_channels=6, num_filters=16, batch_size=batch_size, kernel_size=5, learning_rate=lr, f=relu, df=relu_deriv, device=device)
-
-                    # Projection layer with input size corresponding to the output size of the previous conv layer, 16x5x5
-                    l4 = ProjectionLayer(input_size=(64, 16, 8, 8), output_size=120, f=relu, df=relu_deriv, learning_rate=lr, device=device)
-
-                    # Fully connected layer
-                    l5 = FCLayer(input_size=120, output_size=84, batch_size=64, learning_rate=lr, f = relu, df = relu_deriv, device=device)
-
-                    # Final fully connected layer with 10 output classes for MNIST
-                    l6 = FCLayer(input_size=84, output_size=10, batch_size=64, learning_rate=lr, f = F.softmax, df= linear_deriv, device=device)
-
-                    # List of layers
-                    layers = [l1, l2, l3, l4, l5, l6]
-
-                else:
-                ## input for cifar 10, so 28x28 --> 32x32x3 to account for rbg
-
-                    l1 = ConvLayer(input_size=32, num_channels=3, num_filters=6, batch_size=batch_size, kernel_size=5, learning_rate=lr, f=relu, df=relu_deriv, device=device)
-
-                    l2 = MaxPool(2, device=device)
-
-                    l3 = ConvLayer(input_size=14, num_channels=6, num_filters=16, batch_size=batch_size, kernel_size=5, learning_rate=lr, f=relu, df=relu_deriv, device=device)
-
-                    l4 = ProjectionLayer(input_size=(64, 16, 10, 10), output_size=200, f=relu, df=relu_deriv, learning_rate=lr, device=device)
-
-                    l5 = FCLayer(input_size=200, output_size=150, batch_size=batch_size, learning_rate=lr, f=relu, df=relu_deriv, device=device)
-
-                    l6 = FCLayer(input_size=150, output_size=10, batch_size=64, learning_rate=lr, f = F.softmax, df = linear_deriv, device=device)
-
-                    layers = [l1, l2, l3, l4, l5, l6]
-                
-                params["name"] = mod
+                name = mod #mod + "0.0005.0.00005"
+                # name = str(name)
             elif mod == "EP":
                 params['cost_energy'] = 'cross_entropy'
                 params['batch_size'] = batch_size
@@ -189,7 +144,7 @@ def main(TRIALS, models, datasets, epochs, epochs_backward, batch_size,
             
             if log :
                 # print("Logging")
-                wandb.init(project="trials", config=params, name=name,  reinit=True)
+                wandb.init(project="Aug2025", config=params, name=name,  reinit=True)
 
             ########### DATA ########### AND LEARNING RATE
             for d, data in enumerate(datasets): 
@@ -197,7 +152,7 @@ def main(TRIALS, models, datasets, epochs, epochs_backward, batch_size,
                     print("making MNIST ...")
                     in_dim = 784
                     out_dim = 10
-                    if mod == "PC" or mod == "KAN":
+                    if mod == "KAN":
                         trainset, validset = make_MNIST(out_dim, test, pc = True)
                     elif mod == "EP":
                         params['dimensions'] = [784, batch_size*out_dim, out_dim]
@@ -209,7 +164,7 @@ def main(TRIALS, models, datasets, epochs, epochs_backward, batch_size,
                     print("making FashionMNIST ...")
                     in_dim = 784
                     out_dim = 10
-                    if mod == "PC" or mod == "KAN":
+                    if mod == "KAN":
                         trainset, validset = make_FashionMNIST(out_dim, test, pc = True)
                     elif mod == "EP":
                         params['dimensions'] = [784, batch_size*out_dim, out_dim]
@@ -224,7 +179,7 @@ def main(TRIALS, models, datasets, epochs, epochs_backward, batch_size,
                     in_dim = 3072
                     out_dim = 10
                     # trainset, validset, testset = make_CIFAR10(out_dim, test)
-                    if mod == "PC" or mod == "KAN":
+                    if mod == "KAN":
                         trainset, validset = make_CIFAR10(out_dim, test, True)
                     else:
                         trainset, validset, testset = make_CIFAR10(out_dim, test)
@@ -234,7 +189,7 @@ def main(TRIALS, models, datasets, epochs, epochs_backward, batch_size,
                     in_dim = 3072
                     out_dim = 10
                     # trainset, validset, testset = make_STL10(out_dim, test)
-                    if mod == "PC" or mod == "KAN":
+                    if mod == "KAN":
                         trainset, validset = make_STL10(out_dim, test, True)
                     else:
                         trainset, validset, testset = make_STL10(out_dim, test)
@@ -246,10 +201,7 @@ def main(TRIALS, models, datasets, epochs, epochs_backward, batch_size,
                 loss_function = nn.CrossEntropyLoss(reduction="sum")
 
                 
-                if mod == "PC":
-                    trainloader = torch.utils.data.DataLoader(trainset, batch_size=batch_size, shuffle=True)
-                    validloader = torch.utils.data.DataLoader(validset, batch_size=batch_size, shuffle=False)
-                elif mod == "KAN":
+                if mod == "KAN":
                     train_loader = torch.utils.data.DataLoader(trainset, batch_size=batch_size, pin_memory=True, shuffle=True)
                     valid_loader = torch.utils.data.DataLoader(validset, batch_size=batch_size, pin_memory=True, shuffle=False)
                 elif mod == "EP":
@@ -322,72 +274,47 @@ def main(TRIALS, models, datasets, epochs, epochs_backward, batch_size,
                     # print("trained BP")
 
                 elif mod == "PC":
-                    # model = pc_net(layers, num_inference_steps, inference_lr, loss_fn = loss_fn, loss_fn_deriv = loss_fn_deriv, device=device)
                     model = pc_net(depth, in_dim, hid_dim, out_dim, loss_function, device, batch_size, params=params)
                     print("Model: ", mod)
 
                     ckpt = "checkpoints/" + mod + "/models/" + mod + str_datasets_trials_1 + "-trial" + str(trial)+ ".pth"
                     save_training = "checkpoints/" + mod + "/TRAIN-" + mod + str_datasets_trials_1 + ".json"
                     prev_ckpt = "None"
-                    log_dir = "checkpoints/" + mod + "/logs/" + mod + str_datasets_trials_1 + "-trial" + str(trial)
-                    # make directories if not there
-                    # if not os.path.exists(ckpt):
-                    #     os.makedirs(ckpt)
-                    if not os.path.exists(log_dir):
-                        os.makedirs(log_dir)
+                    
+                    parent_dir = os.path.dirname(ckpt)
+                    if not os.path.exists(parent_dir):
+                        os.makedirs(parent_dir)
                     if d > 0 :
                         if d == 1:
                             prev_ckpt = "checkpoints/" + mod + "/models/" + mod + str_datasets_trials_1 + "-trial" + str(trial)+ ".pth"
                             ckpt = "checkpoints/" + mod + "/models/" + mod + str_datasets_trials_2 + "-trial" + str(trial)+ ".pth"
                             save_training = "checkpoints/" + mod + "/TRAIN-" + mod + str_datasets_trials_2 + ".json"
-                            # if not os.path.exists(ckpt):
-                            #     os.makedirs(ckpt)
-                            if not os.path.exists(log_dir):
-                                os.makedirs(log_dir)
                         elif d == 2:
                             prev_ckpt = "checkpoints/" + mod + "/models/" + mod + str_datasets_trials_2 + "-trial" + str(trial)+ ".pth"
                             ckpt = "checkpoints/" + mod + "/models/" + mod + str_datasets_trials_3  + "-trial" + str(trial) + ".pth"
                             save_training = "checkpoints/" + mod + "/TRAIN-" + mod + str_datasets_trials_3 + ".json"
-                            # if not os.path.exists(ckpt):
-                            #     os.makedirs(ckpt)
-                            if not os.path.exists(log_dir):
-                                os.makedirs(log_dir)
                         elif d == 3:
                             prev_ckpt = "checkpoints/" + mod + "/models/" + mod + str_datasets_trials_3 + "-trial" + str(trial)+ ".pth"
                             ckpt = "checkpoints/" + mod + "/models/" + mod + str_datasets_trials_4 + "-trial" + str(trial)+ ".pth"
                             save_training = "checkpoints/" + mod + "/TRAIN-" + mod + str_datasets_trials_4 + ".json"
-                            # if not os.path.exists(ckpt):
-                            #     os.makedirs(ckpt)
-                            if not os.path.exists(log_dir):
-                                os.makedirs(log_dir)
                         elif d == 4:
                             prev_ckpt = "checkpoints/" + mod + "/models/" + mod + str_datasets_trials_4 + "-trial" + str(trial)+ ".pth"
                             ckpt = "checkpoints/" + mod + "/models/" + mod + str_datasets_trials_5 + "-trial" + str(trial)+ ".pth"
                             save_training = "checkpoints/" + mod + "/TRAIN-" + mod + str_datasets_trials_5 + ".json"
-                            # if not os.path.exists(ckpt):
-                            #     os.makedirs(ckpt)
-                            if not os.path.exists(log_dir):
-                                os.makedirs(log_dir)
                         elif d == 5:
                             prev_ckpt = "checkpoints/" + mod + "/models/" + mod + str_datasets_trials_5 + "-trial" + str(trial)+ ".pth"
                             ckpt = "checkpoints/" + mod + "/models/" + mod + str_datasets_trials_6 + "-trial" + str(trial)+ ".pth"
                             save_training = "checkpoints/" + mod + "/TRAIN-" + mod + str_datasets_trials_6 + ".json"
-                            # if not os.path.exists(ckpt):
-                            #     os.makedirs(ckpt)
-                            if not os.path.exists(log_dir):
-                                os.makedirs(log_dir)
+                        prev_ckpt = os.path.join(prev_ckpt)
+                        ckpt = os.path.join(ckpt)
+                        model = pc_net.load_model(prev_ckpt)
 
-                        # saved_state = torch.load(prev_ckpt)
-                        # model.load_state(saved_state)
-                        model.load_state(prev_ckpt)
-                        # train(self,dataset,testset,n_epochs,n_inference_steps,logdir,savedir, old_savedir,save_every=1,print_every=10):
-                    train_data = list(iter(trainloader))
-                    valid_data = list(iter(validloader))
+                    train_data = list(iter(train_loader))
+                    valid_data = list(iter(valid_loader))
+                    
+                    model.train_model(train_data, valid_data, epochs, train_loader, valid_loader, batch_size, log, save, trial=trial, new_ckpt= ckpt, train_ckpts=save_training)
 
-                    model.train_model(train_data, valid_data, epochs, trainloader, validloader, batch_size, log, save, trial=trial, new_ckpt= ckpt, train_ckpts=save_training)
-
-                    # need to ad check points/savins
-                    # model.train_model(trainloader, validloader, epochs, trainloader, batch_size)
+                    model.save_model(ckpt)
 
                 elif mod == "DTP" or mod == "FWDTP":
                     model = tp_net(depth, direct_depth, in_dim, hid_dim, out_dim, loss_function, device, params=params)
@@ -500,11 +427,14 @@ def main(TRIALS, models, datasets, epochs, epochs_backward, batch_size,
 
 if __name__ == "__main__":
     # models = ["BP", "DTP", "FWDTP", "PC", "KAN"]
-    models = ["PC"]
+    # models = ["PC", "BP", "DTP", "EP"]
+    # models = ["DTP"]
     # models = ["BP", "DTP", "EP", "KAN", "FWDTP"]
-    # models = ["BP", "PC", "DTP", "EP"]
+    models = ["BP", "PC", "EP", "DTP"]
+    # models = ["HNET"]
 
-    datasets = ['m', 'f', 'm', 'f', 'm', "f"]
+    datasets = ['m', 'f', 'm', 'f', 'm', 'f']
+    # datasets = ['m', 'm', 'm', 'm', 'm', 'm']
 
     if 'c' in datasets or 's' in datasets:
         larger = True
@@ -517,8 +447,8 @@ if __name__ == "__main__":
     epochs = 5
     # epochs = 1
     epochs_backward = 5
-    batch_size = 64
-    # batch_size = 5000
+    # batch_size = 64
+    batch_size = 1000
 
     test = True  # from FWDTP paper's main.py
     # label_augentation = False  # from FWDTP paper's main.py
@@ -547,7 +477,7 @@ if __name__ == "__main__":
     n_inference_steps = 100
     inference_lr = 0.01
 
-    TRIALS = 100
+    TRIALS = 5
     main(TRIALS, models, datasets, epochs, epochs_backward, batch_size, 
          test, depth, direct_depth, lr, lr_backward, std_backward, 
          loss_feedback, sparse_ratio_str, hid_dim, log, save,

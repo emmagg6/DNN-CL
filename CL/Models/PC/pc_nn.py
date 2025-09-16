@@ -101,7 +101,9 @@ class pc_net(object):
         accs.append(acc)
     return np.mean(np.array(accs)),accs
 
-  def train(self,dataset,testset,n_epochs,n_inference_steps,logdir,savedir, old_savedir,save_every=1,print_every=10, log=False):
+  # def train(self,dataset,testset,n_epochs,n_inference_steps,logdir,savedir, old_savedir,save_every=1,print_every=10, log=False):
+  def train(self,dataset,testset,n_epochs,n_inference_steps,logdir,savedir, old_savedir,save_every=1,print_every=10, log=True):
+
     if old_savedir != "None":
       self.load_model(old_savedir)
     losses = []
@@ -126,9 +128,68 @@ class pc_net(object):
         mean_test_acc, _ = self.test_accuracy(testset)
         test_accs.append(mean_test_acc)
         weight_diffs_list.append(weight_diffs)
-        print("TEST ACCURACY: ", mean_test_acc)
+        # print("TEST ACCURACY: ", mean_test_acc)
+
+      # Log to wandb
+      if log:
+          wandb.log({
+              "epoch": epoch,
+              "train loss": mean_loss,
+              "train accuracy": mean_acc,
+              "valid accuracy": mean_test_acc,
+              # "weight_diff_mean": np.mean(weight_diffs),
+          })
+
       print("SAVING MODEL")
       self.save_model(logdir,savedir,losses,accs,weight_diffs_list,test_accs)
+
+  # def train(self, dataset, testset, n_epochs, n_inference_steps, logdir, savedir, old_savedir,
+  #         save_every=1, print_every=10, log=True):
+
+  #   if old_savedir != "None":
+  #       self.load_model(old_savedir)
+
+  #   losses = []
+  #   accs = []
+  #   weight_diffs_list = []
+  #   test_accs = []
+
+  #   for epoch in range(n_epochs):
+  #       losslist = []
+  #       print("Epoch:", epoch)
+
+  #       for i, (inp, label) in enumerate(dataset):
+  #           if self.loss_fn != cross_entropy_loss:
+  #               label = onehot(label, 10).to(DEVICE)
+  #           else:
+  #               label = label.long().to(DEVICE)
+
+  #           L, acc, weight_diffs = self.infer(inp.to(DEVICE), label)
+  #           losslist.append(L)
+
+  #       # After processing the dataset, calculate metrics
+  #       mean_loss = np.mean(np.array(losslist))
+  #       mean_acc, _ = self.test_accuracy(dataset)
+  #       mean_test_acc, _ = self.test_accuracy(testset)
+
+  #       losses.append(mean_loss)
+  #       accs.append(mean_acc)
+  #       test_accs.append(mean_test_acc)
+  #       weight_diffs_list.append(weight_diffs)
+
+  #       print(f"Train Accuracy: s{mean_acc:.4f}, Test Accuracy: {mean_test_acc:.4f}, Loss: {mean_loss:.4f}")
+  #       print("SAVING MODEL")
+  #       self.save_model(logdir, savedir, losses, accs, weight_diffs_list, test_accs)
+
+  #       # Log to wandb
+  #       if log:
+  #           wandb.log({
+  #               "epoch": epoch,
+  #               "train_loss": mean_loss,
+  #               "train_accuracy": mean_acc,
+  #               "test_accuracy": mean_test_acc,
+  #               "weight_diff_mean": np.mean(weight_diffs),
+  #           })
 
   def save_model(self,savedir,logdir,losses,accs,weight_diffs_list,test_accs):
       for i,l in enumerate(self.layers):

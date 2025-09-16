@@ -152,7 +152,7 @@ class kan_net(nn.Module):
                 correct += (predicted == y).sum().item()
         return correct / total
 
-    def train_model(self, train_loader, valid_loader, epochs, lr, log, save, trial=0, new_ckpt='', train_ckpts=''):
+    def train_model(self, data, count, train_loader, valid_loader, epochs, lr, log, save, trial=0, new_ckpt='', train_ckpts=''):
         if not self.opt:
             self.optimizer = torch.optim.AdamW(self.parameters(), lr=lr, weight_decay=0.0005)
         epoch = 0
@@ -163,6 +163,9 @@ class kan_net(nn.Module):
         test_losses = []
         test_accuracies = []
         eps = []
+
+        log_history = []
+
         # print("Calculating initial training loss and accuracy for epoch 0")
         initial_train_loss = 0
         for x, y in train_loader:
@@ -185,14 +188,26 @@ class kan_net(nn.Module):
         test_accuracies.append(initial_test_acc)
         eps.append(epoch)
 
+        # if log:
+        #     wandb.log({
+        #         "epoch": epoch,
+        #         "train loss": initial_train_loss,
+        #         "train accuracy": initial_train_acc,
+        #         "valid loss": initial_test_loss,
+        #         "valid accuracy": initial_test_acc
+        #     })
+
         if log:
-            wandb.log({
+            log_entry = {
                 "epoch": epoch,
                 "train loss": initial_train_loss,
                 "train accuracy": initial_train_acc,
                 "valid loss": initial_test_loss,
                 "valid accuracy": initial_test_acc
-            })
+            }
+            log_history.append(log_entry)
+
+            wandb.log(log_entry)
         
         for epoch in range(1, epochs + 1):
             self.train()
@@ -218,17 +233,44 @@ class kan_net(nn.Module):
             test_accuracies.append(test_acc)
             eps.append(epoch)
 
+            # if log:
+            #     wandb.log({
+            #         "epoch": epoch,
+            #         "train loss": train_loss,
+            #         "train accuracy": train_acc,
+            #         "valid loss": test_loss,
+            #         "valid accuracy": test_acc
+            #     })
+
             if log:
-                wandb.log({
+                log_entry = {
                     "epoch": epoch,
                     "train loss": train_loss,
                     "train accuracy": train_acc,
                     "valid loss": test_loss,
                     "valid accuracy": test_acc
-                })
+                }
+                log_history.append(log_entry)
+
+                wandb.log(log_entry)
             print(f"Epoch: {epoch}, Train Acc: {train_acc}, Valid Acc: {test_acc}")
 
         if save == 'yes':
+
+            # JSON logging
+            log_dir = f"JSON_logs/KAN/Trial_{trial}"
+            os.makedirs(log_dir, exist_ok=True)
+
+            json_log_path = os.path.join(log_dir, f"KAN_{data}_{count}.json")
+
+            print(f"Saving data to {json_log_path}")
+
+            with open(json_log_path, "w") as f:
+                json.dump(log_history, f, indent=4)
+
+            print(f"Wandb log saved to {json_log_path}")
+
+
             self.save_model(new_ckpt)
             self.save_training_dynamics(train_losses, train_accuracies, test_losses, test_accuracies, trial, train_ckpts)
     
